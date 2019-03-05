@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 public class Ouvrage implements Serializable{
@@ -81,6 +82,7 @@ public class Ouvrage implements Serializable{
 		this.disponible = disponible;
 	}
 
+	@XmlTransient
 	public Collection<Reservation> getReservations() {
 		return reservations;
 	}

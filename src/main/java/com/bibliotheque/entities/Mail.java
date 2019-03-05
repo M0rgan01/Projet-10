@@ -27,12 +27,9 @@ public class Mail implements Serializable{
 		super();
 	}
 
-	public Mail(String email, String token, int essaisToken, Date expirationToken, Utilisateur utilisateur) {
+	public Mail(String email, Utilisateur utilisateur) {
 		super();
-		this.email = email;
-		this.token = token;
-		this.essaisToken = essaisToken;
-		this.expirationToken = expirationToken;
+		this.email = email;		
 		this.utilisateur = utilisateur;
 	}
 

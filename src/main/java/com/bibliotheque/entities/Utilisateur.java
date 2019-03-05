@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 public class Utilisateur implements Serializable{
@@ -30,14 +31,11 @@ public class Utilisateur implements Serializable{
 		super();
 	}
 	
-	public Utilisateur(String pseudo, String passWord, boolean active, int essaisConnection,
-			Date expirationConnection) {
+	public Utilisateur(String pseudo, String passWord, boolean active) {
 		super();
 		this.pseudo = pseudo;
 		this.passWord = passWord;
-		this.active = active;
-		this.essaisConnection = essaisConnection;
-		this.expirationConnection = expirationConnection;
+		this.active = active;		
 	}
 	
 	
@@ -78,6 +76,7 @@ public class Utilisateur implements Serializable{
 		this.expirationConnection = expirationConnection;
 	}
 
+	@XmlTransient
 	public Collection<Roles> getRoles() {
 		return roles;
 	}
@@ -86,6 +85,7 @@ public class Utilisateur implements Serializable{
 		this.roles = roles;
 	}
 
+	@XmlTransient
 	public Collection<Reservation> getReservations() {
 		return reservations;
 	}

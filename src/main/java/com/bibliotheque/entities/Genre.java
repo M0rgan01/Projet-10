@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 public class Genre implements Serializable{
@@ -33,6 +34,7 @@ public class Genre implements Serializable{
 		this.nom = nom;
 	}
 
+	@XmlTransient
 	public Collection<Ouvrage> getOuvrages() {
 		return ouvrages;
 	}
