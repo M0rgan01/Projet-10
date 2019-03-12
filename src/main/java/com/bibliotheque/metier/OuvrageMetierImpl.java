@@ -30,8 +30,18 @@ public class OuvrageMetierImpl implements OuvrageMetier{
 	}
 
 	@Override
-	public Page<Ouvrage> listOuvrage(int page, int size) {		
-		return ouvrageRepository.listOuvrage(PageRequest.of(page, size));
+	public PageOuvrage listOuvrage( String mc, int page, int size) {
+		
+		Page<Ouvrage> ouvrages = ouvrageRepository.listOuvrage("%" + mc + "%" ,PageRequest.of(page, size));
+	
+		PageOuvrage pageOuvrage = new PageOuvrage();
+		pageOuvrage.setOuvrages(ouvrages.getContent());
+		pageOuvrage.setNombreOuvrages(ouvrages.getNumberOfElements());
+		pageOuvrage.setPage(ouvrages.getNumber());
+		pageOuvrage.setTotalPage(ouvrages.getTotalPages());
+		pageOuvrage.setTotalOuvrages((int) ouvrages.getTotalElements());
+			
+		return pageOuvrage;
 	}
 
 }

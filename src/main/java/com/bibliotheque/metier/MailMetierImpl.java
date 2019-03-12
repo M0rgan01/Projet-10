@@ -13,7 +13,7 @@ public class MailMetierImpl implements MailMetier{
 	private MailRepository mailRepository;
 	
 	@Override
-	public void saveMail(Mail mail) {
+	public void saveMail(Mail mail) {		
 		mailRepository.save(mail);		
 	}
 

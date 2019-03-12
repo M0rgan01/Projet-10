@@ -13,8 +13,8 @@ public class UtilisateurMetierImpl implements UtilisateurMetier{
 	private UtilisateurRepository utilisateurRepository;
 	
 	@Override
-	public void saveUtilisateur(Utilisateur utilisateur) {		
-		utilisateurRepository.save(utilisateur);
+	public Utilisateur saveUtilisateur(Utilisateur utilisateur) {				
+		return utilisateurRepository.save(utilisateur);
 	}
 
 	@Override

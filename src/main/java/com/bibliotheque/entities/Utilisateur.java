@@ -6,15 +6,18 @@ import java.util.Date;
 import java.util.HashSet;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 public class Utilisateur implements Serializable{
 
-	@Id @GeneratedValue
+	@SequenceGenerator(name="UTILISATEUR_SEQ", sequenceName="utilisateur_sequence")
+	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="UTILISATEUR_SEQ")
 	private Long id;
 	private String pseudo;
 	private String passWord;

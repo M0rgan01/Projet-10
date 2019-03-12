@@ -5,14 +5,17 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Reservation implements Serializable{
 
-	@Id @GeneratedValue
+	@SequenceGenerator(name="RESERVATION_SEQ", sequenceName="reservation_sequence")
+	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="RESERVATION_SEQ")
 	private Long id;
 	private Date debut;
 	private Date fin;

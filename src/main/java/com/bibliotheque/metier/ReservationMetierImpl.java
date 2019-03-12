@@ -1,7 +1,5 @@
 package com.bibliotheque.metier;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,10 +27,5 @@ public class ReservationMetierImpl implements ReservationMetier{
 		return reservationRepository.findById(id).orElse(null);
 	}
 
-	@Override
-	public boolean isDisponnible(Long id, Date date) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }

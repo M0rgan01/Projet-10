@@ -5,13 +5,16 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+
 
 @Entity
 public class Mail implements Serializable{
-
-	@Id @GeneratedValue
+	@SequenceGenerator(name="MAIL_SEQ", sequenceName="mail_sequence")
+	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="MAIL_SEQ")
 	private Long id;
 	private String email;
 	private String token;
@@ -21,8 +24,6 @@ public class Mail implements Serializable{
 	@OneToOne
 	private Utilisateur utilisateur;
 
-	
-	
 	public Mail() {
 		super();
 	}

@@ -46,30 +46,30 @@ public class Projet7WebServiceApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 	
 			
-	Roles r1 = rolesRepository.save(new Roles("USER"));	
-	Roles r2 = rolesRepository.save(new Roles("ADMIN"));	
-	
+//	Roles r1 = rolesRepository.save(new Roles("USER"));	
+//	Roles r2 = rolesRepository.save(new Roles("ADMIN"));	
+//	
 	Genre g1 = genreRepository.save(new Genre("aventure"));
 	Genre g2 = genreRepository.save(new Genre("horreur"));
-	
-	Utilisateur u1 = new Utilisateur("morgan", "1234", true);
-	u1.getRoles().add(r1);
-	u1.getRoles().add(r2);
-	
-	Utilisateur u2 =new Utilisateur("emilie", "1234", true);
-	u2.getRoles().add(r1);	
-		
-	utilisateurRepository.save(u1);
-	utilisateurRepository.save(u2);
-	
-	mailRepository.save(new Mail("morgan@gmail.com", u1));
-	mailRepository.save(new Mail("emilie@gmail.com", u2));
-	
+//	
+//	Utilisateur u1 = new Utilisateur("morgan", "1234", true);
+//	u1.getRoles().add(r1);
+//	u1.getRoles().add(r2);
+//	
+//	Utilisateur u2 =new Utilisateur("emilie", "1234", true);
+//	u2.getRoles().add(r1);	
+//		
+//	utilisateurRepository.save(u1);
+//	utilisateurRepository.save(u2);
+//	
+//	mailRepository.save(new Mail("morgan@gmail.com", u1));
+//	mailRepository.save(new Mail("emilie@gmail.com", u2));
+//	
 	Ouvrage o1 = ouvrageRepository.save(new Ouvrage("Harry potter", "mary", "bla", true, g1));
 	Ouvrage o2 = ouvrageRepository.save(new Ouvrage("Ouvrage horreur", "auteur", "bla", true, g2));
-	
-	reservationRepository.save(new Reservation(new Date(), new Date(), u1, o1));
-	reservationRepository.save(new Reservation(new Date(), new Date(), u2, o2));
+//	
+//	reservationRepository.save(new Reservation(new Date(), new Date(), u1, o1));
+//	reservationRepository.save(new Reservation(new Date(), new Date(), u2, o2));
 	}
 
 

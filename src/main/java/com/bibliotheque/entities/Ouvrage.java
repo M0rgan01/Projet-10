@@ -5,16 +5,19 @@ import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 public class Ouvrage implements Serializable{
 
-	@Id @GeneratedValue
+	@SequenceGenerator(name="OUVRAGE_SEQ", sequenceName="ouvrage_sequence")
+	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="OUVRAGE_SEQ")
 	private Long id;
 	private String nom;
 	private String auteur;
