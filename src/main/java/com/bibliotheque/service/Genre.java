@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour genre complex type.
  * 
- * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="genre">
@@ -34,7 +34,7 @@ public class Genre {
     protected String nom;
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ nom.
+     * Obtient la valeur de la propriété nom.
      * 
      * @return
      *     possible object is
@@ -46,7 +46,7 @@ public class Genre {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ nom.
+     * Définit la valeur de la propriété nom.
      * 
      * @param value
      *     allowed object is

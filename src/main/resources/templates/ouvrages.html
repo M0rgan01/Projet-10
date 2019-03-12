@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<title>Les ouvrages</title>
+</head>
+<body>
+	<div layout:fragment="content">
+
+		<div class="row justify-content-center up">
+			<h3>Rechercher un ouvrage</h3>
+		</div>
+
+		<form th:action="@{recherche}" method="get" class="mb-5">
+			<label>Mot clé:</label> <input type="text" name="MotCle"
+				th:value="${MotCle}" />
+			<button class="btn btn-primary">Chercher</button>
+		</form>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Désignation</th>
+					<th>Description</th>
+					<th>Auteur</th>
+					<th>Genre</th>
+					<th></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="o:${listOuvrages.getOuvrages()}">
+					<td th:text=${o.nom}></td>
+					<td th:text=${o.description}></td>
+					<td th:text=${o.auteur}></td>
+					<td th:text=${o.getGenre().getNom()}></td>
+
+				</tr>
+			</tbody>
+
+		</table>
+
+		<div th:if="${listOuvrages.totalPage > 1}">
+			<ul class="pagination justify-content-center">
+
+				<li class="page-item"
+					th:classappend="${listOuvrages.page == 0} ? disabled"><a
+					class="page-link" th:href="@{/recherche(page=1, MotCle=${MotCle})}">«</a></li>
+
+				<li class="page-item"
+					th:classappend="${listOuvrages.page == 0} ? disabled"><a
+					class="page-link"
+					th:href="@{/recherche(page=${listOuvrages.page}, MotCle=${MotCle})}">←</a></li>
+
+				<li class="page-item"
+					th:classappend="${listOuvrages.page == (page - 1)} ? 'active'"
+					th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+					<a class="page-link" th:href="@{/recherche(page=${page}, MotCle=${MotCle})}"
+					th:text="${page}"></a>
+				</li>
+
+				<li class="page-item"
+					th:classappend="${listOuvrages.page + 1 ==listOuvrages.totalPage} ? disabled">
+					<a class="page-link"
+					th:href="@{/recherche(page=${listOuvrages.page + 2}, MotCle=${MotCle})}">→</a>
+				</li>
+
+
+				<li class="page-item"
+					th:classappend="${listOuvrages.page + 1 == listOuvrages.totalPage} ? disabled">
+					<a class="page-link"
+					th:href="@{/recherche(page=${listOuvrages.totalPage}, MotCle=${MotCle})}">»</a>
+				</li>
+
+			</ul>
+		</div>
+
+	</div>
+</body>
+</html>

@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour pageOuvrage complex type.
  * 
- * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="pageOuvrage">
@@ -50,7 +50,7 @@ public class PageOuvrage {
     protected int totalPage;
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ nombreOuvrages.
+     * Obtient la valeur de la propriété nombreOuvrages.
      * 
      */
     public int getNombreOuvrages() {
@@ -58,7 +58,7 @@ public class PageOuvrage {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ nombreOuvrages.
+     * Définit la valeur de la propriété nombreOuvrages.
      * 
      */
     public void setNombreOuvrages(int value) {
@@ -95,7 +95,7 @@ public class PageOuvrage {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ page.
+     * Obtient la valeur de la propriété page.
      * 
      */
     public int getPage() {
@@ -103,7 +103,7 @@ public class PageOuvrage {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ page.
+     * Définit la valeur de la propriété page.
      * 
      */
     public void setPage(int value) {
@@ -111,7 +111,7 @@ public class PageOuvrage {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ totalOuvrages.
+     * Obtient la valeur de la propriété totalOuvrages.
      * 
      */
     public int getTotalOuvrages() {
@@ -119,7 +119,7 @@ public class PageOuvrage {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ totalOuvrages.
+     * Définit la valeur de la propriété totalOuvrages.
      * 
      */
     public void setTotalOuvrages(int value) {
@@ -127,7 +127,7 @@ public class PageOuvrage {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ totalPage.
+     * Obtient la valeur de la propriété totalPage.
      * 
      */
     public int getTotalPage() {
@@ -135,7 +135,7 @@ public class PageOuvrage {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ totalPage.
+     * Définit la valeur de la propriété totalPage.
      * 
      */
     public void setTotalPage(int value) {

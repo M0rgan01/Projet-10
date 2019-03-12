@@ -11,7 +11,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 /**
  * <p>Classe Java pour reservation complex type.
  * 
- * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="reservation">
@@ -57,7 +57,7 @@ public class Reservation {
     protected Utilisateur utilisateur;
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ debut.
+     * Obtient la valeur de la propriété debut.
      * 
      * @return
      *     possible object is
@@ -69,7 +69,7 @@ public class Reservation {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ debut.
+     * Définit la valeur de la propriété debut.
      * 
      * @param value
      *     allowed object is
@@ -81,7 +81,7 @@ public class Reservation {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ fin.
+     * Obtient la valeur de la propriété fin.
      * 
      * @return
      *     possible object is
@@ -93,7 +93,7 @@ public class Reservation {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ fin.
+     * Définit la valeur de la propriété fin.
      * 
      * @param value
      *     allowed object is
@@ -105,7 +105,7 @@ public class Reservation {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ finProlongation.
+     * Obtient la valeur de la propriété finProlongation.
      * 
      * @return
      *     possible object is
@@ -117,7 +117,7 @@ public class Reservation {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ finProlongation.
+     * Définit la valeur de la propriété finProlongation.
      * 
      * @param value
      *     allowed object is
@@ -129,7 +129,7 @@ public class Reservation {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ id.
+     * Obtient la valeur de la propriété id.
      * 
      * @return
      *     possible object is
@@ -141,7 +141,7 @@ public class Reservation {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ id.
+     * Définit la valeur de la propriété id.
      * 
      * @param value
      *     allowed object is
@@ -153,7 +153,7 @@ public class Reservation {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ ouvrage.
+     * Obtient la valeur de la propriété ouvrage.
      * 
      * @return
      *     possible object is
@@ -165,7 +165,7 @@ public class Reservation {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ ouvrage.
+     * Définit la valeur de la propriété ouvrage.
      * 
      * @param value
      *     allowed object is
@@ -177,7 +177,7 @@ public class Reservation {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ prolongation.
+     * Obtient la valeur de la propriété prolongation.
      * 
      */
     public boolean isProlongation() {
@@ -185,7 +185,7 @@ public class Reservation {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ prolongation.
+     * Définit la valeur de la propriété prolongation.
      * 
      */
     public void setProlongation(boolean value) {
@@ -193,7 +193,7 @@ public class Reservation {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ utilisateur.
+     * Obtient la valeur de la propriété utilisateur.
      * 
      * @return
      *     possible object is
@@ -205,7 +205,7 @@ public class Reservation {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ utilisateur.
+     * Définit la valeur de la propriété utilisateur.
      * 
      * @param value
      *     allowed object is

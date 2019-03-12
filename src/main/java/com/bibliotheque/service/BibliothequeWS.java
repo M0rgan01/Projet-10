@@ -27,6 +27,18 @@ public interface BibliothequeWS {
 
     /**
      * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "saveOuvrage", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveOuvrage")
+    @ResponseWrapper(localName = "saveOuvrageResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveOuvrageResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/saveOuvrageRequest", output = "http://service.bibliotheque.com/BibliothequeWS/saveOuvrageResponse")
+    public void saveOuvrage(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Ouvrage arg0);
+
+    /**
+     * 
      * @param utilisateur
      */
     @WebMethod
@@ -39,46 +51,25 @@ public interface BibliothequeWS {
 
     /**
      * 
-     * @param arg1
      * @param arg0
-     * @return
-     *     returns com.bibliotheque.service.PageOuvrage
      */
     @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listOuvrage", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ListOuvrage")
-    @ResponseWrapper(localName = "listOuvrageResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ListOuvrageResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/listOuvrageRequest", output = "http://service.bibliotheque.com/BibliothequeWS/listOuvrageResponse")
-    public PageOuvrage listOuvrage(
+    @RequestWrapper(localName = "saveMail", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveMail")
+    @ResponseWrapper(localName = "saveMailResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveMailResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/saveMailRequest", output = "http://service.bibliotheque.com/BibliothequeWS/saveMailResponse")
+    public void saveMail(
         @WebParam(name = "arg0", targetNamespace = "")
-        int arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        int arg1);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns com.bibliotheque.service.Ouvrage
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getOuvrage", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetOuvrage")
-    @ResponseWrapper(localName = "getOuvrageResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetOuvrageResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getOuvrageRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getOuvrageResponse")
-    public Ouvrage getOuvrage(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Long arg0);
+        Mail arg0);
 
     /**
      * 
      * @param arg0
      */
     @WebMethod
-    @RequestWrapper(localName = "deleteMail", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteMail")
-    @ResponseWrapper(localName = "deleteMailResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteMailResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/deleteMailRequest", output = "http://service.bibliotheque.com/BibliothequeWS/deleteMailResponse")
-    public void deleteMail(
+    @RequestWrapper(localName = "deleteOuvrage", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteOuvrage")
+    @ResponseWrapper(localName = "deleteOuvrageResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteOuvrageResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/deleteOuvrageRequest", output = "http://service.bibliotheque.com/BibliothequeWS/deleteOuvrageResponse")
+    public void deleteOuvrage(
         @WebParam(name = "arg0", targetNamespace = "")
         Long arg0);
 
@@ -99,30 +90,6 @@ public interface BibliothequeWS {
 
     /**
      * 
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "deleteOuvrage", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteOuvrage")
-    @ResponseWrapper(localName = "deleteOuvrageResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteOuvrageResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/deleteOuvrageRequest", output = "http://service.bibliotheque.com/BibliothequeWS/deleteOuvrageResponse")
-    public void deleteOuvrage(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Long arg0);
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "saveGenre", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveGenre")
-    @ResponseWrapper(localName = "saveGenreResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveGenreResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/saveGenreRequest", output = "http://service.bibliotheque.com/BibliothequeWS/saveGenreResponse")
-    public void saveGenre(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Genre arg0);
-
-    /**
-     * 
      * @return
      *     returns java.util.List<com.bibliotheque.service.Genre>
      */
@@ -135,15 +102,24 @@ public interface BibliothequeWS {
 
     /**
      * 
-     * @param arg0
+     * @param size
+     * @param motCle
+     * @param page
+     * @return
+     *     returns com.bibliotheque.service.PageOuvrage
      */
     @WebMethod
-    @RequestWrapper(localName = "saveMail", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveMail")
-    @ResponseWrapper(localName = "saveMailResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveMailResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/saveMailRequest", output = "http://service.bibliotheque.com/BibliothequeWS/saveMailResponse")
-    public void saveMail(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Mail arg0);
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listOuvrage", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ListOuvrage")
+    @ResponseWrapper(localName = "listOuvrageResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ListOuvrageResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/listOuvrageRequest", output = "http://service.bibliotheque.com/BibliothequeWS/listOuvrageResponse")
+    public PageOuvrage listOuvrage(
+        @WebParam(name = "mot-cle", targetNamespace = "")
+        String motCle,
+        @WebParam(name = "page", targetNamespace = "")
+        int page,
+        @WebParam(name = "size", targetNamespace = "")
+        int size);
 
     /**
      * 
@@ -177,12 +153,39 @@ public interface BibliothequeWS {
      * @param arg0
      */
     @WebMethod
-    @RequestWrapper(localName = "saveOuvrage", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveOuvrage")
-    @ResponseWrapper(localName = "saveOuvrageResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveOuvrageResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/saveOuvrageRequest", output = "http://service.bibliotheque.com/BibliothequeWS/saveOuvrageResponse")
-    public void saveOuvrage(
+    @RequestWrapper(localName = "saveGenre", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveGenre")
+    @ResponseWrapper(localName = "saveGenreResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveGenreResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/saveGenreRequest", output = "http://service.bibliotheque.com/BibliothequeWS/saveGenreResponse")
+    public void saveGenre(
         @WebParam(name = "arg0", targetNamespace = "")
-        Ouvrage arg0);
+        Genre arg0);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "deleteMail", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteMail")
+    @ResponseWrapper(localName = "deleteMailResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteMailResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/deleteMailRequest", output = "http://service.bibliotheque.com/BibliothequeWS/deleteMailResponse")
+    public void deleteMail(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Long arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns com.bibliotheque.service.Ouvrage
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getOuvrage", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetOuvrage")
+    @ResponseWrapper(localName = "getOuvrageResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetOuvrageResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getOuvrageRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getOuvrageResponse")
+    public Ouvrage getOuvrage(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Long arg0);
 
     /**
      * 
@@ -216,18 +219,6 @@ public interface BibliothequeWS {
 
     /**
      * 
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "deleteReservation", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteReservation")
-    @ResponseWrapper(localName = "deleteReservationResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteReservationResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/deleteReservationRequest", output = "http://service.bibliotheque.com/BibliothequeWS/deleteReservationResponse")
-    public void deleteReservation(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Long arg0);
-
-    /**
-     * 
      * @param id
      */
     @WebMethod
@@ -237,5 +228,32 @@ public interface BibliothequeWS {
     public void deleteUtilisateur(
         @WebParam(name = "id", targetNamespace = "")
         Long id);
+
+    /**
+     * 
+     * @param mail
+     * @param utilisateur
+     */
+    @WebMethod
+    @RequestWrapper(localName = "createUtilisateur", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.CreateUtilisateur")
+    @ResponseWrapper(localName = "createUtilisateurResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.CreateUtilisateurResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/createUtilisateurRequest", output = "http://service.bibliotheque.com/BibliothequeWS/createUtilisateurResponse")
+    public void createUtilisateur(
+        @WebParam(name = "utilisateur", targetNamespace = "")
+        Utilisateur utilisateur,
+        @WebParam(name = "mail", targetNamespace = "")
+        Mail mail);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "deleteReservation", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteReservation")
+    @ResponseWrapper(localName = "deleteReservationResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteReservationResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/deleteReservationRequest", output = "http://service.bibliotheque.com/BibliothequeWS/deleteReservationResponse")
+    public void deleteReservation(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Long arg0);
 
 }

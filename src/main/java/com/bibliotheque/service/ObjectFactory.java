@@ -45,10 +45,12 @@ public class ObjectFactory {
     private final static QName _GetListGenreResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListGenreResponse");
     private final static QName _SaveGenreResponse_QNAME = new QName("http://service.bibliotheque.com/", "saveGenreResponse");
     private final static QName _SaveMailResponse_QNAME = new QName("http://service.bibliotheque.com/", "saveMailResponse");
+    private final static QName _CreateUtilisateurResponse_QNAME = new QName("http://service.bibliotheque.com/", "createUtilisateurResponse");
     private final static QName _DeleteReservation_QNAME = new QName("http://service.bibliotheque.com/", "deleteReservation");
     private final static QName _SaveReservationResponse_QNAME = new QName("http://service.bibliotheque.com/", "saveReservationResponse");
     private final static QName _DeleteMailResponse_QNAME = new QName("http://service.bibliotheque.com/", "deleteMailResponse");
     private final static QName _GetListGenre_QNAME = new QName("http://service.bibliotheque.com/", "getListGenre");
+    private final static QName _CreateUtilisateur_QNAME = new QName("http://service.bibliotheque.com/", "createUtilisateur");
     private final static QName _SaveUtilisateur_QNAME = new QName("http://service.bibliotheque.com/", "saveUtilisateur");
     private final static QName _GetGenreResponse_QNAME = new QName("http://service.bibliotheque.com/", "getGenreResponse");
     private final static QName _GetRerservation_QNAME = new QName("http://service.bibliotheque.com/", "getRerservation");
@@ -121,6 +123,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CreateUtilisateurResponse }
+     * 
+     */
+    public CreateUtilisateurResponse createCreateUtilisateurResponse() {
+        return new CreateUtilisateurResponse();
+    }
+
+    /**
      * Create an instance of {@link DeleteReservation }
      * 
      */
@@ -150,6 +160,14 @@ public class ObjectFactory {
      */
     public GetListGenre createGetListGenre() {
         return new GetListGenre();
+    }
+
+    /**
+     * Create an instance of {@link CreateUtilisateur }
+     * 
+     */
+    public CreateUtilisateur createCreateUtilisateur() {
+        return new CreateUtilisateur();
     }
 
     /**
@@ -558,6 +576,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CreateUtilisateurResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "createUtilisateurResponse")
+    public JAXBElement<CreateUtilisateurResponse> createCreateUtilisateurResponse(CreateUtilisateurResponse value) {
+        return new JAXBElement<CreateUtilisateurResponse>(_CreateUtilisateurResponse_QNAME, CreateUtilisateurResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DeleteReservation }{@code >}}
      * 
      */
@@ -591,6 +618,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getListGenre")
     public JAXBElement<GetListGenre> createGetListGenre(GetListGenre value) {
         return new JAXBElement<GetListGenre>(_GetListGenre_QNAME, GetListGenre.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CreateUtilisateur }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "createUtilisateur")
+    public JAXBElement<CreateUtilisateur> createCreateUtilisateur(CreateUtilisateur value) {
+        return new JAXBElement<CreateUtilisateur>(_CreateUtilisateur_QNAME, CreateUtilisateur.class, null, value);
     }
 
     /**

@@ -11,7 +11,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 /**
  * <p>Classe Java pour mail complex type.
  * 
- * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="mail">
@@ -52,7 +52,7 @@ public class Mail {
     protected Utilisateur utilisateur;
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ email.
+     * Obtient la valeur de la propriété email.
      * 
      * @return
      *     possible object is
@@ -64,7 +64,7 @@ public class Mail {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ email.
+     * Définit la valeur de la propriété email.
      * 
      * @param value
      *     allowed object is
@@ -76,7 +76,7 @@ public class Mail {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ essaisToken.
+     * Obtient la valeur de la propriété essaisToken.
      * 
      */
     public int getEssaisToken() {
@@ -84,7 +84,7 @@ public class Mail {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ essaisToken.
+     * Définit la valeur de la propriété essaisToken.
      * 
      */
     public void setEssaisToken(int value) {
@@ -92,7 +92,7 @@ public class Mail {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ expirationToken.
+     * Obtient la valeur de la propriété expirationToken.
      * 
      * @return
      *     possible object is
@@ -104,7 +104,7 @@ public class Mail {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ expirationToken.
+     * Définit la valeur de la propriété expirationToken.
      * 
      * @param value
      *     allowed object is
@@ -116,7 +116,7 @@ public class Mail {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ id.
+     * Obtient la valeur de la propriété id.
      * 
      * @return
      *     possible object is
@@ -128,7 +128,7 @@ public class Mail {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ id.
+     * Définit la valeur de la propriété id.
      * 
      * @param value
      *     allowed object is
@@ -140,7 +140,7 @@ public class Mail {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ token.
+     * Obtient la valeur de la propriété token.
      * 
      * @return
      *     possible object is
@@ -152,7 +152,7 @@ public class Mail {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ token.
+     * Définit la valeur de la propriété token.
      * 
      * @param value
      *     allowed object is
@@ -164,7 +164,7 @@ public class Mail {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ utilisateur.
+     * Obtient la valeur de la propriété utilisateur.
      * 
      * @return
      *     possible object is
@@ -176,7 +176,7 @@ public class Mail {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ utilisateur.
+     * Définit la valeur de la propriété utilisateur.
      * 
      * @param value
      *     allowed object is

@@ -3,21 +3,23 @@ package com.bibliotheque.service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
  * <p>Classe Java pour listOuvrage complex type.
  * 
- * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="listOuvrage">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="arg0" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="arg1" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="mot-cle" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="page" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="size" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,44 +30,71 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "listOuvrage", propOrder = {
-    "arg0",
-    "arg1"
+    "motCle",
+    "page",
+    "size"
 })
 public class ListOuvrage {
 
-    protected int arg0;
-    protected int arg1;
+    @XmlElement(name = "mot-cle")
+    protected String motCle;
+    protected int page;
+    protected int size;
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ arg0.
+     * Obtient la valeur de la propriété motCle.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public int getArg0() {
-        return arg0;
+    public String getMotCle() {
+        return motCle;
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ arg0.
+     * Définit la valeur de la propriété motCle.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setArg0(int value) {
-        this.arg0 = value;
+    public void setMotCle(String value) {
+        this.motCle = value;
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ arg1.
+     * Obtient la valeur de la propriété page.
      * 
      */
-    public int getArg1() {
-        return arg1;
+    public int getPage() {
+        return page;
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ arg1.
+     * Définit la valeur de la propriété page.
      * 
      */
-    public void setArg1(int value) {
-        this.arg1 = value;
+    public void setPage(int value) {
+        this.page = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété size.
+     * 
+     */
+    public int getSize() {
+        return size;
+    }
+
+    /**
+     * Définit la valeur de la propriété size.
+     * 
+     */
+    public void setSize(int value) {
+        this.size = value;
     }
 
 }

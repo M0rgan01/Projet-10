@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour ouvrage complex type.
  * 
- * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="ouvrage">
@@ -49,7 +49,7 @@ public class Ouvrage {
     protected String nom;
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ auteur.
+     * Obtient la valeur de la propriété auteur.
      * 
      * @return
      *     possible object is
@@ -61,7 +61,7 @@ public class Ouvrage {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ auteur.
+     * Définit la valeur de la propriété auteur.
      * 
      * @param value
      *     allowed object is
@@ -73,7 +73,7 @@ public class Ouvrage {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ description.
+     * Obtient la valeur de la propriété description.
      * 
      * @return
      *     possible object is
@@ -85,7 +85,7 @@ public class Ouvrage {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ description.
+     * Définit la valeur de la propriété description.
      * 
      * @param value
      *     allowed object is
@@ -97,7 +97,7 @@ public class Ouvrage {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ disponible.
+     * Obtient la valeur de la propriété disponible.
      * 
      */
     public boolean isDisponible() {
@@ -105,7 +105,7 @@ public class Ouvrage {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ disponible.
+     * Définit la valeur de la propriété disponible.
      * 
      */
     public void setDisponible(boolean value) {
@@ -113,7 +113,7 @@ public class Ouvrage {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ genre.
+     * Obtient la valeur de la propriété genre.
      * 
      * @return
      *     possible object is
@@ -125,7 +125,7 @@ public class Ouvrage {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ genre.
+     * Définit la valeur de la propriété genre.
      * 
      * @param value
      *     allowed object is
@@ -137,7 +137,7 @@ public class Ouvrage {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ id.
+     * Obtient la valeur de la propriété id.
      * 
      * @return
      *     possible object is
@@ -149,7 +149,7 @@ public class Ouvrage {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ id.
+     * Définit la valeur de la propriété id.
      * 
      * @param value
      *     allowed object is
@@ -161,7 +161,7 @@ public class Ouvrage {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ nom.
+     * Obtient la valeur de la propriété nom.
      * 
      * @return
      *     possible object is
@@ -173,7 +173,7 @@ public class Ouvrage {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ nom.
+     * Définit la valeur de la propriété nom.
      * 
      * @param value
      *     allowed object is

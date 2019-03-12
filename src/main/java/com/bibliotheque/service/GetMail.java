@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour getMail complex type.
  * 
- * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="getMail">
@@ -34,7 +34,7 @@ public class GetMail {
     protected Long arg0;
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ arg0.
+     * Obtient la valeur de la propriété arg0.
      * 
      * @return
      *     possible object is
@@ -46,7 +46,7 @@ public class GetMail {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ arg0.
+     * Définit la valeur de la propriété arg0.
      * 
      * @param value
      *     allowed object is

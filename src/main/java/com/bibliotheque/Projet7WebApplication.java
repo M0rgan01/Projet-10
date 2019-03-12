@@ -26,21 +26,20 @@ public class Projet7WebApplication implements CommandLineRunner{
 		SpringTemplateEngine engine = new SpringTemplateEngine();
 		engine.addDialect(new LayoutDialect(new GroupingStrategy()));
 		
-		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 		
-		Utilisateur u1 = new Utilisateur();
-		u1.setId(1l);
-		u1.setPseudo("morgan3");
-		u1.setPassWord("12345");
-		u1.setActive(true);
-		
-			
-//		Mail mail = new Mail();
-//		mail.setEmail("@gmail.com");
-//		mail.setUtilisateur(u1);
-			
-		ws.saveUtilisateur(u1);
-		//ws.saveMail(mail);
+//			BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+//		
+//			Utilisateur u1 = new Utilisateur();
+//			u1.setPseudo("morgan3");
+//			u1.setPassWord("12345");
+//			u1.setActive(true);
+//						
+//			Mail mail = new Mail();
+//			mail.setEmail("@gmail.com");
+//						
+//		ws.createUtilisateur(u1, mail);
+	
+				
 	}
 
 }

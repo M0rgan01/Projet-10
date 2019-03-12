@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour saveReservationResponse complex type.
+ * <p>Classe Java pour createUtilisateurResponse complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="saveReservationResponse">
+ * &lt;complexType name="createUtilisateurResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -25,8 +25,8 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "saveReservationResponse")
-public class SaveReservationResponse {
+@XmlType(name = "createUtilisateurResponse")
+public class CreateUtilisateurResponse {
 
 
 }
