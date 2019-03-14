@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
@@ -21,6 +22,8 @@ public class Utilisateur implements Serializable{
 	private Long id;
 	private String pseudo;
 	private String passWord;
+	@Transient
+	private String passWordConfirm;
 	private boolean active;
 	private int essaisConnection; 
 	private Date expirationConnection;

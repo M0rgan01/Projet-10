@@ -32,7 +32,7 @@ public class OuvrageMetierImpl implements OuvrageMetier{
 	@Override
 	public PageOuvrage listOuvrage( String mc, int page, int size) {
 		
-		Page<Ouvrage> ouvrages = ouvrageRepository.listOuvrage("%" + mc + "%" ,PageRequest.of(page, size));
+		Page<Ouvrage> ouvrages = ouvrageRepository.getListOuvrages("%" + mc + "%" ,PageRequest.of(page, size));
 	
 		PageOuvrage pageOuvrage = new PageOuvrage();
 		pageOuvrage.setOuvrages(ouvrages.getContent());

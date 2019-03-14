@@ -11,5 +11,5 @@ import com.bibliotheque.entities.Ouvrage;
 public interface OuvrageRepository extends JpaRepository<Ouvrage, Long>{
 	
 	@Query("select o from Ouvrage o where o.nom like :x order by o.nom")
-	public Page<Ouvrage> listOuvrage(@Param("x") String mc, Pageable pageable);
+	public Page<Ouvrage> getListOuvrages(@Param("x") String mc, Pageable pageable);
 }

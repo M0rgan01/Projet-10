@@ -14,6 +14,7 @@ import com.bibliotheque.entities.Mail;
 import com.bibliotheque.entities.Ouvrage;
 import com.bibliotheque.entities.Reservation;
 import com.bibliotheque.entities.Utilisateur;
+import com.bibliotheque.exception.BibliothequeException;
 import com.bibliotheque.metier.GenreMetier;
 import com.bibliotheque.metier.MailMetier;
 import com.bibliotheque.metier.OuvrageMetier;
@@ -42,10 +43,8 @@ public class BibliothequeService {
 	}
 	
 	@WebMethod
-	public void createUtilisateur(@WebParam(name="utilisateur")Utilisateur utilisateur, @WebParam(name="mail") Mail mail) {		
-		utilisateur = utilisateurMetier.saveUtilisateur(utilisateur);
-		mail.setUtilisateur(utilisateur);
-		mailMetier.saveMail(mail);
+	public void createUtilisateur(@WebParam(name="utilisateur")Utilisateur utilisateur, @WebParam(name="mail") Mail mail) throws BibliothequeException {		
+		utilisateurMetier.createUtilisateur(utilisateur, mail);
 	}
 	
 	@WebMethod
