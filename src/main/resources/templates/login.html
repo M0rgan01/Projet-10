@@ -15,8 +15,12 @@
 				</div>
 				<div class="card-body">
 
-					<h3 class="card-title text-danger" th:if="${param.error}">Username
-						ou PassWord incorrect</h3>
+					<h3 class="card-title text-danger" th:if="${param.error}">
+						<span
+							th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null and session[SPRING_SECURITY_LAST_EXCEPTION].message != null}"
+							th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}">Invalid
+							credentials</span>
+					</h3>
 
 					<h3 class="card-title text-danger" th:if="${param.logout}">Vous
 						avez été déconnectez</h3>
@@ -36,6 +40,7 @@
 
 						<div>
 							<button type="submit" class="btn btn-primary">Save</button>
+							<a class="btn btn-primary ml-auto" th:href="@{inscription}">Inscription</a>
 						</div>
 
 					</form>

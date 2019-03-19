@@ -39,7 +39,7 @@
 								un ouvrage</a></li>
 					</ul>
 
-					<ul class="navbar-nav ml-auto">
+					<ul  th:if="${#httpServletRequest.remoteUser}" class="navbar-nav ml-auto">
 						<li><a class="nav-link navbar-text" th:href="@{/logout}">Logout</a></li>
 					</ul>
 

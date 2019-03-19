@@ -25,22 +25,26 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _GetOuvrageResponse_QNAME = new QName("http://service.bibliotheque.com/", "getOuvrageResponse");
-    private final static QName _GetUtilisateur_QNAME = new QName("http://service.bibliotheque.com/", "getUtilisateur");
     private final static QName _SaveGenre_QNAME = new QName("http://service.bibliotheque.com/", "saveGenre");
     private final static QName _SaveMail_QNAME = new QName("http://service.bibliotheque.com/", "saveMail");
     private final static QName _DeleteMail_QNAME = new QName("http://service.bibliotheque.com/", "deleteMail");
     private final static QName _DeleteUtilisateurResponse_QNAME = new QName("http://service.bibliotheque.com/", "deleteUtilisateurResponse");
+    private final static QName _BibliothequeException_QNAME = new QName("http://service.bibliotheque.com/", "BibliothequeException");
     private final static QName _SaveUtilisateurResponse_QNAME = new QName("http://service.bibliotheque.com/", "saveUtilisateurResponse");
+    private final static QName _DoConnection_QNAME = new QName("http://service.bibliotheque.com/", "doConnection");
     private final static QName _GetRerservationResponse_QNAME = new QName("http://service.bibliotheque.com/", "getRerservationResponse");
+    private final static QName _GetListRolesResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListRolesResponse");
     private final static QName _GetMail_QNAME = new QName("http://service.bibliotheque.com/", "getMail");
     private final static QName _DeleteOuvrageResponse_QNAME = new QName("http://service.bibliotheque.com/", "deleteOuvrageResponse");
     private final static QName _DeleteUtilisateur_QNAME = new QName("http://service.bibliotheque.com/", "deleteUtilisateur");
     private final static QName _GetGenre_QNAME = new QName("http://service.bibliotheque.com/", "getGenre");
+    private final static QName _GetListRoles_QNAME = new QName("http://service.bibliotheque.com/", "getListRoles");
     private final static QName _ListOuvrageResponse_QNAME = new QName("http://service.bibliotheque.com/", "listOuvrageResponse");
     private final static QName _SaveOuvrage_QNAME = new QName("http://service.bibliotheque.com/", "saveOuvrage");
     private final static QName _DeleteReservationResponse_QNAME = new QName("http://service.bibliotheque.com/", "deleteReservationResponse");
     private final static QName _GetMailResponse_QNAME = new QName("http://service.bibliotheque.com/", "getMailResponse");
     private final static QName _SaveOuvrageResponse_QNAME = new QName("http://service.bibliotheque.com/", "saveOuvrageResponse");
+    private final static QName _DoConnectionResponse_QNAME = new QName("http://service.bibliotheque.com/", "doConnectionResponse");
     private final static QName _DeleteOuvrage_QNAME = new QName("http://service.bibliotheque.com/", "deleteOuvrage");
     private final static QName _GetListGenreResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListGenreResponse");
     private final static QName _SaveGenreResponse_QNAME = new QName("http://service.bibliotheque.com/", "saveGenreResponse");
@@ -54,7 +58,6 @@ public class ObjectFactory {
     private final static QName _SaveUtilisateur_QNAME = new QName("http://service.bibliotheque.com/", "saveUtilisateur");
     private final static QName _GetGenreResponse_QNAME = new QName("http://service.bibliotheque.com/", "getGenreResponse");
     private final static QName _GetRerservation_QNAME = new QName("http://service.bibliotheque.com/", "getRerservation");
-    private final static QName _GetUtilisateurResponse_QNAME = new QName("http://service.bibliotheque.com/", "getUtilisateurResponse");
     private final static QName _ListOuvrage_QNAME = new QName("http://service.bibliotheque.com/", "listOuvrage");
     private final static QName _GetOuvrage_QNAME = new QName("http://service.bibliotheque.com/", "getOuvrage");
     private final static QName _SaveReservation_QNAME = new QName("http://service.bibliotheque.com/", "saveReservation");
@@ -88,6 +91,14 @@ public class ObjectFactory {
      */
     public SaveOuvrageResponse createSaveOuvrageResponse() {
         return new SaveOuvrageResponse();
+    }
+
+    /**
+     * Create an instance of {@link DoConnectionResponse }
+     * 
+     */
+    public DoConnectionResponse createDoConnectionResponse() {
+        return new DoConnectionResponse();
     }
 
     /**
@@ -195,14 +206,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetUtilisateurResponse }
-     * 
-     */
-    public GetUtilisateurResponse createGetUtilisateurResponse() {
-        return new GetUtilisateurResponse();
-    }
-
-    /**
      * Create an instance of {@link ListOuvrage }
      * 
      */
@@ -232,14 +235,6 @@ public class ObjectFactory {
      */
     public GetOuvrageResponse createGetOuvrageResponse() {
         return new GetOuvrageResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetUtilisateur }
-     * 
-     */
-    public GetUtilisateur createGetUtilisateur() {
-        return new GetUtilisateur();
     }
 
     /**
@@ -275,6 +270,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link BibliothequeException }
+     * 
+     */
+    public BibliothequeException createBibliothequeException() {
+        return new BibliothequeException();
+    }
+
+    /**
      * Create an instance of {@link SaveUtilisateurResponse }
      * 
      */
@@ -283,11 +286,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DoConnection }
+     * 
+     */
+    public DoConnection createDoConnection() {
+        return new DoConnection();
+    }
+
+    /**
      * Create an instance of {@link GetRerservationResponse }
      * 
      */
     public GetRerservationResponse createGetRerservationResponse() {
         return new GetRerservationResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetListRolesResponse }
+     * 
+     */
+    public GetListRolesResponse createGetListRolesResponse() {
+        return new GetListRolesResponse();
     }
 
     /**
@@ -323,6 +342,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetListRoles }
+     * 
+     */
+    public GetListRoles createGetListRoles() {
+        return new GetListRoles();
+    }
+
+    /**
      * Create an instance of {@link ListOuvrageResponse }
      * 
      */
@@ -344,6 +371,14 @@ public class ObjectFactory {
      */
     public Mail createMail() {
         return new Mail();
+    }
+
+    /**
+     * Create an instance of {@link Roles }
+     * 
+     */
+    public Roles createRoles() {
+        return new Roles();
     }
 
     /**
@@ -371,6 +406,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link BibliothequeFault }
+     * 
+     */
+    public BibliothequeFault createBibliothequeFault() {
+        return new BibliothequeFault();
+    }
+
+    /**
      * Create an instance of {@link PageOuvrage }
      * 
      */
@@ -393,15 +436,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getOuvrageResponse")
     public JAXBElement<GetOuvrageResponse> createGetOuvrageResponse(GetOuvrageResponse value) {
         return new JAXBElement<GetOuvrageResponse>(_GetOuvrageResponse_QNAME, GetOuvrageResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetUtilisateur }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getUtilisateur")
-    public JAXBElement<GetUtilisateur> createGetUtilisateur(GetUtilisateur value) {
-        return new JAXBElement<GetUtilisateur>(_GetUtilisateur_QNAME, GetUtilisateur.class, null, value);
     }
 
     /**
@@ -441,6 +475,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link BibliothequeException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "BibliothequeException")
+    public JAXBElement<BibliothequeException> createBibliothequeException(BibliothequeException value) {
+        return new JAXBElement<BibliothequeException>(_BibliothequeException_QNAME, BibliothequeException.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SaveUtilisateurResponse }{@code >}}
      * 
      */
@@ -450,12 +493,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DoConnection }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "doConnection")
+    public JAXBElement<DoConnection> createDoConnection(DoConnection value) {
+        return new JAXBElement<DoConnection>(_DoConnection_QNAME, DoConnection.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetRerservationResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getRerservationResponse")
     public JAXBElement<GetRerservationResponse> createGetRerservationResponse(GetRerservationResponse value) {
         return new JAXBElement<GetRerservationResponse>(_GetRerservationResponse_QNAME, GetRerservationResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetListRolesResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getListRolesResponse")
+    public JAXBElement<GetListRolesResponse> createGetListRolesResponse(GetListRolesResponse value) {
+        return new JAXBElement<GetListRolesResponse>(_GetListRolesResponse_QNAME, GetListRolesResponse.class, null, value);
     }
 
     /**
@@ -492,6 +553,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getGenre")
     public JAXBElement<GetGenre> createGetGenre(GetGenre value) {
         return new JAXBElement<GetGenre>(_GetGenre_QNAME, GetGenre.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetListRoles }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getListRoles")
+    public JAXBElement<GetListRoles> createGetListRoles(GetListRoles value) {
+        return new JAXBElement<GetListRoles>(_GetListRoles_QNAME, GetListRoles.class, null, value);
     }
 
     /**
@@ -537,6 +607,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "saveOuvrageResponse")
     public JAXBElement<SaveOuvrageResponse> createSaveOuvrageResponse(SaveOuvrageResponse value) {
         return new JAXBElement<SaveOuvrageResponse>(_SaveOuvrageResponse_QNAME, SaveOuvrageResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DoConnectionResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "doConnectionResponse")
+    public JAXBElement<DoConnectionResponse> createDoConnectionResponse(DoConnectionResponse value) {
+        return new JAXBElement<DoConnectionResponse>(_DoConnectionResponse_QNAME, DoConnectionResponse.class, null, value);
     }
 
     /**
@@ -654,15 +733,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getRerservation")
     public JAXBElement<GetRerservation> createGetRerservation(GetRerservation value) {
         return new JAXBElement<GetRerservation>(_GetRerservation_QNAME, GetRerservation.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetUtilisateurResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getUtilisateurResponse")
-    public JAXBElement<GetUtilisateurResponse> createGetUtilisateurResponse(GetUtilisateurResponse value) {
-        return new JAXBElement<GetUtilisateurResponse>(_GetUtilisateurResponse_QNAME, GetUtilisateurResponse.class, null, value);
     }
 
     /**

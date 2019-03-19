@@ -17,10 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-		//auth.inMemoryAuthentication().withUser("admin").password("{noop}1234").roles("ADMIN", "USER");
-		//auth.inMemoryAuthentication().withUser("user").password("{noop}1234").roles("USER");
-		
+			
 		auth.authenticationProvider(authProvider);
 		
 	}
@@ -29,14 +26,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// formulaire de connection personnalise
 		http.formLogin().loginPage("/login");
-			
+		
 		//http.authorizeRequests().antMatchers("/index").permitAll();
 
-		http.authorizeRequests().antMatchers("/index").hasRole("USER");
+		http.authorizeRequests().antMatchers("/index","/recherche").hasRole("USER");
 		
 		// pour la deconnexion
 		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).clearAuthentication(true)
 				.deleteCookies("JSESSIONID");
 	}
 
+	
 }
