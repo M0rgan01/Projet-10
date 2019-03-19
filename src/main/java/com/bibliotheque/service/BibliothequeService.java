@@ -13,6 +13,7 @@ import com.bibliotheque.entities.Genre;
 import com.bibliotheque.entities.Mail;
 import com.bibliotheque.entities.Ouvrage;
 import com.bibliotheque.entities.Reservation;
+import com.bibliotheque.entities.Roles;
 import com.bibliotheque.entities.Utilisateur;
 import com.bibliotheque.exception.BibliothequeException;
 import com.bibliotheque.metier.GenreMetier;
@@ -20,6 +21,7 @@ import com.bibliotheque.metier.MailMetier;
 import com.bibliotheque.metier.OuvrageMetier;
 import com.bibliotheque.metier.PageOuvrage;
 import com.bibliotheque.metier.ReservationMetier;
+import com.bibliotheque.metier.RolesMetier;
 import com.bibliotheque.metier.UtilisateurMetier;
 
 @Component
@@ -36,6 +38,8 @@ public class BibliothequeService {
 	private GenreMetier genreMetier;
 	@Autowired
 	private ReservationMetier  reservationMetier;
+	@Autowired
+	private RolesMetier rolesMetier;
 	
 	@WebMethod
 	public void saveUtilisateur(@WebParam(name="utilisateur")Utilisateur utilisateur) {
@@ -52,8 +56,8 @@ public class BibliothequeService {
 		utilisateurMetier.deleteUtilisateur(id);
 	}
 	@WebMethod
-	public Utilisateur getUtilisateur(@WebParam(name="id")Long id) {
-		return utilisateurMetier.getUtilisateur(id);
+	public Utilisateur doConnection(@WebParam(name="pseudo")String pseudo, @WebParam(name="passWord")String passWord) throws BibliothequeException {
+		return utilisateurMetier.doConnection(pseudo, passWord);
 	}
 	@WebMethod
 	public void saveMail(Mail mail) {
@@ -64,8 +68,8 @@ public class BibliothequeService {
 		mailMetier.deleteMail(id);
 	}
 	@WebMethod
-	public Mail getMail(Long id) {
-		return mailMetier.getMail(id);
+	public Mail getMail(@WebParam(name="pseudo") String email) {
+		return mailMetier.getMail(email);
 	}
 	@WebMethod
 	public void saveOuvrage(Ouvrage ouvrage) {
@@ -106,6 +110,10 @@ public class BibliothequeService {
 	@WebMethod
 	public Reservation getRerservation(Long id) {
 		return reservationMetier.getRerservation(id);
+	}
+	@WebMethod
+	public List<Roles> getListRoles(@WebParam(name="pseudo")String pseudo) {
+		return rolesMetier.getListRoles(pseudo);
 	}
 	
 	

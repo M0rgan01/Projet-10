@@ -47,9 +47,9 @@ public class MailMetierImpl implements MailMetier{
 		if (mail2 != null) {
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("2");
-			bibliothequeFault.setFaultString("L'adresse e-mail demander est déjà utilisater");
+			bibliothequeFault.setFaultString("L'adresse e-mail demander est déjà utilisé");
 			
-			throw new BibliothequeException("Email utiliser", bibliothequeFault);
+			throw new BibliothequeException("Email utilisé", bibliothequeFault);
 		}
 		mailRepository.save(mail);	
 	}
