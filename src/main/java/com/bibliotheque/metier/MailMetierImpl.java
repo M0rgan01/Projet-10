@@ -1,8 +1,14 @@
 package com.bibliotheque.metier;
 
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.bibliotheque.dao.MailRepository;
 import com.bibliotheque.entities.Mail;
@@ -10,7 +16,6 @@ import com.bibliotheque.entities.Utilisateur;
 import com.bibliotheque.exception.BibliothequeException;
 import com.bibliotheque.exception.BibliothequeFault;
 
-@Transactional
 @Service
 public class MailMetierImpl implements MailMetier{
 
@@ -39,6 +44,19 @@ public class MailMetierImpl implements MailMetier{
 
 	@Override
 	public void createMail(Mail mail, Utilisateur utilisateur) throws BibliothequeException {
+		
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		Validator validator = factory.getValidator();
+		
+		Set<ConstraintViolation<Mail>> violations = validator.validate(mail);
+		
+		for (ConstraintViolation<Mail> violation : violations) {
+		   
+		    BibliothequeFault bibliothequeFault = new BibliothequeFault();			
+			bibliothequeFault.setFaultString(violation.getMessage());
+			
+			throw new BibliothequeException(violation.getMessage(), bibliothequeFault);
+		}
 		
 		mail.setUtilisateur(utilisateur);
 		

@@ -25,7 +25,7 @@ import com.bibliotheque.metier.RolesMetier;
 import com.bibliotheque.metier.UtilisateurMetier;
 
 @Component
-@WebService(name="BibliothequeWS")
+@WebService(name = "BibliothequeWS")
 public class BibliothequeService {
 
 	@Autowired
@@ -37,84 +37,102 @@ public class BibliothequeService {
 	@Autowired
 	private GenreMetier genreMetier;
 	@Autowired
-	private ReservationMetier  reservationMetier;
+	private ReservationMetier reservationMetier;
 	@Autowired
 	private RolesMetier rolesMetier;
-	
+
 	@WebMethod
-	public void saveUtilisateur(@WebParam(name="utilisateur")Utilisateur utilisateur) {
+	public void saveUtilisateur(@WebParam(name = "utilisateur") Utilisateur utilisateur) {
 		utilisateurMetier.saveUtilisateur(utilisateur);
 	}
-	
+
 	@WebMethod
-	public void createUtilisateur(@WebParam(name="utilisateur")Utilisateur utilisateur, @WebParam(name="mail") Mail mail) throws BibliothequeException {		
+	public void createUtilisateur(@WebParam(name = "utilisateur") Utilisateur utilisateur,
+			@WebParam(name = "mail") Mail mail) throws BibliothequeException {
 		utilisateurMetier.createUtilisateur(utilisateur, mail);
 	}
-	
+
 	@WebMethod
-	public void deleteUtilisateur(@WebParam(name="id")Long id) {
+	public void deleteUtilisateur(@WebParam(name = "id") Long id) {
 		utilisateurMetier.deleteUtilisateur(id);
 	}
+
 	@WebMethod
-	public Utilisateur doConnection(@WebParam(name="pseudo")String pseudo, @WebParam(name="passWord")String passWord) throws BibliothequeException {
+	public Utilisateur doConnection(@WebParam(name = "pseudo") String pseudo,
+			@WebParam(name = "passWord") String passWord) throws BibliothequeException {
 		return utilisateurMetier.doConnection(pseudo, passWord);
 	}
+
 	@WebMethod
 	public void saveMail(Mail mail) {
 		mailMetier.saveMail(mail);
 	}
+
 	@WebMethod
 	public void deleteMail(Long id) {
 		mailMetier.deleteMail(id);
 	}
+
 	@WebMethod
-	public Mail getMail(@WebParam(name="pseudo") String email) {
+	public Mail getMail(@WebParam(name = "pseudo") String email) {
 		return mailMetier.getMail(email);
 	}
+
 	@WebMethod
 	public void saveOuvrage(Ouvrage ouvrage) {
 		ouvrageMetier.saveOuvrage(ouvrage);
 	}
+
 	@WebMethod
 	public void deleteOuvrage(Long id) {
 		ouvrageMetier.deleteOuvrage(id);
 	}
+
 	@WebMethod
 	public Ouvrage getOuvrage(Long id) {
 		return ouvrageMetier.getOuvrage(id);
 	}
+
 	@WebMethod
-	public PageOuvrage listOuvrage(@WebParam(name="mot-cle")String mc, @WebParam(name="page") int page, @WebParam(name="size") int size) {
-		return ouvrageMetier.listOuvrage(mc, page, size);
+	public PageOuvrage listOuvrage(@WebParam(name = "mot-cle") String mc, @WebParam(name = "genre") String genre,
+			@WebParam(name = "disponnible") boolean disponnible, @WebParam(name = "page") int page,
+			@WebParam(name = "size") int size) {
+		return ouvrageMetier.listOuvrage(mc, genre, disponnible, page, size);
 	}
+
 	@WebMethod
 	public void saveGenre(Genre genre) {
 		genreMetier.saveGenre(genre);
 	}
+
 	@WebMethod
 	public List<Genre> getListGenre() {
 		return genreMetier.getListGenre();
 	}
+
 	@WebMethod
 	public Genre getGenre(String nom) {
 		return genreMetier.getGenre(nom);
 	}
+
 	@WebMethod
 	public void saveReservation(Reservation reservation) {
 		reservationMetier.saveReservation(reservation);
 	}
+
 	@WebMethod
 	public void deleteReservation(Long id) {
 		reservationMetier.deleteReservation(id);
 	}
+
 	@WebMethod
 	public Reservation getRerservation(Long id) {
 		return reservationMetier.getRerservation(id);
 	}
+
 	@WebMethod
-	public List<Roles> getListRoles(@WebParam(name="pseudo")String pseudo) {
+	public List<Roles> getListRoles(@WebParam(name = "pseudo") String pseudo) {
 		return rolesMetier.getListRoles(pseudo);
 	}
-	
-	
+
 }

@@ -2,11 +2,16 @@ package com.bibliotheque.metier;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.bibliotheque.dao.UtilisateurRepository;
 import com.bibliotheque.entities.Mail;
@@ -15,7 +20,6 @@ import com.bibliotheque.entities.Utilisateur;
 import com.bibliotheque.exception.BibliothequeException;
 import com.bibliotheque.exception.BibliothequeFault;
 
-@Transactional
 @Service
 public class UtilisateurMetierImpl implements UtilisateurMetier {
 
@@ -103,7 +107,20 @@ public class UtilisateurMetierImpl implements UtilisateurMetier {
 
 	@Override
 	public void createUtilisateur(Utilisateur utilisateur, Mail mail) throws BibliothequeException {
-
+		  
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		Validator validator = factory.getValidator();
+		
+		Set<ConstraintViolation<Utilisateur>> violations = validator.validate(utilisateur);
+		
+		for (ConstraintViolation<Utilisateur> violation : violations) {
+		   
+		    BibliothequeFault bibliothequeFault = new BibliothequeFault();			
+			bibliothequeFault.setFaultString(violation.getMessage());
+			
+			throw new BibliothequeException(violation.getMessage(), bibliothequeFault);
+		}
+			
 		checkPseudoExist(utilisateur.getPseudo());
 
 		utilisateur.setPassWord(new BCryptPasswordEncoder().encode(utilisateur.getPassWord()));

@@ -12,6 +12,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
@@ -19,8 +22,13 @@ public class Utilisateur implements Serializable{
 
 	@SequenceGenerator(name="UTILISATEUR_SEQ", sequenceName="utilisateur_sequence")
 	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="UTILISATEUR_SEQ")
-	private Long id;
-	private String pseudo;
+	private Long id;	
+	@NotBlank(message="Le pseudo ne peut être vide")
+	@Size(max=20, min=5, message="Le pseudo doit contenir minimun 5 caractères et maximum 20 caractères")
+	private String pseudo;	
+	@NotBlank(message="Le mot de passe ne peut être vide")
+	@Size(max=20, min=8, message="Le mot de passe doit contenir minimun 8 caractères et maximum 20 caractères")
+	@Pattern(regexp="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$", message="Le mot de passe doit contenir au moin une minuscule, une majuscule, et un chiffre")	
 	private String passWord;
 	@Transient
 	private String passWordConfirm;

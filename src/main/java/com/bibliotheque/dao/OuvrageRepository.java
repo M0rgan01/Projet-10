@@ -10,6 +10,8 @@ import com.bibliotheque.entities.Ouvrage;
 
 public interface OuvrageRepository extends JpaRepository<Ouvrage, Long>{
 	
-	@Query("select o from Ouvrage o where o.nom like :x order by o.nom")
-	public Page<Ouvrage> getListOuvrages(@Param("x") String mc, Pageable pageable);
+	@Query("select o from Ouvrage o join o.genre g where (lower(o.nom) like lower(:x) or lower(o.auteur) like lower(:x)) and g.nom like :y and o.disponible = :d order by o.nom ")
+	public Page<Ouvrage> getListOuvrages(@Param("x") String mc, @Param("y") String genre, @Param("d")boolean isReserved, Pageable pageable);
+	@Query("select o from Ouvrage o join o.genre g where (lower(o.nom) like lower(:x) or lower(o.auteur) like lower(:x)) and g.nom like :y order by o.nom ")
+	public Page<Ouvrage> getListOuvrages(@Param("x") String mc, @Param("y") String genre, Pageable pageable);
 }

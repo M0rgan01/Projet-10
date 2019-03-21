@@ -3,12 +3,15 @@ package com.bibliotheque.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 
 @Entity
@@ -16,12 +19,14 @@ public class Mail implements Serializable{
 	@SequenceGenerator(name="MAIL_SEQ", sequenceName="mail_sequence")
 	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="MAIL_SEQ")
 	private Long id;
+	@Email(message="L'adresse email n'est pas conforme")
+	@NotBlank(message="L'adresse email ne peut être vide")
 	private String email;
 	private String token;
 	private int essaisToken;
 	private Date expirationToken;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private Utilisateur utilisateur;
 
 	public Mail() {
