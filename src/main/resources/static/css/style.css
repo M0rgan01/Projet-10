@@ -1,13 +1,6 @@
 @charset "UTF-8";
 
-.up{
-	margin-top: 30px;
-}
 
-.down{
-	margin-bottom: 30px;
-	}
-	
-.heightMax{
-	height: 1000px;
-}	
+body, html {
+  min-height:100vh;
+}

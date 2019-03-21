@@ -11,7 +11,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 /**
  * <p>Classe Java pour utilisateur complex type.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="utilisateur">
@@ -29,6 +29,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
+ * 
  * 
  * 
  */
@@ -52,7 +53,7 @@ public class Utilisateur {
     protected String pseudo;
 
     /**
-     * Obtient la valeur de la propriété active.
+     * Obtient la valeur de la propriï¿½tï¿½ active.
      * 
      */
     public boolean isActive() {
@@ -60,7 +61,7 @@ public class Utilisateur {
     }
 
     /**
-     * Définit la valeur de la propriété active.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ active.
      * 
      */
     public void setActive(boolean value) {
@@ -68,7 +69,7 @@ public class Utilisateur {
     }
 
     /**
-     * Obtient la valeur de la propriété essaisConnection.
+     * Obtient la valeur de la propriï¿½tï¿½ essaisConnection.
      * 
      */
     public int getEssaisConnection() {
@@ -76,7 +77,7 @@ public class Utilisateur {
     }
 
     /**
-     * Définit la valeur de la propriété essaisConnection.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ essaisConnection.
      * 
      */
     public void setEssaisConnection(int value) {
@@ -84,7 +85,7 @@ public class Utilisateur {
     }
 
     /**
-     * Obtient la valeur de la propriété expirationConnection.
+     * Obtient la valeur de la propriï¿½tï¿½ expirationConnection.
      * 
      * @return
      *     possible object is
@@ -96,7 +97,7 @@ public class Utilisateur {
     }
 
     /**
-     * Définit la valeur de la propriété expirationConnection.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ expirationConnection.
      * 
      * @param value
      *     allowed object is
@@ -108,7 +109,7 @@ public class Utilisateur {
     }
 
     /**
-     * Obtient la valeur de la propriété id.
+     * Obtient la valeur de la propriï¿½tï¿½ id.
      * 
      * @return
      *     possible object is
@@ -120,7 +121,7 @@ public class Utilisateur {
     }
 
     /**
-     * Définit la valeur de la propriété id.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ id.
      * 
      * @param value
      *     allowed object is
@@ -132,7 +133,7 @@ public class Utilisateur {
     }
 
     /**
-     * Obtient la valeur de la propriété passWord.
+     * Obtient la valeur de la propriï¿½tï¿½ passWord.
      * 
      * @return
      *     possible object is
@@ -144,7 +145,7 @@ public class Utilisateur {
     }
 
     /**
-     * Définit la valeur de la propriété passWord.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ passWord.
      * 
      * @param value
      *     allowed object is
@@ -156,7 +157,7 @@ public class Utilisateur {
     }
 
     /**
-     * Obtient la valeur de la propriété pseudo.
+     * Obtient la valeur de la propriï¿½tï¿½ pseudo.
      * 
      * @return
      *     possible object is
@@ -168,7 +169,7 @@ public class Utilisateur {
     }
 
     /**
-     * Définit la valeur de la propriété pseudo.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ pseudo.
      * 
      * @param value
      *     allowed object is

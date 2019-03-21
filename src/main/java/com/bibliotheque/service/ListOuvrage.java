@@ -18,6 +18,8 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="mot-cle" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="genre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="disponnible" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="page" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="size" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
@@ -31,6 +33,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "listOuvrage", propOrder = {
     "motCle",
+    "genre",
+    "disponnible",
     "page",
     "size"
 })
@@ -38,6 +42,8 @@ public class ListOuvrage {
 
     @XmlElement(name = "mot-cle")
     protected String motCle;
+    protected String genre;
+    protected boolean disponnible;
     protected int page;
     protected int size;
 
@@ -63,6 +69,46 @@ public class ListOuvrage {
      */
     public void setMotCle(String value) {
         this.motCle = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété genre.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getGenre() {
+        return genre;
+    }
+
+    /**
+     * Définit la valeur de la propriété genre.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setGenre(String value) {
+        this.genre = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété disponnible.
+     * 
+     */
+    public boolean isDisponnible() {
+        return disponnible;
+    }
+
+    /**
+     * Définit la valeur de la propriété disponnible.
+     * 
+     */
+    public void setDisponnible(boolean value) {
+        this.disponnible = value;
     }
 
     /**

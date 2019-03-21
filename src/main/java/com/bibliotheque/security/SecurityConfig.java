@@ -12,18 +12,20 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+		
 	@Autowired
     private CustomAuthenticationProvider authProvider;
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-			
+		
 		auth.authenticationProvider(authProvider);
 		
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+			
 		// formulaire de connection personnalise
 		http.formLogin().loginPage("/login");
 		
@@ -31,9 +33,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests().antMatchers("/index","/recherche").hasRole("USER");
 		
+		//http.rememberMe().userDetailsService(authProvider).tokenValiditySeconds(86400);
+				
 		// pour la deconnexion
 		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).clearAuthentication(true)
 				.deleteCookies("JSESSIONID");
+		
+		// liens vers la page d'exception personnaliser
+		http.exceptionHandling().accessDeniedPage("/403");
 	}
 
 	
