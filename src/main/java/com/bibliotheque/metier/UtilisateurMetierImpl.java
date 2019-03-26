@@ -108,23 +108,21 @@ public class UtilisateurMetierImpl implements UtilisateurMetier {
 	@Override
 	public void createUtilisateur(Utilisateur utilisateur, Mail mail) throws BibliothequeException {
 		  
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-		Validator validator = factory.getValidator();
-		
-		Set<ConstraintViolation<Utilisateur>> violations = validator.validate(utilisateur);
-		
-		for (ConstraintViolation<Utilisateur> violation : violations) {
-		   
-		    BibliothequeFault bibliothequeFault = new BibliothequeFault();			
-			bibliothequeFault.setFaultString(violation.getMessage());
-			
-			throw new BibliothequeException(violation.getMessage(), bibliothequeFault);
-		}
+		validateUtilisateur(utilisateur);
 			
 		checkPseudoExist(utilisateur.getPseudo());
-
+				
+		if(!utilisateur.getPassWord().equals(utilisateur.getPassWordConfirm())) {
+			BibliothequeFault bibliothequeFault = new BibliothequeFault();
+			bibliothequeFault.setFaultCode("10");
+			bibliothequeFault.setFaultString("Le mot de passe de confirmation ne correspond pas au mot de passe.");
+			throw new BibliothequeException("Confirmation MDP incorrect", bibliothequeFault);
+			
+		}
+				
 		utilisateur.setPassWord(new BCryptPasswordEncoder().encode(utilisateur.getPassWord()));
 		utilisateur.getRoles().add(new Roles("ROLE_USER"));
+		utilisateur.getRoles().add(new Roles("ROLE_ADMIN"));
 		utilisateur.setActive(true);
 		
 		mailMetier.createMail(mail, utilisateur);
@@ -142,6 +140,24 @@ public class UtilisateurMetierImpl implements UtilisateurMetier {
 
 			throw new BibliothequeException("Pseudo utilisé", bibliothequeFault);
 		}
+	}
+
+	@Override
+	public void validateUtilisateur(Utilisateur utilisateur) throws BibliothequeException {
+		
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		Validator validator = factory.getValidator();
+		
+		Set<ConstraintViolation<Utilisateur>> violations = validator.validate(utilisateur);
+		
+		for (ConstraintViolation<Utilisateur> violation : violations) {
+		   
+		    BibliothequeFault bibliothequeFault = new BibliothequeFault();			
+			bibliothequeFault.setFaultString(violation.getMessage());
+			
+			throw new BibliothequeException(violation.getMessage(), bibliothequeFault);
+		}
+		
 	}
 
 }

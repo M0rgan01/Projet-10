@@ -5,6 +5,8 @@ import com.bibliotheque.entities.Utilisateur;
 import com.bibliotheque.exception.BibliothequeException;
 
 public interface UtilisateurMetier {
+	
+	public void validateUtilisateur(Utilisateur utilisateur) throws BibliothequeException;
 	public Utilisateur saveUtilisateur(Utilisateur utilisateur);
 	public void createUtilisateur(Utilisateur utilisateur, Mail mail) throws BibliothequeException;
 	public void deleteUtilisateur(Long id);

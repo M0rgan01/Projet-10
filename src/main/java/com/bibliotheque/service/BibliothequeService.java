@@ -79,10 +79,15 @@ public class BibliothequeService {
 	}
 
 	@WebMethod
-	public void saveOuvrage(Ouvrage ouvrage) {
-		ouvrageMetier.saveOuvrage(ouvrage);
+	public void createOuvrage(@WebParam(name = "ouvrage")Ouvrage ouvrage, @WebParam(name = "genre") String genre) throws BibliothequeException {
+		ouvrageMetier.createOuvrage(ouvrage, genre);
 	}
 
+	@WebMethod
+	public void updateOuvrage(@WebParam(name = "ouvrage")Ouvrage ouvrage, @WebParam(name = "genre") String genre) throws BibliothequeException {
+		ouvrageMetier.saveOuvrage(ouvrage, genre);
+	}
+	
 	@WebMethod
 	public void deleteOuvrage(Long id) {
 		ouvrageMetier.deleteOuvrage(id);

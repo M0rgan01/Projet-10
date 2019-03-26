@@ -29,7 +29,7 @@ public class Utilisateur implements Serializable{
 	@NotBlank(message="Le mot de passe ne peut être vide")
 	@Size(max=20, min=8, message="Le mot de passe doit contenir minimun 8 caractères et maximum 20 caractères")
 	@Pattern(regexp="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$", message="Le mot de passe doit contenir au moin une minuscule, une majuscule, et un chiffre")	
-	private String passWord;
+	private String passWord;	
 	@Transient
 	private String passWordConfirm;
 	private boolean active;
@@ -106,6 +106,14 @@ public class Utilisateur implements Serializable{
 
 	public void setReservations(Collection<Reservation> reservations) {
 		this.reservations = reservations;
+	}
+
+	public String getPassWordConfirm() {
+		return passWordConfirm;
+	}
+
+	public void setPassWordConfirm(String passWordConfirm) {
+		this.passWordConfirm = passWordConfirm;
 	}
 	
 	

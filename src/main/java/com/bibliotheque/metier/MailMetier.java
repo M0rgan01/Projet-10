@@ -6,6 +6,7 @@ import com.bibliotheque.exception.BibliothequeException;
 
 public interface MailMetier {
 
+	public void validateMail(Mail mail) throws BibliothequeException;
 	public void saveMail(Mail mail);
 	public void createMail(Mail mail, Utilisateur utilisateur) throws BibliothequeException;
 	public void deleteMail(Long id);

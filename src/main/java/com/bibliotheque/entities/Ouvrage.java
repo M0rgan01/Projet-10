@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
@@ -19,8 +21,14 @@ public class Ouvrage implements Serializable{
 	@SequenceGenerator(name="OUVRAGE_SEQ", sequenceName="ouvrage_sequence")
 	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="OUVRAGE_SEQ")
 	private Long id;
-	private String nom;
+	@NotBlank(message="Le titre du livre ne peut être vide")
+	@Size(max=20, min=5, message="Le titre doit contenir minimun 5 caractères et maximum 20 caractères")
+	private String titre;
+	@NotBlank(message="L'auteur du livre ne peut être vide")
+	@Size(max=20, message="L'auteur ne peut pas éxéder 20 caractères")
 	private String auteur;
+	@NotBlank(message="La description du livre ne peut être vide")
+	@Size(max=500, message="La description ne peut pas éxéder 500 caractères")
 	private String description;
 	private boolean disponible;
 	
@@ -36,9 +44,9 @@ public class Ouvrage implements Serializable{
 		super();
 	}
 
-	public Ouvrage(String nom, String auteur, String description, boolean disponible, Genre genre) {
+	public Ouvrage(String titre, String auteur, String description, boolean disponible, Genre genre) {
 		super();
-		this.nom = nom;
+		this.titre = titre;
 		this.auteur = auteur;
 		this.description = description;
 		this.disponible = disponible;
@@ -53,12 +61,12 @@ public class Ouvrage implements Serializable{
 		this.id = id;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getTitre() {
+		return titre;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setTitre(String titre) {
+		this.titre = titre;
 	}
 
 	public String getAuteur() {

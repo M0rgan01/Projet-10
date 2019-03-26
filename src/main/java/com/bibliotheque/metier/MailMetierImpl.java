@@ -45,18 +45,7 @@ public class MailMetierImpl implements MailMetier{
 	@Override
 	public void createMail(Mail mail, Utilisateur utilisateur) throws BibliothequeException {
 		
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-		Validator validator = factory.getValidator();
-		
-		Set<ConstraintViolation<Mail>> violations = validator.validate(mail);
-		
-		for (ConstraintViolation<Mail> violation : violations) {
-		   
-		    BibliothequeFault bibliothequeFault = new BibliothequeFault();			
-			bibliothequeFault.setFaultString(violation.getMessage());
-			
-			throw new BibliothequeException(violation.getMessage(), bibliothequeFault);
-		}
+		validateMail(mail);
 		
 		mail.setUtilisateur(utilisateur);
 		
@@ -70,6 +59,22 @@ public class MailMetierImpl implements MailMetier{
 			throw new BibliothequeException("Email utilisé", bibliothequeFault);
 		}
 		mailRepository.save(mail);	
+	}
+
+	@Override
+	public void validateMail(Mail mail) throws BibliothequeException {
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		Validator validator = factory.getValidator();
+		
+		Set<ConstraintViolation<Mail>> violations = validator.validate(mail);
+		
+		for (ConstraintViolation<Mail> violation : violations) {
+		   
+		    BibliothequeFault bibliothequeFault = new BibliothequeFault();			
+			bibliothequeFault.setFaultString(violation.getMessage());
+			
+			throw new BibliothequeException(violation.getMessage(), bibliothequeFault);
+		}
 	}
 
 }
