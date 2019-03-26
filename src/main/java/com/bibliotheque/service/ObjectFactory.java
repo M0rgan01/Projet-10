@@ -38,12 +38,11 @@ public class ObjectFactory {
     private final static QName _DeleteOuvrageResponse_QNAME = new QName("http://service.bibliotheque.com/", "deleteOuvrageResponse");
     private final static QName _DeleteUtilisateur_QNAME = new QName("http://service.bibliotheque.com/", "deleteUtilisateur");
     private final static QName _GetGenre_QNAME = new QName("http://service.bibliotheque.com/", "getGenre");
+    private final static QName _CreateOuvrageResponse_QNAME = new QName("http://service.bibliotheque.com/", "createOuvrageResponse");
     private final static QName _GetListRoles_QNAME = new QName("http://service.bibliotheque.com/", "getListRoles");
     private final static QName _ListOuvrageResponse_QNAME = new QName("http://service.bibliotheque.com/", "listOuvrageResponse");
-    private final static QName _SaveOuvrage_QNAME = new QName("http://service.bibliotheque.com/", "saveOuvrage");
     private final static QName _DeleteReservationResponse_QNAME = new QName("http://service.bibliotheque.com/", "deleteReservationResponse");
     private final static QName _GetMailResponse_QNAME = new QName("http://service.bibliotheque.com/", "getMailResponse");
-    private final static QName _SaveOuvrageResponse_QNAME = new QName("http://service.bibliotheque.com/", "saveOuvrageResponse");
     private final static QName _DoConnectionResponse_QNAME = new QName("http://service.bibliotheque.com/", "doConnectionResponse");
     private final static QName _DeleteOuvrage_QNAME = new QName("http://service.bibliotheque.com/", "deleteOuvrage");
     private final static QName _GetListGenreResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListGenreResponse");
@@ -52,15 +51,18 @@ public class ObjectFactory {
     private final static QName _CreateUtilisateurResponse_QNAME = new QName("http://service.bibliotheque.com/", "createUtilisateurResponse");
     private final static QName _DeleteReservation_QNAME = new QName("http://service.bibliotheque.com/", "deleteReservation");
     private final static QName _SaveReservationResponse_QNAME = new QName("http://service.bibliotheque.com/", "saveReservationResponse");
+    private final static QName _UpdateOuvrage_QNAME = new QName("http://service.bibliotheque.com/", "updateOuvrage");
     private final static QName _DeleteMailResponse_QNAME = new QName("http://service.bibliotheque.com/", "deleteMailResponse");
     private final static QName _GetListGenre_QNAME = new QName("http://service.bibliotheque.com/", "getListGenre");
     private final static QName _CreateUtilisateur_QNAME = new QName("http://service.bibliotheque.com/", "createUtilisateur");
     private final static QName _SaveUtilisateur_QNAME = new QName("http://service.bibliotheque.com/", "saveUtilisateur");
+    private final static QName _CreateOuvrage_QNAME = new QName("http://service.bibliotheque.com/", "createOuvrage");
     private final static QName _GetGenreResponse_QNAME = new QName("http://service.bibliotheque.com/", "getGenreResponse");
     private final static QName _GetRerservation_QNAME = new QName("http://service.bibliotheque.com/", "getRerservation");
     private final static QName _ListOuvrage_QNAME = new QName("http://service.bibliotheque.com/", "listOuvrage");
     private final static QName _GetOuvrage_QNAME = new QName("http://service.bibliotheque.com/", "getOuvrage");
     private final static QName _SaveReservation_QNAME = new QName("http://service.bibliotheque.com/", "saveReservation");
+    private final static QName _UpdateOuvrageResponse_QNAME = new QName("http://service.bibliotheque.com/", "updateOuvrageResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.bibliotheque.service
@@ -83,14 +85,6 @@ public class ObjectFactory {
      */
     public GetMailResponse createGetMailResponse() {
         return new GetMailResponse();
-    }
-
-    /**
-     * Create an instance of {@link SaveOuvrageResponse }
-     * 
-     */
-    public SaveOuvrageResponse createSaveOuvrageResponse() {
-        return new SaveOuvrageResponse();
     }
 
     /**
@@ -158,6 +152,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link UpdateOuvrage }
+     * 
+     */
+    public UpdateOuvrage createUpdateOuvrage() {
+        return new UpdateOuvrage();
+    }
+
+    /**
      * Create an instance of {@link DeleteMailResponse }
      * 
      */
@@ -187,6 +189,14 @@ public class ObjectFactory {
      */
     public SaveUtilisateur createSaveUtilisateur() {
         return new SaveUtilisateur();
+    }
+
+    /**
+     * Create an instance of {@link CreateOuvrage }
+     * 
+     */
+    public CreateOuvrage createCreateOuvrage() {
+        return new CreateOuvrage();
     }
 
     /**
@@ -227,6 +237,14 @@ public class ObjectFactory {
      */
     public SaveReservation createSaveReservation() {
         return new SaveReservation();
+    }
+
+    /**
+     * Create an instance of {@link UpdateOuvrageResponse }
+     * 
+     */
+    public UpdateOuvrageResponse createUpdateOuvrageResponse() {
+        return new UpdateOuvrageResponse();
     }
 
     /**
@@ -342,6 +360,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CreateOuvrageResponse }
+     * 
+     */
+    public CreateOuvrageResponse createCreateOuvrageResponse() {
+        return new CreateOuvrageResponse();
+    }
+
+    /**
      * Create an instance of {@link GetListRoles }
      * 
      */
@@ -355,14 +381,6 @@ public class ObjectFactory {
      */
     public ListOuvrageResponse createListOuvrageResponse() {
         return new ListOuvrageResponse();
-    }
-
-    /**
-     * Create an instance of {@link SaveOuvrage }
-     * 
-     */
-    public SaveOuvrage createSaveOuvrage() {
-        return new SaveOuvrage();
     }
 
     /**
@@ -556,6 +574,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CreateOuvrageResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "createOuvrageResponse")
+    public JAXBElement<CreateOuvrageResponse> createCreateOuvrageResponse(CreateOuvrageResponse value) {
+        return new JAXBElement<CreateOuvrageResponse>(_CreateOuvrageResponse_QNAME, CreateOuvrageResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetListRoles }{@code >}}
      * 
      */
@@ -574,15 +601,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SaveOuvrage }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "saveOuvrage")
-    public JAXBElement<SaveOuvrage> createSaveOuvrage(SaveOuvrage value) {
-        return new JAXBElement<SaveOuvrage>(_SaveOuvrage_QNAME, SaveOuvrage.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DeleteReservationResponse }{@code >}}
      * 
      */
@@ -598,15 +616,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getMailResponse")
     public JAXBElement<GetMailResponse> createGetMailResponse(GetMailResponse value) {
         return new JAXBElement<GetMailResponse>(_GetMailResponse_QNAME, GetMailResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SaveOuvrageResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "saveOuvrageResponse")
-    public JAXBElement<SaveOuvrageResponse> createSaveOuvrageResponse(SaveOuvrageResponse value) {
-        return new JAXBElement<SaveOuvrageResponse>(_SaveOuvrageResponse_QNAME, SaveOuvrageResponse.class, null, value);
     }
 
     /**
@@ -682,6 +691,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateOuvrage }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "updateOuvrage")
+    public JAXBElement<UpdateOuvrage> createUpdateOuvrage(UpdateOuvrage value) {
+        return new JAXBElement<UpdateOuvrage>(_UpdateOuvrage_QNAME, UpdateOuvrage.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DeleteMailResponse }{@code >}}
      * 
      */
@@ -715,6 +733,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "saveUtilisateur")
     public JAXBElement<SaveUtilisateur> createSaveUtilisateur(SaveUtilisateur value) {
         return new JAXBElement<SaveUtilisateur>(_SaveUtilisateur_QNAME, SaveUtilisateur.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CreateOuvrage }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "createOuvrage")
+    public JAXBElement<CreateOuvrage> createCreateOuvrage(CreateOuvrage value) {
+        return new JAXBElement<CreateOuvrage>(_CreateOuvrage_QNAME, CreateOuvrage.class, null, value);
     }
 
     /**
@@ -760,6 +787,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "saveReservation")
     public JAXBElement<SaveReservation> createSaveReservation(SaveReservation value) {
         return new JAXBElement<SaveReservation>(_SaveReservation_QNAME, SaveReservation.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateOuvrageResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "updateOuvrageResponse")
+    public JAXBElement<UpdateOuvrageResponse> createUpdateOuvrageResponse(UpdateOuvrageResponse value) {
+        return new JAXBElement<UpdateOuvrageResponse>(_UpdateOuvrageResponse_QNAME, UpdateOuvrageResponse.class, null, value);
     }
 
 }

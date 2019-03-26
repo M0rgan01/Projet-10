@@ -16,64 +16,73 @@
 
 			<div class="row">
 				<div class="col-md-4 mt-2">
-				<label>Recherche par mot-clé</label>
-					<input class="form-control" type="text" name="MotCle"
-						th:value="${MotCle}" />
+					<label>Recherche par mot-clé</label> <input class="form-control"
+						type="text" name="MotCle" th:value="${MotCle}" />
 				</div>
 
 				<div class="col-md-4 mt-2">
-				<label>Recherche par genre</label>
-					<select name="genre" id="genre" class="form-control">
-						<option selected="selected" th:value="${blank}">Aucun filtre</option>
+					<label>Recherche par genre</label> <select name="genre" id="genre"
+						class="form-control">
+						<option selected="selected" th:value="${blank}">Aucun
+							filtre</option>
 						<option th:each="g : ${listGenre}" th:value="${g.nom}"
 							th:text="${g.nom}" th:selected="${g.nom.equals(genre)}">Wireframe</option>
 					</select>
 				</div>
-				
+
 				<div class="col-md-4 mt-2 align-self-center">
-					<input type="checkbox" name="isReserved" th:checked="${isReserved}"/> <label>Uniquement
-						livre disponnible au prêt</label>
+					<input type="checkbox" name="isReserved" th:checked="${isReserved}" />
+					<label>Uniquement livre disponnible au prêt</label>
 				</div>
 			</div>
-			
+
 			<div class="row justify-content-center my-4">
-			<button class="btn btn-primary">Chercher</button>
+				<button class="btn btn-primary">Chercher</button>
 			</div>
 		</form>
 
-		<table class="table">
-			<thead>
-				<tr>
-					<th class="">Désignation</th>
-					<th class="">Description</th>
-					<th class="">Auteur</th>
-					<th class="">Genre</th>
-					<th class=""></th>
-				</tr>
-			</thead>
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="">Désignation</th>
+						<th class="">Description</th>
+						<th class="">Auteur</th>
+						<th class="">Genre</th>
+						<th class=""></th>
+						<th th:if="${#request.isUserInRole('ADMIN')}">Administration</th>
+					</tr>
+				</thead>
 
-			<tbody>
-				<tr th:each="o:${listOuvrages.getOuvrages()}">
-					<td style="width:15%" class="h5" th:text=${o.nom}></td>
-					<td style="width:35%" th:text=${o.description}></td>
-					<td class="" th:text=${o.auteur}></td>
-					<td class="" th:text=${o.getGenre().getNom()}></td>
-					<td><a class="btn btn-primary" th:href="@{reserver(id=${o.id})}">Réserver</a></td>
-				</tr>
-			</tbody>
+				<tbody>
+					<tr th:each="o:${listOuvrages.getOuvrages()}">
+						<td style="width: 15%" class="h5" th:text=${o.titre}></td>
+						<td style="width: 35%" th:text=${o.description}></td>
+						<td class="" th:text=${o.auteur}></td>
+						<td class="" th:text=${o.getGenre().getNom()}></td>
+						<td><a class="btn btn-primary my-1"
+							th:href="@{reserver(id=${o.id})}">Réserver</a></td>
+						<td th:if="${#request.isUserInRole('ADMIN')}"><a
+							class="btn btn-primary" th:href="@{modificationOuvrage(id=${o.id})}">Modifier</a>
+							<a class="btn btn-primary my-1" th:href="@{reserver(id=${o.id})}">Supprimer</a></td>
+					</tr>
+				</tbody>
 
-		</table>
+			</table>
+		</div>
 
-	<div th:if="${listOuvrages.getNombreOuvrages() == 0}" class="justify-content-center row mt-5 font-weight-bold">
-	  <p>Votre recherche n'à donnée aucun résultat !</p>
-	</div>
+		<div th:if="${listOuvrages.getNombreOuvrages() == 0}"
+			class="justify-content-center row mt-5 font-weight-bold">
+			<p>Votre recherche n'à donnée aucun résultat !</p>
+		</div>
 
 		<div th:if="${listOuvrages.totalPage > 1}">
 			<ul class="pagination justify-content-center">
 
 				<li class="page-item"
 					th:classappend="${listOuvrages.page == 0} ? disabled"><a
-					class="page-link" th:href="@{/recherche(page=1, MotCle=${MotCle}, genre=${genre}, isReserved=${isReserved})}">«</a></li>
+					class="page-link"
+					th:href="@{/recherche(page=1, MotCle=${MotCle}, genre=${genre}, isReserved=${isReserved})}">«</a></li>
 
 				<li class="page-item"
 					th:classappend="${listOuvrages.page == 0} ? disabled"><a

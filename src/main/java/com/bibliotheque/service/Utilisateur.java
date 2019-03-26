@@ -11,7 +11,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 /**
  * <p>Classe Java pour utilisateur complex type.
  * 
- * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="utilisateur">
@@ -23,13 +23,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="expirationConnection" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="passWord" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="passWordConfirm" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="pseudo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
  * 
  * 
  */
@@ -40,6 +40,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "expirationConnection",
     "id",
     "passWord",
+    "passWordConfirm",
     "pseudo"
 })
 public class Utilisateur {
@@ -50,10 +51,11 @@ public class Utilisateur {
     protected XMLGregorianCalendar expirationConnection;
     protected Long id;
     protected String passWord;
+    protected String passWordConfirm;
     protected String pseudo;
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ active.
+     * Obtient la valeur de la propriété active.
      * 
      */
     public boolean isActive() {
@@ -61,7 +63,7 @@ public class Utilisateur {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ active.
+     * Définit la valeur de la propriété active.
      * 
      */
     public void setActive(boolean value) {
@@ -69,7 +71,7 @@ public class Utilisateur {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ essaisConnection.
+     * Obtient la valeur de la propriété essaisConnection.
      * 
      */
     public int getEssaisConnection() {
@@ -77,7 +79,7 @@ public class Utilisateur {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ essaisConnection.
+     * Définit la valeur de la propriété essaisConnection.
      * 
      */
     public void setEssaisConnection(int value) {
@@ -85,7 +87,7 @@ public class Utilisateur {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ expirationConnection.
+     * Obtient la valeur de la propriété expirationConnection.
      * 
      * @return
      *     possible object is
@@ -97,7 +99,7 @@ public class Utilisateur {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ expirationConnection.
+     * Définit la valeur de la propriété expirationConnection.
      * 
      * @param value
      *     allowed object is
@@ -109,7 +111,7 @@ public class Utilisateur {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ id.
+     * Obtient la valeur de la propriété id.
      * 
      * @return
      *     possible object is
@@ -121,7 +123,7 @@ public class Utilisateur {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ id.
+     * Définit la valeur de la propriété id.
      * 
      * @param value
      *     allowed object is
@@ -133,7 +135,7 @@ public class Utilisateur {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ passWord.
+     * Obtient la valeur de la propriété passWord.
      * 
      * @return
      *     possible object is
@@ -145,7 +147,7 @@ public class Utilisateur {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ passWord.
+     * Définit la valeur de la propriété passWord.
      * 
      * @param value
      *     allowed object is
@@ -157,7 +159,31 @@ public class Utilisateur {
     }
 
     /**
-     * Obtient la valeur de la propriï¿½tï¿½ pseudo.
+     * Obtient la valeur de la propriété passWordConfirm.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPassWordConfirm() {
+        return passWordConfirm;
+    }
+
+    /**
+     * Définit la valeur de la propriété passWordConfirm.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPassWordConfirm(String value) {
+        this.passWordConfirm = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété pseudo.
      * 
      * @return
      *     possible object is
@@ -169,7 +195,7 @@ public class Utilisateur {
     }
 
     /**
-     * Dï¿½finit la valeur de la propriï¿½tï¿½ pseudo.
+     * Définit la valeur de la propriété pseudo.
      * 
      * @param value
      *     allowed object is

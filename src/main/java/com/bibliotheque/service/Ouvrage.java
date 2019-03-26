@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="disponible" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="genre" type="{http://service.bibliotheque.com/}genre" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="nom" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="titre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlType;
     "disponible",
     "genre",
     "id",
-    "nom"
+    "titre"
 })
 public class Ouvrage {
 
@@ -46,7 +46,7 @@ public class Ouvrage {
     protected boolean disponible;
     protected Genre genre;
     protected Long id;
-    protected String nom;
+    protected String titre;
 
     /**
      * Obtient la valeur de la propriété auteur.
@@ -161,27 +161,27 @@ public class Ouvrage {
     }
 
     /**
-     * Obtient la valeur de la propriété nom.
+     * Obtient la valeur de la propriété titre.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getNom() {
-        return nom;
+    public String getTitre() {
+        return titre;
     }
 
     /**
-     * Définit la valeur de la propriété nom.
+     * Définit la valeur de la propriété titre.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setNom(String value) {
-        this.nom = value;
+    public void setTitre(String value) {
+        this.titre = value;
     }
 
 }

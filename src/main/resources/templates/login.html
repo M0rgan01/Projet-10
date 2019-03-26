@@ -28,22 +28,17 @@
 					<form th:action="@{/login}" method="post">
 
 						<div class="form-group">
-							<label>Username :</label> <input class="form-control" type="text"
+							<label>Pseudo :</label> <input class="form-control" type="text"
 								name="username" />
 						</div>
 
 						<div class="form-group">
-							<label>PassWord :</label> <input class="form-control"
+							<label>Mot de passe :</label> <input class="form-control"
 								type="password" name="password" />
 						</div>
-
-						<div class="form-group">
-							 <input type="checkbox" name="remember-me" /> <label>Se souvenir de moi</label>
-						</div>
-
-
+					
 						<div>
-							<button type="submit" class="btn btn-primary">Save</button>
+							<button type="submit" class="btn btn-primary">Connexion</button>
 							<a class="btn btn-primary ml-auto" th:href="@{inscription}">Inscription</a>
 						</div>
 

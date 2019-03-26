@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<title>Ajout d'un livre</title>
+</head>
+<body>
+	<div layout:fragment="content" class="row my-5">
+		<div class="col-6 offset-3">
+			<div class="card card-outline-secondary">
+				<div class="card-header text-center">
+					<h3 class="mb-0">Ajout d'un livre</h3>
+				</div>
+				<div class="card-body">
+
+					<form th:action="@{/saveAjout}" method="post">
+
+						<div th:if="${exception}" class="alert alert-danger">
+							<span
+								th:text="${exception.getFaultInfo().getInfo().getFaultString()}"></span>
+						</div>
+
+						<div class="form-group">
+							<label>Titre :</label> <input class="form-control" type="text"
+							 th:value="${ouvrage?.titre}" name="Titre" />
+						</div>
+
+						<div class="form-group">
+							<label>Auteur :</label> <input class="form-control" type="text"
+								name="auteur" th:value="${ouvrage?.auteur}" />
+						</div>
+
+						<div class="form-group">
+							<label>Description:</label>
+							<textarea class="form-control" rows="5" name="description"
+								th:text="${ouvrage?.description}"></textarea>
+						</div>
+
+						<div class="form-group">
+							<label>Genre du livre</label> 
+							<select name="style"
+								id="genre" class="form-control">
+								
+								<option selected="selected" th:value="${blank}">Séléctionner un genre</option>
+								<option th:each="g : ${listGenre}" th:value="${g.nom}"
+									th:text="${g.nom}" th:selected="${g.nom.equals(style)}">Wireframe</option>
+							</select>
+						</div>
+
+
+						<div>
+							<button type="submit" class="btn btn-primary">Valider</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

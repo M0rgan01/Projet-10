@@ -21,31 +21,44 @@
 	<header>
 		<div class="navbar navbar-expand-md navbar-light bg-light">
 
-			<button class="navbar-toggler ml-5" type="button" data-toggle="collapse"
-				data-target="#navbarSupportedContent"
+			<button class="navbar-toggler ml-5" type="button"
+				data-toggle="collapse" data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<div class="collapse navbar-collapse ml-5" id="navbarSupportedContent">
+			<div class="collapse navbar-collapse ml-5"
+				id="navbarSupportedContent">
 				<ul class="navbar-nav">
 					<li><a class="navbar-brand" th:href="@{operations}">Accueil</a></li>
-					<li><a class="nav-link" th:href="@{operations}">Mon compte</a></li>
+
+					<li th:if="${#httpServletRequest.remoteUser}" class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">Mon compte</a>
+						<div class="dropdown-menu"
+							aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="#">Modifier mon compte</a> <a
+								class="dropdown-item" href="#">Supprimer mon compte</a>
+								<a
+								class="dropdown-item" th:href="@{/logout}">Deconnexion</a>
+								
+						</div></li>
+					
 					<li><a class="nav-link" th:href="@{recherche}">Rechercher
 							un ouvrage</a></li>
-				</ul>
 
-				<ul th:if="${#httpServletRequest.remoteUser}"
-					class="navbar-nav ml-auto">
-					<li><a class="nav-link navbar-text" th:href="@{/logout}">Logout</a></li>
+					<li th:if="${#request.isUserInRole('ADMIN')}"><a
+						class="nav-link" th:href="@{ajout}">Ajouter un ouvrage</a></li>
+
 				</ul>
 
 			</div>
 		</div>
 
 	</header>
-	
+
 	<div class="container flex-fill">
 		<section>
 
@@ -53,9 +66,10 @@
 
 		</section>
 	</div>
-	
+
 	<footer>
-		<div class="navbar navbar-expand-md navbar-dark bg-dark justify-content-center">
+		<div
+			class="navbar navbar-expand-md navbar-dark bg-dark justify-content-center">
 			<ul class="navbar-nav">
 				<li><a class="nav-link" th:href="@{operations}">Politique
 						de confidentialité</a></li>

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,6 +20,7 @@ import com.bibliotheque.service.BibliothequeServiceService;
 import com.bibliotheque.service.BibliothequeWS;
 import com.bibliotheque.service.Genre;
 import com.bibliotheque.service.Mail;
+import com.bibliotheque.service.Ouvrage;
 import com.bibliotheque.service.PageOuvrage;
 import com.bibliotheque.service.Utilisateur;
 
@@ -44,6 +43,7 @@ public class BibliothequeController {
 		return "login";
 	}
 
+//////////////////////// RECHERCHE ////////////////////////
 
 	@RequestMapping(value = "/recherche")
 	public String recherche(Model model, @RequestParam(name = "page", defaultValue = "0") Optional<Integer> page,
@@ -75,33 +75,108 @@ public class BibliothequeController {
 		return "ouvrages";
 	}
 
+//////////////////////// INSCRIPTION ////////////////////////
+		
 	@RequestMapping(value = "/inscription")
 	public String inscription() {
 		return "inscription";
 	}
 
 	@RequestMapping(value = "/saveInscription", method = RequestMethod.POST)
-	public String saveInscription(Model model, @Valid Mail mail, Utilisateur utilisateur)
+	public String saveInscription(Model model, Mail mail, Utilisateur utilisateur)
 			throws BibliothequeException_Exception {
 
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 
 		try {			
 			ws.createUtilisateur(utilisateur, mail);		
-		} catch (BibliothequeException_Exception e) {	
-			model.addAttribute("exception", e);
-			//model.addAttribute("error", e.getFaultInfo().getInfo().getFaultString());
+		} catch (BibliothequeException_Exception e) {				
+			model.addAttribute("utilisateur", utilisateur);	
+			model.addAttribute("mail", mail);	
+			model.addAttribute("exception", e);					
 			return "inscription";
 		}
 
 		List<GrantedAuthority> grantedAuths = new ArrayList<>();
 		grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
-
+		grantedAuths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		
 		SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(
 				utilisateur.getPseudo(), utilisateur.getPassWord(), grantedAuths));
 
-		return "index";
+		return "redirect:/index";
 
 	}
 
+	//////////////////////// AJOUT OUVRAGE ////////////////////////
+	
+	
+	@RequestMapping(value = "/ajout")
+	public String ajout(Model model) {
+		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+		
+		List<Genre> listGenre = ws.getListGenre();
+		
+		model.addAttribute("listGenre",listGenre);
+		return "ajout";
+	}
+	
+	@RequestMapping(value = "/saveAjout")
+	public String saveAjout(Model model, Ouvrage ouvrage,@RequestParam(name = "style")String genre) {
+		
+		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();		
+	
+		try {			
+			ws.createOuvrage(ouvrage, genre);		
+		} catch (BibliothequeException_Exception e) {	
+			
+			List<Genre> listGenre = ws.getListGenre();
+			
+			model.addAttribute("listGenre",listGenre);
+			model.addAttribute("ouvrage", ouvrage);	
+			model.addAttribute("style", genre);	
+			model.addAttribute("exception", e);					
+			return "ajout";
+		}
+				
+		return "redirect:/index";
+	}
+	
+//////////////////////// MODIFICATION OUVRAGE ////////////////////////
+	
+	@RequestMapping(value = "/modificationOuvrage")
+	public String modificationOuvrage(Model model, Long id) {
+		
+		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+		
+		Ouvrage ouvrage = ws.getOuvrage(id);
+		List<Genre> listGenre = ws.getListGenre();
+		
+		model.addAttribute("ouvrage", ouvrage);	
+		model.addAttribute("style", ouvrage.getGenre().getNom());	
+		model.addAttribute("listGenre",listGenre);
+		
+		return "modificationOuvrage";
+	}
+	
+	@RequestMapping(value = "/saveModificationOuvrage")
+	public String saveModificationOuvrage(Model model, Ouvrage ouvrage, @RequestParam(name = "style")String genre) {
+		
+		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+				
+		try {			
+			ws.updateOuvrage(ouvrage, genre);		
+		} catch (BibliothequeException_Exception e) {	
+			
+			List<Genre> listGenre = ws.getListGenre();
+			
+			model.addAttribute("listGenre",listGenre);
+			model.addAttribute("ouvrage", ouvrage);	
+			model.addAttribute("style", genre);	
+			model.addAttribute("exception", e);					
+			return "ajout";
+		}
+				
+		return "redirect:/index";
+	}
 }
