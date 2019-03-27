@@ -110,6 +110,17 @@ public class BibliothequeController {
 
 	//////////////////////// AJOUT OUVRAGE ////////////////////////
 	
+	@RequestMapping(value = "/confirmationAjout")
+	public String confirmationAjout(Model model, String titre, String auteur, String description, String genre) {
+		
+		model.addAttribute("titre", titre);
+		model.addAttribute("auteur", auteur);
+		model.addAttribute("description", description);
+		model.addAttribute("genre", genre);
+		
+		return "confirmationAjout";
+	}
+	
 	
 	@RequestMapping(value = "/ajout")
 	public String ajout(Model model) {
@@ -139,7 +150,7 @@ public class BibliothequeController {
 			return "ajout";
 		}
 				
-		return "redirect:/index";
+		return "redirect:/confirmationAjout?titre=" + ouvrage.getTitre() + "&auteur=" + ouvrage.getAuteur() + "&description=" + ouvrage.getDescription() + "&genre="+ genre ;
 	}
 	
 //////////////////////// MODIFICATION OUVRAGE ////////////////////////
@@ -177,6 +188,21 @@ public class BibliothequeController {
 			return "ajout";
 		}
 				
-		return "redirect:/index";
+		return "redirect:/modificationOuvrage?id=" + ouvrage.getId() + "&returnEdit";
 	}
+	
+	
+//////////////////////// SUPPRESSION OUVRAGE ////////////////////////
+	
+	
+	@RequestMapping(value = "/deleteOuvrage")
+	public String deleteOuvrage(Long id, int page, String MotCle, String genre, boolean isReserved ) {
+		
+		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+			
+			ws.deleteOuvrage(id);		
+				
+		return "redirect:/recherche?page=" + page + "&MotCle=" + MotCle + "&genre=" + genre + "&isReserved=" + isReserved +"&returnDelete";
+	}
+	
 }
