@@ -30,8 +30,10 @@ public class Ouvrage implements Serializable{
 	@NotBlank(message="La description du livre ne peut être vide")
 	@Size(max=500, message="La description ne peut pas éxéder 500 caractères")
 	private String description;
+	private int exemplaireTotaux;
+	private int exemplaireDisponible;
 	private boolean disponible;
-	
+		
 	@OneToMany(mappedBy="ouvrage")
 	private Collection<Reservation> reservations;
 	
@@ -44,13 +46,14 @@ public class Ouvrage implements Serializable{
 		super();
 	}
 
-	public Ouvrage(String titre, String auteur, String description, boolean disponible, Genre genre) {
+	public Ouvrage(String titre, String auteur, String description, boolean disponible, Genre genre, int exemplaireTotaux) {
 		super();
 		this.titre = titre;
 		this.auteur = auteur;
 		this.description = description;
 		this.disponible = disponible;
 		this.genre = genre;
+		this.exemplaireTotaux = exemplaireTotaux;
 	}
 
 	public Long getId() {
@@ -93,15 +96,6 @@ public class Ouvrage implements Serializable{
 		this.disponible = disponible;
 	}
 
-	@XmlTransient
-	public Collection<Reservation> getReservations() {
-		return reservations;
-	}
-
-	public void setReservations(Collection<Reservation> reservations) {
-		this.reservations = reservations;
-	}
-
 	public Genre getGenre() {
 		return genre;
 	}
@@ -110,6 +104,30 @@ public class Ouvrage implements Serializable{
 		this.genre = genre;
 	}
 	
+	public int getExemplaireTotaux() {
+		return exemplaireTotaux;
+	}
+
+	public void setExemplaireTotaux(int exemplaireTotaux) {
+		this.exemplaireTotaux = exemplaireTotaux;
+	}
+
+	public int getExemplaireDisponible() {
+		return exemplaireDisponible;
+	}
+
+	public void setExemplaireDisponible(int exemplaireDisponible) {
+		this.exemplaireDisponible = exemplaireDisponible;
+	}
+
+	@XmlTransient
+	public Collection<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(Collection<Reservation> reservations) {
+		this.reservations = reservations;
+	}
 	
-	
+		
 }

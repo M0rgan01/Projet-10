@@ -23,8 +23,11 @@ public class MailMetierImpl implements MailMetier{
 	private MailRepository mailRepository;
 	
 	@Override
-	public void saveMail(Mail mail) {		
-		mailRepository.save(mail);		
+	public void saveMail(Mail mail, Long utilisateur_id) throws BibliothequeException {	
+		Mail mail2 = getMailByUtilisateurID(utilisateur_id);
+		validateMail(mail);
+		mail2.setEmail(mail.getEmail());
+		mailRepository.save(mail2);		
 	}
 
 	@Override
@@ -33,8 +36,8 @@ public class MailMetierImpl implements MailMetier{
 	}
 
 	@Override
-	public Mail getMail(Long id) {				
-		return mailRepository.findById(id).orElse(null);
+	public Mail getMailByUtilisateurID(Long id) {				
+		return mailRepository.findByUtilisateurID(id);
 	}
 
 	@Override

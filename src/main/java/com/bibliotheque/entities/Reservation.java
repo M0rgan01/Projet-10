@@ -25,11 +25,10 @@ public class Reservation implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="UTILISATEUR_ID")
 	private Utilisateur utilisateur;
-	
+		
 	@ManyToOne
 	@JoinColumn(name="OUVRAGE_ID")
 	private Ouvrage ouvrage;
-
 	
 	public Reservation() {
 		super();
@@ -39,7 +38,7 @@ public class Reservation implements Serializable{
 		super();
 		this.debut = debut;
 		this.fin = fin;
-		this.utilisateur = utilisateur;
+		this.utilisateur = utilisateur;	
 		this.ouvrage = ouvrage;
 	}
 
@@ -98,6 +97,5 @@ public class Reservation implements Serializable{
 	public void setOuvrage(Ouvrage ouvrage) {
 		this.ouvrage = ouvrage;
 	}
-	
-	
+
 }

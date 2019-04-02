@@ -42,14 +42,14 @@ public class BibliothequeService {
 	private RolesMetier rolesMetier;
 
 	@WebMethod
-	public void saveUtilisateur(@WebParam(name = "utilisateur") Utilisateur utilisateur) {
+	public void saveUtilisateur(@WebParam(name = "utilisateur") Utilisateur utilisateur) throws BibliothequeException {
 		utilisateurMetier.saveUtilisateur(utilisateur);
 	}
 
 	@WebMethod
-	public void createUtilisateur(@WebParam(name = "utilisateur") Utilisateur utilisateur,
+	public Utilisateur createUtilisateur(@WebParam(name = "utilisateur") Utilisateur utilisateur,
 			@WebParam(name = "mail") Mail mail) throws BibliothequeException {
-		utilisateurMetier.createUtilisateur(utilisateur, mail);
+		return utilisateurMetier.createUtilisateur(utilisateur, mail);
 	}
 
 	@WebMethod
@@ -58,14 +58,19 @@ public class BibliothequeService {
 	}
 
 	@WebMethod
+	public Utilisateur getUtilisateur(@WebParam(name = "id") Long id) {
+		return utilisateurMetier.getUtilisateur(id);
+	}
+	
+	@WebMethod
 	public Utilisateur doConnection(@WebParam(name = "pseudo") String pseudo,
 			@WebParam(name = "passWord") String passWord) throws BibliothequeException {
 		return utilisateurMetier.doConnection(pseudo, passWord);
 	}
 
 	@WebMethod
-	public void saveMail(Mail mail) {
-		mailMetier.saveMail(mail);
+	public void saveMail(@WebParam(name = "mail") Mail mail, @WebParam(name = "utilisateur_id") Long utilisateur_id) throws BibliothequeException {
+		mailMetier.saveMail(mail, utilisateur_id);
 	}
 
 	@WebMethod
@@ -74,20 +79,22 @@ public class BibliothequeService {
 	}
 
 	@WebMethod
-	public Mail getMail(@WebParam(name = "pseudo") String email) {
-		return mailMetier.getMail(email);
+	public Mail getMail(@WebParam(name = "utilisateur_id") Long id) {
+		return mailMetier.getMailByUtilisateurID(id);
 	}
 
 	@WebMethod
-	public void createOuvrage(@WebParam(name = "ouvrage")Ouvrage ouvrage, @WebParam(name = "genre") String genre) throws BibliothequeException {
+	public void createOuvrage(@WebParam(name = "ouvrage") Ouvrage ouvrage, @WebParam(name = "genre") String genre)
+			throws BibliothequeException {
 		ouvrageMetier.createOuvrage(ouvrage, genre);
 	}
 
 	@WebMethod
-	public void updateOuvrage(@WebParam(name = "ouvrage")Ouvrage ouvrage, @WebParam(name = "genre") String genre) throws BibliothequeException {
+	public void updateOuvrage(@WebParam(name = "ouvrage") Ouvrage ouvrage, @WebParam(name = "genre") String genre)
+			throws BibliothequeException {
 		ouvrageMetier.saveOuvrage(ouvrage, genre);
 	}
-	
+
 	@WebMethod
 	public void deleteOuvrage(Long id) {
 		ouvrageMetier.deleteOuvrage(id);
@@ -106,23 +113,15 @@ public class BibliothequeService {
 	}
 
 	@WebMethod
-	public void saveGenre(Genre genre) {
-		genreMetier.saveGenre(genre);
-	}
-
-	@WebMethod
 	public List<Genre> getListGenre() {
 		return genreMetier.getListGenre();
 	}
 
 	@WebMethod
-	public Genre getGenre(String nom) {
-		return genreMetier.getGenre(nom);
-	}
-
-	@WebMethod
-	public void saveReservation(Reservation reservation) {
-		reservationMetier.saveReservation(reservation);
+	public void createReservation(@WebParam(name = "reservation") Reservation reservation,
+			@WebParam(name = "ouvrage_id") Long ouvrage_id, @WebParam(name = "utilisateur_id") Long utilisateur_id)
+			throws BibliothequeException {
+		reservationMetier.createReservation(ouvrage_id, utilisateur_id, reservation);
 	}
 
 	@WebMethod

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,12 +27,14 @@ public class Utilisateur implements Serializable{
 	@NotBlank(message="Le pseudo ne peut être vide")
 	@Size(max=20, min=5, message="Le pseudo doit contenir minimun 5 caractères et maximum 20 caractères")
 	private String pseudo;	
-	@NotBlank(message="Le mot de passe ne peut être vide")
-	@Size(max=20, min=8, message="Le mot de passe doit contenir minimun 8 caractères et maximum 20 caractères")
-	@Pattern(regexp="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$", message="Le mot de passe doit contenir au moin une minuscule, une majuscule, et un chiffre")	
+//	@NotBlank(message="Le mot de passe ne peut être vide")
+//	@Size(max=20, min=8, message="Le mot de passe doit contenir minimun 8 caractères et maximum 20 caractères")
+//	@Pattern(regexp="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$", message="Le mot de passe doit contenir au moin une minuscule, une majuscule, et un chiffre")	
 	private String passWord;	
 	@Transient
 	private String passWordConfirm;
+	@Transient
+	private String oldPassWord;
 	private boolean active;
 	private int essaisConnection; 
 	private Date expirationConnection;
@@ -116,5 +119,11 @@ public class Utilisateur implements Serializable{
 		this.passWordConfirm = passWordConfirm;
 	}
 	
-	
+	public String getOldPassWord() {
+		return oldPassWord;
+	}
+
+	public void setOldPassWord(String oldPassWord) {
+		this.oldPassWord = oldPassWord;
+	}
 }
