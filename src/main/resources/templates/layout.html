@@ -33,19 +33,22 @@
 				<ul class="navbar-nav">
 					<li><a class="navbar-brand" th:href="@{operations}">Accueil</a></li>
 
-					<li th:if="${#httpServletRequest.remoteUser}" class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#"
-						id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">Mon compte</a>
+					<li><a th:if="${#httpServletRequest.remoteUser == null}"
+						class="nav-link" th:href="@{login}">Se connecter</a></li>
+
+					<li th:if="${#httpServletRequest.remoteUser}"
+						class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+						href="#" id="navbarDropdownMenuLink" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mon
+							compte</a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">Modifier mon compte</a> <a
-								class="dropdown-item" href="#">Supprimer mon compte</a>
-								<a
+							<a class="dropdown-item" href="modificationCompte">Modifier mon compte</a> <a
+								class="dropdown-item" href="#">Supprimer mon compte</a> <a
 								class="dropdown-item" th:href="@{/logout}">Deconnexion</a>
-								
+
 						</div></li>
-					
+
 					<li><a class="nav-link" th:href="@{recherche}">Rechercher
 							un ouvrage</a></li>
 

@@ -30,10 +30,17 @@
 					</select>
 				</div>
 
-				<div class="col-md-4 mt-2 align-self-center">
-					<input type="checkbox" name="isReserved" th:checked="${isReserved}" />
-					<label>Uniquement livre disponnible au prêt</label>
+				<div class="col-md-4 mt-2 custom-control custom-checkbox">
+					<div class="row justify-content-center mx-3 mt-3">
+						<input type="checkbox" name="isReserved"
+							th:checked="${isReserved}" class="custom-control-input"
+							id="customCheck1" /> <label class="custom-control-label"
+							for="customCheck1">Uniquement livre disponnible au prêt</label>
+					</div>
+
 				</div>
+
+
 			</div>
 
 			<div class="row justify-content-center mt-4">
@@ -41,8 +48,10 @@
 			</div>
 		</form>
 
-		<div th:if="${param.returnDelete}" class="row justify-content-center mb-2">
-			<span class="alert alert-primary">Suppression effectué avec succès !</span>
+		<div th:if="${param.returnDelete}"
+			class="row justify-content-center mb-2">
+			<span class="alert alert-primary">Suppression effectué avec
+				succès !</span>
 		</div>
 
 		<div class="table-responsive">
@@ -53,7 +62,7 @@
 						<th>Description</th>
 						<th>Auteur</th>
 						<th>Genre</th>
-						<th th:if="${#request.isUserInRole('USER')}"></th>
+						<th th:if="${#request.isUserInRole('USER')}">Réservation</th>
 						<th th:if="${#request.isUserInRole('ADMIN')}">Administration</th>
 					</tr>
 				</thead>
@@ -61,12 +70,23 @@
 				<tbody>
 					<tr th:each="o:${listOuvrages.getOuvrages()}">
 						<td style="width: 15%" class="h5" th:text=${o.titre}></td>
-						<td style="width: 35%" th:text=${o.description}></td>
+						<td style="width: 25%" th:text=${o.description}></td>
 						<td class="" th:text=${o.auteur}></td>
 						<td class="" th:text=${o.getGenre().getNom()}></td>
 
-						<td th:if="${#request.isUserInRole('USER')}"><a
-							class="btn btn-primary my-1" th:href="@{reserver(id=${o.id})}">Réserver</a></td>
+						<td><div class="row justify-content-center"
+								th:if="${#request.isUserInRole('USER') && o.disponible}">
+								<span class="btn btn-primary my-1">Disponible</span>
+								<p>
+									Nombre d'exemplaire à disposition : <span
+										th:text="${o.exemplaireDisponible}"></span>
+								</p>
+
+							</div>
+
+							<div class="row justify-content-center" th:if="${#request.isUserInRole('USER') && !o.disponible}">
+								<span class="btn btn-danger my-1">Non disponnible</span>
+							</div></td>
 
 						<td th:if="${#request.isUserInRole('ADMIN')}"><a
 							class="btn btn-primary"

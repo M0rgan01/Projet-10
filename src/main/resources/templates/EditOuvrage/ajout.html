@@ -21,27 +21,33 @@
 						</div>
 
 						<div class="form-group">
-							<label>Titre </label> <input class="form-control" type="text"
-							 th:value="${ouvrage?.titre}" name="Titre" />
+							<label>Titre :</label> <input class="form-control" type="text"
+								th:value="${ouvrage?.titre}" name="Titre" />
 						</div>
 
 						<div class="form-group">
-							<label>Auteur </label> <input class="form-control" type="text"
+							<label>Auteur :</label> <input class="form-control" type="text"
 								name="auteur" th:value="${ouvrage?.auteur}" />
 						</div>
 
 						<div class="form-group">
-							<label>Description</label>
+							<label>Description :</label>
 							<textarea class="form-control" rows="5" name="description"
 								th:text="${ouvrage?.description}"></textarea>
 						</div>
 
 						<div class="form-group">
-							<label>Genre du livre</label> 
-							<select name="style"
-								id="genre" class="form-control">
-								
-								<option selected="selected" th:value="${blank}">Séléctionner un genre</option>
+							<label>Nombre d'exemplaire :</label>
+							<input class="form-control" type="number"
+								name="exemplaireTotaux" th:value="${ouvrage?.exemplaireTotaux}" />
+						</div>
+
+						<div class="form-group">
+							<label>Genre du livre :</label> <select name="style" id="genre"
+								class="form-control">
+
+								<option selected="selected" th:value="${blank}">Séléctionner
+									un genre</option>
 								<option th:each="g : ${listGenre}" th:value="${g.nom}"
 									th:text="${g.nom}" th:selected="${g.nom.equals(style)}">Wireframe</option>
 							</select>

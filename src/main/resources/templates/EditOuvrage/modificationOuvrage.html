@@ -23,7 +23,7 @@
 						<div th:if="${param.returnEdit}" class="alert alert-primary">
 							<span>Modification effectué avec succès !</span>
 						</div>
-				
+
 						<div class="form-group">
 							<label>Titre</label> <input class="form-control" type="text"
 								th:value="${ouvrage?.titre}" name="Titre" />
@@ -46,6 +46,18 @@
 								<option th:each="g : ${listGenre}" th:value="${g.nom}"
 									th:text="${g.nom}" th:selected="${g.nom.equals(style)}">Wireframe</option>
 							</select>
+						</div>
+
+						<div class="form-group">
+							<label>Nombre d'exemplaires totaux :</label> <input class="form-control"
+								type="number" name="exemplaireTotaux"
+								th:value="${ouvrage?.exemplaireTotaux}" />
+						</div>
+
+						<div class="form-group">
+							<label>Nombre d'exemplaires disponible :</label> <input class="form-control"
+								type="number" name="exemplaireDisponible"
+								th:value="${ouvrage?.exemplaireDisponible}" />
 						</div>
 
 						<div class="form-group">

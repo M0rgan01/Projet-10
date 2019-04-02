@@ -29,9 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// formulaire de connection personnalise
 		http.formLogin().loginPage("/login");
 		
-		//http.authorizeRequests().antMatchers("/index").permitAll();
+		http.authorizeRequests().antMatchers("/index").permitAll();
 
-		http.authorizeRequests().antMatchers("/index","/recherche").hasRole("USER");
+		//http.authorizeRequests().antMatchers("/index","/recherche").hasRole("USER");
 		
 		//http.rememberMe().userDetailsService(authProvider).tokenValiditySeconds(86400);
 				

@@ -22,6 +22,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="essaisConnection" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="expirationConnection" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="oldPassWord" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="passWord" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="passWordConfirm" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="pseudo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -39,6 +40,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "essaisConnection",
     "expirationConnection",
     "id",
+    "oldPassWord",
     "passWord",
     "passWordConfirm",
     "pseudo"
@@ -50,6 +52,7 @@ public class Utilisateur {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar expirationConnection;
     protected Long id;
+    protected String oldPassWord;
     protected String passWord;
     protected String passWordConfirm;
     protected String pseudo;
@@ -132,6 +135,30 @@ public class Utilisateur {
      */
     public void setId(Long value) {
         this.id = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété oldPassWord.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getOldPassWord() {
+        return oldPassWord;
+    }
+
+    /**
+     * Définit la valeur de la propriété oldPassWord.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setOldPassWord(String value) {
+        this.oldPassWord = value;
     }
 
     /**

@@ -3,6 +3,9 @@ package com.bibliotheque.security;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,30 +13,37 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.bibliotheque.service.BibliothequeException_Exception;
 import com.bibliotheque.service.BibliothequeServiceService;
 import com.bibliotheque.service.BibliothequeWS;
 import com.bibliotheque.service.Roles;
 import com.bibliotheque.service.Utilisateur;
+import com.bibliotheque.utilities.Encrypt;
 
 @Component
-public class CustomAuthenticationProvider implements AuthenticationProvider, UserDetailsService {
+public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	private Utilisateur utilisateur;
 	private List<GrantedAuthority> grantedAuths;
-		
+	private HttpSession httpSession;
+	@Autowired
+	private Encrypt encrypt;
+	
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
-
+		httpSession = getSession();
+		
 		try {
-			utilisateur = ws.doConnection(authentication.getName(), authentication.getCredentials().toString());
+			utilisateur = new Utilisateur();
+			utilisateur.setPassWord(encrypt.setEncrypt(authentication.getCredentials().toString()));
+			utilisateur = ws.doConnection(authentication.getName(), utilisateur.getPassWord());	
+			httpSession.setAttribute("utilisateur_id", utilisateur.getId());
 		} catch (BibliothequeException_Exception e) {
 			throw new BadCredentialsException(e.getFaultInfo().getInfo().getFaultString());
 		}
@@ -54,12 +64,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider, Use
 		return authentication.equals(UsernamePasswordAuthenticationToken.class);
 	}
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {	
-		
-		System.out.println(username);
-		
-		return new UserService(utilisateur, grantedAuths);
+	public HttpSession getSession() {
+	    ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+	    return attr.getRequest().getSession(true); // true == allow create
 	}
-
+	
 }

@@ -19,6 +19,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="auteur" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="disponible" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="exemplaireDisponible" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="exemplaireTotaux" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="genre" type="{http://service.bibliotheque.com/}genre" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="titre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -35,6 +37,8 @@ import javax.xml.bind.annotation.XmlType;
     "auteur",
     "description",
     "disponible",
+    "exemplaireDisponible",
+    "exemplaireTotaux",
     "genre",
     "id",
     "titre"
@@ -44,6 +48,8 @@ public class Ouvrage {
     protected String auteur;
     protected String description;
     protected boolean disponible;
+    protected int exemplaireDisponible;
+    protected int exemplaireTotaux;
     protected Genre genre;
     protected Long id;
     protected String titre;
@@ -110,6 +116,38 @@ public class Ouvrage {
      */
     public void setDisponible(boolean value) {
         this.disponible = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété exemplaireDisponible.
+     * 
+     */
+    public int getExemplaireDisponible() {
+        return exemplaireDisponible;
+    }
+
+    /**
+     * Définit la valeur de la propriété exemplaireDisponible.
+     * 
+     */
+    public void setExemplaireDisponible(int value) {
+        this.exemplaireDisponible = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété exemplaireTotaux.
+     * 
+     */
+    public int getExemplaireTotaux() {
+        return exemplaireTotaux;
+    }
+
+    /**
+     * Définit la valeur de la propriété exemplaireTotaux.
+     * 
+     */
+    public void setExemplaireTotaux(int value) {
+        this.exemplaireTotaux = value;
     }
 
     /**

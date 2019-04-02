@@ -3,6 +3,7 @@ package com.bibliotheque.service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -16,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="pseudo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="utilisateur_id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,34 +28,35 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getMail", propOrder = {
-    "pseudo"
+    "utilisateurId"
 })
 public class GetMail {
 
-    protected String pseudo;
+    @XmlElement(name = "utilisateur_id")
+    protected Long utilisateurId;
 
     /**
-     * Obtient la valeur de la propriété pseudo.
+     * Obtient la valeur de la propriété utilisateurId.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Long }
      *     
      */
-    public String getPseudo() {
-        return pseudo;
+    public Long getUtilisateurId() {
+        return utilisateurId;
     }
 
     /**
-     * Définit la valeur de la propriété pseudo.
+     * Définit la valeur de la propriété utilisateurId.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Long }
      *     
      */
-    public void setPseudo(String value) {
-        this.pseudo = value;
+    public void setUtilisateurId(Long value) {
+        this.utilisateurId = value;
     }
 
 }

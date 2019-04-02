@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="utilisateur" type="{http://service.bibliotheque.com/}utilisateur" minOccurs="0"/>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,34 +27,34 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getUtilisateur", propOrder = {
-    "utilisateur"
+    "id"
 })
 public class GetUtilisateur {
 
-    protected Utilisateur utilisateur;
+    protected Long id;
 
     /**
-     * Obtient la valeur de la propriété utilisateur.
+     * Obtient la valeur de la propriété id.
      * 
      * @return
      *     possible object is
-     *     {@link Utilisateur }
+     *     {@link Long }
      *     
      */
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
+    public Long getId() {
+        return id;
     }
 
     /**
-     * Définit la valeur de la propriété utilisateur.
+     * Définit la valeur de la propriété id.
      * 
      * @param value
      *     allowed object is
-     *     {@link Utilisateur }
+     *     {@link Long }
      *     
      */
-    public void setUtilisateur(Utilisateur value) {
-        this.utilisateur = value;
+    public void setId(Long value) {
+        this.id = value;
     }
 
 }
