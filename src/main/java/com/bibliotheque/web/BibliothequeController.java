@@ -1,10 +1,14 @@
 package com.bibliotheque.web;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,17 +29,16 @@ import com.bibliotheque.service.Genre;
 import com.bibliotheque.service.Mail;
 import com.bibliotheque.service.Ouvrage;
 import com.bibliotheque.service.PageOuvrage;
+import com.bibliotheque.service.Reservation;
 import com.bibliotheque.service.Utilisateur;
 import com.bibliotheque.utilities.Encrypt;
-
-
 
 @Controller
 public class BibliothequeController {
 
 	@Autowired
 	private Encrypt encrypt;
-		
+
 	// page d'accueil
 	@RequestMapping(value = "/")
 	public String home() {
@@ -104,9 +107,9 @@ public class BibliothequeController {
 
 			utilisateur = ws.createUtilisateur(utilisateur, mail);
 			httpSession.setAttribute("utilisateur_id", utilisateur.getId());
-			
+
 		} catch (BibliothequeException_Exception e) {
-			
+
 			model.addAttribute("utilisateur", utilisateur);
 			model.addAttribute("mail", mail);
 			model.addAttribute("exception", e);
@@ -124,17 +127,25 @@ public class BibliothequeController {
 
 	}
 
+	//////////////////////// RECUPERATION MDP ////////////////////////
+	
+	@RequestMapping(value = "/recuperation")
+	public String recuperation() {
+		return "Authentification/recuperation";
+	}
+	
 	//////////////////////// AJOUT OUVRAGE ////////////////////////
 
 	@RequestMapping(value = "/confirmationAjout")
-	public String confirmationAjout(Model model, String titre, String auteur, String description, String genre, int nombreExemplaire) {
+	public String confirmationAjout(Model model, String titre, String auteur, String description, String genre,
+			int nombreExemplaire) {
 
 		model.addAttribute("titre", titre);
 		model.addAttribute("auteur", auteur);
 		model.addAttribute("description", description);
 		model.addAttribute("genre", genre);
 		model.addAttribute("nombreExemplaire", nombreExemplaire);
-		
+
 		return "EditOuvrage/confirmationAjout";
 	}
 
@@ -167,7 +178,8 @@ public class BibliothequeController {
 		}
 
 		return "redirect:/confirmationAjout?titre=" + ouvrage.getTitre() + "&auteur=" + ouvrage.getAuteur()
-				+ "&description=" + ouvrage.getDescription() + "&genre=" + genre + "&nombreExemplaire=" + ouvrage.getExemplaireTotaux();
+				+ "&description=" + ouvrage.getDescription() + "&genre=" + genre + "&nombreExemplaire="
+				+ ouvrage.getExemplaireTotaux();
 	}
 
 //////////////////////// MODIFICATION OUVRAGE ////////////////////////
@@ -222,47 +234,116 @@ public class BibliothequeController {
 	}
 
 //////////////////////// MODIFICATION COMPTE UTILISATEUR ////////////////////////
-	
-	
+
 	@RequestMapping(value = "/modificationCompte")
 	public String modificationCompte(HttpSession httpSession, Model model) {
 
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 
-		Utilisateur utilisateur = ws.getUtilisateur((Long) httpSession.getAttribute("utilisateur_id"));
-		Mail mail = ws.getMail(utilisateur.getId());
-		
+		Mail mail = ws.getMail((Long) httpSession.getAttribute("utilisateur_id"));
+		Utilisateur utilisateur = mail.getUtilisateur();
+
 		model.addAttribute("utilisateur", utilisateur);
 		model.addAttribute("mail", mail);
-		
+
 		return "Authentification/modificationCompte";
 	}
-	
+
 	@RequestMapping(value = "/saveModificationCompte")
 	public String saveModificationCompte(HttpSession httpSession, Model model, Utilisateur utilisateur, Mail mail) {
 
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 
-		try {		
+		try {
 			utilisateur.setPassWord(encrypt.setEncrypt(utilisateur.getPassWord()));
 			utilisateur.setPassWordConfirm(encrypt.setEncrypt(utilisateur.getPassWordConfirm()));
 			utilisateur.setOldPassWord(encrypt.setEncrypt(utilisateur.getOldPassWord()));
-			
+
 			ws.saveUtilisateur(utilisateur);
 			ws.saveMail(mail, utilisateur.getId());
-						
-		} catch (BibliothequeException_Exception e ) {
-			
+
+		} catch (BibliothequeException_Exception e) {
+
 			model.addAttribute("exception", e);
-						
+
 			return "Authentification/modificationCompte";
 		}
-			
+
 		return "redirect:/modificationCompte?returnEdit";
 	}
-	
-	
-	
+
+//////////////////////// SUPPRESSION COMPTE UTILISATEUR ////////////////////////
+
+	@RequestMapping(value = "/suppressionCompte")
+	public String SuppressionCompte() {
+		return "Authentification/suppressionCompte";
+	}
+
+	@RequestMapping(value = "/suppressionCompteConfirm")
+	public String SuppressionCompteConfirm(HttpSession httpSession) {
+
+		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+
+		ws.deleteUtilisateur((Long) httpSession.getAttribute("utilisateur_id"));
+
+		return "redirect:/login?logout";
+	}
+
+//////////////////////// RESERVATION UTILISATEUR ////////////////////////
+
+	@RequestMapping(value = "/reservationCompte")
+	public String reservationCompte(HttpSession httpSession, Model model) {
+
+		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+
+		List<Reservation> listResa = ws
+				.getListReservationByUtilisateurID((Long) httpSession.getAttribute("utilisateur_id"));
+		List<Reservation> listResaRetard = ws
+				.getListReservationRetardedByUtilisateurID((Long) httpSession.getAttribute("utilisateur_id"));
+
+		model.addAttribute("listResa", listResa);
+		model.addAttribute("listResaRetard", listResaRetard);
+
+		return "Reservation/reservation";
+	}
+
+	@RequestMapping(value = "/prolongerReservation")
+	public String prolongerReservation(Model model, Long id) throws DatatypeConfigurationException {
+
+		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+
+		try {
+			Reservation r = ws.getReservation(id);
+			int prolongationDays = ws.getDaysProlongation();
+			GregorianCalendar calendar = r.getFin().toGregorianCalendar();
+			calendar.add(Calendar.DAY_OF_MONTH, prolongationDays);
+			r.setFin(DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar));
+
+			model.addAttribute("fin", r.getFin());
+			model.addAttribute("prolongation", prolongationDays);
+			model.addAttribute("id", id);
+
+		} catch (BibliothequeException_Exception e) {
+			return "error";
+		}
+
+		return "Reservation/prolongation";
+	}
+
+	@RequestMapping(value = "/saveProlongerReservation")
+	public String saveProlongerReservation(HttpSession httpSession, Long id) {
+
+		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+
+		try {
+			ws.prolongerReservation(id, (Long) httpSession.getAttribute("utilisateur_id"));
+		} catch (BibliothequeException_Exception e) {
+			return "error";
+		}
+
+		return "redirect:/reservationCompte?returnProlongation";
+	}
+
 //////////////////////// RESERVATION OUVRAGE ////////////////////////
 
 //	@RequestMapping(value = "/reserverOuvrage")

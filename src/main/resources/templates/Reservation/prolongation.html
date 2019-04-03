@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<title>Prolongation de la réservation</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+
+		<div class="row justify-content-center my-5">
+			<h3>Prolongation de la réservation</h3>
+		</div>
+
+		<div class="row">
+			<div class="offset-1 col-10 text-center">
+				<p>
+					La prolongation du prêt apportera votre date de remise en
+					bibliotheque de l'ouvrage au <span th:text=${fin}></span>
+				</p>
+
+				<p>
+					Nous vous rappelons qu'il est possible d'effectuer une prolongation
+					par réservation, d'une durée de <span th:text=${prolongation}></span>
+					jours.
+				</p>
+			</div>
+		</div>
+		
+		<div class="row justify-content-center my-5">
+			<a class="btn btn-primary" th:href="@{saveProlongerReservation(id=${id})}">Prolonger</a>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -20,10 +20,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="debut" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="fin" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="finProlongation" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="ouvrage" type="{http://service.bibliotheque.com/}ouvrage" minOccurs="0"/>
  *         &lt;element name="prolongation" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="rendu" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="retard" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="utilisateur" type="{http://service.bibliotheque.com/}utilisateur" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -37,10 +38,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlType(name = "reservation", propOrder = {
     "debut",
     "fin",
-    "finProlongation",
     "id",
     "ouvrage",
     "prolongation",
+    "rendu",
+    "retard",
     "utilisateur"
 })
 public class Reservation {
@@ -49,11 +51,11 @@ public class Reservation {
     protected XMLGregorianCalendar debut;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fin;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar finProlongation;
     protected Long id;
     protected Ouvrage ouvrage;
     protected boolean prolongation;
+    protected boolean rendu;
+    protected boolean retard;
     protected Utilisateur utilisateur;
 
     /**
@@ -102,30 +104,6 @@ public class Reservation {
      */
     public void setFin(XMLGregorianCalendar value) {
         this.fin = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété finProlongation.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getFinProlongation() {
-        return finProlongation;
-    }
-
-    /**
-     * Définit la valeur de la propriété finProlongation.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setFinProlongation(XMLGregorianCalendar value) {
-        this.finProlongation = value;
     }
 
     /**
@@ -190,6 +168,38 @@ public class Reservation {
      */
     public void setProlongation(boolean value) {
         this.prolongation = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété rendu.
+     * 
+     */
+    public boolean isRendu() {
+        return rendu;
+    }
+
+    /**
+     * Définit la valeur de la propriété rendu.
+     * 
+     */
+    public void setRendu(boolean value) {
+        this.rendu = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété retard.
+     * 
+     */
+    public boolean isRetard() {
+        return retard;
+    }
+
+    /**
+     * Définit la valeur de la propriété retard.
+     * 
+     */
+    public void setRetard(boolean value) {
+        this.retard = value;
     }
 
     /**

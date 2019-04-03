@@ -42,7 +42,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		try {
 			utilisateur = new Utilisateur();
 			utilisateur.setPassWord(encrypt.setEncrypt(authentication.getCredentials().toString()));
-			utilisateur = ws.doConnection(authentication.getName(), utilisateur.getPassWord());	
+			utilisateur = ws.doConnection(authentication.getName(), utilisateur.getPassWord());				
 			httpSession.setAttribute("utilisateur_id", utilisateur.getId());
 		} catch (BibliothequeException_Exception e) {
 			throw new BadCredentialsException(e.getFaultInfo().getInfo().getFaultString());
