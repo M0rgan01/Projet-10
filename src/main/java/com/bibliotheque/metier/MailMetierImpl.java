@@ -1,5 +1,6 @@
 package com.bibliotheque.metier;
 
+import java.security.SecureRandom;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -8,6 +9,8 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import com.bibliotheque.dao.MailRepository;
@@ -15,12 +18,25 @@ import com.bibliotheque.entities.Mail;
 import com.bibliotheque.entities.Utilisateur;
 import com.bibliotheque.exception.BibliothequeException;
 import com.bibliotheque.exception.BibliothequeFault;
+import com.bibliotheque.utilities.Encrypt;
+import com.bibliotheque.utilities.SendMail;
 
 @Service
+@PropertySource("classpath:bibliotheque.properties")
 public class MailMetierImpl implements MailMetier{
 
 	@Autowired
 	private MailRepository mailRepository;
+	@Autowired
+	private Encrypt encrypt;
+	@Autowired
+	private SendMail sendMail;
+	@Value("${mail.username}")
+	private String emailUsers;
+	@Value("${mail.password}")
+	private String emailPassword;
+	@Value("${mail.sujet}")
+	private String emailSubject;
 	
 	@Override
 	public void saveMail(Mail mail, Long utilisateur_id) throws BibliothequeException {	
@@ -28,11 +44,6 @@ public class MailMetierImpl implements MailMetier{
 		validateMail(mail);
 		mail2.setEmail(mail.getEmail());
 		mailRepository.save(mail2);		
-	}
-
-	@Override
-	public void deleteMail(Long id) {
-		mailRepository.deleteById(id);
 	}
 
 	@Override
@@ -80,4 +91,43 @@ public class MailMetierImpl implements MailMetier{
 		}
 	}
 
+	@Override
+	public void deleteMailByUtilisateurID(Long utilisateur_id) {
+		Mail mail = getMailByUtilisateurID(utilisateur_id);
+		mailRepository.delete(mail);
+	}
+
+	@Override
+	public void sendToken(String email) throws BibliothequeException {
+		
+		Mail mail = mailRepository.findByEmail(email);
+		
+		if (mail == null) {
+			BibliothequeFault bibliothequeFault = new BibliothequeFault();
+			bibliothequeFault.setFaultCode("50");
+			bibliothequeFault.setFaultString("Aucune addresse corresponde");
+			
+			throw new BibliothequeException("Email non correct", bibliothequeFault);
+		}
+		
+		String token = generateToken();
+		mail.setToken(token);
+		String body = " Voiçi le code pour réinitialisé le mot de passe de votre compte : " + token;
+		String[] tableau_email = { mail.getEmail() };
+		
+		sendMail.sendFromGMail(emailUsers, encrypt.getDecrypt(emailPassword), tableau_email, emailSubject, body);
+		
+		mailRepository.save(mail);	
+	}
+
+	
+	public String generateToken() {
+		
+		SecureRandom random = new SecureRandom();
+		int longToken = Math.abs(random.nextInt());
+		String randomString = Integer.toString(longToken, 16);
+		return randomString;
+	}
+	
+	
 }

@@ -41,6 +41,8 @@ public class BibliothequeService {
 	@Autowired
 	private RolesMetier rolesMetier;
 
+//////////////////////// AUTHENTIFICATION - GESTION COMPTE UTILISATEUR ////////////////////////
+
 	@WebMethod
 	public void saveUtilisateur(@WebParam(name = "utilisateur") Utilisateur utilisateur) throws BibliothequeException {
 		utilisateurMetier.saveUtilisateur(utilisateur);
@@ -54,6 +56,7 @@ public class BibliothequeService {
 
 	@WebMethod
 	public void deleteUtilisateur(@WebParam(name = "id") Long id) {
+		mailMetier.deleteMailByUtilisateurID(id);
 		utilisateurMetier.deleteUtilisateur(id);
 	}
 
@@ -61,7 +64,7 @@ public class BibliothequeService {
 	public Utilisateur getUtilisateur(@WebParam(name = "id") Long id) {
 		return utilisateurMetier.getUtilisateur(id);
 	}
-	
+
 	@WebMethod
 	public Utilisateur doConnection(@WebParam(name = "pseudo") String pseudo,
 			@WebParam(name = "passWord") String passWord) throws BibliothequeException {
@@ -69,13 +72,9 @@ public class BibliothequeService {
 	}
 
 	@WebMethod
-	public void saveMail(@WebParam(name = "mail") Mail mail, @WebParam(name = "utilisateur_id") Long utilisateur_id) throws BibliothequeException {
+	public void saveMail(@WebParam(name = "mail") Mail mail, @WebParam(name = "utilisateur_id") Long utilisateur_id)
+			throws BibliothequeException {
 		mailMetier.saveMail(mail, utilisateur_id);
-	}
-
-	@WebMethod
-	public void deleteMail(Long id) {
-		mailMetier.deleteMail(id);
 	}
 
 	@WebMethod
@@ -83,6 +82,14 @@ public class BibliothequeService {
 		return mailMetier.getMailByUtilisateurID(id);
 	}
 
+	@WebMethod
+	public List<Roles> getListRoles(@WebParam(name = "pseudo") String pseudo) {
+		return rolesMetier.getListRoles(pseudo);
+	}
+
+//////////////////////// GESTION OUVRAGE - RECHERCHE ////////////////////////
+	
+	
 	@WebMethod
 	public void createOuvrage(@WebParam(name = "ouvrage") Ouvrage ouvrage, @WebParam(name = "genre") String genre)
 			throws BibliothequeException {
@@ -117,6 +124,9 @@ public class BibliothequeService {
 		return genreMetier.getListGenre();
 	}
 
+//////////////////////// GESTION RESERVATION ////////////////////////
+	
+	
 	@WebMethod
 	public void createReservation(@WebParam(name = "reservation") Reservation reservation,
 			@WebParam(name = "ouvrage_id") Long ouvrage_id, @WebParam(name = "utilisateur_id") Long utilisateur_id)
@@ -130,13 +140,29 @@ public class BibliothequeService {
 	}
 
 	@WebMethod
-	public Reservation getRerservation(Long id) {
+	public Reservation getReservation(Long id) {
 		return reservationMetier.getRerservation(id);
 	}
 
 	@WebMethod
-	public List<Roles> getListRoles(@WebParam(name = "pseudo") String pseudo) {
-		return rolesMetier.getListRoles(pseudo);
+	public List<Reservation> getListReservationByUtilisateurID(@WebParam(name = "utilisateur_id") Long utilisateur_id) {
+		return reservationMetier.getListReservationByUtilisateurID(utilisateur_id);
+	}
+
+	@WebMethod
+	public List<Reservation> getListReservationRetardedByUtilisateurID(
+			@WebParam(name = "utilisateur_id") Long utilisateur_id) {
+		return reservationMetier.getListReservationRetardedByUtilisateurID(utilisateur_id);
+	}
+
+	@WebMethod
+	public void prolongerReservation(Long reservationID, Long utilisateurID) throws BibliothequeException {
+		reservationMetier.prolongerReservation(reservationID, utilisateurID);
+	}
+
+	@WebMethod
+	public int getDaysProlongation() throws BibliothequeException {
+		return reservationMetier.getDaysProlongation();
 	}
 
 }

@@ -10,26 +10,30 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
 
 @Entity
-public class Reservation implements Serializable{
+public class Reservation implements Serializable {
 
-	@SequenceGenerator(name="RESERVATION_SEQ", sequenceName="reservation_sequence")
-	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="RESERVATION_SEQ")
+	@SequenceGenerator(name = "RESERVATION_SEQ", sequenceName = "reservation_sequence")
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RESERVATION_SEQ")
 	private Long id;
 	private Date debut;
 	private Date fin;
 	private boolean prolongation;
-	private Date finProlongation;
-	
+	private boolean rendu;
+	@Transient
+	private boolean retard;
+
 	@ManyToOne
-	@JoinColumn(name="UTILISATEUR_ID")
+	@JoinColumn(name = "UTILISATEUR_ID")
 	private Utilisateur utilisateur;
-		
+
 	@ManyToOne
-	@JoinColumn(name="OUVRAGE_ID")
+	@JoinColumn(name = "OUVRAGE_ID")
 	private Ouvrage ouvrage;
-	
+
 	public Reservation() {
 		super();
 	}
@@ -38,7 +42,7 @@ public class Reservation implements Serializable{
 		super();
 		this.debut = debut;
 		this.fin = fin;
-		this.utilisateur = utilisateur;	
+		this.utilisateur = utilisateur;
 		this.ouvrage = ouvrage;
 	}
 
@@ -74,14 +78,6 @@ public class Reservation implements Serializable{
 		this.prolongation = prolongation;
 	}
 
-	public Date getFinProlongation() {
-		return finProlongation;
-	}
-
-	public void setFinProlongation(Date finProlongation) {
-		this.finProlongation = finProlongation;
-	}
-
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
 	}
@@ -98,4 +94,22 @@ public class Reservation implements Serializable{
 		this.ouvrage = ouvrage;
 	}
 
+	public boolean isRendu() {
+		return rendu;
+	}
+
+	public void setRendu(boolean rendu) {
+		this.rendu = rendu;
+	}
+
+	public boolean isRetard() {
+		return retard;
+	}
+
+	public void setRetard(boolean retard) {
+		this.retard = retard;
+	}
+
+	
+	
 }
