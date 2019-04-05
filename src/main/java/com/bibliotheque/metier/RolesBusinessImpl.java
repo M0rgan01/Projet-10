@@ -9,7 +9,7 @@ import com.bibliotheque.dao.RolesRepository;
 import com.bibliotheque.entities.Roles;
 
 @Component
-public class RolesMetierImpl implements RolesMetier{
+public class RolesBusinessImpl implements RolesBusiness{
 
 	@Autowired
 	private RolesRepository rolesRepository;

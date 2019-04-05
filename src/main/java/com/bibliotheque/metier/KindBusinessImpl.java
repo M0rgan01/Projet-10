@@ -11,41 +11,41 @@ import javax.validation.ValidatorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bibliotheque.dao.GenreRepository;
-import com.bibliotheque.entities.Genre;
+import com.bibliotheque.dao.KindRepository;
+import com.bibliotheque.entities.Kind;
 import com.bibliotheque.exception.BibliothequeException;
 import com.bibliotheque.exception.BibliothequeFault;
 
 @Service
-public class GenreMetierImpl implements GenreMetier{
+public class KindBusinessImpl implements KindBusiness{
 
 	@Autowired
-	private GenreRepository genreRepository;
+	private KindRepository kindRepository;
 	
 	@Override
-	public void saveGenre(Genre genre) {
-		genreRepository.save(genre);
+	public void saveKind(Kind kind) {
+		kindRepository.save(kind);
 	}
 
 	@Override
-	public List<Genre> getListGenre() {		
-		return genreRepository.findAll();
+	public List<Kind> getListKind() {		
+		return kindRepository.findAll();
 	}
 
 	@Override
-	public Genre getGenre(String nom) {		
-		return genreRepository.findById(nom).orElse(null);
+	public Kind getKind(String name) {		
+		return kindRepository.findById(name).orElse(null);
 	}
 
 	
-	public void validateGenre(Genre genre) throws BibliothequeException {
+	public void validateKind(Kind kind) throws BibliothequeException {
 		
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
 		
-		Set<ConstraintViolation<Genre>> violations = validator.validate(genre);
+		Set<ConstraintViolation<Kind>> violations = validator.validate(kind);
 
-		for (ConstraintViolation<Genre> violation : violations) {
+		for (ConstraintViolation<Kind> violation : violations) {
 
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultString(violation.getMessage());

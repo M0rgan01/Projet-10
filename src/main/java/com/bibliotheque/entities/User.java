@@ -14,15 +14,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-public class Utilisateur implements Serializable{
+public class User implements Serializable{
 
-	@SequenceGenerator(name="UTILISATEUR_SEQ", sequenceName="utilisateur_sequence")
-	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="UTILISATEUR_SEQ")
+	@SequenceGenerator(name="USER_SEQ", sequenceName="user_sequence")
+	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="USER_SEQ")
 	private Long id;	
 	@NotBlank(message="Le pseudo ne peut être vide")
 	@Size(max=20, min=5, message="Le pseudo doit contenir minimun 5 caractères et maximum 20 caractères")
@@ -36,19 +35,19 @@ public class Utilisateur implements Serializable{
 	@Transient
 	private String oldPassWord;
 	private boolean active;
-	private int essaisConnection; 
-	private Date expirationConnection;
+	private int tryConnection; 
+	private Date expiryConnection;
 	@ManyToMany
 	private Collection<Roles> roles = new HashSet<>();
-	@OneToMany(mappedBy="utilisateur")
-	private Collection<Reservation> reservations;
+	@OneToMany(mappedBy="user")
+	private Collection<Loan> loans;
 	
 	
-	public Utilisateur() {
+	public User() {
 		super();
 	}
 	
-	public Utilisateur(String pseudo, String passWord, boolean active) {
+	public User(String pseudo, String passWord, boolean active) {
 		super();
 		this.pseudo = pseudo;
 		this.passWord = passWord;
@@ -80,18 +79,6 @@ public class Utilisateur implements Serializable{
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	public int getEssaisConnection() {
-		return essaisConnection;
-	}
-	public void setEssaisConnection(int essaisConnection) {
-		this.essaisConnection = essaisConnection;
-	}
-	public Date getExpirationConnection() {
-		return expirationConnection;
-	}
-	public void setExpirationConnection(Date expirationConnection) {
-		this.expirationConnection = expirationConnection;
-	}
 
 	@XmlTransient
 	public Collection<Roles> getRoles() {
@@ -103,12 +90,12 @@ public class Utilisateur implements Serializable{
 	}
 
 	@XmlTransient
-	public Collection<Reservation> getReservations() {
-		return reservations;
+	public Collection<Loan> getLoans() {
+		return loans;
 	}
 
-	public void setReservations(Collection<Reservation> reservations) {
-		this.reservations = reservations;
+	public void setReservations(Collection<Loan> loans) {
+		this.loans = loans;
 	}
 
 	public String getPassWordConfirm() {
@@ -126,4 +113,26 @@ public class Utilisateur implements Serializable{
 	public void setOldPassWord(String oldPassWord) {
 		this.oldPassWord = oldPassWord;
 	}
+
+	public int getTryConnection() {
+		return tryConnection;
+	}
+
+	public void setTryConnection(int tryConnection) {
+		this.tryConnection = tryConnection;
+	}
+
+	public Date getExpiryConnection() {
+		return expiryConnection;
+	}
+
+	public void setExpiryConnection(Date expiryConnection) {
+		this.expiryConnection = expiryConnection;
+	}
+
+	public void setLoans(Collection<Loan> loans) {
+		this.loans = loans;
+	}
+	
+	
 }

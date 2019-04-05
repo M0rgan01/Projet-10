@@ -5,7 +5,7 @@ import java.util.List;
 import com.bibliotheque.entities.Roles;
 
 
-public interface RolesMetier {
+public interface RolesBusiness {
 
 	public List<Roles> getListRoles(String pseudo);
 }

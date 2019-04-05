@@ -16,6 +16,7 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Mail implements Serializable{
+	
 	@SequenceGenerator(name="MAIL_SEQ", sequenceName="mail_sequence")
 	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="MAIL_SEQ")
 	private Long id;
@@ -23,20 +24,20 @@ public class Mail implements Serializable{
 	@NotBlank(message="L'adresse email ne peut être vide")
 	private String email;
 	private String token;
-	private int essaisToken;
-	private Date expirationToken;
+	private int tryToken;
+	private Date expiryToken;
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
-	private Utilisateur utilisateur;
+	private User user;
 
 	public Mail() {
 		super();
 	}
 
-	public Mail(String email, Utilisateur utilisateur) {
+	public Mail(String email, User user) {
 		super();
 		this.email = email;		
-		this.utilisateur = utilisateur;
+		this.user = user;
 	}
 
 	public Long getId() {
@@ -63,28 +64,30 @@ public class Mail implements Serializable{
 		this.token = token;
 	}
 
-	public int getEssaisToken() {
-		return essaisToken;
+	
+
+	public int getTryToken() {
+		return tryToken;
 	}
 
-	public void setEssaisToken(int essaisToken) {
-		this.essaisToken = essaisToken;
+	public void setTryToken(int tryToken) {
+		this.tryToken = tryToken;
 	}
 
-	public Date getExpirationToken() {
-		return expirationToken;
+	public Date getExpiryToken() {
+		return expiryToken;
 	}
 
-	public void setExpirationToken(Date expirationToken) {
-		this.expirationToken = expirationToken;
+	public void setExpiryToken(Date expiryToken) {
+		this.expiryToken = expiryToken;
 	}
 
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	

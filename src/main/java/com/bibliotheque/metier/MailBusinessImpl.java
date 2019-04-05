@@ -1,7 +1,6 @@
 package com.bibliotheque.metier;
 
 import java.security.SecureRandom;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Set;
@@ -18,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.bibliotheque.dao.MailRepository;
 import com.bibliotheque.entities.Mail;
-import com.bibliotheque.entities.Utilisateur;
+import com.bibliotheque.entities.User;
 import com.bibliotheque.exception.BibliothequeException;
 import com.bibliotheque.exception.BibliothequeFault;
 import com.bibliotheque.utilities.Encrypt;
@@ -27,7 +26,7 @@ import com.bibliotheque.utilities.SendMail;
 
 @Service
 @PropertySource("classpath:bibliotheque.properties")
-public class MailMetierImpl implements MailMetier{
+public class MailBusinessImpl implements MailBusiness{
 
 	@Autowired
 	private MailRepository mailRepository;
@@ -45,16 +44,16 @@ public class MailMetierImpl implements MailMetier{
 	private int expirationToken;
 	
 	@Override
-	public void saveMail(Mail mail, Long utilisateur_id) throws BibliothequeException {	
-		Mail mail2 = getMailByUtilisateurID(utilisateur_id);
+	public void saveMail(Mail mail, Long user_id) throws BibliothequeException {	
+		Mail mail2 = getMailByUserID(user_id);
 		validateMail(mail);
 		mail2.setEmail(mail.getEmail());
 		mailRepository.save(mail2);		
 	}
 
 	@Override
-	public Mail getMailByUtilisateurID(Long id) {				
-		return mailRepository.findByUtilisateurID(id);
+	public Mail getMailByUserID(Long id) {				
+		return mailRepository.findByUserID(id);
 	}
 
 	@Override
@@ -63,11 +62,11 @@ public class MailMetierImpl implements MailMetier{
 	}
 
 	@Override
-	public void createMail(Mail mail, Utilisateur utilisateur) throws BibliothequeException {
+	public void createMail(Mail mail, User user) throws BibliothequeException {
 		
 		validateMail(mail);
 		
-		mail.setUtilisateur(utilisateur);
+		mail.setUser(user);
 		
 		Mail mail2 = getMail(mail.getEmail());
 		
@@ -98,8 +97,8 @@ public class MailMetierImpl implements MailMetier{
 	}
 
 	@Override
-	public void deleteMailByUtilisateurID(Long utilisateur_id) {
-		Mail mail = getMailByUtilisateurID(utilisateur_id);
+	public void deleteMailByUserID(Long user_id) {
+		Mail mail = getMailByUserID(user_id);
 		mailRepository.delete(mail);
 	}
 
@@ -120,12 +119,11 @@ public class MailMetierImpl implements MailMetier{
 		String token = generateToken();
 		//assignation au mail
 		mail.setToken(token);
-		mail.setEssaisToken(0);
+		mail.setTryToken(0);
 		//creation d'une date d'expiration
 		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.MINUTE, expirationToken);	
-		mail.setExpirationToken(cal.getTime());
-				
+		cal.add(Calendar.MINUTE, expirationToken);		
+		mail.setExpiryToken(cal.getTime());		
 		System.out.println(token);
 		
 //		String body = " Voiçi le code pour réinitialisé le mot de passe de votre compte : " + token;
@@ -145,10 +143,10 @@ public class MailMetierImpl implements MailMetier{
 		// si les jetons correspondes et si le nombre
 				// d'essais
 				// et plus petit que 3
-				if (token.equals(mail.getToken()) && mail.getEssaisToken() < 3) {
+				if (token.equals(mail.getToken()) && mail.getTryToken() < 3) {
 									
 					// on vérifie la date
-					if (!new Date().before(mail.getExpirationToken())) {
+					if (!new Date().before(mail.getExpiryToken())) {
 															
 						BibliothequeFault bibliothequeFault = new BibliothequeFault();
 						bibliothequeFault.setFaultCode("61");
@@ -159,7 +157,7 @@ public class MailMetierImpl implements MailMetier{
 					// sinon on incrémente le nombre d'essais
 				} else {
 							
-					if (mail.getEssaisToken() >= 2) {
+					if (mail.getTryToken() >= 2) {
 						BibliothequeFault bibliothequeFault = new BibliothequeFault();
 						bibliothequeFault.setFaultCode("62");
 						bibliothequeFault.setFaultString("Nombre d'essais du token dépassé");
@@ -167,7 +165,7 @@ public class MailMetierImpl implements MailMetier{
 						throw new BibliothequeException("Essais token dépassé", bibliothequeFault);
 					}
 					
-					mail.setEssaisToken(mail.getEssaisToken() +1 );
+					mail.setTryToken(mail.getTryToken() +1 );
 					// si le nombre d'essais est supérieur à 2
 					
 					mailRepository.save(mail);

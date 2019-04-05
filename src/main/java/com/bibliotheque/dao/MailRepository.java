@@ -11,7 +11,7 @@ public interface MailRepository extends JpaRepository<Mail, Long>{
 	@Query("select m from Mail m where m.email = :x")
 	public Mail findByEmail(@Param("x") String email);
 	
-	@Query("select m from Mail m where m.utilisateur.id = :x")
-	public Mail findByUtilisateurID(@Param("x")Long utilisateur_id);
+	@Query("select m from Mail m where m.user.id = :x")
+	public Mail findByUserID(@Param("x")Long user_id);
 	
 }

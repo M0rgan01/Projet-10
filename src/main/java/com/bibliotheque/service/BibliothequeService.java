@@ -9,97 +9,97 @@ import javax.jws.WebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.bibliotheque.entities.Genre;
+import com.bibliotheque.entities.Book;
+import com.bibliotheque.entities.Kind;
+import com.bibliotheque.entities.Loan;
 import com.bibliotheque.entities.Mail;
-import com.bibliotheque.entities.Ouvrage;
-import com.bibliotheque.entities.Reservation;
 import com.bibliotheque.entities.Roles;
-import com.bibliotheque.entities.Utilisateur;
+import com.bibliotheque.entities.User;
 import com.bibliotheque.exception.BibliothequeException;
-import com.bibliotheque.metier.GenreMetier;
-import com.bibliotheque.metier.MailMetier;
-import com.bibliotheque.metier.OuvrageMetier;
-import com.bibliotheque.metier.PageOuvrage;
-import com.bibliotheque.metier.ReservationMetier;
-import com.bibliotheque.metier.RolesMetier;
-import com.bibliotheque.metier.UtilisateurMetier;
+import com.bibliotheque.metier.BookBusiness;
+import com.bibliotheque.metier.KindBusiness;
+import com.bibliotheque.metier.LoanBusiness;
+import com.bibliotheque.metier.MailBusiness;
+import com.bibliotheque.metier.PageBook;
+import com.bibliotheque.metier.RolesBusiness;
+import com.bibliotheque.metier.UserBusiness;
 
 @Component
 @WebService(name = "BibliothequeWS")
 public class BibliothequeService {
 
 	@Autowired
-	private UtilisateurMetier utilisateurMetier;
+	private UserBusiness userBusiness;
 	@Autowired
-	private MailMetier mailMetier;
+	private MailBusiness mailBusiness;
 	@Autowired
-	private OuvrageMetier ouvrageMetier;
+	private BookBusiness bookBusiness;
 	@Autowired
-	private GenreMetier genreMetier;
+	private KindBusiness kindBusiness;
 	@Autowired
-	private ReservationMetier reservationMetier;
+	private LoanBusiness loanBusiness;
 	@Autowired
-	private RolesMetier rolesMetier;
+	private RolesBusiness rolesBusiness;
 
 //////////////////////// AUTHENTIFICATION - GESTION COMPTE UTILISATEUR ////////////////////////
 
 	@WebMethod
-	public void saveUtilisateur(@WebParam(name = "utilisateur") Utilisateur utilisateur) throws BibliothequeException {
-		utilisateurMetier.saveUtilisateur(utilisateur);
+	public void saveUser(@WebParam(name = "user") User user) throws BibliothequeException {
+		userBusiness.saveUser(user);
 	}
 
 	@WebMethod
-	public Utilisateur createUtilisateur(@WebParam(name = "utilisateur") Utilisateur utilisateur,
+	public User createUser(@WebParam(name = "user") User user,
 			@WebParam(name = "mail") Mail mail) throws BibliothequeException {
-		return utilisateurMetier.createUtilisateur(utilisateur, mail);
+		return userBusiness.createUser(user, mail);
 	}
 
 	@WebMethod
-	public void deleteUtilisateur(@WebParam(name = "id") Long id) {
-		mailMetier.deleteMailByUtilisateurID(id);
-		utilisateurMetier.deleteUtilisateur(id);
+	public void deleteUser(@WebParam(name = "id") Long id) {
+		mailBusiness.deleteMailByUserID(id);
+		userBusiness.deleteUser(id);
 	}
 
 	@WebMethod
-	public Utilisateur getUtilisateur(@WebParam(name = "id") Long id) {
-		return utilisateurMetier.getUtilisateur(id);
+	public User getUser(@WebParam(name = "id") Long id) {
+		return userBusiness.getUser(id);
 	}
 
 	@WebMethod
-	public Utilisateur doConnection(@WebParam(name = "pseudo") String pseudo,
+	public User doConnection(@WebParam(name = "pseudo") String pseudo,
 			@WebParam(name = "passWord") String passWord) throws BibliothequeException {
-		return utilisateurMetier.doConnection(pseudo, passWord);
+		return userBusiness.doConnection(pseudo, passWord);
 	}
 
 	@WebMethod
-	public void saveMail(@WebParam(name = "mail") Mail mail, @WebParam(name = "utilisateur_id") Long utilisateur_id)
+	public void saveMail(@WebParam(name = "mail") Mail mail, @WebParam(name = "user_id") Long user_id)
 			throws BibliothequeException {
-		mailMetier.saveMail(mail, utilisateur_id);
+		mailBusiness.saveMail(mail, user_id);
 	}
 
 	@WebMethod
-	public Mail getMail(@WebParam(name = "utilisateur_id") Long id) {
-		return mailMetier.getMailByUtilisateurID(id);
+	public Mail getMail(@WebParam(name = "user_id") Long id) {
+		return mailBusiness.getMailByUserID(id);
 	}
 
 	@WebMethod
 	public List<Roles> getListRoles(@WebParam(name = "pseudo") String pseudo) {
-		return rolesMetier.getListRoles(pseudo);
+		return rolesBusiness.getListRoles(pseudo);
 	}
 
 	@WebMethod
 	public void sendToken(@WebParam(name = "email") String email) throws BibliothequeException {
-		mailMetier.sendToken(email);		
+		mailBusiness.sendToken(email);		
 	}
 	
 	@WebMethod
 	public void validateToken(@WebParam(name = "email") String email,@WebParam(name = "token") String token) throws BibliothequeException {
-		mailMetier.validateToken(token, email);
+		mailBusiness.validateToken(token, email);
 	}
 	
 	@WebMethod
-	public void editPassWordByRecuperation(@WebParam(name = "email") String email, @WebParam(name = "password") String passWord, @WebParam(name = "passwordConfirm") String passWordConfirm) throws BibliothequeException {
-		utilisateurMetier.editPasswordByRecuperation(email, passWord, passWordConfirm);
+	public void editPassWordByRecovery(@WebParam(name = "email") String email, @WebParam(name = "password") String passWord, @WebParam(name = "passwordConfirm") String passWordConfirm) throws BibliothequeException {
+		userBusiness.editPasswordByRecovery(email, passWord, passWordConfirm);
 	}
 	
 	
@@ -107,78 +107,78 @@ public class BibliothequeService {
 	
 	
 	@WebMethod
-	public void createOuvrage(@WebParam(name = "ouvrage") Ouvrage ouvrage, @WebParam(name = "genre") String genre)
+	public void createBook(@WebParam(name = "book") Book book, @WebParam(name = "kind") String kind)
 			throws BibliothequeException {
-		ouvrageMetier.createOuvrage(ouvrage, genre);
+		bookBusiness.createBook(book, kind);
 	}
 
 	@WebMethod
-	public void updateOuvrage(@WebParam(name = "ouvrage") Ouvrage ouvrage, @WebParam(name = "genre") String genre)
+	public void updateBook(@WebParam(name = "book") Book book, @WebParam(name = "kind") String kind)
 			throws BibliothequeException {
-		ouvrageMetier.saveOuvrage(ouvrage, genre);
+		bookBusiness.saveBook(book, kind);
 	}
 
 	@WebMethod
-	public void deleteOuvrage(Long id) {
-		ouvrageMetier.deleteOuvrage(id);
+	public void deleteBook(Long id) {
+		bookBusiness.deleteBook(id);
 	}
 
 	@WebMethod
-	public Ouvrage getOuvrage(Long id) {
-		return ouvrageMetier.getOuvrage(id);
+	public Book getBook(Long id) {
+		return bookBusiness.getBook(id);
 	}
 
 	@WebMethod
-	public PageOuvrage listOuvrage(@WebParam(name = "mot-cle") String mc, @WebParam(name = "genre") String genre,
-			@WebParam(name = "disponnible") boolean disponnible, @WebParam(name = "page") int page,
+	public PageBook listBook(@WebParam(name = "mot-cle") String mc, @WebParam(name = "kind") String kind,
+			@WebParam(name = "available") boolean available, @WebParam(name = "page") int page,
 			@WebParam(name = "size") int size) {
-		return ouvrageMetier.listOuvrage(mc, genre, disponnible, page, size);
+		return bookBusiness.listBook(mc, kind, available, page, size);
 	}
 
 	@WebMethod
-	public List<Genre> getListGenre() {
-		return genreMetier.getListGenre();
+	public List<Kind> getListKind() {
+		return kindBusiness.getListKind();
 	}
 
 //////////////////////// GESTION RESERVATION ////////////////////////
 	
 	
 	@WebMethod
-	public void createReservation(@WebParam(name = "reservation") Reservation reservation,
-			@WebParam(name = "ouvrage_id") Long ouvrage_id, @WebParam(name = "utilisateur_id") Long utilisateur_id)
+	public void createLoan(@WebParam(name = "loan") Loan loan,
+			@WebParam(name = "book_id") Long book_id, @WebParam(name = "user_id") Long user_id)
 			throws BibliothequeException {
-		reservationMetier.createReservation(ouvrage_id, utilisateur_id, reservation);
+		loanBusiness.createLoan(book_id, user_id, loan);
 	}
 
 	@WebMethod
-	public void deleteReservation(Long id) {
-		reservationMetier.deleteReservation(id);
+	public void deleteLoan(Long id) {
+		loanBusiness.deleteLoan(id);
 	}
 
 	@WebMethod
-	public Reservation getReservation(Long id) {
-		return reservationMetier.getRerservation(id);
+	public Loan getLoan(Long id) {
+		return loanBusiness.getLoan(id);
 	}
 
 	@WebMethod
-	public List<Reservation> getListReservationByUtilisateurID(@WebParam(name = "utilisateur_id") Long utilisateur_id) {
-		return reservationMetier.getListReservationByUtilisateurID(utilisateur_id);
+	public List<Loan> getListLoanByUserID(@WebParam(name = "user_id") Long user_id) {
+		return loanBusiness.getListLoanByUserID(user_id);
 	}
 
 	@WebMethod
-	public List<Reservation> getListReservationRetardedByUtilisateurID(
-			@WebParam(name = "utilisateur_id") Long utilisateur_id) {
-		return reservationMetier.getListReservationRetardedByUtilisateurID(utilisateur_id);
+	public List<Loan> getListLoanLateByUserID(
+			@WebParam(name = "user_id") Long user_id) {
+		return loanBusiness.getListLoanLateByUserID(user_id);
 	}
 
 	@WebMethod
-	public void prolongerReservation(Long reservationID, Long utilisateurID) throws BibliothequeException {
-		reservationMetier.prolongerReservation(reservationID, utilisateurID);
+	public void extendLoan(@WebParam(name = "Loan_ID")Long Loan_ID, @WebParam(name = "user_id") Long user_ID) throws BibliothequeException {
+		loanBusiness.extendLoan(Loan_ID, user_ID);
 	}
 
 	@WebMethod
-	public int getDaysProlongation() throws BibliothequeException {
-		return reservationMetier.getDaysProlongation();
+	public int getDaysExtend() throws BibliothequeException {
+		return loanBusiness.getDaysExtend();
 	}
 
 }

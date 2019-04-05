@@ -10,6 +10,6 @@ import com.bibliotheque.entities.Roles;
 
 public interface RolesRepository extends JpaRepository<Roles, String>{
 
-	@Query("select r from Utilisateur u join u.roles r where u.pseudo = :x")
+	@Query("select r from User u join u.roles r where u.pseudo = :x")
 	public List<Roles> getListRoles(@Param("x") String pseudo);
 }
