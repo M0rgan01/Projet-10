@@ -134,6 +134,78 @@ public class BibliothequeController {
 		return "Authentification/recuperation";
 	}
 	
+	@RequestMapping(value = "/sendToken")
+	public String sendToken(HttpSession httpSession, Model model, String email) {
+		
+		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+		
+		try {
+			
+			ws.sendToken(email);
+			httpSession.setAttribute("email", email);
+			
+		} catch (BibliothequeException_Exception e) {
+			
+			model.addAttribute("email", email);
+			model.addAttribute("exception", e);
+			return "Authentification/recuperation";
+		}
+		
+		return "Authentification/insertToken";
+	}
+	
+	@RequestMapping(value = "/validateToken")
+	public String validateToken(HttpSession httpSession, Model model, String token) {
+		
+		if( httpSession.getAttribute("email") != null) {
+						
+		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+		
+		try {
+			
+			ws.validateToken((String) httpSession.getAttribute("email"), token);
+			httpSession.setAttribute("token", token);
+			
+		} catch (BibliothequeException_Exception e) {
+					
+			model.addAttribute("exception", e);
+			return "Authentification/insertToken";
+		}
+		
+		return "Authentification/editPassword";
+		}
+		return "Authentification/recuperation";
+	}
+	
+	@RequestMapping(value = "/editPassword")
+	public String editPassword(HttpSession httpSession, Model model, String password, String passwordConfirm) {
+		
+		if( httpSession.getAttribute("token") != null) {
+						
+		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+		
+		try {
+			
+			password = encrypt.setEncrypt(password);
+			passwordConfirm = encrypt.setEncrypt(passwordConfirm);
+			
+			ws.editPassWordByRecuperation((String) httpSession.getAttribute("email"), password, passwordConfirm);
+			httpSession.removeAttribute("email");
+			httpSession.removeAttribute("token");
+			
+		} catch (BibliothequeException_Exception e) {
+					
+			model.addAttribute("exception", e);
+			return "Authentification/editPassword";
+		}
+		
+		return "redirect:/login?editPassWord";
+		
+		}
+		return "Authentification/recuperation";
+	}
+	
+	
 	//////////////////////// AJOUT OUVRAGE ////////////////////////
 
 	@RequestMapping(value = "/confirmationAjout")

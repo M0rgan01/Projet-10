@@ -71,11 +71,11 @@
 					<tr th:each="o:${listOuvrages.getOuvrages()}">
 						<td style="width: 15%" class="h5" th:text=${o.titre}></td>
 						<td style="width: 25%" th:text=${o.description}></td>
-						<td class="" th:text=${o.auteur}></td>
-						<td class="" th:text=${o.getGenre().getNom()}></td>
+						<td th:text=${o.auteur}></td>
+						<td th:text=${o.getGenre().getNom()}></td>
 
-						<td><div class="row justify-content-center"
-								th:if="${#request.isUserInRole('USER') && o.disponible}">
+						<td th:if="${#request.isUserInRole('USER') && o.disponible}"><div
+								class="row justify-content-center">
 								<span class="btn btn-primary my-1">Disponible</span>
 								<p>
 									Nombre d'exemplaire à disposition : <span
@@ -84,7 +84,8 @@
 
 							</div>
 
-							<div class="row justify-content-center" th:if="${#request.isUserInRole('USER') && !o.disponible}">
+							<div class="row justify-content-center"
+								th:if="${#request.isUserInRole('USER') && !o.disponible}">
 								<span class="btn btn-danger my-1">Non disponnible</span>
 							</div></td>
 

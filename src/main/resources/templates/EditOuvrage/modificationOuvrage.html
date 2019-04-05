@@ -15,8 +15,8 @@
 
 					<form th:action="@{/saveModificationOuvrage}" method="post">
 
-						<div th:if="${exception}" class="alert alert-danger">
-							<span
+						<div th:if="${exception}" class="row justify-content-center">
+							<span class="alert alert-danger"
 								th:text="${exception.getFaultInfo().getInfo().getFaultString()}"></span>
 						</div>
 

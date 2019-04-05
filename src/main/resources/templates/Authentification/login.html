@@ -15,12 +15,15 @@
 				</div>
 				<div class="card-body">
 
-					<div class="alert alert-danger" th:if="${param.error}">
-						<span
+					<div class="row justify-content-center" th:if="${param.error}">
+						<span class="alert alert-danger"
 							th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null and session[SPRING_SECURITY_LAST_EXCEPTION].message != null}"
-							th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}">Invalid
-							credentials</span>
+							th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}"></span>
 					</div>
+					
+					<div th:if="${param.editPassWord}" class="row justify-content-center">
+							<span class="alert alert-primary">Changement de mot de passe réalisé avec succès.</span>
+						</div>
 
 					<div th:if="${param.logout}" class="alert alert-danger">
 						<span>Vous avez été déconnectez</span>

@@ -2,21 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout}">
-<title>Récupération</title>
+<title>Vérification du jeton</title>
 </head>
 <body>
 	<div layout:fragment="content" class="row my-5">
 		<div class="col-6 offset-3">
 			<div class="card card-outline-secondary">
 				<div class="card-header text-center">
-					<h3 class="mb-0">Récupération du mot de passe</h3>
+					<h3 class="mb-0">Vérification du jeton</h3>
 				</div>
 				<div class="card-body">
 
-					<p class="card-text text-center">Veuillez renseigner votre adresse e-mail,
-						un code vous sera envoyé pour confirmer votre identité.</p>
+					<p class="card-text text-center">Veuillez renseigner le jeton reçu par email.</p>
 
-					<form th:action="@{/sendToken}" method="post">
+					<form th:action="@{/validateToken}" method="post">
 
 						<div th:if="${exception}" class="row justify-content-center">
 							<span class="alert alert-danger"
@@ -24,8 +23,8 @@
 						</div>
 
 						<div class="form-group">
-							<label>Adresse e-mail :</label> <input class="form-control"
-								type="text" name="email" th:value="${email}" />
+							<label>Jeton :</label> <input class="form-control"
+								type="text" name="token" />
 						</div>
 
 						<div class="row justify-content-center">
