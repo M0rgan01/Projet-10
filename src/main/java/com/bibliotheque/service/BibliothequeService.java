@@ -87,6 +87,22 @@ public class BibliothequeService {
 		return rolesMetier.getListRoles(pseudo);
 	}
 
+	@WebMethod
+	public void sendToken(@WebParam(name = "email") String email) throws BibliothequeException {
+		mailMetier.sendToken(email);		
+	}
+	
+	@WebMethod
+	public void validateToken(@WebParam(name = "email") String email,@WebParam(name = "token") String token) throws BibliothequeException {
+		mailMetier.validateToken(token, email);
+	}
+	
+	@WebMethod
+	public void editPassWordByRecuperation(@WebParam(name = "email") String email, @WebParam(name = "password") String passWord, @WebParam(name = "passwordConfirm") String passWordConfirm) throws BibliothequeException {
+		utilisateurMetier.editPasswordByRecuperation(email, passWord, passWordConfirm);
+	}
+	
+	
 //////////////////////// GESTION OUVRAGE - RECHERCHE ////////////////////////
 	
 	

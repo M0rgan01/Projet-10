@@ -14,4 +14,5 @@ public interface UtilisateurMetier {
 	public Utilisateur doConnection(String pseudo, String passWord) throws BibliothequeException;
 	public void checkPseudoExist(String pseudo) throws BibliothequeException;
 	public Utilisateur getUtilisateur(Long id);
+	public void editPasswordByRecuperation(String email, String password, String passwordConfirm) throws BibliothequeException;;
 }

@@ -1,6 +1,9 @@
 package com.bibliotheque.metier;
 
 import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -21,6 +24,7 @@ import com.bibliotheque.exception.BibliothequeFault;
 import com.bibliotheque.utilities.Encrypt;
 import com.bibliotheque.utilities.SendMail;
 
+
 @Service
 @PropertySource("classpath:bibliotheque.properties")
 public class MailMetierImpl implements MailMetier{
@@ -37,6 +41,8 @@ public class MailMetierImpl implements MailMetier{
 	private String emailPassword;
 	@Value("${mail.sujet}")
 	private String emailSubject;
+	@Value("${mail.expirationToken}")
+	private int expirationToken;
 	
 	@Override
 	public void saveMail(Mail mail, Long utilisateur_id) throws BibliothequeException {	
@@ -110,17 +116,71 @@ public class MailMetierImpl implements MailMetier{
 			throw new BibliothequeException("Email non correct", bibliothequeFault);
 		}
 		
+		//generation du token
 		String token = generateToken();
+		//assignation au mail
 		mail.setToken(token);
-		String body = " Voiçi le code pour réinitialisé le mot de passe de votre compte : " + token;
-		String[] tableau_email = { mail.getEmail() };
+		mail.setEssaisToken(0);
+		//creation d'une date d'expiration
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.MINUTE, expirationToken);	
+		mail.setExpirationToken(cal.getTime());
+				
+		System.out.println(token);
 		
-		sendMail.sendFromGMail(emailUsers, encrypt.getDecrypt(emailPassword), tableau_email, emailSubject, body);
+//		String body = " Voiçi le code pour réinitialisé le mot de passe de votre compte : " + token;
+//		String[] tableau_email = { mail.getEmail() };
+//		
+//		sendMail.sendFromGMail(emailUsers, encrypt.getDecrypt(emailPassword), tableau_email, emailSubject, body);
 		
 		mailRepository.save(mail);	
 	}
 
 	
+	@Override
+	public void validateToken(String token, String email) throws BibliothequeException {
+		
+		Mail mail = mailRepository.findByEmail(email);
+		
+		// si les jetons correspondes et si le nombre
+				// d'essais
+				// et plus petit que 3
+				if (token.equals(mail.getToken()) && mail.getEssaisToken() < 3) {
+									
+					// on vérifie la date
+					if (!new Date().before(mail.getExpirationToken())) {
+															
+						BibliothequeFault bibliothequeFault = new BibliothequeFault();
+						bibliothequeFault.setFaultCode("61");
+						bibliothequeFault.setFaultString("La durée de validité du jeton est écoulé");
+						
+						throw new BibliothequeException("Token time not valide", bibliothequeFault);
+					}
+					// sinon on incrémente le nombre d'essais
+				} else {
+							
+					if (mail.getEssaisToken() >= 2) {
+						BibliothequeFault bibliothequeFault = new BibliothequeFault();
+						bibliothequeFault.setFaultCode("62");
+						bibliothequeFault.setFaultString("Nombre d'essais du token dépassé");
+						
+						throw new BibliothequeException("Essais token dépassé", bibliothequeFault);
+					}
+					
+					mail.setEssaisToken(mail.getEssaisToken() +1 );
+					// si le nombre d'essais est supérieur à 2
+					
+					mailRepository.save(mail);
+													
+					BibliothequeFault bibliothequeFault = new BibliothequeFault();
+					bibliothequeFault.setFaultCode("63");
+					bibliothequeFault.setFaultString("Jeton incorrect");
+					
+					throw new BibliothequeException("Jeton incorrect", bibliothequeFault);
+				}				
+	}
+	
+	 
 	public String generateToken() {
 		
 		SecureRandom random = new SecureRandom();
@@ -128,6 +188,8 @@ public class MailMetierImpl implements MailMetier{
 		String randomString = Integer.toString(longToken, 16);
 		return randomString;
 	}
+
+
 	
 	
 }

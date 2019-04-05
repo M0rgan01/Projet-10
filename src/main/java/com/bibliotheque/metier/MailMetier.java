@@ -13,4 +13,5 @@ public interface MailMetier {
 	public Mail getMailByUtilisateurID(Long id);
 	public Mail getMail(String email);
 	public void sendToken(String email) throws BibliothequeException;
+	public void validateToken(String token, String email) throws BibliothequeException;
 }

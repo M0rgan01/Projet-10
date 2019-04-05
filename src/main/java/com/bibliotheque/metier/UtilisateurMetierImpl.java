@@ -70,6 +70,19 @@ public class UtilisateurMetierImpl implements UtilisateurMetier {
 	}
 
 	@Override
+	public void editPasswordByRecuperation(String email, String password, String passwordConfirm) throws BibliothequeException {
+		
+		Mail mail = mailMetier.getMail(email);
+		
+		Utilisateur utilisateur = mail.getUtilisateur();
+		utilisateur.setPassWord(password);
+		utilisateur.setPassWordConfirm(passwordConfirm);
+		validatePassWord(utilisateur);
+		utilisateur.setPassWord(new BCryptPasswordEncoder().encode(utilisateur.getPassWord()));
+		utilisateurRepository.save(utilisateur);
+	}
+	
+	@Override
 	public void deleteUtilisateur(Long id) {
 		utilisateurRepository.deleteById(id);
 	}
@@ -231,5 +244,7 @@ public class UtilisateurMetierImpl implements UtilisateurMetier {
 
 		}
 	}
+
+
 
 }
