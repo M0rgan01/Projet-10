@@ -18,9 +18,9 @@ public class Loan implements Serializable {
 	@SequenceGenerator(name = "LOAN_SEQ", sequenceName = "loan_sequence")
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LOAN_SEQ")
-	private Long id;
-	private Date start;
-	private Date end;
+	private Long id;	
+	private Date start_loan;
+	private Date end_loan;
 	private boolean extension;
 	private boolean made;
 	@Transient
@@ -38,10 +38,10 @@ public class Loan implements Serializable {
 		super();
 	}
 
-	public Loan(Date start, Date end, User user, Book book) {
+	public Loan(Date start_loan, Date end_loan, User user, Book book) {
 		super();
-		this.start = start;
-		this.end = end;
+		this.start_loan = start_loan;
+		this.end_loan = end_loan;
 		this.user = user;
 		this.book = book;
 	}
@@ -54,20 +54,20 @@ public class Loan implements Serializable {
 		this.id = id;
 	}
 
-	public Date getStart() {
-		return start;
+	public Date getStart_loan() {
+		return start_loan;
 	}
 
-	public void setStart(Date start) {
-		this.start = start;
+	public void setStart_loan(Date start_loan) {
+		this.start_loan = start_loan;
 	}
 
-	public Date getEnd() {
-		return end;
+	public Date getEnd_loan() {
+		return end_loan;
 	}
 
-	public void setEnd(Date end) {
-		this.end = end;
+	public void setEnd_loan(Date end_loan) {
+		this.end_loan = end_loan;
 	}
 
 	public boolean isExtension() {
@@ -110,6 +110,7 @@ public class Loan implements Serializable {
 		this.book = book;
 	}
 
+	
 	
 	
 }

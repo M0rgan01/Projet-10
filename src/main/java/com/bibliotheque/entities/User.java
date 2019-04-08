@@ -12,16 +12,19 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
+@Table(name="USERS")
 public class User implements Serializable{
 
-	@SequenceGenerator(name="USER_SEQ", sequenceName="user_sequence")
-	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="USER_SEQ")
+	@SequenceGenerator(name="USER_ID", sequenceName="user_sequence")
+	@Id 
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="USER_SEQ")
 	private Long id;	
 	@NotBlank(message="Le pseudo ne peut être vide")
 	@Size(max=20, min=5, message="Le pseudo doit contenir minimun 5 caractères et maximum 20 caractères")
@@ -37,8 +40,10 @@ public class User implements Serializable{
 	private boolean active;
 	private int tryConnection; 
 	private Date expiryConnection;
+	
 	@ManyToMany
 	private Collection<Roles> roles = new HashSet<>();
+	
 	@OneToMany(mappedBy="user")
 	private Collection<Loan> loans;
 	
@@ -53,49 +58,29 @@ public class User implements Serializable{
 		this.passWord = passWord;
 		this.active = active;		
 	}
-	
-	
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getPseudo() {
 		return pseudo;
 	}
+
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
 	}
+
 	public String getPassWord() {
 		return passWord;
 	}
+
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
-	}
-	public boolean isActive() {
-		return active;
-	}
-	public void setActive(boolean active) {
-		this.active = active;
-	}
-
-	@XmlTransient
-	public Collection<Roles> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Collection<Roles> roles) {
-		this.roles = roles;
-	}
-
-	@XmlTransient
-	public Collection<Loan> getLoans() {
-		return loans;
-	}
-
-	public void setReservations(Collection<Loan> loans) {
-		this.loans = loans;
 	}
 
 	public String getPassWordConfirm() {
@@ -105,13 +90,21 @@ public class User implements Serializable{
 	public void setPassWordConfirm(String passWordConfirm) {
 		this.passWordConfirm = passWordConfirm;
 	}
-	
+
 	public String getOldPassWord() {
 		return oldPassWord;
 	}
 
 	public void setOldPassWord(String oldPassWord) {
 		this.oldPassWord = oldPassWord;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public int getTryConnection() {
@@ -130,9 +123,24 @@ public class User implements Serializable{
 		this.expiryConnection = expiryConnection;
 	}
 
+	@XmlTransient
+	public Collection<Roles> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Collection<Roles> roles) {
+		this.roles = roles;
+	}
+	@XmlTransient
+	public Collection<Loan> getLoans() {
+		return loans;
+	}
+
 	public void setLoans(Collection<Loan> loans) {
 		this.loans = loans;
 	}
 	
 	
+	
+
 }

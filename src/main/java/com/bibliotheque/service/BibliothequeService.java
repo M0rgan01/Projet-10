@@ -55,9 +55,8 @@ public class BibliothequeService {
 	}
 
 	@WebMethod
-	public void deleteUser(@WebParam(name = "id") Long id) {
-		mailBusiness.deleteMailByUserID(id);
-		userBusiness.deleteUser(id);
+	public void deleteUser(@WebParam(name = "id") Long id) {		
+		userBusiness.disableUser(id);
 	}
 
 	@WebMethod
@@ -144,15 +143,14 @@ public class BibliothequeService {
 	
 	
 	@WebMethod
-	public void createLoan(@WebParam(name = "loan") Loan loan,
-			@WebParam(name = "book_id") Long book_id, @WebParam(name = "user_id") Long user_id)
+	public void createLoan(@WebParam(name = "book_id") Long book_id, @WebParam(name = "user_id") Long user_id)
 			throws BibliothequeException {
-		loanBusiness.createLoan(book_id, user_id, loan);
+		loanBusiness.createLoan(book_id, user_id);
 	}
 
 	@WebMethod
-	public void deleteLoan(Long id) {
-		loanBusiness.deleteLoan(id);
+	public void returnLoan(Long id) {
+		loanBusiness.returnLoan(id);
 	}
 
 	@WebMethod
@@ -180,5 +178,9 @@ public class BibliothequeService {
 	public int getDaysExtend() throws BibliothequeException {
 		return loanBusiness.getDaysExtend();
 	}
-
+	
+	@WebMethod
+	public int getDaysLoan() throws BibliothequeException {
+		return loanBusiness.getDaysLoan();
+	}
 }

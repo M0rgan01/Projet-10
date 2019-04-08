@@ -113,6 +113,14 @@ public class MailBusinessImpl implements MailBusiness{
 			bibliothequeFault.setFaultString("Aucune addresse corresponde");
 			
 			throw new BibliothequeException("Email non correct", bibliothequeFault);
+			
+		}else if(!mail.getUser().isActive()) {
+			BibliothequeFault bibliothequeFault = new BibliothequeFault();
+			bibliothequeFault.setFaultCode("51");
+			bibliothequeFault.setFaultString("Compte désactivé");
+
+			throw new BibliothequeException("Ce compte à été désactivé", bibliothequeFault);
+			
 		}
 		
 		//generation du token
@@ -177,8 +185,7 @@ public class MailBusinessImpl implements MailBusiness{
 					throw new BibliothequeException("Jeton incorrect", bibliothequeFault);
 				}				
 	}
-	
-	 
+		 
 	public String generateToken() {
 		
 		SecureRandom random = new SecureRandom();
@@ -186,8 +193,5 @@ public class MailBusinessImpl implements MailBusiness{
 		String randomString = Integer.toString(longToken, 16);
 		return randomString;
 	}
-
-
-	
 	
 }

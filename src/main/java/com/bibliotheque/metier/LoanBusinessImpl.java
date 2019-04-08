@@ -28,7 +28,9 @@ public class LoanBusinessImpl implements LoanBusiness {
 	private UserBusiness userBusiness;
 	@Value("${prolongation.days}")
 	private int extendDays;
-
+	@Value("${loan.days}")
+	private int loanDays;
+		
 	@Override
 	public void extendLoan(Long loan_ID, Long user_ID) throws BibliothequeException {
 		Loan r = loanRepository.findById(loan_ID).orElse(null);
@@ -68,15 +70,17 @@ public class LoanBusinessImpl implements LoanBusiness {
 
 		Calendar c = Calendar.getInstance();
 		c.add(Calendar.DATE, extendDays);
-		r.setEnd(c.getTime());
+		r.setEnd_loan(c.getTime());
 		r.setExtension(true);
 
 		loanRepository.save(r);
 	}
 
 	@Override
-	public void deleteLoan(Long id) {
-		loanRepository.deleteById(id);
+	public void returnLoan(Long id) {
+		Loan loan = loanRepository.findById(id).orElse(null);
+		loan.setMade(false);		
+		loanRepository.save(loan);
 	}
 
 	@Override
@@ -85,7 +89,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 	}
 
 	@Override
-	public void createLoan(Long book_id, Long User_id, Loan loan)
+	public void createLoan(Long book_id, Long User_id)
 			throws BibliothequeException {
 		User user = userBusiness.getUser(User_id);
 		Book book = bookBusiness.getBook(book_id);
@@ -118,12 +122,16 @@ public class LoanBusinessImpl implements LoanBusiness {
 		if (book.getCopyAvailable() == 0)
 			book.setAvailable(false);
 
+		Calendar c = Calendar.getInstance();
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//		c.setTime(sdf.parse("2019-01-25"));
+		Date start_loan = c.getTime();
+		
+		c.add(Calendar.DATE, loanDays); // Adding 5 days
+		Date end_loan = c.getTime();
+				
 		bookBusiness.saveBook(book);
-
-		loan.setUser(user);
-		loan.setBook(book);
-
-		loanRepository.save(loan);
+		loanRepository.save(new Loan(start_loan, end_loan, user, book));
 	}
 
 	@Override
@@ -149,7 +157,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 
 	public boolean checkLate(Loan loan) {
 		Calendar c = Calendar.getInstance();
-		c.setTime(loan.getEnd());
+		c.setTime(loan.getEnd_loan());
 		c.add(Calendar.DATE, extendDays);
 		Date retard = c.getTime();
 
@@ -162,6 +170,11 @@ public class LoanBusinessImpl implements LoanBusiness {
 	@Override
 	public int getDaysExtend() {
 		return extendDays;
+	}
+
+	@Override
+	public int getDaysLoan() {		
+		return loanDays;
 	}
 
 }

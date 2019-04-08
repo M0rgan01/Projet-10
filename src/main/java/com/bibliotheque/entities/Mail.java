@@ -27,7 +27,7 @@ public class Mail implements Serializable{
 	private int tryToken;
 	private Date expiryToken;
 	
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 
 	public Mail() {
@@ -63,8 +63,6 @@ public class Mail implements Serializable{
 	public void setToken(String token) {
 		this.token = token;
 	}
-
-	
 
 	public int getTryToken() {
 		return tryToken;

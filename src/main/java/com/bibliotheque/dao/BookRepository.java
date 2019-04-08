@@ -11,8 +11,8 @@ import com.bibliotheque.entities.Book;
 
 public interface BookRepository extends JpaRepository<Book, Long>{
 	
-	@Query("select o from Book b join b.kind k where (lower(b.title) like lower(:x) or lower(b.author) like lower(:x)) and k.name like :y and b.available = :d order by b.title ")
+	@Query("select b from Book b join b.kind k where (lower(b.title) like lower(:x) or lower(b.author) like lower(:x)) and k.name like :y and b.available = :d order by b.title ")
 	public Page<Book> getListBooks(@Param("x") String mc, @Param("y") String kind, @Param("d")boolean isReserved, Pageable pageable);
-	@Query("select o from Book b join b.kind k where (lower(b.title) like lower(:x) or lower(b.author) like lower(:x)) and k.name like :y order by b.title ")
+	@Query("select b from Book b join b.kind k where (lower(b.title) like lower(:x) or lower(b.author) like lower(:x)) and k.name like :y order by b.title ")
 	public Page<Book> getListBooks(@Param("x") String mc, @Param("y") String kind, Pageable pageable);
 }

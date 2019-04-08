@@ -64,7 +64,7 @@ public class Book implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
@@ -113,14 +113,6 @@ public class Book implements Serializable{
 		this.available = available;
 	}
 
-	public Kind getKind() {
-		return kind;
-	}
-
-	public void setKind(Kind kind) {
-		this.kind = kind;
-	}
-
 	@XmlTransient
 	public Collection<Loan> getLoans() {
 		return loans;
@@ -129,6 +121,15 @@ public class Book implements Serializable{
 	public void setLoans(Collection<Loan> loans) {
 		this.loans = loans;
 	}
+
+	public Kind getKind() {
+		return kind;
+	}
+
+	public void setKind(Kind kind) {
+		this.kind = kind;
+	}
+
 	
 		
 }

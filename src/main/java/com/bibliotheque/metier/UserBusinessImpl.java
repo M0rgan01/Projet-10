@@ -36,14 +36,13 @@ public class UserBusinessImpl implements UserBusiness {
 
 		User user2 = userRepository.findById(user.getId()).orElse(null);
 
-		validateUser(user);
-
-		if (!user.getPseudo().isEmpty() && !user.getPseudo().equals(user2.getPseudo())) {
+		if (!user.getPseudo().equals(user2.getPseudo())) {
+			validateUser(user);
 			checkPseudoExist(user.getPseudo());
 			user2.setPseudo(user.getPseudo());
 		}
 
-		if (!user.getPassWord().isEmpty() || !user.getPassWordConfirm().isEmpty()) {
+		if (!encrypt.getDecrypt(user.getPassWord()).isEmpty() || !encrypt.getDecrypt(user.getPassWordConfirm()).isEmpty()) {
 
 			user.setOldPassWord(encrypt.getDecrypt(user.getOldPassWord()));
 
@@ -86,8 +85,10 @@ public class UserBusinessImpl implements UserBusiness {
 	}
 	
 	@Override
-	public void deleteUser(Long id) {
-		userRepository.deleteById(id);
+	public void disableUser(Long id) {
+		User user = userRepository.findById(id).orElse(null);
+		user.setActive(false);
+		userRepository.save(user);
 	}
 
 	@Override
@@ -104,6 +105,14 @@ public class UserBusinessImpl implements UserBusiness {
 
 			throw new BibliothequeException("Pseudo non correspondant", bibliothequeFault);
 
+		} else if(!user.isActive()) {	
+			
+			BibliothequeFault bibliothequeFault = new BibliothequeFault();
+			bibliothequeFault.setFaultCode("50");
+			bibliothequeFault.setFaultString("Compte désactivé");
+
+			throw new BibliothequeException("Ce compte à été désactivé", bibliothequeFault);
+			
 		} else {
 
 			if (user.getExpiryConnection() != null) {

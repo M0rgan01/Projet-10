@@ -12,7 +12,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 public class Kind implements Serializable{
 
-
 	@Id 
 	@NotBlank(message="Le genre du livre ne peut être vide")
 	private String name;
