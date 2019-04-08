@@ -19,11 +19,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="essaisToken" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="expirationToken" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="expiryToken" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="token" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="utilisateur" type="{http://service.bibliotheque.com/}utilisateur" minOccurs="0"/>
+ *         &lt;element name="tryToken" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="user" type="{http://service.bibliotheque.com/}user" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,21 +35,21 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "mail", propOrder = {
     "email",
-    "essaisToken",
-    "expirationToken",
+    "expiryToken",
     "id",
     "token",
-    "utilisateur"
+    "tryToken",
+    "user"
 })
 public class Mail {
 
     protected String email;
-    protected int essaisToken;
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar expirationToken;
+    protected XMLGregorianCalendar expiryToken;
     protected Long id;
     protected String token;
-    protected Utilisateur utilisateur;
+    protected int tryToken;
+    protected User user;
 
     /**
      * Obtient la valeur de la propriété email.
@@ -76,43 +76,27 @@ public class Mail {
     }
 
     /**
-     * Obtient la valeur de la propriété essaisToken.
-     * 
-     */
-    public int getEssaisToken() {
-        return essaisToken;
-    }
-
-    /**
-     * Définit la valeur de la propriété essaisToken.
-     * 
-     */
-    public void setEssaisToken(int value) {
-        this.essaisToken = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété expirationToken.
+     * Obtient la valeur de la propriété expiryToken.
      * 
      * @return
      *     possible object is
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public XMLGregorianCalendar getExpirationToken() {
-        return expirationToken;
+    public XMLGregorianCalendar getExpiryToken() {
+        return expiryToken;
     }
 
     /**
-     * Définit la valeur de la propriété expirationToken.
+     * Définit la valeur de la propriété expiryToken.
      * 
      * @param value
      *     allowed object is
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setExpirationToken(XMLGregorianCalendar value) {
-        this.expirationToken = value;
+    public void setExpiryToken(XMLGregorianCalendar value) {
+        this.expiryToken = value;
     }
 
     /**
@@ -164,27 +148,43 @@ public class Mail {
     }
 
     /**
-     * Obtient la valeur de la propriété utilisateur.
+     * Obtient la valeur de la propriété tryToken.
      * 
-     * @return
-     *     possible object is
-     *     {@link Utilisateur }
-     *     
      */
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
+    public int getTryToken() {
+        return tryToken;
     }
 
     /**
-     * Définit la valeur de la propriété utilisateur.
+     * Définit la valeur de la propriété tryToken.
+     * 
+     */
+    public void setTryToken(int value) {
+        this.tryToken = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété user.
+     * 
+     * @return
+     *     possible object is
+     *     {@link User }
+     *     
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * Définit la valeur de la propriété user.
      * 
      * @param value
      *     allowed object is
-     *     {@link Utilisateur }
+     *     {@link User }
      *     
      */
-    public void setUtilisateur(Utilisateur value) {
-        this.utilisateur = value;
+    public void setUser(User value) {
+        this.user = value;
     }
 
 }

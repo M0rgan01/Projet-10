@@ -8,16 +8,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour doConnectionResponse complex type.
+ * <p>Classe Java pour getDaysExtendResponse complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="doConnectionResponse">
+ * &lt;complexType name="getDaysExtendResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://service.bibliotheque.com/}user" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,35 +27,27 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "doConnectionResponse", propOrder = {
+@XmlType(name = "getDaysExtendResponse", propOrder = {
     "_return"
 })
-public class DoConnectionResponse {
+public class GetDaysExtendResponse {
 
     @XmlElement(name = "return")
-    protected User _return;
+    protected int _return;
 
     /**
      * Obtient la valeur de la propriété return.
      * 
-     * @return
-     *     possible object is
-     *     {@link User }
-     *     
      */
-    public User getReturn() {
+    public int getReturn() {
         return _return;
     }
 
     /**
      * Définit la valeur de la propriété return.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link User }
-     *     
      */
-    public void setReturn(User value) {
+    public void setReturn(int value) {
         this._return = value;
     }
 

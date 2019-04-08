@@ -3,21 +3,20 @@ package com.bibliotheque.service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour getMail complex type.
+ * <p>Classe Java pour deleteUser complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="getMail">
+ * &lt;complexType name="deleteUser">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="user_id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,36 +26,35 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getMail", propOrder = {
-    "userId"
+@XmlType(name = "deleteUser", propOrder = {
+    "id"
 })
-public class GetMail {
+public class DeleteUser {
 
-    @XmlElement(name = "user_id")
-    protected Long userId;
+    protected Long id;
 
     /**
-     * Obtient la valeur de la propriété userId.
+     * Obtient la valeur de la propriété id.
      * 
      * @return
      *     possible object is
      *     {@link Long }
      *     
      */
-    public Long getUserId() {
-        return userId;
+    public Long getId() {
+        return id;
     }
 
     /**
-     * Définit la valeur de la propriété userId.
+     * Définit la valeur de la propriété id.
      * 
      * @param value
      *     allowed object is
      *     {@link Long }
      *     
      */
-    public void setUserId(Long value) {
-        this.userId = value;
+    public void setId(Long value) {
+        this.id = value;
     }
 
 }

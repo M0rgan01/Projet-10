@@ -68,26 +68,27 @@
 				</thead>
 
 				<tbody>
-					<tr th:each="o:${listOuvrages.getOuvrages()}">
-						<td style="width: 15%" class="h5" th:text=${o.titre}></td>
+					<tr th:each="o:${listOuvrages.getBooks()}">
+						<td style="width: 15%" class="h5" th:text=${o.title}></td>
 						<td style="width: 25%" th:text=${o.description}></td>
-						<td th:text=${o.auteur}></td>
-						<td th:text=${o.getGenre().getNom()}></td>
+						<td th:text=${o.author}></td>
+						<td th:text=${o.getKind().getName()}></td>
 
-						<td th:if="${#request.isUserInRole('USER') && o.disponible}"><div
+						<td th:if="${#request.isUserInRole('USER') && o.available}"><div
 								class="row justify-content-center">
 								<span class="btn btn-primary my-1">Disponible</span>
 								<p>
 									Nombre d'exemplaire à disposition : <span
-										th:text="${o.exemplaireDisponible}"></span>
+										th:text="${o.copyAvailable}"></span>
 								</p>
 
-							</div>
-
-							<div class="row justify-content-center"
-								th:if="${#request.isUserInRole('USER') && !o.disponible}">
-								<span class="btn btn-danger my-1">Non disponnible</span>
 							</div></td>
+
+						<td th:if="${#request.isUserInRole('USER') && !o.available}">
+							<div class="row justify-content-center">
+								<span class="btn btn-danger my-1">Non disponnible</span>
+							</div>
+						</td>
 
 						<td th:if="${#request.isUserInRole('ADMIN')}"><a
 							class="btn btn-primary"
@@ -101,12 +102,12 @@
 			</table>
 		</div>
 
-		<div th:if="${listOuvrages.getNombreOuvrages() == 0}"
+		<div th:if="${listOuvrages.getNumberBook() == 0}"
 			class="justify-content-center row mt-5 font-weight-bold">
 			<p>Votre recherche n'à donnée aucun résultat !</p>
 		</div>
 
-		<div th:if="${listOuvrages.totalPage > 1}">
+		<div th:if="${listOuvrages.totalsPage > 1}">
 			<ul class="pagination justify-content-center">
 
 				<li class="page-item"
@@ -128,15 +129,15 @@
 				</li>
 
 				<li class="page-item"
-					th:classappend="${listOuvrages.page + 1 == listOuvrages.totalPage} ? disabled">
+					th:classappend="${listOuvrages.page + 1 == listOuvrages.totalsPage} ? disabled">
 					<a class="page-link"
 					th:href="@{/recherche(page=${listOuvrages.page + 2}, MotCle=${MotCle}, genre=${genre}, isReserved=${isReserved})}">→</a>
 				</li>
 
 				<li class="page-item"
-					th:classappend="${listOuvrages.page + 1 == listOuvrages.totalPage} ? disabled">
+					th:classappend="${listOuvrages.page + 1 == listOuvrages.totalsPage} ? disabled">
 					<a class="page-link"
-					th:href="@{/recherche(page=${listOuvrages.totalPage}, MotCle=${MotCle}, genre=${genre}, isReserved=${isReserved})}">»</a>
+					th:href="@{/recherche(page=${listOuvrages.totalsPage}, MotCle=${MotCle}, genre=${genre}, isReserved=${isReserved})}">»</a>
 				</li>
 
 			</ul>

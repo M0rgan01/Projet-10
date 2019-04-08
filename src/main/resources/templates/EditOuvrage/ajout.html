@@ -22,24 +22,24 @@
 
 						<div class="form-group">
 							<label>Titre :</label> <input class="form-control" type="text"
-								th:value="${ouvrage?.titre}" name="Titre" />
+								th:value="${book?.title}" name="title" />
 						</div>
 
 						<div class="form-group">
 							<label>Auteur :</label> <input class="form-control" type="text"
-								name="auteur" th:value="${ouvrage?.auteur}" />
+								name="author" th:value="${book?.author}" />
 						</div>
 
 						<div class="form-group">
 							<label>Description :</label>
 							<textarea class="form-control" rows="5" name="description"
-								th:text="${ouvrage?.description}"></textarea>
+								th:text="${book?.description}"></textarea>
 						</div>
 
 						<div class="form-group">
 							<label>Nombre d'exemplaire :</label>
 							<input class="form-control" type="number"
-								name="exemplaireTotaux" th:value="${ouvrage?.exemplaireTotaux}" />
+								name="copyTotals" th:value="${book?.copyTotals}" />
 						</div>
 
 						<div class="form-group">
@@ -48,8 +48,8 @@
 
 								<option selected="selected" th:value="${blank}">Séléctionner
 									un genre</option>
-								<option th:each="g : ${listGenre}" th:value="${g.nom}"
-									th:text="${g.nom}" th:selected="${g.nom.equals(style)}">Wireframe</option>
+								<option th:each="g : ${listKind}" th:value="${g.name}"
+									th:text="${g.name}" th:selected="${g.name.equals(style)}">Wireframe</option>
 							</select>
 						</div>
 

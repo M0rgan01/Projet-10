@@ -32,12 +32,12 @@
 				</thead>
 
 				<tbody>
-					<tr th:each="r:${listResa}">
+					<tr th:each="r:${listLoan}">
 						<td style="width: 15%" class="h5"
-							th:text=${r.getOuvrage().getTitre()}></td>
-						<td th:text="${r.debut}"></td>
-						<td th:text=${r.fin}></td>
-						<td><a th:if="${!r.prolongation}" class="btn btn-primary"
+							th:text=${r.getBook().getTitle()}></td>
+						<td th:text="${r.start_loan}"></td>
+						<td th:text=${r.end_loan}></td>
+						<td><a th:if="${!r.extension}" class="btn btn-primary"
 							th:href="@{prolongerReservation(id=${r.id})}">Prolonger</a></td>
 					</tr>
 				</tbody>
@@ -45,12 +45,12 @@
 			</table>
 		</div>
 
-		<div th:if="${listResa.size() == 0}"
+		<div th:if="${listLoan.size() == 0}"
 			class="justify-content-center row mt-5 font-weight-bold">
 			<p>Vous n'avez aucun prêt pour le moment</p>
 		</div>
 
-		<div th:if="${listResaRetard.size() != 0}">
+		<div th:if="${listLoanLate.size() != 0}">
 
 			<div class="row justify-content-center my-5">
 				<span class="alert alert-danger">Nous vous prions de rendre
@@ -69,12 +69,12 @@
 					</thead>
 
 					<tbody>
-						<tr th:each="r:${listResaRetard}">
+						<tr th:each="r:${listLoanLate}">
 							<td style="width: 15%" class="h5"
-								th:text=${r.getOuvrage().getTitre()}></td>
-							<td class="" th:text=${r.debut}></td>
-							<td class="" th:text=${r.fin}></td>
-							<td><a th:if="${!r.prolongation && !r.retard}"
+								th:text=${r.getBook().getTitle()}></td>
+							<td class="" th:text=${r.start_loan}></td>
+							<td class="" th:text=${r.end_loan}></td>
+							<td><a th:if="${!r.extension && !r.late}"
 								class="btn btn-primary"
 								th:href="@{prolongerReservation(id=${r.id})}">Prolonger</a></td>
 						</tr>

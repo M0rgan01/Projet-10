@@ -8,16 +8,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour saveMail complex type.
+ * <p>Classe Java pour extendLoan complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="saveMail">
+ * &lt;complexType name="extendLoan">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="mail" type="{http://service.bibliotheque.com/}mail" minOccurs="0"/>
+ *         &lt;element name="Loan_ID" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="user_id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -28,38 +28,39 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "saveMail", propOrder = {
-    "mail",
+@XmlType(name = "extendLoan", propOrder = {
+    "loanID",
     "userId"
 })
-public class SaveMail {
+public class ExtendLoan {
 
-    protected Mail mail;
+    @XmlElement(name = "Loan_ID")
+    protected Long loanID;
     @XmlElement(name = "user_id")
     protected Long userId;
 
     /**
-     * Obtient la valeur de la propriété mail.
+     * Obtient la valeur de la propriété loanID.
      * 
      * @return
      *     possible object is
-     *     {@link Mail }
+     *     {@link Long }
      *     
      */
-    public Mail getMail() {
-        return mail;
+    public Long getLoanID() {
+        return loanID;
     }
 
     /**
-     * Définit la valeur de la propriété mail.
+     * Définit la valeur de la propriété loanID.
      * 
      * @param value
      *     allowed object is
-     *     {@link Mail }
+     *     {@link Long }
      *     
      */
-    public void setMail(Mail value) {
-        this.mail = value;
+    public void setLoanID(Long value) {
+        this.loanID = value;
     }
 
     /**

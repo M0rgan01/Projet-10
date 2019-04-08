@@ -21,13 +21,13 @@ import com.bibliotheque.service.BibliothequeException_Exception;
 import com.bibliotheque.service.BibliothequeServiceService;
 import com.bibliotheque.service.BibliothequeWS;
 import com.bibliotheque.service.Roles;
-import com.bibliotheque.service.Utilisateur;
+import com.bibliotheque.service.User;
 import com.bibliotheque.utilities.Encrypt;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-	private Utilisateur utilisateur;
+	private User user;
 	private List<GrantedAuthority> grantedAuths;
 	private HttpSession httpSession;
 	@Autowired
@@ -40,21 +40,21 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		httpSession = getSession();
 		
 		try {
-			utilisateur = new Utilisateur();
-			utilisateur.setPassWord(encrypt.setEncrypt(authentication.getCredentials().toString()));
-			utilisateur = ws.doConnection(authentication.getName(), utilisateur.getPassWord());				
-			httpSession.setAttribute("utilisateur_id", utilisateur.getId());
+			user = new User();
+			user.setPassWord(encrypt.setEncrypt(authentication.getCredentials().toString()));
+			user = ws.doConnection(authentication.getName(), user.getPassWord());				
+			httpSession.setAttribute("user_id", user.getId());
 		} catch (BibliothequeException_Exception e) {
 			throw new BadCredentialsException(e.getFaultInfo().getInfo().getFaultString());
 		}
 
 		grantedAuths = new ArrayList<>();
 
-		for (Roles role : ws.getListRoles(utilisateur.getPseudo())) {
+		for (Roles role : ws.getListRoles(user.getPseudo())) {
 			grantedAuths.add(new SimpleGrantedAuthority(role.getRole()));
 		}
 				
-		return new UsernamePasswordAuthenticationToken(utilisateur.getPseudo(), utilisateur.getPassWord(),
+		return new UsernamePasswordAuthenticationToken(user.getPseudo(), user.getPassWord(),
 				grantedAuths);
 
 	}
