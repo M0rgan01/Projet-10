@@ -1,26 +1,30 @@
 package com.bibliotheque;
 
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter;
 
+/**
+ * classe de configuration du web-service
+ * 
+ * @author PICHAT morgan
+ *
+ */
 @Configuration
-//@EnableBatchProcessing
 @PropertySource("classpath:bibliotheque.properties")
 public class MyConfig {
 
+	@Value("${WS.adress}")
+	private String WS_adress;	
+	
 	@Bean
 	public SimpleJaxWsServiceExporter getJWS() {
 		SimpleJaxWsServiceExporter exporter = new SimpleJaxWsServiceExporter();
-		exporter.setBaseAddress("http://localhost:8089/biblio");
+		exporter.setBaseAddress(WS_adress);
 		return exporter;
 	}
-	
-//	  @Bean
-//	  public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-//	    return new PropertySourcesPlaceholderConfigurer();
-//	  }
+		    
 }

@@ -13,5 +13,6 @@ public interface MailBusiness {
 	public Mail getMailByUserID(Long id);
 	public Mail getMail(String email);
 	public void sendToken(String email) throws BibliothequeException;
+	public void sendMailForLateLoan();
 	public void validateToken(String token, String email) throws BibliothequeException;
 }

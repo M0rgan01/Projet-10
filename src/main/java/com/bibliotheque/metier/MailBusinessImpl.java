@@ -1,8 +1,12 @@
 package com.bibliotheque.metier;
 
 import java.security.SecureRandom;
+import java.text.DateFormat;
+import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -15,7 +19,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
+import com.bibliotheque.dao.LoanRepository;
 import com.bibliotheque.dao.MailRepository;
+import com.bibliotheque.entities.Loan;
 import com.bibliotheque.entities.Mail;
 import com.bibliotheque.entities.User;
 import com.bibliotheque.exception.BibliothequeException;
@@ -29,17 +35,27 @@ import com.bibliotheque.utilities.SendMail;
 public class MailBusinessImpl implements MailBusiness{
 
 	@Autowired
+	private LoanRepository loanRepository;
+	@Autowired
 	private MailRepository mailRepository;
 	@Autowired
 	private Encrypt encrypt;
 	@Autowired
 	private SendMail sendMail;
+	
 	@Value("${mail.username}")
 	private String emailUsers;
 	@Value("${mail.password}")
 	private String emailPassword;
-	@Value("${mail.sujet}")
-	private String emailSubject;
+	@Value("${mail.object.recovery}")
+	private String objectRecovery;
+	@Value("${mail.object.late}")
+	private String objectLate;
+	@Value("${mail.body.recovery}")
+	private String bodyRecovery;
+	@Value("${mail.body.late}")
+	private String bodyLate;
+	
 	@Value("${mail.expirationToken}")
 	private int expirationToken;
 	
@@ -132,12 +148,12 @@ public class MailBusinessImpl implements MailBusiness{
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MINUTE, expirationToken);		
 		mail.setExpiryToken(cal.getTime());		
-		System.out.println(token);
+			
+		String body = MessageFormat.format( bodyRecovery, mail.getToken());
 		
-//		String body = " Voiçi le code pour réinitialisé le mot de passe de votre compte : " + token;
-//		String[] tableau_email = { mail.getEmail() };
-//		
-//		sendMail.sendFromGMail(emailUsers, encrypt.getDecrypt(emailPassword), tableau_email, emailSubject, body);
+		String[] tableau_email = { mail.getEmail() };
+		
+		//sendMail.sendFromGMail(emailUsers, encrypt.getDecrypt(emailPassword), tableau_email, objectRecovery, body);
 		
 		mailRepository.save(mail);	
 	}
@@ -192,6 +208,31 @@ public class MailBusinessImpl implements MailBusiness{
 		int longToken = Math.abs(random.nextInt());
 		String randomString = Integer.toString(longToken, 16);
 		return randomString;
+	}
+
+	@Override
+	public void sendMailForLateLoan() {
+		
+		
+		List<Loan> list = loanRepository.getListLoanLate(new Date());
+		
+		for (Loan loan : list) {
+			Mail mail = mailRepository.findByUserID(loan.getUser().getId());
+			
+			String[] tableau_email = { mail.getEmail() };
+			
+			String object = MessageFormat.format( objectLate, loan.getBook().getTitle());
+			
+			String pattern = "dd/MM/yyyy";
+			DateFormat df = new SimpleDateFormat(pattern);
+			
+			String body = MessageFormat.format( bodyLate, loan.getBook().getTitle(), df.format(loan.getEnd_loan()));
+			
+			//sendMail.sendFromGMail(emailUsers, encrypt.getDecrypt(emailPassword), tableau_email, object, body);
+		}
+
+		
+		
 	}
 	
 }

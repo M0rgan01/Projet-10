@@ -1,9 +1,12 @@
 package com.bibliotheque;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.bibliotheque.dao.BookRepository;
 import com.bibliotheque.dao.KindRepository;
@@ -11,11 +14,11 @@ import com.bibliotheque.dao.LoanRepository;
 import com.bibliotheque.dao.MailRepository;
 import com.bibliotheque.dao.RolesRepository;
 import com.bibliotheque.dao.UserRepository;
-import com.bibliotheque.entities.Kind;
-import com.bibliotheque.entities.Roles;
 import com.bibliotheque.metier.LoanBusiness;
+import com.bibliotheque.metier.MailBusiness;
 
 @SpringBootApplication
+@EnableScheduling
 public class Projet7WebServiceApplication implements CommandLineRunner {
 
 	@Autowired
@@ -33,6 +36,10 @@ public class Projet7WebServiceApplication implements CommandLineRunner {
 
 	@Autowired
 	private LoanBusiness reservationMetier;
+	@Autowired
+	private MailBusiness mailBusiness;
+	
+	public static final Logger logger = LoggerFactory.getLogger(Projet7WebServiceApplication.class);
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Projet7WebServiceApplication.class, args);
@@ -50,8 +57,7 @@ public class Projet7WebServiceApplication implements CommandLineRunner {
 //		Ouvrage o1 = ouvrageRepository.save(new Ouvrage("Ouvrage 1", "Auteur 1", "Description 1", true, g1, 2));
 //		Ouvrage o2 = ouvrageRepository.save(new Ouvrage("Ouvrage 2", "Auteur 2", "Description 2", true, g2, 3));
 //////	
-
-		
+				
 	}
 
 }

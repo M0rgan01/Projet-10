@@ -1,5 +1,7 @@
 package com.bibliotheque.metier;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -79,7 +81,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 	@Override
 	public void returnLoan(Long id) {
 		Loan loan = loanRepository.findById(id).orElse(null);
-		loan.setMade(false);		
+		loan.setMade(true);		
 		loanRepository.save(loan);
 	}
 
@@ -90,7 +92,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 
 	@Override
 	public void createLoan(Long book_id, Long User_id)
-			throws BibliothequeException {
+			throws BibliothequeException, ParseException {
 		User user = userBusiness.getUser(User_id);
 		Book book = bookBusiness.getBook(book_id);
 
@@ -124,7 +126,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 
 		Calendar c = Calendar.getInstance();
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		c.setTime(sdf.parse("2019-01-25"));
+//		c.setTime(sdf.parse("2018-01-25"));
 		Date start_loan = c.getTime();
 		
 		c.add(Calendar.DATE, loanDays); // Adding 5 days

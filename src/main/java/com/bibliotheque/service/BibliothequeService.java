@@ -1,5 +1,6 @@
 package com.bibliotheque.service;
 
+import java.text.ParseException;
 import java.util.List;
 
 import javax.jws.WebMethod;
@@ -144,7 +145,7 @@ public class BibliothequeService {
 	
 	@WebMethod
 	public void createLoan(@WebParam(name = "book_id") Long book_id, @WebParam(name = "user_id") Long user_id)
-			throws BibliothequeException {
+			throws BibliothequeException, ParseException {
 		loanBusiness.createLoan(book_id, user_id);
 	}
 
