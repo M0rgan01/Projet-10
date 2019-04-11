@@ -8,16 +8,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour listBookResponse complex type.
+ * <p>Classe Java pour getDaysLoanResponse complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="listBookResponse">
+ * &lt;complexType name="getDaysLoanResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://service.bibliotheque.com/}pagination" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,35 +27,27 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "listBookResponse", propOrder = {
+@XmlType(name = "getDaysLoanResponse", propOrder = {
     "_return"
 })
-public class ListBookResponse {
+public class GetDaysLoanResponse {
 
     @XmlElement(name = "return")
-    protected Pagination _return;
+    protected int _return;
 
     /**
      * Obtient la valeur de la propriété return.
      * 
-     * @return
-     *     possible object is
-     *     {@link Pagination }
-     *     
      */
-    public Pagination getReturn() {
+    public int getReturn() {
         return _return;
     }
 
     /**
      * Définit la valeur de la propriété return.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Pagination }
-     *     
      */
-    public void setReturn(Pagination value) {
+    public void setReturn(int value) {
         this._return = value;
     }
 

@@ -3,21 +3,20 @@ package com.bibliotheque.service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour listBookResponse complex type.
+ * <p>Classe Java pour returnLoan complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="listBookResponse">
+ * &lt;complexType name="returnLoan">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://service.bibliotheque.com/}pagination" minOccurs="0"/>
+ *         &lt;element name="arg0" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,36 +26,35 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "listBookResponse", propOrder = {
-    "_return"
+@XmlType(name = "returnLoan", propOrder = {
+    "arg0"
 })
-public class ListBookResponse {
+public class ReturnLoan {
 
-    @XmlElement(name = "return")
-    protected Pagination _return;
+    protected Long arg0;
 
     /**
-     * Obtient la valeur de la propriété return.
+     * Obtient la valeur de la propriété arg0.
      * 
      * @return
      *     possible object is
-     *     {@link Pagination }
+     *     {@link Long }
      *     
      */
-    public Pagination getReturn() {
-        return _return;
+    public Long getArg0() {
+        return arg0;
     }
 
     /**
-     * Définit la valeur de la propriété return.
+     * Définit la valeur de la propriété arg0.
      * 
      * @param value
      *     allowed object is
-     *     {@link Pagination }
+     *     {@link Long }
      *     
      */
-    public void setReturn(Pagination value) {
-        this._return = value;
+    public void setArg0(Long value) {
+        this.arg0 = value;
     }
 
 }

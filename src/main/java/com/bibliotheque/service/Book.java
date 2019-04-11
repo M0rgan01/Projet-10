@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="copyAvailable" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="copyTotals" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="disable" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="kind" type="{http://service.bibliotheque.com/}kind" minOccurs="0"/>
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -39,6 +40,7 @@ import javax.xml.bind.annotation.XmlType;
     "copyAvailable",
     "copyTotals",
     "description",
+    "disable",
     "id",
     "kind",
     "title"
@@ -50,6 +52,7 @@ public class Book {
     protected int copyAvailable;
     protected int copyTotals;
     protected String description;
+    protected boolean disable;
     protected Long id;
     protected Kind kind;
     protected String title;
@@ -148,6 +151,22 @@ public class Book {
      */
     public void setDescription(String value) {
         this.description = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété disable.
+     * 
+     */
+    public boolean isDisable() {
+        return disable;
+    }
+
+    /**
+     * Définit la valeur de la propriété disable.
+     * 
+     */
+    public void setDisable(boolean value) {
+        this.disable = value;
     }
 
     /**

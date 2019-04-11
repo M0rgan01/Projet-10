@@ -25,8 +25,8 @@
 						class="form-control">
 						<option selected="selected" th:value="${blank}">Aucun
 							filtre</option>
-						<option th:each="g : ${listGenre}" th:value="${g.nom}"
-							th:text="${g.nom}" th:selected="${g.nom.equals(genre)}">Wireframe</option>
+						<option th:each="g : ${listKind}" th:value="${g.name}"
+							th:text="${g.name}" th:selected="${g.name.equals(genre)}">Wireframe</option>
 					</select>
 				</div>
 
@@ -68,7 +68,7 @@
 				</thead>
 
 				<tbody>
-					<tr th:each="o:${listOuvrages.getBooks()}">
+					<tr th:each="o:${listOuvrages.getT()}">
 						<td style="width: 15%" class="h5" th:text=${o.title}></td>
 						<td style="width: 25%" th:text=${o.description}></td>
 						<td th:text=${o.author}></td>
@@ -102,7 +102,7 @@
 			</table>
 		</div>
 
-		<div th:if="${listOuvrages.getNumberBook() == 0}"
+		<div th:if="${listOuvrages.getNumberT() == 0}"
 			class="justify-content-center row mt-5 font-weight-bold">
 			<p>Votre recherche n'à donnée aucun résultat !</p>
 		</div>

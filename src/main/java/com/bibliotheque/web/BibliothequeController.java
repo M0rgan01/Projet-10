@@ -29,7 +29,7 @@ import com.bibliotheque.service.Book;
 import com.bibliotheque.service.Kind;
 import com.bibliotheque.service.Loan;
 import com.bibliotheque.service.Mail;
-import com.bibliotheque.service.PageBook;
+import com.bibliotheque.service.Pagination;
 import com.bibliotheque.service.User;
 import com.bibliotheque.utilities.Encrypt;
 
@@ -68,7 +68,7 @@ public class BibliothequeController {
 		// si page est null ou inferieur a 0, on lui assigne 0, sinon on le decremente
 		int evalPage = (page.orElse(0) < 1) ? 0 : page.get() - 1;
 
-		PageBook list = ws.listBook(mc, genre, isReserved, evalPage, s);
+		Pagination list = ws.listBook(mc, genre, isReserved, evalPage, s);
 
 		PagerModel pager = new PagerModel(list.getTotalsPage(), list.getPage(), 7);
 
@@ -224,8 +224,11 @@ public class BibliothequeController {
 
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 
-		try {
-			ws.createBook(book, genre);
+		try {		
+			Kind kind = new Kind();
+			kind.setName(genre);
+			book.setKind(kind);
+			ws.createBook(book);
 		} catch (BibliothequeException_Exception e) {
 
 			List<Kind> listKind = ws.getListKind();
@@ -258,7 +261,7 @@ public class BibliothequeController {
 //////////////////////// MODIFICATION OUVRAGE ////////////////////////
 
 	@RequestMapping(value = "/modificationOuvrage")
-	public String modificationOuvrage(Model model, Long id) {
+	public String modificationOuvrage(Model model, Long id) throws BibliothequeException_Exception {
 
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 
@@ -278,7 +281,10 @@ public class BibliothequeController {
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 
 		try {
-			ws.updateBook(book, genre);
+			Kind kind = new Kind();
+			kind.setName(genre);
+			book.setKind(kind);
+			ws.updateBook(book);
 		} catch (BibliothequeException_Exception e) {
 
 			List<Kind> listKind = ws.getListKind();
@@ -296,7 +302,7 @@ public class BibliothequeController {
 //////////////////////// SUPPRESSION OUVRAGE ////////////////////////
 
 	@RequestMapping(value = "/deleteOuvrage")
-	public String deleteOuvrage(Long id, int page, String MotCle, String genre, boolean isReserved) {
+	public String deleteOuvrage(Long id, int page, String MotCle, String genre, boolean isReserved) throws BibliothequeException_Exception {
 
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 

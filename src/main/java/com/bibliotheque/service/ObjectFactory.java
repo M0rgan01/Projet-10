@@ -25,15 +25,17 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _GetBookResponse_QNAME = new QName("http://service.bibliotheque.com/", "getBookResponse");
-    private final static QName _DeleteLoanResponse_QNAME = new QName("http://service.bibliotheque.com/", "deleteLoanResponse");
     private final static QName _CreateUserResponse_QNAME = new QName("http://service.bibliotheque.com/", "createUserResponse");
+    private final static QName _GetDaysLoanResponse_QNAME = new QName("http://service.bibliotheque.com/", "getDaysLoanResponse");
     private final static QName _GetLoan_QNAME = new QName("http://service.bibliotheque.com/", "getLoan");
     private final static QName _SendTokenResponse_QNAME = new QName("http://service.bibliotheque.com/", "sendTokenResponse");
     private final static QName _DoConnection_QNAME = new QName("http://service.bibliotheque.com/", "doConnection");
     private final static QName _ExtendLoan_QNAME = new QName("http://service.bibliotheque.com/", "extendLoan");
     private final static QName _GetListRolesResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListRolesResponse");
+    private final static QName _ReturnLoan_QNAME = new QName("http://service.bibliotheque.com/", "returnLoan");
     private final static QName _UpdateBookResponse_QNAME = new QName("http://service.bibliotheque.com/", "updateBookResponse");
     private final static QName _CreateUser_QNAME = new QName("http://service.bibliotheque.com/", "createUser");
+    private final static QName _ParseException_QNAME = new QName("http://service.bibliotheque.com/", "ParseException");
     private final static QName _DeleteUserResponse_QNAME = new QName("http://service.bibliotheque.com/", "deleteUserResponse");
     private final static QName _GetUserResponse_QNAME = new QName("http://service.bibliotheque.com/", "getUserResponse");
     private final static QName _ValidateTokenResponse_QNAME = new QName("http://service.bibliotheque.com/", "validateTokenResponse");
@@ -47,6 +49,7 @@ public class ObjectFactory {
     private final static QName _GetDaysExtendResponse_QNAME = new QName("http://service.bibliotheque.com/", "getDaysExtendResponse");
     private final static QName _ValidateToken_QNAME = new QName("http://service.bibliotheque.com/", "validateToken");
     private final static QName _GetBook_QNAME = new QName("http://service.bibliotheque.com/", "getBook");
+    private final static QName _GetDaysLoan_QNAME = new QName("http://service.bibliotheque.com/", "getDaysLoan");
     private final static QName _SaveMail_QNAME = new QName("http://service.bibliotheque.com/", "saveMail");
     private final static QName _BibliothequeException_QNAME = new QName("http://service.bibliotheque.com/", "BibliothequeException");
     private final static QName _SendToken_QNAME = new QName("http://service.bibliotheque.com/", "sendToken");
@@ -54,6 +57,7 @@ public class ObjectFactory {
     private final static QName _GetListRoles_QNAME = new QName("http://service.bibliotheque.com/", "getListRoles");
     private final static QName _DeleteUser_QNAME = new QName("http://service.bibliotheque.com/", "deleteUser");
     private final static QName _GetListKindResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListKindResponse");
+    private final static QName _ReturnLoanResponse_QNAME = new QName("http://service.bibliotheque.com/", "returnLoanResponse");
     private final static QName _GetListLoanLateByUserID_QNAME = new QName("http://service.bibliotheque.com/", "getListLoanLateByUserID");
     private final static QName _DoConnectionResponse_QNAME = new QName("http://service.bibliotheque.com/", "doConnectionResponse");
     private final static QName _UpdateBook_QNAME = new QName("http://service.bibliotheque.com/", "updateBook");
@@ -66,7 +70,6 @@ public class ObjectFactory {
     private final static QName _GetListLoanByUserIDResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListLoanByUserIDResponse");
     private final static QName _CreateBook_QNAME = new QName("http://service.bibliotheque.com/", "createBook");
     private final static QName _DeleteBook_QNAME = new QName("http://service.bibliotheque.com/", "deleteBook");
-    private final static QName _DeleteLoan_QNAME = new QName("http://service.bibliotheque.com/", "deleteLoan");
     private final static QName _CreateLoan_QNAME = new QName("http://service.bibliotheque.com/", "createLoan");
     private final static QName _EditPassWordByRecovery_QNAME = new QName("http://service.bibliotheque.com/", "editPassWordByRecovery");
     private final static QName _GetListLoanLateByUserIDResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListLoanLateByUserIDResponse");
@@ -170,14 +173,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DeleteLoan }
-     * 
-     */
-    public DeleteLoan createDeleteLoan() {
-        return new DeleteLoan();
-    }
-
-    /**
      * Create an instance of {@link CreateLoan }
      * 
      */
@@ -234,6 +229,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetDaysLoan }
+     * 
+     */
+    public GetDaysLoan createGetDaysLoan() {
+        return new GetDaysLoan();
+    }
+
+    /**
      * Create an instance of {@link SaveMail }
      * 
      */
@@ -287,6 +290,14 @@ public class ObjectFactory {
      */
     public GetListKindResponse createGetListKindResponse() {
         return new GetListKindResponse();
+    }
+
+    /**
+     * Create an instance of {@link ReturnLoanResponse }
+     * 
+     */
+    public ReturnLoanResponse createReturnLoanResponse() {
+        return new ReturnLoanResponse();
     }
 
     /**
@@ -394,19 +405,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DeleteLoanResponse }
-     * 
-     */
-    public DeleteLoanResponse createDeleteLoanResponse() {
-        return new DeleteLoanResponse();
-    }
-
-    /**
      * Create an instance of {@link CreateUserResponse }
      * 
      */
     public CreateUserResponse createCreateUserResponse() {
         return new CreateUserResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetDaysLoanResponse }
+     * 
+     */
+    public GetDaysLoanResponse createGetDaysLoanResponse() {
+        return new GetDaysLoanResponse();
     }
 
     /**
@@ -450,6 +461,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ReturnLoan }
+     * 
+     */
+    public ReturnLoan createReturnLoan() {
+        return new ReturnLoan();
+    }
+
+    /**
      * Create an instance of {@link UpdateBookResponse }
      * 
      */
@@ -463,6 +482,14 @@ public class ObjectFactory {
      */
     public CreateUser createCreateUser() {
         return new CreateUser();
+    }
+
+    /**
+     * Create an instance of {@link ParseException }
+     * 
+     */
+    public ParseException createParseException() {
+        return new ParseException();
     }
 
     /**
@@ -498,19 +525,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PageBook }
-     * 
-     */
-    public PageBook createPageBook() {
-        return new PageBook();
-    }
-
-    /**
      * Create an instance of {@link Loan }
      * 
      */
     public Loan createLoan() {
         return new Loan();
+    }
+
+    /**
+     * Create an instance of {@link Pagination }
+     * 
+     */
+    public Pagination createPagination() {
+        return new Pagination();
     }
 
     /**
@@ -547,21 +574,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DeleteLoanResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "deleteLoanResponse")
-    public JAXBElement<DeleteLoanResponse> createDeleteLoanResponse(DeleteLoanResponse value) {
-        return new JAXBElement<DeleteLoanResponse>(_DeleteLoanResponse_QNAME, DeleteLoanResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CreateUserResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "createUserResponse")
     public JAXBElement<CreateUserResponse> createCreateUserResponse(CreateUserResponse value) {
         return new JAXBElement<CreateUserResponse>(_CreateUserResponse_QNAME, CreateUserResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetDaysLoanResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getDaysLoanResponse")
+    public JAXBElement<GetDaysLoanResponse> createGetDaysLoanResponse(GetDaysLoanResponse value) {
+        return new JAXBElement<GetDaysLoanResponse>(_GetDaysLoanResponse_QNAME, GetDaysLoanResponse.class, null, value);
     }
 
     /**
@@ -610,6 +637,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ReturnLoan }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "returnLoan")
+    public JAXBElement<ReturnLoan> createReturnLoan(ReturnLoan value) {
+        return new JAXBElement<ReturnLoan>(_ReturnLoan_QNAME, ReturnLoan.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link UpdateBookResponse }{@code >}}
      * 
      */
@@ -625,6 +661,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "createUser")
     public JAXBElement<CreateUser> createCreateUser(CreateUser value) {
         return new JAXBElement<CreateUser>(_CreateUser_QNAME, CreateUser.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ParseException }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "ParseException")
+    public JAXBElement<ParseException> createParseException(ParseException value) {
+        return new JAXBElement<ParseException>(_ParseException_QNAME, ParseException.class, null, value);
     }
 
     /**
@@ -745,6 +790,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetDaysLoan }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getDaysLoan")
+    public JAXBElement<GetDaysLoan> createGetDaysLoan(GetDaysLoan value) {
+        return new JAXBElement<GetDaysLoan>(_GetDaysLoan_QNAME, GetDaysLoan.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SaveMail }{@code >}}
      * 
      */
@@ -805,6 +859,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getListKindResponse")
     public JAXBElement<GetListKindResponse> createGetListKindResponse(GetListKindResponse value) {
         return new JAXBElement<GetListKindResponse>(_GetListKindResponse_QNAME, GetListKindResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ReturnLoanResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "returnLoanResponse")
+    public JAXBElement<ReturnLoanResponse> createReturnLoanResponse(ReturnLoanResponse value) {
+        return new JAXBElement<ReturnLoanResponse>(_ReturnLoanResponse_QNAME, ReturnLoanResponse.class, null, value);
     }
 
     /**
@@ -913,15 +976,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "deleteBook")
     public JAXBElement<DeleteBook> createDeleteBook(DeleteBook value) {
         return new JAXBElement<DeleteBook>(_DeleteBook_QNAME, DeleteBook.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DeleteLoan }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "deleteLoan")
-    public JAXBElement<DeleteLoan> createDeleteLoan(DeleteLoan value) {
-        return new JAXBElement<DeleteLoan>(_DeleteLoan_QNAME, DeleteLoan.class, null, value);
     }
 
     /**

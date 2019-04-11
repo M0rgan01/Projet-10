@@ -17,7 +17,6 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="book" type="{http://service.bibliotheque.com/}book" minOccurs="0"/>
- *         &lt;element name="kind" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,13 +27,11 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "updateBook", propOrder = {
-    "book",
-    "kind"
+    "book"
 })
 public class UpdateBook {
 
     protected Book book;
-    protected String kind;
 
     /**
      * Obtient la valeur de la propriété book.
@@ -58,30 +55,6 @@ public class UpdateBook {
      */
     public void setBook(Book value) {
         this.book = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété kind.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getKind() {
-        return kind;
-    }
-
-    /**
-     * Définit la valeur de la propriété kind.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setKind(String value) {
-        this.kind = value;
     }
 
 }

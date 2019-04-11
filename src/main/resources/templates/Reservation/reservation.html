@@ -35,8 +35,8 @@
 					<tr th:each="r:${listLoan}">
 						<td style="width: 15%" class="h5"
 							th:text=${r.getBook().getTitle()}></td>
-						<td th:text="${r.start_loan}"></td>
-						<td th:text=${r.end_loan}></td>
+						<td th:text="${r.startLoan}"></td>
+						<td th:text=${r.endLoan}></td>
 						<td><a th:if="${!r.extension}" class="btn btn-primary"
 							th:href="@{prolongerReservation(id=${r.id})}">Prolonger</a></td>
 					</tr>
@@ -72,8 +72,8 @@
 						<tr th:each="r:${listLoanLate}">
 							<td style="width: 15%" class="h5"
 								th:text=${r.getBook().getTitle()}></td>
-							<td class="" th:text=${r.start_loan}></td>
-							<td class="" th:text=${r.end_loan}></td>
+							<td class="" th:text=${r.startLoan}></td>
+							<td class="" th:text=${r.endLoan}></td>
 							<td><a th:if="${!r.extension && !r.late}"
 								class="btn btn-primary"
 								th:href="@{prolongerReservation(id=${r.id})}">Prolonger</a></td>
