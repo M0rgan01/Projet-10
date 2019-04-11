@@ -13,7 +13,12 @@ import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-
+/**
+ * Object representant un Mail
+ * 
+ * @author PICHAT morgan
+ *
+ */
 @Entity
 public class Mail implements Serializable{
 	
@@ -23,8 +28,18 @@ public class Mail implements Serializable{
 	@Email(message="L'adresse email n'est pas conforme")
 	@NotBlank(message="L'adresse email ne peut être vide")
 	private String email;
+	
+	/**
+	 * Token de récupération de mot de passe par email  
+	 */
 	private String token;
+	/**
+	 * Nombre d'éssais de vérification de token
+	 */
 	private int tryToken;
+	/**
+	 * Durée de validité du token
+	 */
 	private Date expiryToken;
 	
 	@OneToOne(cascade = CascadeType.ALL)

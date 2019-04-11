@@ -62,9 +62,15 @@ public class MailBusinessImpl implements MailBusiness{
 	@Override
 	public void saveMail(Mail mail, Long user_id) throws BibliothequeException {	
 		Mail mail2 = getMailByUserID(user_id);
-		validateMail(mail);
-		mail2.setEmail(mail.getEmail());
-		mailRepository.save(mail2);		
+		
+		//si le nouveau email n'est pas égal à l'ancien
+		if(!mail2.getEmail().equals(mail.getEmail())) {
+			//validation de l'email
+			validateMail(mail);
+			//mise à jour
+			mail2.setEmail(mail.getEmail());	
+			mailRepository.save(mail2);	
+		}						
 	}
 
 	@Override
@@ -79,20 +85,11 @@ public class MailBusinessImpl implements MailBusiness{
 
 	@Override
 	public void createMail(Mail mail, User user) throws BibliothequeException {
-		
-		validateMail(mail);
-		
+		//validation
+		validateMail(mail);	
+		//attribution de l'utilisateur
 		mail.setUser(user);
-		
-		Mail mail2 = getMail(mail.getEmail());
-		
-		if (mail2 != null) {
-			BibliothequeFault bibliothequeFault = new BibliothequeFault();
-			bibliothequeFault.setFaultCode("2");
-			bibliothequeFault.setFaultString("L'adresse e-mail demander est déjà utilisé");
-			
-			throw new BibliothequeException("Email utilisé", bibliothequeFault);
-		}
+		//création
 		mailRepository.save(mail);	
 	}
 
@@ -110,12 +107,16 @@ public class MailBusinessImpl implements MailBusiness{
 			
 			throw new BibliothequeException(violation.getMessage(), bibliothequeFault);
 		}
-	}
-
-	@Override
-	public void deleteMailByUserID(Long user_id) {
-		Mail mail = getMailByUserID(user_id);
-		mailRepository.delete(mail);
+		
+		Mail mail2 = getMail(mail.getEmail());
+		
+		if (mail2 != null) {
+			BibliothequeFault bibliothequeFault = new BibliothequeFault();
+			bibliothequeFault.setFaultCode("2");
+			bibliothequeFault.setFaultString("L'adresse e-mail demander est déjà utilisé");
+			
+			throw new BibliothequeException("Email utilisé", bibliothequeFault);
+		}
 	}
 
 	@Override
@@ -180,7 +181,8 @@ public class MailBusinessImpl implements MailBusiness{
 					}
 					// sinon on incrémente le nombre d'essais
 				} else {
-							
+
+					// si le nombre d'essais est supérieur ou égal à 2	
 					if (mail.getTryToken() >= 2) {
 						BibliothequeFault bibliothequeFault = new BibliothequeFault();
 						bibliothequeFault.setFaultCode("62");
@@ -190,8 +192,7 @@ public class MailBusinessImpl implements MailBusiness{
 					}
 					
 					mail.setTryToken(mail.getTryToken() +1 );
-					// si le nombre d'essais est supérieur à 2
-					
+									
 					mailRepository.save(mail);
 													
 					BibliothequeFault bibliothequeFault = new BibliothequeFault();
@@ -201,7 +202,12 @@ public class MailBusinessImpl implements MailBusiness{
 					throw new BibliothequeException("Jeton incorrect", bibliothequeFault);
 				}				
 	}
-		 
+	
+	/**
+	 * génération d'un token
+	 * 
+	 * @return token 
+	 */
 	public String generateToken() {
 		
 		SecureRandom random = new SecureRandom();
@@ -212,11 +218,13 @@ public class MailBusinessImpl implements MailBusiness{
 
 	@Override
 	public void sendMailForLateLoan() {
-		
-		
+				
+		//on récupère la list des emprunt en retard
 		List<Loan> list = loanRepository.getListLoanLate(new Date());
 		
+		//pour chaque emprunt on envoie un email de rappel 
 		for (Loan loan : list) {
+			
 			Mail mail = mailRepository.findByUserID(loan.getUser().getId());
 			
 			String[] tableau_email = { mail.getEmail() };
@@ -230,9 +238,8 @@ public class MailBusinessImpl implements MailBusiness{
 			
 			//sendMail.sendFromGMail(emailUsers, encrypt.getDecrypt(emailPassword), tableau_email, object, body);
 		}
-
-		
-		
+				
 	}
-	
+
+
 }

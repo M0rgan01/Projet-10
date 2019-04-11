@@ -5,6 +5,12 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * Object representant un Role
+ * 
+ * @author PICHAT morgan
+ *
+ */
 @Entity
 public class Roles implements Serializable{
 

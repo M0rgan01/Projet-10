@@ -11,10 +11,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ * Object representant un livre
+ * 
+ * @author PICHAT morgan
+ *
+ */
 @Entity
 public class Book implements Serializable{
 
@@ -30,10 +37,24 @@ public class Book implements Serializable{
 	@NotBlank(message="La description du livre ne peut être vide")
 	@Size(max=500, message="La description ne peut pas éxéder 500 caractères")
 	private String description;
+	
+	/**
+	 * Nombre de copies totals 
+	 */
+	@Min(value=1, message="Le nombre d'exemplaire total doit être au minimum égal à 1")
 	private int copyTotals;
+	/**
+	 * Nombre de copies disponible  
+	 */
 	private int copyAvailable;
+	/**
+	 * boolean de disponibilité  
+	 */
 	private boolean available;
-		
+	/**
+	 * boolean de désactivation  
+	 */	
+	private boolean disable;
 	@OneToMany(mappedBy="book")
 	private Collection<Loan> loans;
 	
@@ -128,6 +149,14 @@ public class Book implements Serializable{
 
 	public void setKind(Kind kind) {
 		this.kind = kind;
+	}
+
+	public boolean isDisable() {
+		return disable;
+	}
+
+	public void setDisable(boolean disable) {
+		this.disable = disable;
 	}
 
 	

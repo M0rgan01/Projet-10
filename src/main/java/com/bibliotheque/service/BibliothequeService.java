@@ -21,10 +21,17 @@ import com.bibliotheque.metier.BookBusiness;
 import com.bibliotheque.metier.KindBusiness;
 import com.bibliotheque.metier.LoanBusiness;
 import com.bibliotheque.metier.MailBusiness;
-import com.bibliotheque.metier.PageBook;
+import com.bibliotheque.metier.Pagination;
 import com.bibliotheque.metier.RolesBusiness;
 import com.bibliotheque.metier.UserBusiness;
 
+/**
+ * 
+ * Web service de gestion d'une bibliotheque
+ * 
+ * @author pichat morgan
+ *
+ */
 @Component
 @WebService(name = "BibliothequeWS")
 public class BibliothequeService {
@@ -107,29 +114,29 @@ public class BibliothequeService {
 	
 	
 	@WebMethod
-	public void createBook(@WebParam(name = "book") Book book, @WebParam(name = "kind") String kind)
+	public void createBook(@WebParam(name = "book") Book book)
 			throws BibliothequeException {
-		bookBusiness.createBook(book, kind);
+		bookBusiness.createBook(book);
 	}
 
 	@WebMethod
-	public void updateBook(@WebParam(name = "book") Book book, @WebParam(name = "kind") String kind)
+	public void updateBook(@WebParam(name = "book") Book book)
 			throws BibliothequeException {
-		bookBusiness.saveBook(book, kind);
+		bookBusiness.saveBook(book);
 	}
 
 	@WebMethod
-	public void deleteBook(Long id) {
+	public void deleteBook(Long id) throws BibliothequeException {
 		bookBusiness.deleteBook(id);
 	}
 
 	@WebMethod
-	public Book getBook(Long id) {
+	public Book getBook(Long id) throws BibliothequeException {
 		return bookBusiness.getBook(id);
 	}
 
 	@WebMethod
-	public PageBook listBook(@WebParam(name = "mot-cle") String mc, @WebParam(name = "kind") String kind,
+	public Pagination<Book> listBook(@WebParam(name = "mot-cle") String mc, @WebParam(name = "kind") String kind,
 			@WebParam(name = "available") boolean available, @WebParam(name = "page") int page,
 			@WebParam(name = "size") int size) {
 		return bookBusiness.listBook(mc, kind, available, page, size);

@@ -14,6 +14,8 @@ import com.bibliotheque.dao.LoanRepository;
 import com.bibliotheque.dao.MailRepository;
 import com.bibliotheque.dao.RolesRepository;
 import com.bibliotheque.dao.UserRepository;
+import com.bibliotheque.entities.Kind;
+import com.bibliotheque.entities.Roles;
 import com.bibliotheque.metier.LoanBusiness;
 import com.bibliotheque.metier.MailBusiness;
 
@@ -56,8 +58,8 @@ public class Projet7WebServiceApplication implements CommandLineRunner {
 //////////	
 //		Ouvrage o1 = ouvrageRepository.save(new Ouvrage("Ouvrage 1", "Auteur 1", "Description 1", true, g1, 2));
 //		Ouvrage o2 = ouvrageRepository.save(new Ouvrage("Ouvrage 2", "Auteur 2", "Description 2", true, g2, 3));
-//////	
-				
+//////				
+				//reservationMetier.createLoan(2l, 53l);
 	}
 
 }

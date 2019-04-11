@@ -12,17 +12,38 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 
+/**
+ * Object representant un emprunt
+ * 
+ * @author PICHAT morgan
+ *
+ */
 @Entity
 public class Loan implements Serializable {
 
 	@SequenceGenerator(name = "LOAN_SEQ", sequenceName = "loan_sequence")
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LOAN_SEQ")
-	private Long id;	
+	private Long id;
+	/**
+	 * Date de début d'emprunt  
+	 */
 	private Date start_loan;
+	/**
+	 * Date de fin d'emprunt  
+	 */
 	private Date end_loan;
+	/**
+	 * Boolean représentant l'extention d'un emprunt  
+	 */
 	private boolean extension;
+	/**
+	 * Boolean représentant le fait qu'un emprunt soit rendu
+	 */
 	private boolean made;
+	/**
+	 * Boolean représentant le fait qu'un emprunt soit en retard
+	 */
 	@Transient
 	private boolean late;
 

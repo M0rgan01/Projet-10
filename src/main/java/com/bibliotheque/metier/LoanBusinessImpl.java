@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
+import com.bibliotheque.dao.BookRepository;
 import com.bibliotheque.dao.LoanRepository;
 import com.bibliotheque.entities.Book;
 import com.bibliotheque.entities.Loan;
@@ -25,14 +26,14 @@ public class LoanBusinessImpl implements LoanBusiness {
 	@Autowired
 	private LoanRepository loanRepository;
 	@Autowired
-	private BookBusiness bookBusiness;
+	private BookRepository bookRepository;
 	@Autowired
 	private UserBusiness userBusiness;
 	@Value("${prolongation.days}")
 	private int extendDays;
 	@Value("${loan.days}")
 	private int loanDays;
-		
+
 	@Override
 	public void extendLoan(Long loan_ID, Long user_ID) throws BibliothequeException {
 		Loan r = loanRepository.findById(loan_ID).orElse(null);
@@ -61,6 +62,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 
 			throw new BibliothequeException("Prolongation true", bibliothequeFault);
 
+			// s'il serra en retard après extention
 		} else if (checkLate(r)) {
 
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
@@ -70,8 +72,11 @@ public class LoanBusinessImpl implements LoanBusiness {
 			throw new BibliothequeException("Retard après prolongation", bibliothequeFault);
 		}
 
+		// on règle la date sur celle désirée
 		Calendar c = Calendar.getInstance();
+		c.setTime(r.getEnd_loan());
 		c.add(Calendar.DATE, extendDays);
+
 		r.setEnd_loan(c.getTime());
 		r.setExtension(true);
 
@@ -81,7 +86,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 	@Override
 	public void returnLoan(Long id) {
 		Loan loan = loanRepository.findById(id).orElse(null);
-		loan.setMade(true);		
+		loan.setMade(true);
 		loanRepository.save(loan);
 	}
 
@@ -91,10 +96,9 @@ public class LoanBusinessImpl implements LoanBusiness {
 	}
 
 	@Override
-	public void createLoan(Long book_id, Long User_id)
-			throws BibliothequeException, ParseException {
+	public void createLoan(Long book_id, Long User_id) throws BibliothequeException, ParseException {
 		User user = userBusiness.getUser(User_id);
-		Book book = bookBusiness.getBook(book_id);
+		Book book = bookRepository.findById(book_id).orElse(null);
 
 		if (user == null) {
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
@@ -103,7 +107,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 
 			throw new BibliothequeException("ID return null", bibliothequeFault);
 
-		} else if (book == null) {
+		} else if (book == null || book.isDisable()) {
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("13");
 			bibliothequeFault.setFaultString("ID ouvrage incorrect");
@@ -119,20 +123,23 @@ public class LoanBusinessImpl implements LoanBusiness {
 			throw new BibliothequeException("Non disponible", bibliothequeFault);
 		}
 
+		// on décrémente le nombre de copy disponible
 		book.setCopyAvailable(book.getCopyAvailable() - 1);
 
+		// s'il est à 0 on rend le livre non disponible
 		if (book.getCopyAvailable() == 0)
 			book.setAvailable(false);
 
+		// on règle les dates de début et de fin
 		Calendar c = Calendar.getInstance();
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		c.setTime(sdf.parse("2018-01-25"));
+//		c.setTime(sdf.parse("2019-01-25"));
 		Date start_loan = c.getTime();
-		
-		c.add(Calendar.DATE, loanDays); // Adding 5 days
+
+		c.add(Calendar.DATE, loanDays);
 		Date end_loan = c.getTime();
-				
-		bookBusiness.saveBook(book);
+
+		bookRepository.save(book);
 		loanRepository.save(new Loan(start_loan, end_loan, user, book));
 	}
 
@@ -144,12 +151,12 @@ public class LoanBusinessImpl implements LoanBusiness {
 	@Override
 	public List<Loan> getListLoanLateByUserID(Long user_id) {
 
-		List<Loan> list = loanRepository.getListLoanLateByUserID(user_id,
-				new Date());
+		List<Loan> list = loanRepository.getListLoanLateByUserID(user_id, new Date());
 
 		for (Loan loan : list) {
+			// si l'emprunt n'est pas en extention
 			if (!loan.isExtension()) {
-
+				// on regarde s'il serra en retard après extention
 				if (checkLate(loan))
 					loan.setLate(true);
 			}
@@ -175,7 +182,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 	}
 
 	@Override
-	public int getDaysLoan() {		
+	public int getDaysLoan() {
 		return loanDays;
 	}
 

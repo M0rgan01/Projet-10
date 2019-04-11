@@ -8,7 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.xml.bind.annotation.XmlTransient;
-
+/**
+ * Object representant un genre
+ * 
+ * @author PICHAT morgan
+ *
+ */
 @Entity
 public class Kind implements Serializable{
 

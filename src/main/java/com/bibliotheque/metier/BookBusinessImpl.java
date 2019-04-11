@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import com.bibliotheque.dao.BookRepository;
 import com.bibliotheque.entities.Book;
-import com.bibliotheque.entities.Kind;
 import com.bibliotheque.exception.BibliothequeException;
 import com.bibliotheque.exception.BibliothequeFault;
 
@@ -27,17 +26,42 @@ public class BookBusinessImpl implements BookBusiness {
 	private KindBusiness kindBusiness;
 
 	@Override
-	public void deleteBook(Long id) {
-		bookRepository.deleteById(id);
+	public void deleteBook(Long id) throws BibliothequeException {
+		Book book = bookRepository.findById(id).orElse(null);
+
+		// vérification
+		if (book == null) {
+			BibliothequeFault bibliothequeFault = new BibliothequeFault();
+			bibliothequeFault.setFaultCode("11");
+			bibliothequeFault.setFaultString("Aucun ouvrage correspondant");
+			throw new BibliothequeException("Aucun ouvrage correspondant", bibliothequeFault);
+
+		} else if (book.isDisable()) {
+			BibliothequeFault bibliothequeFault = new BibliothequeFault();
+			bibliothequeFault.setFaultCode("110");
+			bibliothequeFault.setFaultString("Ouvrage déjà désactivé");
+			throw new BibliothequeException("Ouvrage déjà désactivé", bibliothequeFault);
+		}
+		//on désactive le livre
+		book.setDisable(true);
+		bookRepository.save(book);
 	}
 
 	@Override
-	public Book getBook(Long id) {
-		return bookRepository.findById(id).orElse(null);
+	public Book getBook(Long id) throws BibliothequeException {
+		Book book = bookRepository.findById(id).orElse(null);
+
+		if (book == null) {
+			BibliothequeFault bibliothequeFault = new BibliothequeFault();
+			bibliothequeFault.setFaultCode("11");
+			bibliothequeFault.setFaultString("Aucun ouvrage correspondant");
+			throw new BibliothequeException("Aucun ouvrage correspondant", bibliothequeFault);
+		}
+		return book;
 	}
 
 	@Override
-	public PageBook listBook(String mc, String kind, boolean available, int page, int size) {
+	public Pagination<Book> listBook(String mc, String kind, boolean available, int page, int size) {
 
 		Page<Book> books = null;
 
@@ -48,33 +72,30 @@ public class BookBusinessImpl implements BookBusiness {
 			books = bookRepository.getListBooks("%" + mc + "%", "%" + kind + "%", PageRequest.of(page, size));
 		}
 
-		PageBook pageBook = new PageBook();
-		pageBook.setBooks(books.getContent());
-		pageBook.setNumberBook(books.getNumberOfElements());
+		Pagination<Book> pageBook = new Pagination<Book>();
+		pageBook.setT(books.getContent());
+		pageBook.setNumberT(books.getNumberOfElements());
 		pageBook.setPage(books.getNumber());
 		pageBook.setTotalsPage(books.getTotalPages());
-		pageBook.setTotalsBooks((int) books.getTotalElements());
+		pageBook.setTotalsT((int) books.getTotalElements());
 
 		return pageBook;
 	}
 
 	@Override
-	public void createBook(Book book, String kind) throws BibliothequeException {
-
-		Kind kind2 = new Kind(kind);
-		kindBusiness.validateKind(kind2);
-
-		book.setKind(kind2);
-		book.setAvailable(true);	
-		book.setCopyAvailable(book.getCopyTotals());
-		
+	public void createBook(Book book) throws BibliothequeException {
+		// validation du genre et du livre
+		kindBusiness.validateKind(book.getKind());
 		validateBook(book);
+
+		book.setAvailable(true);
+		book.setCopyAvailable(book.getCopyTotals());
 
 		bookRepository.save(book);
 	}
 
 	@Override
-	public void saveBook(Book book, String kind) throws BibliothequeException {
+	public void saveBook(Book book) throws BibliothequeException {
 
 		Book book2 = bookRepository.findById(book.getId()).orElse(null);
 
@@ -84,32 +105,26 @@ public class BookBusinessImpl implements BookBusiness {
 			bibliothequeFault.setFaultString("Aucun ouvrage correspondant");
 			throw new BibliothequeException("Aucun ouvrage correspondant", bibliothequeFault);
 
+			// réajustement du nombre de copies disponible
 		} else if (book.getCopyTotals() != book2.getCopyTotals()) {
 
 			int a = book.getCopyTotals() - book2.getCopyTotals();
-			
+
 			book.setCopyAvailable(book.getCopyAvailable() + a);
-			
+
 			if (book.getCopyAvailable() < 0)
 				book.setCopyAvailable(0);
 
 			if (book.getCopyAvailable() == 0)
 				book.setAvailable(false);
-			
-		}
 
-		Kind kind2 = new Kind(kind);
-		kindBusiness.validateKind(kind2);
-		book.setKind(kind2);
+		}
+		//validation du genre et du livre
+		kindBusiness.validateKind(book.getKind());
 		validateBook(book);
 
 		bookRepository.save(book);
 
-	}
-
-	@Override
-	public void saveBook(Book book) {
-		bookRepository.save(book);
 	}
 
 	public void validateBook(Book book) throws BibliothequeException {

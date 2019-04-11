@@ -10,6 +10,8 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,7 @@ import com.bibliotheque.exception.BibliothequeFault;
 import com.bibliotheque.utilities.Encrypt;
 
 @Service
+@PropertySource("classpath:bibliotheque.properties")
 public class UserBusinessImpl implements UserBusiness {
 
 	@Autowired
@@ -30,20 +33,24 @@ public class UserBusinessImpl implements UserBusiness {
 	private MailBusiness mailBusiness;
 	@Autowired
 	private Encrypt encrypt;
-
+	@Value("${connection.expired.inMillis}")
+	private int minuteInMillisForConnection;
+	
 	@Override
 	public User saveUser(User user) throws BibliothequeException {
 
 		User user2 = userRepository.findById(user.getId()).orElse(null);
 
+		//si l'utilisateur à changer son pseudo
 		if (!user.getPseudo().equals(user2.getPseudo())) {
-			validateUser(user);
-			checkPseudoExist(user.getPseudo());
+			//on vérifie
+			validateUser(user);		
 			user2.setPseudo(user.getPseudo());
 		}
-
+		//si l'utilisateur à renseigner un mot de passe ou un mot de passe de confirmation
 		if (!encrypt.getDecrypt(user.getPassWord()).isEmpty() || !encrypt.getDecrypt(user.getPassWordConfirm()).isEmpty()) {
-
+			
+			//on décrypte l'ancien mot de passe
 			user.setOldPassWord(encrypt.getDecrypt(user.getOldPassWord()));
 
 			if (user.getOldPassWord().isEmpty()) {
@@ -54,6 +61,7 @@ public class UserBusinessImpl implements UserBusiness {
 
 				throw new BibliothequeException("oldMPD blank", bibliothequeFault);
 
+				// on vérifie la correspondance
 			} else if (!new BCryptPasswordEncoder().matches(user.getOldPassWord(), user2.getPassWord())) {
 
 				BibliothequeFault bibliothequeFault = new BibliothequeFault();
@@ -62,7 +70,7 @@ public class UserBusinessImpl implements UserBusiness {
 
 				throw new BibliothequeException("oldMPD invalide", bibliothequeFault);
 			}
-
+			//validation des mots de passe
 			validatePassWord(user);
 			user2.setPassWord(new BCryptPasswordEncoder().encode(user.getPassWord()));
 
@@ -74,11 +82,16 @@ public class UserBusinessImpl implements UserBusiness {
 	@Override
 	public void editPasswordByRecovery(String email, String password, String passwordConfirm) throws BibliothequeException {
 		
+		//récupération du mail
 		Mail mail = mailBusiness.getMail(email);
 		
 		User user = mail.getUser();
+		
+		//on assigne les mots de passe
 		user.setPassWord(password);
 		user.setPassWordConfirm(passwordConfirm);
+		
+		//on vérifie
 		validatePassWord(user);
 		user.setPassWord(new BCryptPasswordEncoder().encode(user.getPassWord()));
 		userRepository.save(user);
@@ -138,15 +151,19 @@ public class UserBusinessImpl implements UserBusiness {
 
 			} else {
 
+				//on incrémente le nombre d'essais
 				int a = user.getTryConnection();
 				a++;
 				user.setTryConnection(a);
 
+				// si le nombre d'essais est à 3
 				if (a == 3) {
+					
+					//on fixe un délais d'interdiction de connection
 					Calendar date = Calendar.getInstance();
 					long t = date.getTimeInMillis();
-					Date afterAddingTenMins = new Date(t + (1 * 60000));
-					user.setExpiryConnection(afterAddingTenMins);
+					Date afterAddingMins = new Date(t + (1 * minuteInMillisForConnection));
+					user.setExpiryConnection(afterAddingMins);
 					userRepository.save(user);
 
 					BibliothequeFault bibliothequeFault = new BibliothequeFault();
@@ -171,8 +188,7 @@ public class UserBusinessImpl implements UserBusiness {
 
 		validateUser(user);
 		validatePassWord(user);
-		checkPseudoExist(user.getPseudo());
-
+	
 		user.getRoles().add(new Roles("ROLE_USER"));
 		user.getRoles().add(new Roles("ROLE_ADMIN"));
 		user.setActive(true);
@@ -182,18 +198,6 @@ public class UserBusinessImpl implements UserBusiness {
 		return userRepository.save(user);
 	}
 
-	@Override
-	public void checkPseudoExist(String pseudo) throws BibliothequeException {
-		User user = userRepository.findByPseudo(pseudo);
-
-		if (user != null) {
-			BibliothequeFault bibliothequeFault = new BibliothequeFault();
-			bibliothequeFault.setFaultCode("1");
-			bibliothequeFault.setFaultString("Le pseudo demander est déjà utilisé");
-
-			throw new BibliothequeException("Pseudo utilisé", bibliothequeFault);
-		}
-	}
 
 	@Override
 	public User getUser(Long id) {
@@ -216,6 +220,15 @@ public class UserBusinessImpl implements UserBusiness {
 			throw new BibliothequeException(violation.getMessage(), bibliothequeFault);
 		}
 
+		User user2 = userRepository.findByPseudo(user.getPseudo());
+
+		if (user2 != null) {
+			BibliothequeFault bibliothequeFault = new BibliothequeFault();
+			bibliothequeFault.setFaultCode("1");
+			bibliothequeFault.setFaultString("Le pseudo demander est déjà utilisé");
+
+			throw new BibliothequeException("Pseudo utilisé", bibliothequeFault);
+		}
 	}
 
 	@Override
