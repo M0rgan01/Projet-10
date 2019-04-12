@@ -541,19 +541,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Book }
-     * 
-     */
-    public Book createBook() {
-        return new Book();
-    }
-
-    /**
      * Create an instance of {@link Roles }
      * 
      */
     public Roles createRoles() {
         return new Roles();
+    }
+
+    /**
+     * Create an instance of {@link Book }
+     * 
+     */
+    public Book createBook() {
+        return new Book();
     }
 
     /**

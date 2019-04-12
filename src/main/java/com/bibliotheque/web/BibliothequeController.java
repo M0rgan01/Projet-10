@@ -30,15 +30,19 @@ import com.bibliotheque.service.Kind;
 import com.bibliotheque.service.Loan;
 import com.bibliotheque.service.Mail;
 import com.bibliotheque.service.Pagination;
+import com.bibliotheque.service.Roles;
 import com.bibliotheque.service.User;
 import com.bibliotheque.utilities.Encrypt;
+import com.bibliotheque.utilities.Messages;
 
 @Controller
 public class BibliothequeController {
 
 	@Autowired
 	private Encrypt encrypt;
-
+	@Autowired
+	private Messages messages;
+	
 	// page d'accueil
 	@RequestMapping(value = "/")
 	public String home() {
@@ -46,12 +50,12 @@ public class BibliothequeController {
 	}
 
 	@RequestMapping("/index")
-	public String index() {
+	public String index() {	
 		return "index";
 	}
 
 	@RequestMapping(value = "/login")
-	public String login() {
+	public String login() {	
 		return "Authentification/login";
 	}
 
@@ -112,14 +116,16 @@ public class BibliothequeController {
 
 			model.addAttribute("user", user);
 			model.addAttribute("mail", mail);
-			model.addAttribute("exception", e);
+			model.addAttribute("exception", messages.get(e.getMessage()));
 			return "Authentification/inscription";
 		}
-
-		List<GrantedAuthority> grantedAuths = new ArrayList<>();
-		grantedAuths.add(new SimpleGrantedAuthority("ROLE_USER"));
-		grantedAuths.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-
+		
+		
+		List<GrantedAuthority> grantedAuths = new ArrayList<>();		
+		for (Roles roles : user.getRoles()) {		
+			grantedAuths.add(new SimpleGrantedAuthority(roles.getRole()));
+		}
+				
 		SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(
 				user.getPseudo(), user.getPassWord(), grantedAuths));
 
@@ -147,7 +153,7 @@ public class BibliothequeController {
 		} catch (BibliothequeException_Exception e) {
 			
 			model.addAttribute("email", email);
-			model.addAttribute("exception", e);
+			model.addAttribute("exception", messages.get(e.getMessage()));
 			return "Authentification/recuperation";
 		}
 		
@@ -168,7 +174,7 @@ public class BibliothequeController {
 			
 		} catch (BibliothequeException_Exception e) {
 					
-			model.addAttribute("exception", e);
+			model.addAttribute("exception", messages.get(e.getMessage()));
 			return "Authentification/insertToken";
 		}
 		
@@ -195,7 +201,7 @@ public class BibliothequeController {
 			
 		} catch (BibliothequeException_Exception e) {
 					
-			model.addAttribute("exception", e);
+			model.addAttribute("exception", messages.get(e.getMessage()));
 			return "Authentification/editPassword";
 		}
 		
@@ -236,7 +242,7 @@ public class BibliothequeController {
 			model.addAttribute("listKind", listKind);
 			model.addAttribute("book", book);
 			model.addAttribute("style", genre);
-			model.addAttribute("exception", e);
+			model.addAttribute("exception", messages.get(e.getMessage()));
 			return "EditOuvrage/ajout";
 		}
 
@@ -292,7 +298,7 @@ public class BibliothequeController {
 			model.addAttribute("listKind", listKind);
 			model.addAttribute("book", book);
 			model.addAttribute("style", genre);
-			model.addAttribute("exception", e);
+			model.addAttribute("exception", messages.get(e.getMessage()));
 			return "EditOuvrage/modificationOuvrage";
 		}
 
@@ -343,7 +349,7 @@ public class BibliothequeController {
 
 		} catch (BibliothequeException_Exception e) {
 
-			model.addAttribute("exception", e);
+			model.addAttribute("exception", messages.get(e.getMessage()));
 
 			return "Authentification/editAccount";
 		}

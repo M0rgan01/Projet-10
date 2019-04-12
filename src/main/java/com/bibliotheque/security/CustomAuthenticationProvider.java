@@ -23,6 +23,7 @@ import com.bibliotheque.service.BibliothequeWS;
 import com.bibliotheque.service.Roles;
 import com.bibliotheque.service.User;
 import com.bibliotheque.utilities.Encrypt;
+import com.bibliotheque.utilities.Messages;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
@@ -32,6 +33,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	private HttpSession httpSession;
 	@Autowired
 	private Encrypt encrypt;
+	@Autowired
+	private Messages messages;
 	
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -45,7 +48,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			user = ws.doConnection(authentication.getName(), user.getPassWord());				
 			httpSession.setAttribute("user_id", user.getId());
 		} catch (BibliothequeException_Exception e) {
-			throw new BadCredentialsException(e.getFaultInfo().getInfo().getFaultString());
+			
+			throw new BadCredentialsException(messages.get(e.getMessage()));
 		}
 
 		grantedAuths = new ArrayList<>();

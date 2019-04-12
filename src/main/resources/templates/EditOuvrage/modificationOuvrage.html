@@ -17,7 +17,7 @@
 
 						<div th:if="${exception}" class="row justify-content-center">
 							<span class="alert alert-danger"
-								th:text="${exception.getFaultInfo().getInfo().getFaultString()}"></span>
+								th:text="${exception}"></span>
 						</div>
 
 						<div th:if="${param.returnEdit}" class="alert alert-primary">

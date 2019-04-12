@@ -1,8 +1,11 @@
 
 package com.bibliotheque.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -25,6 +28,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="passWord" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="passWordConfirm" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="pseudo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="roles" type="{http://service.bibliotheque.com/}roles" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="tryConnection" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -43,6 +47,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "passWord",
     "passWordConfirm",
     "pseudo",
+    "roles",
     "tryConnection"
 })
 public class User {
@@ -55,6 +60,8 @@ public class User {
     protected String passWord;
     protected String passWordConfirm;
     protected String pseudo;
+    @XmlElement(nillable = true)
+    protected List<Roles> roles;
     protected int tryConnection;
 
     /**
@@ -215,6 +222,35 @@ public class User {
      */
     public void setPseudo(String value) {
         this.pseudo = value;
+    }
+
+    /**
+     * Gets the value of the roles property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the roles property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getRoles().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Roles }
+     * 
+     * 
+     */
+    public List<Roles> getRoles() {
+        if (roles == null) {
+            roles = new ArrayList<Roles>();
+        }
+        return this.roles;
     }
 
     /**
