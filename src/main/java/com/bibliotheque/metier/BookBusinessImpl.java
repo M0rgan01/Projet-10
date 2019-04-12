@@ -32,15 +32,15 @@ public class BookBusinessImpl implements BookBusiness {
 		// vérification
 		if (book == null) {
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
-			bibliothequeFault.setFaultCode("11");
-			bibliothequeFault.setFaultString("Aucun ouvrage correspondant");
-			throw new BibliothequeException("Aucun ouvrage correspondant", bibliothequeFault);
+			bibliothequeFault.setFaultCode("1");
+			bibliothequeFault.setFaultString("book.id.not.correct");
+			throw new BibliothequeException("book.id.not.correct", bibliothequeFault);
 
 		} else if (book.isDisable()) {
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
-			bibliothequeFault.setFaultCode("110");
-			bibliothequeFault.setFaultString("Ouvrage déjà désactivé");
-			throw new BibliothequeException("Ouvrage déjà désactivé", bibliothequeFault);
+			bibliothequeFault.setFaultCode("2");
+			bibliothequeFault.setFaultString("book.already.disable");
+			throw new BibliothequeException("book.already.disable", bibliothequeFault);
 		}
 		//on désactive le livre
 		book.setDisable(true);
@@ -53,9 +53,9 @@ public class BookBusinessImpl implements BookBusiness {
 
 		if (book == null) {
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
-			bibliothequeFault.setFaultCode("11");
-			bibliothequeFault.setFaultString("Aucun ouvrage correspondant");
-			throw new BibliothequeException("Aucun ouvrage correspondant", bibliothequeFault);
+			bibliothequeFault.setFaultCode("1");
+			bibliothequeFault.setFaultString("book.id.not.correct");
+			throw new BibliothequeException("book.id.not.correct", bibliothequeFault);
 		}
 		return book;
 	}
@@ -101,9 +101,9 @@ public class BookBusinessImpl implements BookBusiness {
 
 		if (book2 == null) {
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
-			bibliothequeFault.setFaultCode("11");
-			bibliothequeFault.setFaultString("Aucun ouvrage correspondant");
-			throw new BibliothequeException("Aucun ouvrage correspondant", bibliothequeFault);
+			bibliothequeFault.setFaultCode("1");
+			bibliothequeFault.setFaultString("book.id.not.correct");
+			throw new BibliothequeException("book.id.not.correct", bibliothequeFault);
 
 			// réajustement du nombre de copies disponible
 		} else if (book.getCopyTotals() != book2.getCopyTotals()) {

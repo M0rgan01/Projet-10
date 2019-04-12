@@ -32,8 +32,8 @@ public class User implements Serializable{
 	@Id 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="USER_SEQ")
 	private Long id;	
-	@NotBlank(message="Le pseudo ne peut être vide")
-	@Size(max=20, min=5, message="Le pseudo doit contenir minimun 5 caractères et maximum 20 caractères")
+	@NotBlank(message="user.pseudo.blank")
+	@Size(max=20, min=5, message="user.pseudo.size.not.correct")
 	private String pseudo;		
 	private String passWord;	
 	@Transient
@@ -135,7 +135,7 @@ public class User implements Serializable{
 		this.expiryConnection = expiryConnection;
 	}
 
-	@XmlTransient
+	//@XmlTransient
 	public Collection<Roles> getRoles() {
 		return roles;
 	}

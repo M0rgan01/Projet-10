@@ -112,10 +112,10 @@ public class MailBusinessImpl implements MailBusiness{
 		
 		if (mail2 != null) {
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
-			bibliothequeFault.setFaultCode("2");
-			bibliothequeFault.setFaultString("L'adresse e-mail demander est déjà utilisé");
+			bibliothequeFault.setFaultCode("7");
+			bibliothequeFault.setFaultString("mail.email.already.exist");
 			
-			throw new BibliothequeException("Email utilisé", bibliothequeFault);
+			throw new BibliothequeException("mail.email.already.exist", bibliothequeFault);
 		}
 	}
 
@@ -126,17 +126,17 @@ public class MailBusinessImpl implements MailBusiness{
 		
 		if (mail == null) {
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
-			bibliothequeFault.setFaultCode("50");
-			bibliothequeFault.setFaultString("Aucune addresse corresponde");
+			bibliothequeFault.setFaultCode("8");
+			bibliothequeFault.setFaultString("mail.email.not.correct");
 			
-			throw new BibliothequeException("Email non correct", bibliothequeFault);
+			throw new BibliothequeException("mail.email.not.correct", bibliothequeFault);
 			
 		}else if(!mail.getUser().isActive()) {
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
-			bibliothequeFault.setFaultCode("51");
-			bibliothequeFault.setFaultString("Compte désactivé");
+			bibliothequeFault.setFaultCode("9");
+			bibliothequeFault.setFaultString("user.not.active");
 
-			throw new BibliothequeException("Ce compte à été désactivé", bibliothequeFault);
+			throw new BibliothequeException("user.not.active", bibliothequeFault);
 			
 		}
 		
@@ -174,10 +174,10 @@ public class MailBusinessImpl implements MailBusiness{
 					if (!new Date().before(mail.getExpiryToken())) {
 															
 						BibliothequeFault bibliothequeFault = new BibliothequeFault();
-						bibliothequeFault.setFaultCode("61");
-						bibliothequeFault.setFaultString("La durée de validité du jeton est écoulé");
+						bibliothequeFault.setFaultCode("10");
+						bibliothequeFault.setFaultString("mail.token.expiry");
 						
-						throw new BibliothequeException("Token time not valide", bibliothequeFault);
+						throw new BibliothequeException("mail.token.expiry", bibliothequeFault);
 					}
 					// sinon on incrémente le nombre d'essais
 				} else {
@@ -185,10 +185,10 @@ public class MailBusinessImpl implements MailBusiness{
 					// si le nombre d'essais est supérieur ou égal à 2	
 					if (mail.getTryToken() >= 2) {
 						BibliothequeFault bibliothequeFault = new BibliothequeFault();
-						bibliothequeFault.setFaultCode("62");
-						bibliothequeFault.setFaultString("Nombre d'essais du token dépassé");
+						bibliothequeFault.setFaultCode("11");
+						bibliothequeFault.setFaultString("mail.token.try.out");
 						
-						throw new BibliothequeException("Essais token dépassé", bibliothequeFault);
+						throw new BibliothequeException("mail.token.try.out", bibliothequeFault);
 					}
 					
 					mail.setTryToken(mail.getTryToken() +1 );
@@ -196,10 +196,10 @@ public class MailBusinessImpl implements MailBusiness{
 					mailRepository.save(mail);
 													
 					BibliothequeFault bibliothequeFault = new BibliothequeFault();
-					bibliothequeFault.setFaultCode("63");
-					bibliothequeFault.setFaultString("Jeton incorrect");
+					bibliothequeFault.setFaultCode("12");
+					bibliothequeFault.setFaultString("mail.token.not.correct");
 					
-					throw new BibliothequeException("Jeton incorrect", bibliothequeFault);
+					throw new BibliothequeException("mail.token.not.correct", bibliothequeFault);
 				}				
 	}
 	

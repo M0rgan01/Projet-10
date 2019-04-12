@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Kind implements Serializable{
 
 	@Id 
-	@NotBlank(message="Le genre du livre ne peut être vide")
+	@NotBlank(message="kind.name.blank")
 	private String name;
 		
 	@OneToMany(mappedBy="kind")

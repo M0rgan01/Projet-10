@@ -25,8 +25,8 @@ public class Mail implements Serializable{
 	@SequenceGenerator(name="MAIL_SEQ", sequenceName="mail_sequence")
 	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="MAIL_SEQ")
 	private Long id;
-	@Email(message="L'adresse email n'est pas conforme")
-	@NotBlank(message="L'adresse email ne peut être vide")
+	@Email(message="mail.email.not.true")
+	@NotBlank(message="mail.email.blank")
 	private String email;
 	
 	/**

@@ -41,35 +41,35 @@ public class LoanBusinessImpl implements LoanBusiness {
 		if (r == null) {
 
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
-			bibliothequeFault.setFaultCode("30");
-			bibliothequeFault.setFaultString("ID reservation incorrect");
+			bibliothequeFault.setFaultCode("3");
+			bibliothequeFault.setFaultString("loan.id.not.correct");
 
-			throw new BibliothequeException("ID return null", bibliothequeFault);
+			throw new BibliothequeException("loan.id.not.correct", bibliothequeFault);
 
 		} else if (r.getUser().getId() != user_ID) {
 
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
-			bibliothequeFault.setFaultCode("31");
-			bibliothequeFault.setFaultString("ID utilisateur incorrect");
+			bibliothequeFault.setFaultCode("4");
+			bibliothequeFault.setFaultString("user.id.not.correct");
 
-			throw new BibliothequeException("ID utilisateur incorrect", bibliothequeFault);
+			throw new BibliothequeException("user.id.not.correct", bibliothequeFault);
 
 		} else if (r.isExtension()) {
 
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
-			bibliothequeFault.setFaultCode("32");
-			bibliothequeFault.setFaultString("Réservation déjà prolonger");
+			bibliothequeFault.setFaultCode("5");
+			bibliothequeFault.setFaultString("loan.already.extention");
 
-			throw new BibliothequeException("Prolongation true", bibliothequeFault);
+			throw new BibliothequeException("loan.already.extention", bibliothequeFault);
 
 			// s'il serra en retard après extention
 		} else if (checkLate(r)) {
 
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
-			bibliothequeFault.setFaultCode("33");
-			bibliothequeFault.setFaultString("Retard après prolongation");
+			bibliothequeFault.setFaultCode("6");
+			bibliothequeFault.setFaultString("loan.late.after.extention");
 
-			throw new BibliothequeException("Retard après prolongation", bibliothequeFault);
+			throw new BibliothequeException("loan.late.after.extention", bibliothequeFault);
 		}
 
 		// on règle la date sur celle désirée
@@ -102,25 +102,25 @@ public class LoanBusinessImpl implements LoanBusiness {
 
 		if (user == null) {
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
-			bibliothequeFault.setFaultCode("12");
-			bibliothequeFault.setFaultString("ID utilisateur incorrect");
+			bibliothequeFault.setFaultCode("4");
+			bibliothequeFault.setFaultString("user.id.not.correct");
 
-			throw new BibliothequeException("ID return null", bibliothequeFault);
+			throw new BibliothequeException("user.id.not.correct", bibliothequeFault);
 
 		} else if (book == null || book.isDisable()) {
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
-			bibliothequeFault.setFaultCode("13");
-			bibliothequeFault.setFaultString("ID ouvrage incorrect");
+			bibliothequeFault.setFaultCode("1");
+			bibliothequeFault.setFaultString("book.id.not.correct");
 
-			throw new BibliothequeException("ID return null", bibliothequeFault);
+			throw new BibliothequeException("book.id.not.correct", bibliothequeFault);
 		}
 
 		if (book.getCopyAvailable() == 0) {
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
-			bibliothequeFault.setFaultCode("14");
-			bibliothequeFault.setFaultString("Ouvrage non disponible au prêt pour cette période");
+			bibliothequeFault.setFaultCode("6");
+			bibliothequeFault.setFaultString("loan.book.not.available");
 
-			throw new BibliothequeException("Non disponible", bibliothequeFault);
+			throw new BibliothequeException("loan.book.not.available", bibliothequeFault);
 		}
 
 		// on décrémente le nombre de copy disponible

@@ -28,20 +28,20 @@ public class Book implements Serializable{
 	@SequenceGenerator(name="BOOK_SEQ", sequenceName="book_sequence")
 	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="BOOK_SEQ")
 	private Long id;
-	@NotBlank(message="Le titre du livre ne peut être vide")
-	@Size(max=20, min=5, message="Le titre doit contenir minimun 5 caractères et maximum 20 caractères")
+	@NotBlank(message="book.title.blank")
+	@Size(max=20, min=5, message="book.title.size.not.correct")
 	private String title;
-	@NotBlank(message="L'auteur du livre ne peut être vide")
-	@Size(max=20, message="L'auteur ne peut pas éxéder 20 caractères")
+	@NotBlank(message="book.author.blank")
+	@Size(max=20, message="book.author.size.not.correct")
 	private String author;
-	@NotBlank(message="La description du livre ne peut être vide")
-	@Size(max=500, message="La description ne peut pas éxéder 500 caractères")
+	@NotBlank(message="book.description.blank")
+	@Size(max=500, message="book.descritpion.size.not.correct")
 	private String description;
 	
 	/**
 	 * Nombre de copies totals 
 	 */
-	@Min(value=1, message="Le nombre d'exemplaire total doit être au minimum égal à 1")
+	@Min(value=1, message="book.copyTotals.value.not.correct")
 	private int copyTotals;
 	/**
 	 * Nombre de copies disponible  
