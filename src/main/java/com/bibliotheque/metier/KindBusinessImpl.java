@@ -8,6 +8,8 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,18 +24,23 @@ public class KindBusinessImpl implements KindBusiness{
 	@Autowired
 	private KindRepository kindRepository;
 	
+	private static final Logger logger = LoggerFactory.getLogger(KindBusinessImpl.class);
+	
 	@Override
 	public void saveKind(Kind kind) {
 		kindRepository.save(kind);
+		logger.info("save kind" + kind.getName());
 	}
 
 	@Override
-	public List<Kind> getListKind() {		
+	public List<Kind> getListKind() {	
+		logger.info("Return list of kind");
 		return kindRepository.findAll();
 	}
 
 	@Override
 	public Kind getKind(String name) {		
+		logger.info("get kind " + name);
 		return kindRepository.findById(name).orElse(null);
 	}
 
@@ -47,6 +54,8 @@ public class KindBusinessImpl implements KindBusiness{
 
 		for (ConstraintViolation<Kind> violation : violations) {
 
+			logger.error("Kind " + violation.getPropertyPath() + " incorrect : " + violation.getMessage());
+			
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultString(violation.getMessage());
 

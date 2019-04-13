@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -34,12 +36,14 @@ public class LoanBusinessImpl implements LoanBusiness {
 	@Value("${loan.days}")
 	private int loanDays;
 
+	private static final Logger logger = LoggerFactory.getLogger(LoanBusinessImpl.class);
+	
 	@Override
 	public void extendLoan(Long loan_ID, Long user_ID) throws BibliothequeException {
 		Loan r = loanRepository.findById(loan_ID).orElse(null);
 
 		if (r == null) {
-
+			logger.error("loan id " + loan_ID + " not correct");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("3");
 			bibliothequeFault.setFaultString("loan.id.not.correct");
@@ -48,6 +52,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 
 		} else if (r.getUser().getId() != user_ID) {
 
+			logger.error("utilisateur id " + user_ID + " not correct");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("4");
 			bibliothequeFault.setFaultString("user.id.not.correct");
@@ -56,6 +61,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 
 		} else if (r.isExtension()) {
 
+			logger.error("loan " + loan_ID + " already in extention");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("5");
 			bibliothequeFault.setFaultString("loan.already.extention");
@@ -65,6 +71,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 			// s'il serra en retard après extention
 		} else if (checkLate(r)) {
 
+			logger.error("loan " + loan_ID + " late after extention");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("6");
 			bibliothequeFault.setFaultString("loan.late.after.extention");
@@ -81,6 +88,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 		r.setExtension(true);
 
 		loanRepository.save(r);
+		logger.info("Add " + extendDays + " days to loan " + loan_ID);
 	}
 
 	@Override
@@ -88,10 +96,12 @@ public class LoanBusinessImpl implements LoanBusiness {
 		Loan loan = loanRepository.findById(id).orElse(null);
 		loan.setMade(true);
 		loanRepository.save(loan);
+		logger.info("Close the loan " + id);
 	}
 
 	@Override
 	public Loan getLoan(Long id) {
+		logger.info("Get loan " + id);
 		return loanRepository.findById(id).orElse(null);
 	}
 
@@ -101,6 +111,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 		Book book = bookRepository.findById(book_id).orElse(null);
 
 		if (user == null) {
+			logger.error("user id " + User_id + " not correct");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("4");
 			bibliothequeFault.setFaultString("user.id.not.correct");
@@ -108,6 +119,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 			throw new BibliothequeException("user.id.not.correct", bibliothequeFault);
 
 		} else if (book == null || book.isDisable()) {
+			logger.error("book id " + book_id + " not correct");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("1");
 			bibliothequeFault.setFaultString("book.id.not.correct");
@@ -116,6 +128,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 		}
 
 		if (book.getCopyAvailable() == 0) {
+			logger.error("book " + book_id + " not available");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("6");
 			bibliothequeFault.setFaultString("loan.book.not.available");
@@ -140,17 +153,20 @@ public class LoanBusinessImpl implements LoanBusiness {
 		Date end_loan = c.getTime();
 
 		bookRepository.save(book);
-		loanRepository.save(new Loan(start_loan, end_loan, user, book));
+		logger.info("Update book " + book.getId());
+		Loan loan = loanRepository.save(new Loan(start_loan, end_loan, user, book));
+		logger.info("Create loan " + loan.getId());
 	}
 
 	@Override
 	public List<Loan> getListLoanByUserID(Long user_id) {
+		logger.info("Get list of loan not late for user id " + user_id);
 		return loanRepository.getListLoanByUserID(user_id, new Date());
 	}
 
 	@Override
 	public List<Loan> getListLoanLateByUserID(Long user_id) {
-
+				
 		List<Loan> list = loanRepository.getListLoanLateByUserID(user_id, new Date());
 
 		for (Loan loan : list) {
@@ -161,6 +177,9 @@ public class LoanBusinessImpl implements LoanBusiness {
 					loan.setLate(true);
 			}
 		}
+		
+		logger.info("Get list of loan late for user id " + user_id);
+		
 		return list;
 	}
 
@@ -187,7 +206,8 @@ public class LoanBusinessImpl implements LoanBusiness {
 	}
 
 	@Override
-	public List<Loan> getListLoanLate() {		
+	public List<Loan> getListLoanLate() {
+		logger.info("Get list of loan late");		
 		return loanRepository.getListLoanLate(new Date());
 	}
 

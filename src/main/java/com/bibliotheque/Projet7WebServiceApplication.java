@@ -1,7 +1,5 @@
 package com.bibliotheque;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -36,8 +34,6 @@ public class Projet7WebServiceApplication implements CommandLineRunner {
 	private LoanBusiness reservationMetier;
 	@Autowired
 	private MailBusiness mailBusiness;
-	
-	public static final Logger logger = LoggerFactory.getLogger(Projet7WebServiceApplication.class);
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Projet7WebServiceApplication.class, args);

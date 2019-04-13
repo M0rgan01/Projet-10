@@ -135,7 +135,7 @@ public class User implements Serializable{
 		this.expiryConnection = expiryConnection;
 	}
 
-	//@XmlTransient
+	@XmlTransient
 	public Collection<Roles> getRoles() {
 		return roles;
 	}

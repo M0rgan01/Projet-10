@@ -7,6 +7,8 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,19 +26,23 @@ public class BookBusinessImpl implements BookBusiness {
 	private BookRepository bookRepository;
 	@Autowired
 	private KindBusiness kindBusiness;
-
+	
+	private static final Logger logger = LoggerFactory.getLogger(BookBusinessImpl.class);
+	
 	@Override
 	public void deleteBook(Long id) throws BibliothequeException {
 		Book book = bookRepository.findById(id).orElse(null);
 
 		// vérification
 		if (book == null) {
+			logger.error("id book "+ id + " not correct");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("1");
 			bibliothequeFault.setFaultString("book.id.not.correct");
 			throw new BibliothequeException("book.id.not.correct", bibliothequeFault);
 
 		} else if (book.isDisable()) {
+			logger.error("book" + book.getId() + "already disable");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("2");
 			bibliothequeFault.setFaultString("book.already.disable");
@@ -45,6 +51,7 @@ public class BookBusinessImpl implements BookBusiness {
 		//on désactive le livre
 		book.setDisable(true);
 		bookRepository.save(book);
+		logger.info("Success set disable to book" + book.getId() );
 	}
 
 	@Override
@@ -52,11 +59,13 @@ public class BookBusinessImpl implements BookBusiness {
 		Book book = bookRepository.findById(id).orElse(null);
 
 		if (book == null) {
+			logger.error("id book "+ id + " not correct");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("1");
 			bibliothequeFault.setFaultString("book.id.not.correct");
 			throw new BibliothequeException("book.id.not.correct", bibliothequeFault);
 		}
+		logger.info("Success get book " + book.getId());
 		return book;
 	}
 
@@ -78,7 +87,7 @@ public class BookBusinessImpl implements BookBusiness {
 		pageBook.setPage(books.getNumber());
 		pageBook.setTotalsPage(books.getTotalPages());
 		pageBook.setTotalsT((int) books.getTotalElements());
-
+		logger.info("Return pageBook of" + pageBook.getNumberT() + " elements");
 		return pageBook;
 	}
 
@@ -92,6 +101,7 @@ public class BookBusinessImpl implements BookBusiness {
 		book.setCopyAvailable(book.getCopyTotals());
 
 		bookRepository.save(book);
+		logger.info("Create book" + book.getId());
 	}
 
 	@Override
@@ -100,6 +110,7 @@ public class BookBusinessImpl implements BookBusiness {
 		Book book2 = bookRepository.findById(book.getId()).orElse(null);
 
 		if (book2 == null) {
+			logger.error("id book "+ book.getId() + " not correct");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("1");
 			bibliothequeFault.setFaultString("book.id.not.correct");
@@ -115,6 +126,7 @@ public class BookBusinessImpl implements BookBusiness {
 			if (book.getCopyAvailable() < 0)
 				book.setCopyAvailable(0);
 
+			// s'il est à 0 on rend le livre non disponible
 			if (book.getCopyAvailable() == 0)
 				book.setAvailable(false);
 
@@ -122,9 +134,9 @@ public class BookBusinessImpl implements BookBusiness {
 		//validation du genre et du livre
 		kindBusiness.validateKind(book.getKind());
 		validateBook(book);
-
+		
 		bookRepository.save(book);
-
+		logger.info("update book " + book.getId());
 	}
 
 	public void validateBook(Book book) throws BibliothequeException {
@@ -135,7 +147,7 @@ public class BookBusinessImpl implements BookBusiness {
 		Set<ConstraintViolation<Book>> violations2 = validator.validate(book);
 
 		for (ConstraintViolation<Book> violation : violations2) {
-
+			logger.error("Book " + violation.getPropertyPath() + " incorrect : " + violation.getMessage());
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultString(violation.getMessage());
 

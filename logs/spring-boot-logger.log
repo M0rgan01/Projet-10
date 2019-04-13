@@ -34,3 +34,430 @@ Using generated security password: a493aff4-5f97-4d68-8021-33387cafe186
 2019-04-13 14:20:00,333 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8085"]
 2019-04-13 14:20:00,347 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8085 (http) with context path ''
 2019-04-13 14:20:00,348 INFO org.springframework.boot.StartupInfoLogger [main] Started Projet7WebServiceApplication in 4.402 seconds (JVM running for 4.714)
+2019-04-13 15:37:00,199 INFO org.springframework.boot.StartupInfoLogger [main] Starting Projet7WebServiceApplication on DESKTOP-GFBBSE4 with PID 11088 (started by picha in C:\Users\picha\Desktop\Projet 7\Projet7-WebService)
+2019-04-13 15:37:00,201 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-04-13 15:37:00,201 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-04-13 15:37:00,678 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-04-13 15:37:00,751 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 67ms. Found 6 repository interfaces.
+2019-04-13 15:37:01,031 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c3f316e9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-04-13 15:37:01,326 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8085 (http)
+2019-04-13 15:37:01,337 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8085"]
+2019-04-13 15:37:01,344 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2019-04-13 15:37:01,344 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-04-13 15:37:01,351 INFO org.apache.juli.logging.DirectJDKLog [main] The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_201/bin/server;C:/Program Files/Java/jre1.8.0_201/bin;C:/Program Files/Java/jre1.8.0_201/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Users\picha\AppData\Local\Microsoft\WindowsApps;;C:\Users\picha\Desktop;;.]
+2019-04-13 15:37:01,449 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2019-04-13 15:37:01,450 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1223 ms
+2019-04-13 15:37:01,577 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2019-04-13 15:37:01,661 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2019-04-13 15:37:01,698 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-04-13 15:37:01,741 INFO org.hibernate.Version [main] HHH000412: Hibernate Core {5.3.7.Final}
+2019-04-13 15:37:01,741 INFO org.hibernate.cfg.Environment [main] HHH000206: hibernate.properties not found
+2019-04-13 15:37:01,843 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-04-13 15:37:01,953 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2019-04-13 15:37:01,964 INFO org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl [main] HHH000422: Disabling contextual LOB creation as connection was null
+2019-04-13 15:37:01,968 INFO org.hibernate.type.BasicTypeRegistry [main] HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@596a7f44
+2019-04-13 15:37:02,483 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-04-13 15:37:02,714 INFO org.hibernate.hql.internal.QueryTranslatorFactoryInitiator [main] HHH000397: Using ASTQueryTranslatorFactory
+2019-04-13 15:37:03,367 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-13 15:37:03,403 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-04-13 15:37:03,613 INFO org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration [main] 
+
+Using generated security password: 66625599-6f94-44e6-9faa-a63af58ba965
+
+2019-04-13 15:37:03,712 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@22899683, org.springframework.security.web.context.SecurityContextPersistenceFilter@3ba46845, org.springframework.security.web.header.HeaderWriterFilter@195498aa, org.springframework.security.web.csrf.CsrfFilter@6697f3d, org.springframework.security.web.authentication.logout.LogoutFilter@63b4b9c6, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@661db63e, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@ccd000e, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@40017e98, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@2bb3f39e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@592cb470, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@b8b2184, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4fbe486c, org.springframework.security.web.session.SessionManagementFilter@793d09e, org.springframework.security.web.access.ExceptionTranslationFilter@49e0b123, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@70ee9d31]
+2019-04-13 15:37:03,765 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8085"]
+2019-04-13 15:37:03,779 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8085 (http) with context path ''
+2019-04-13 15:37:03,782 INFO org.springframework.boot.StartupInfoLogger [main] Started Projet7WebServiceApplication in 3.852 seconds (JVM running for 4.102)
+2019-04-13 15:37:19,870 ERROR com.sun.xml.internal.ws.server.sei.TieHandler [pool-1-thread-1] null
+org.jasypt.exceptions.EncryptionOperationNotPossibleException: null
+	at org.jasypt.encryption.pbe.StandardPBEByteEncryptor.decrypt(StandardPBEByteEncryptor.java:1055)
+	at org.jasypt.encryption.pbe.StandardPBEStringEncryptor.decrypt(StandardPBEStringEncryptor.java:725)
+	at com.bibliotheque.utilities.Encrypt.getDecrypt(Encrypt.java:43)
+	at com.bibliotheque.metier.MailBusinessImpl.sendToken(MailBusinessImpl.java:153)
+	at com.bibliotheque.service.BibliothequeService.sendToken(BibliothequeService.java:99)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.sun.xml.internal.ws.api.server.MethodUtil.invoke(MethodUtil.java:68)
+	at com.sun.xml.internal.ws.api.server.InstanceResolver$1.invoke(InstanceResolver.java:235)
+	at com.sun.xml.internal.ws.server.InvokerTube$2.invoke(InvokerTube.java:134)
+	at com.sun.xml.internal.ws.server.sei.SEIInvokerTube.processRequest(SEIInvokerTube.java:73)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.server.WSEndpointImpl$2.process(WSEndpointImpl.java:404)
+	at com.sun.xml.internal.ws.transport.http.HttpAdapter$HttpToolkit.handle(HttpAdapter.java:706)
+	at com.sun.xml.internal.ws.transport.http.HttpAdapter.handle(HttpAdapter.java:260)
+	at com.sun.xml.internal.ws.transport.http.server.WSHttpHandler.handleExchange(WSHttpHandler.java:98)
+	at com.sun.xml.internal.ws.transport.http.server.WSHttpHandler.handle(WSHttpHandler.java:82)
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79)
+	at sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:83)
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:82)
+	at sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:675)
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79)
+	at sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:647)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2019-04-13 15:39:04,858 INFO org.springframework.boot.StartupInfoLogger [main] Starting Projet7WebServiceApplication on DESKTOP-GFBBSE4 with PID 15884 (started by picha in C:\Users\picha\Desktop\Projet 7\Projet7-WebService)
+2019-04-13 15:39:04,859 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-04-13 15:39:04,860 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-04-13 15:39:05,346 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-04-13 15:39:05,418 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 67ms. Found 6 repository interfaces.
+2019-04-13 15:39:05,703 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$cae1f1d8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-04-13 15:39:06,009 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8085 (http)
+2019-04-13 15:39:06,020 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8085"]
+2019-04-13 15:39:06,028 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2019-04-13 15:39:06,028 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-04-13 15:39:06,035 INFO org.apache.juli.logging.DirectJDKLog [main] The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_201/bin/server;C:/Program Files/Java/jre1.8.0_201/bin;C:/Program Files/Java/jre1.8.0_201/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Users\picha\AppData\Local\Microsoft\WindowsApps;;C:\Users\picha\Desktop;;.]
+2019-04-13 15:39:06,117 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2019-04-13 15:39:06,117 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1228 ms
+2019-04-13 15:39:06,274 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2019-04-13 15:39:06,345 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2019-04-13 15:39:06,386 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-04-13 15:39:06,434 INFO org.hibernate.Version [main] HHH000412: Hibernate Core {5.3.7.Final}
+2019-04-13 15:39:06,435 INFO org.hibernate.cfg.Environment [main] HHH000206: hibernate.properties not found
+2019-04-13 15:39:06,554 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-04-13 15:39:06,662 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2019-04-13 15:39:06,673 INFO org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl [main] HHH000422: Disabling contextual LOB creation as connection was null
+2019-04-13 15:39:06,677 INFO org.hibernate.type.BasicTypeRegistry [main] HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@526b2f3e
+2019-04-13 15:39:07,205 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-04-13 15:39:07,496 INFO org.hibernate.hql.internal.QueryTranslatorFactoryInitiator [main] HHH000397: Using ASTQueryTranslatorFactory
+2019-04-13 15:39:08,342 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-13 15:39:08,381 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-04-13 15:39:08,557 INFO org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration [main] 
+
+Using generated security password: 0cfda308-a42f-4d3f-9a06-88c44953100d
+
+2019-04-13 15:39:08,644 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@429f0ca8, org.springframework.security.web.context.SecurityContextPersistenceFilter@1c8f71a7, org.springframework.security.web.header.HeaderWriterFilter@44ddb518, org.springframework.security.web.csrf.CsrfFilter@5ddb302, org.springframework.security.web.authentication.logout.LogoutFilter@45424c0, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@a55e82a, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6921cfa, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@6b030101, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@2b2b7e3c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@67a6a2d0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@592cb470, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@60a4e619, org.springframework.security.web.session.SessionManagementFilter@6654ca0d, org.springframework.security.web.access.ExceptionTranslationFilter@72a34537, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@33a71d23]
+2019-04-13 15:39:08,692 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8085"]
+2019-04-13 15:39:08,704 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8085 (http) with context path ''
+2019-04-13 15:39:08,706 INFO org.springframework.boot.StartupInfoLogger [main] Started Projet7WebServiceApplication in 4.125 seconds (JVM running for 4.384)
+2019-04-13 15:39:09,303 ERROR com.sun.xml.internal.ws.server.sei.TieHandler [pool-1-thread-1] null
+org.jasypt.exceptions.EncryptionOperationNotPossibleException: null
+	at org.jasypt.encryption.pbe.StandardPBEByteEncryptor.decrypt(StandardPBEByteEncryptor.java:1055)
+	at org.jasypt.encryption.pbe.StandardPBEStringEncryptor.decrypt(StandardPBEStringEncryptor.java:725)
+	at com.bibliotheque.utilities.Encrypt.getDecrypt(Encrypt.java:43)
+	at com.bibliotheque.metier.MailBusinessImpl.sendToken(MailBusinessImpl.java:154)
+	at com.bibliotheque.service.BibliothequeService.sendToken(BibliothequeService.java:99)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.sun.xml.internal.ws.api.server.MethodUtil.invoke(MethodUtil.java:68)
+	at com.sun.xml.internal.ws.api.server.InstanceResolver$1.invoke(InstanceResolver.java:235)
+	at com.sun.xml.internal.ws.server.InvokerTube$2.invoke(InvokerTube.java:134)
+	at com.sun.xml.internal.ws.server.sei.SEIInvokerTube.processRequest(SEIInvokerTube.java:73)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.server.WSEndpointImpl$2.process(WSEndpointImpl.java:404)
+	at com.sun.xml.internal.ws.transport.http.HttpAdapter$HttpToolkit.handle(HttpAdapter.java:706)
+	at com.sun.xml.internal.ws.transport.http.HttpAdapter.handle(HttpAdapter.java:260)
+	at com.sun.xml.internal.ws.transport.http.server.WSHttpHandler.handleExchange(WSHttpHandler.java:98)
+	at com.sun.xml.internal.ws.transport.http.server.WSHttpHandler.handle(WSHttpHandler.java:82)
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79)
+	at sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:83)
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:82)
+	at sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:675)
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79)
+	at sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:647)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2019-04-13 15:39:53,504 ERROR com.sun.xml.internal.ws.server.sei.TieHandler [pool-1-thread-1] null
+org.jasypt.exceptions.EncryptionOperationNotPossibleException: null
+	at org.jasypt.encryption.pbe.StandardPBEByteEncryptor.decrypt(StandardPBEByteEncryptor.java:1055)
+	at org.jasypt.encryption.pbe.StandardPBEStringEncryptor.decrypt(StandardPBEStringEncryptor.java:725)
+	at com.bibliotheque.utilities.Encrypt.getDecrypt(Encrypt.java:43)
+	at com.bibliotheque.metier.MailBusinessImpl.sendToken(MailBusinessImpl.java:154)
+	at com.bibliotheque.service.BibliothequeService.sendToken(BibliothequeService.java:99)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.sun.xml.internal.ws.api.server.MethodUtil.invoke(MethodUtil.java:68)
+	at com.sun.xml.internal.ws.api.server.InstanceResolver$1.invoke(InstanceResolver.java:235)
+	at com.sun.xml.internal.ws.server.InvokerTube$2.invoke(InvokerTube.java:134)
+	at com.sun.xml.internal.ws.server.sei.SEIInvokerTube.processRequest(SEIInvokerTube.java:73)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.server.WSEndpointImpl$2.process(WSEndpointImpl.java:404)
+	at com.sun.xml.internal.ws.transport.http.HttpAdapter$HttpToolkit.handle(HttpAdapter.java:706)
+	at com.sun.xml.internal.ws.transport.http.HttpAdapter.handle(HttpAdapter.java:260)
+	at com.sun.xml.internal.ws.transport.http.server.WSHttpHandler.handleExchange(WSHttpHandler.java:98)
+	at com.sun.xml.internal.ws.transport.http.server.WSHttpHandler.handle(WSHttpHandler.java:82)
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79)
+	at sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:83)
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:82)
+	at sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:675)
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79)
+	at sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:647)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+2019-04-13 15:40:05,244 INFO org.springframework.boot.StartupInfoLogger [main] Starting Projet7WebServiceApplication on DESKTOP-GFBBSE4 with PID 11788 (started by picha in C:\Users\picha\Desktop\Projet 7\Projet7-WebService)
+2019-04-13 15:40:05,245 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-04-13 15:40:05,246 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-04-13 15:40:05,714 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-04-13 15:40:05,786 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 67ms. Found 6 repository interfaces.
+2019-04-13 15:40:06,062 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$32772f67] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-04-13 15:40:06,356 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8085 (http)
+2019-04-13 15:40:06,368 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8085"]
+2019-04-13 15:40:06,375 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2019-04-13 15:40:06,376 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-04-13 15:40:06,382 INFO org.apache.juli.logging.DirectJDKLog [main] The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_201/bin/server;C:/Program Files/Java/jre1.8.0_201/bin;C:/Program Files/Java/jre1.8.0_201/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Users\picha\AppData\Local\Microsoft\WindowsApps;;C:\Users\picha\Desktop;;.]
+2019-04-13 15:40:06,480 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2019-04-13 15:40:06,481 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1207 ms
+2019-04-13 15:40:06,599 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2019-04-13 15:40:06,696 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2019-04-13 15:40:06,734 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-04-13 15:40:06,776 INFO org.hibernate.Version [main] HHH000412: Hibernate Core {5.3.7.Final}
+2019-04-13 15:40:06,777 INFO org.hibernate.cfg.Environment [main] HHH000206: hibernate.properties not found
+2019-04-13 15:40:06,873 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-04-13 15:40:06,992 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2019-04-13 15:40:07,004 INFO org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl [main] HHH000422: Disabling contextual LOB creation as connection was null
+2019-04-13 15:40:07,008 INFO org.hibernate.type.BasicTypeRegistry [main] HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@28f9fedd
+2019-04-13 15:40:07,528 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-04-13 15:40:07,740 INFO org.hibernate.hql.internal.QueryTranslatorFactoryInitiator [main] HHH000397: Using ASTQueryTranslatorFactory
+2019-04-13 15:40:08,411 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-13 15:40:08,444 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-04-13 15:40:08,613 INFO org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration [main] 
+
+Using generated security password: 1e1948ee-da03-49f4-a3a0-51c415ab0c95
+
+2019-04-13 15:40:08,696 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@428eb3d5, org.springframework.security.web.context.SecurityContextPersistenceFilter@45424c0, org.springframework.security.web.header.HeaderWriterFilter@523abba9, org.springframework.security.web.csrf.CsrfFilter@72a34537, org.springframework.security.web.authentication.logout.LogoutFilter@d4ecdb0, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@11c3ce6a, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@3c7d8a4, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@5ddd84d2, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@dbc7e0a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@b8b2184, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@603f4e3e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3fd5d679, org.springframework.security.web.session.SessionManagementFilter@15d79b70, org.springframework.security.web.access.ExceptionTranslationFilter@1e6cb932, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5cf2f5d6]
+2019-04-13 15:40:08,741 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8085"]
+2019-04-13 15:40:08,752 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8085 (http) with context path ''
+2019-04-13 15:40:08,754 INFO org.springframework.boot.StartupInfoLogger [main] Started Projet7WebServiceApplication in 3.775 seconds (JVM running for 4.03)
+2019-04-13 16:46:24,046 INFO org.springframework.boot.StartupInfoLogger [main] Starting Projet7WebServiceApplication on DESKTOP-GFBBSE4 with PID 16764 (started by picha in C:\Users\picha\Desktop\Projet 7\Projet7-WebService)
+2019-04-13 16:46:24,048 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-04-13 16:46:24,048 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-04-13 16:46:24,569 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-04-13 16:46:24,647 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 72ms. Found 6 repository interfaces.
+2019-04-13 16:46:24,914 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$cab2dce2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-04-13 16:46:25,212 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8085 (http)
+2019-04-13 16:46:25,222 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8085"]
+2019-04-13 16:46:25,230 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2019-04-13 16:46:25,231 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-04-13 16:46:25,238 INFO org.apache.juli.logging.DirectJDKLog [main] The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_201/bin/server;C:/Program Files/Java/jre1.8.0_201/bin;C:/Program Files/Java/jre1.8.0_201/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Users\picha\AppData\Local\Microsoft\WindowsApps;;C:\Users\picha\Desktop;;.]
+2019-04-13 16:46:25,362 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2019-04-13 16:46:25,362 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1286 ms
+2019-04-13 16:46:25,506 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2019-04-13 16:46:25,593 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2019-04-13 16:46:25,635 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-04-13 16:46:25,678 INFO org.hibernate.Version [main] HHH000412: Hibernate Core {5.3.7.Final}
+2019-04-13 16:46:25,679 INFO org.hibernate.cfg.Environment [main] HHH000206: hibernate.properties not found
+2019-04-13 16:46:25,780 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-04-13 16:46:25,911 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2019-04-13 16:46:25,929 INFO org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl [main] HHH000422: Disabling contextual LOB creation as connection was null
+2019-04-13 16:46:25,933 INFO org.hibernate.type.BasicTypeRegistry [main] HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@3c50ad4b
+2019-04-13 16:46:26,532 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-04-13 16:46:26,747 INFO org.hibernate.hql.internal.QueryTranslatorFactoryInitiator [main] HHH000397: Using ASTQueryTranslatorFactory
+2019-04-13 16:46:27,672 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-13 16:46:27,720 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-04-13 16:46:28,030 INFO org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration [main] 
+
+Using generated security password: 5a412fa3-f06c-42d7-bf5a-bce1eccbfc36
+
+2019-04-13 16:46:28,204 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@60a4e619, org.springframework.security.web.context.SecurityContextPersistenceFilter@67a6a2d0, org.springframework.security.web.header.HeaderWriterFilter@6654ca0d, org.springframework.security.web.csrf.CsrfFilter@cf9bd1e, org.springframework.security.web.authentication.logout.LogoutFilter@b8b2184, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1a01ffff, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6e090aaa, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@2bb3f39e, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7a3c99f1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2e85e3f1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6921cfa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@11f3400c, org.springframework.security.web.session.SessionManagementFilter@1c8f71a7, org.springframework.security.web.access.ExceptionTranslationFilter@44ddb518, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@12166229]
+2019-04-13 16:46:28,329 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8085"]
+2019-04-13 16:46:28,352 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8085 (http) with context path ''
+2019-04-13 16:46:28,357 INFO org.springframework.boot.StartupInfoLogger [main] Started Projet7WebServiceApplication in 4.583 seconds (JVM running for 5.064)
+2019-04-13 16:59:30,196 INFO org.springframework.boot.StartupInfoLogger [main] Starting Projet7WebServiceApplication on DESKTOP-GFBBSE4 with PID 17092 (started by picha in C:\Users\picha\Desktop\Projet 7\Projet7-WebService)
+2019-04-13 16:59:30,198 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-04-13 16:59:30,199 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-04-13 16:59:30,974 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-04-13 16:59:31,124 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 141ms. Found 6 repository interfaces.
+2019-04-13 16:59:31,592 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$1da0bc31] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-04-13 16:59:32,023 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8085 (http)
+2019-04-13 16:59:32,034 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8085"]
+2019-04-13 16:59:32,043 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2019-04-13 16:59:32,044 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-04-13 16:59:32,053 INFO org.apache.juli.logging.DirectJDKLog [main] The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_201/bin/server;C:/Program Files/Java/jre1.8.0_201/bin;C:/Program Files/Java/jre1.8.0_201/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Users\picha\AppData\Local\Microsoft\WindowsApps;;C:\Users\picha\Desktop;;.]
+2019-04-13 16:59:32,183 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2019-04-13 16:59:32,183 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1930 ms
+2019-04-13 16:59:32,327 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2019-04-13 16:59:32,408 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2019-04-13 16:59:32,454 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-04-13 16:59:32,529 INFO org.hibernate.Version [main] HHH000412: Hibernate Core {5.3.7.Final}
+2019-04-13 16:59:32,531 INFO org.hibernate.cfg.Environment [main] HHH000206: hibernate.properties not found
+2019-04-13 16:59:32,716 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-04-13 16:59:32,841 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2019-04-13 16:59:32,855 INFO org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl [main] HHH000422: Disabling contextual LOB creation as connection was null
+2019-04-13 16:59:32,859 INFO org.hibernate.type.BasicTypeRegistry [main] HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@770beef5
+2019-04-13 16:59:33,469 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-04-13 16:59:33,703 INFO org.hibernate.hql.internal.QueryTranslatorFactoryInitiator [main] HHH000397: Using ASTQueryTranslatorFactory
+2019-04-13 16:59:34,458 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-13 16:59:34,497 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-04-13 16:59:34,689 INFO org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration [main] 
+
+Using generated security password: 3606d234-973f-42a9-930b-b1e14fc7df95
+
+2019-04-13 16:59:34,759 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@37f71c05, org.springframework.security.web.context.SecurityContextPersistenceFilter@445058e8, org.springframework.security.web.header.HeaderWriterFilter@70022d44, org.springframework.security.web.csrf.CsrfFilter@655909e2, org.springframework.security.web.authentication.logout.LogoutFilter@5ddb302, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@55d99dc3, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@4ab455e2, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@5bd3ca3c, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@4e2824b1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5a7a6d34, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@391d28ea, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2dd8a273, org.springframework.security.web.session.SessionManagementFilter@5abbb273, org.springframework.security.web.access.ExceptionTranslationFilter@6fd9dbe6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6200b644]
+2019-04-13 16:59:34,813 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8085"]
+2019-04-13 16:59:34,828 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8085 (http) with context path ''
+2019-04-13 16:59:34,830 INFO org.springframework.boot.StartupInfoLogger [main] Started Projet7WebServiceApplication in 4.987 seconds (JVM running for 5.396)
+2019-04-13 17:04:05,831 INFO org.springframework.boot.StartupInfoLogger [main] Starting Projet7WebServiceApplication on DESKTOP-GFBBSE4 with PID 3680 (started by picha in C:\Users\picha\Desktop\Projet 7\Projet7-WebService)
+2019-04-13 17:04:05,833 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-04-13 17:04:05,833 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-04-13 17:04:06,292 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-04-13 17:04:06,368 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 70ms. Found 6 repository interfaces.
+2019-04-13 17:04:06,644 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$61d193a6] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-04-13 17:04:06,930 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8085 (http)
+2019-04-13 17:04:06,941 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8085"]
+2019-04-13 17:04:06,948 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2019-04-13 17:04:06,948 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-04-13 17:04:06,954 INFO org.apache.juli.logging.DirectJDKLog [main] The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_201/bin/server;C:/Program Files/Java/jre1.8.0_201/bin;C:/Program Files/Java/jre1.8.0_201/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Users\picha\AppData\Local\Microsoft\WindowsApps;;C:\Users\picha\Desktop;;.]
+2019-04-13 17:04:07,057 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2019-04-13 17:04:07,058 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1197 ms
+2019-04-13 17:04:07,188 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2019-04-13 17:04:07,268 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2019-04-13 17:04:07,307 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-04-13 17:04:07,352 INFO org.hibernate.Version [main] HHH000412: Hibernate Core {5.3.7.Final}
+2019-04-13 17:04:07,352 INFO org.hibernate.cfg.Environment [main] HHH000206: hibernate.properties not found
+2019-04-13 17:04:07,449 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-04-13 17:04:07,559 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2019-04-13 17:04:07,571 INFO org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl [main] HHH000422: Disabling contextual LOB creation as connection was null
+2019-04-13 17:04:07,574 INFO org.hibernate.type.BasicTypeRegistry [main] HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@6415f61e
+2019-04-13 17:04:08,079 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-04-13 17:04:08,311 INFO org.hibernate.hql.internal.QueryTranslatorFactoryInitiator [main] HHH000397: Using ASTQueryTranslatorFactory
+2019-04-13 17:04:08,984 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-13 17:04:09,019 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-04-13 17:04:09,203 INFO org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration [main] 
+
+Using generated security password: 8336f7c0-bf3c-4636-8068-ce73bb324bcd
+
+2019-04-13 17:04:09,282 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2c56eba5, org.springframework.security.web.context.SecurityContextPersistenceFilter@2fa879ed, org.springframework.security.web.header.HeaderWriterFilter@a55e82a, org.springframework.security.web.csrf.CsrfFilter@39dda56f, org.springframework.security.web.authentication.logout.LogoutFilter@4fbe486c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@b34c7c9, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@2558f65c, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@6231f77a, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@18b04526, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3ec082a1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@11f3400c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@290c266c, org.springframework.security.web.session.SessionManagementFilter@1a01ffff, org.springframework.security.web.access.ExceptionTranslationFilter@2b4829aa, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@df9d400]
+2019-04-13 17:04:09,330 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8085"]
+2019-04-13 17:04:09,344 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8085 (http) with context path ''
+2019-04-13 17:04:09,346 INFO org.springframework.boot.StartupInfoLogger [main] Started Projet7WebServiceApplication in 3.776 seconds (JVM running for 4.018)
+2019-04-13 17:07:21,757 INFO com.bibliotheque.metier.BookBusinessImpl [pool-1-thread-2] Return pageBook of5elements
+2019-04-13 17:08:16,180 INFO com.bibliotheque.metier.BookBusinessImpl [pool-1-thread-2] Return pageBook of5elements
+2019-04-13 17:08:24,915 ERROR com.bibliotheque.metier.BookBusinessImpl [pool-1-thread-2] Book incorrect
+2019-04-13 17:09:48,747 INFO org.springframework.boot.StartupInfoLogger [main] Starting Projet7WebServiceApplication on DESKTOP-GFBBSE4 with PID 11880 (started by picha in C:\Users\picha\Desktop\Projet 7\Projet7-WebService)
+2019-04-13 17:09:48,748 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-04-13 17:09:48,749 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-04-13 17:09:49,239 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-04-13 17:09:49,312 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 68ms. Found 6 repository interfaces.
+2019-04-13 17:09:49,621 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9ddbc06c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-04-13 17:09:49,932 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8085 (http)
+2019-04-13 17:09:49,942 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8085"]
+2019-04-13 17:09:49,950 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2019-04-13 17:09:49,951 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-04-13 17:09:49,958 INFO org.apache.juli.logging.DirectJDKLog [main] The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_201/bin/server;C:/Program Files/Java/jre1.8.0_201/bin;C:/Program Files/Java/jre1.8.0_201/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Users\picha\AppData\Local\Microsoft\WindowsApps;;C:\Users\picha\Desktop;;.]
+2019-04-13 17:09:50,054 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2019-04-13 17:09:50,055 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1277 ms
+2019-04-13 17:09:50,181 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2019-04-13 17:09:50,276 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2019-04-13 17:09:50,324 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-04-13 17:09:50,367 INFO org.hibernate.Version [main] HHH000412: Hibernate Core {5.3.7.Final}
+2019-04-13 17:09:50,367 INFO org.hibernate.cfg.Environment [main] HHH000206: hibernate.properties not found
+2019-04-13 17:09:50,481 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-04-13 17:09:50,592 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2019-04-13 17:09:50,605 INFO org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl [main] HHH000422: Disabling contextual LOB creation as connection was null
+2019-04-13 17:09:50,608 INFO org.hibernate.type.BasicTypeRegistry [main] HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@107bfcb2
+2019-04-13 17:09:51,135 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-04-13 17:09:51,338 INFO org.hibernate.hql.internal.QueryTranslatorFactoryInitiator [main] HHH000397: Using ASTQueryTranslatorFactory
+2019-04-13 17:09:52,005 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-13 17:09:52,041 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-04-13 17:09:52,217 INFO org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration [main] 
+
+Using generated security password: ec4da89f-b46b-4650-9b3c-eda230ac8b95
+
+2019-04-13 17:09:52,309 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2a42019a, org.springframework.security.web.context.SecurityContextPersistenceFilter@4eb1943b, org.springframework.security.web.header.HeaderWriterFilter@55d99dc3, org.springframework.security.web.csrf.CsrfFilter@5fa5c8cf, org.springframework.security.web.authentication.logout.LogoutFilter@39dda56f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3722f39d, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@7b8b07ae, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@6fc0e448, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@2493eec6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@534d0e20, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@566f4659, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@60194904, org.springframework.security.web.session.SessionManagementFilter@3c64339f, org.springframework.security.web.access.ExceptionTranslationFilter@1b1ea1d9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@48d5ca17]
+2019-04-13 17:09:52,354 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8085"]
+2019-04-13 17:09:52,367 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8085 (http) with context path ''
+2019-04-13 17:09:52,369 INFO org.springframework.boot.StartupInfoLogger [main] Started Projet7WebServiceApplication in 3.901 seconds (JVM running for 4.157)
+2019-04-13 17:09:55,412 ERROR com.bibliotheque.metier.BookBusinessImpl [pool-1-thread-1] Book titleincorrect
+2019-04-13 17:10:07,710 ERROR com.bibliotheque.metier.BookBusinessImpl [pool-1-thread-1] Book authorincorrect
+2019-04-13 17:10:15,644 INFO org.springframework.boot.StartupInfoLogger [main] Starting Projet7WebServiceApplication on DESKTOP-GFBBSE4 with PID 3892 (started by picha in C:\Users\picha\Desktop\Projet 7\Projet7-WebService)
+2019-04-13 17:10:15,646 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.3.RELEASE, Spring v5.1.5.RELEASE
+2019-04-13 17:10:15,646 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-04-13 17:10:16,096 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-04-13 17:10:16,167 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 66ms. Found 6 repository interfaces.
+2019-04-13 17:10:16,434 INFO org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$cae1f1d8] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-04-13 17:10:16,734 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8085 (http)
+2019-04-13 17:10:16,745 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8085"]
+2019-04-13 17:10:16,754 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2019-04-13 17:10:16,755 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-04-13 17:10:16,761 INFO org.apache.juli.logging.DirectJDKLog [main] The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_201/bin/server;C:/Program Files/Java/jre1.8.0_201/bin;C:/Program Files/Java/jre1.8.0_201/lib/amd64;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Users\picha\AppData\Local\Microsoft\WindowsApps;;C:\Users\picha\Desktop;;.]
+2019-04-13 17:10:16,859 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2019-04-13 17:10:16,860 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1185 ms
+2019-04-13 17:10:16,976 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2019-04-13 17:10:17,069 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2019-04-13 17:10:17,106 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-04-13 17:10:17,148 INFO org.hibernate.Version [main] HHH000412: Hibernate Core {5.3.7.Final}
+2019-04-13 17:10:17,149 INFO org.hibernate.cfg.Environment [main] HHH000206: hibernate.properties not found
+2019-04-13 17:10:17,255 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-04-13 17:10:17,358 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2019-04-13 17:10:17,370 INFO org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl [main] HHH000422: Disabling contextual LOB creation as connection was null
+2019-04-13 17:10:17,373 INFO org.hibernate.type.BasicTypeRegistry [main] HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@526b2f3e
+2019-04-13 17:10:17,876 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-04-13 17:10:18,096 INFO org.hibernate.hql.internal.QueryTranslatorFactoryInitiator [main] HHH000397: Using ASTQueryTranslatorFactory
+2019-04-13 17:10:18,807 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-13 17:10:18,844 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-04-13 17:10:19,008 INFO org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration [main] 
+
+Using generated security password: 69141370-8113-40f0-b79b-a6ce9ba1804b
+
+2019-04-13 17:10:19,094 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@636fccb0, org.springframework.security.web.context.SecurityContextPersistenceFilter@6921cfa, org.springframework.security.web.header.HeaderWriterFilter@3ba46845, org.springframework.security.web.csrf.CsrfFilter@f1d1463, org.springframework.security.web.authentication.logout.LogoutFilter@3c7d8a4, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@60a4e619, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@12a6e8ed, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@28519bfb, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@11c3ce6a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6e090aaa, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@d7055be, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@15914bb5, org.springframework.security.web.session.SessionManagementFilter@592cb470, org.springframework.security.web.access.ExceptionTranslationFilter@793d09e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2b2b7e3c]
+2019-04-13 17:10:19,140 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8085"]
+2019-04-13 17:10:19,151 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8085 (http) with context path ''
+2019-04-13 17:10:19,153 INFO org.springframework.boot.StartupInfoLogger [main] Started Projet7WebServiceApplication in 3.783 seconds (JVM running for 4.032)
+2019-04-13 17:10:24,737 ERROR com.bibliotheque.metier.BookBusinessImpl [pool-1-thread-1] Book title incorrect
+2019-04-13 17:11:09,463 ERROR com.bibliotheque.metier.BookBusinessImpl [pool-1-thread-1] Book title incorrect
+2019-04-13 17:15:52,346 ERROR com.bibliotheque.metier.BookBusinessImpl [pool-1-thread-3] Book description incorrect
+2019-04-13 17:23:59,421 INFO com.bibliotheque.metier.BookBusinessImpl [pool-1-thread-4] Return pageBook of5 elements
+2019-04-13 17:24:23,092 INFO com.bibliotheque.metier.BookBusinessImpl [pool-1-thread-4] Success get book6

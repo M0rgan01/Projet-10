@@ -9,6 +9,8 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -36,6 +38,8 @@ public class UserBusinessImpl implements UserBusiness {
 	@Value("${connection.expired.inMillis}")
 	private int minuteInMillisForConnection;
 
+	private static final Logger logger = LoggerFactory.getLogger(UserBusinessImpl.class);
+	
 	@Override
 	public User saveUser(User user) throws BibliothequeException {
 
@@ -46,6 +50,7 @@ public class UserBusinessImpl implements UserBusiness {
 			// on vérifie
 			validateUser(user);
 			user2.setPseudo(user.getPseudo());
+			logger.info("Update pseudo for user " + user.getId());
 		}
 		// si l'utilisateur à renseigner un mot de passe ou un mot de passe de
 		// confirmation
@@ -56,7 +61,7 @@ public class UserBusinessImpl implements UserBusiness {
 			user.setOldPassWord(encrypt.getDecrypt(user.getOldPassWord()));
 
 			if (user.getOldPassWord().isEmpty()) {
-
+				logger.error("OldPassword blank for user " + user.getId());
 				BibliothequeFault bibliothequeFault = new BibliothequeFault();
 				bibliothequeFault.setFaultCode("20");
 				bibliothequeFault.setFaultString("user.oldPassword.blank");
@@ -65,7 +70,7 @@ public class UserBusinessImpl implements UserBusiness {
 
 				// on vérifie la correspondance
 			} else if (!new BCryptPasswordEncoder().matches(user.getOldPassWord(), user2.getPassWord())) {
-
+				logger.error("OldPassword not match for user " + user.getId());
 				BibliothequeFault bibliothequeFault = new BibliothequeFault();
 				bibliothequeFault.setFaultCode("21");
 				bibliothequeFault.setFaultString("user.oldPassword.not.correct");
@@ -75,7 +80,7 @@ public class UserBusinessImpl implements UserBusiness {
 			// validation des mots de passe
 			validatePassWord(user);
 			user2.setPassWord(new BCryptPasswordEncoder().encode(user.getPassWord()));
-
+			logger.info("Update password for user " + user.getId());
 		}
 
 		return userRepository.save(user2);
@@ -84,10 +89,10 @@ public class UserBusinessImpl implements UserBusiness {
 	@Override
 	public void editPasswordByRecovery(String email, String password, String passwordConfirm)
 			throws BibliothequeException {
-
+			
 		// récupération du mail
 		Mail mail = mailBusiness.getMail(email);
-
+		
 		User user = mail.getUser();
 
 		// on assigne les mots de passe
@@ -97,7 +102,9 @@ public class UserBusinessImpl implements UserBusiness {
 		// on vérifie
 		validatePassWord(user);
 		user.setPassWord(new BCryptPasswordEncoder().encode(user.getPassWord()));
-		userRepository.save(user);
+		
+		userRepository.save(user);		
+		logger.info("Update password by recovery for user " + user.getId());
 	}
 
 	@Override
@@ -105,6 +112,7 @@ public class UserBusinessImpl implements UserBusiness {
 		User user = userRepository.findById(id).orElse(null);
 		user.setActive(false);
 		userRepository.save(user);
+		logger.info("Disable account for user " + user.getId());
 	}
 
 	@Override
@@ -115,6 +123,7 @@ public class UserBusinessImpl implements UserBusiness {
 
 		if (user == null) {
 
+			logger.error("User pseudo " + pseudo + " not found");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("22");
 			bibliothequeFault.setFaultString("user.pseudo.not.correct");
@@ -122,7 +131,8 @@ public class UserBusinessImpl implements UserBusiness {
 			throw new BibliothequeException("user.pseudo.not.correct", bibliothequeFault);
 
 		} else if (!user.isActive()) {
-
+			
+			logger.error("User account " + user.getId() + " disable");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("23");
 			bibliothequeFault.setFaultString("user.not.active");
@@ -134,6 +144,8 @@ public class UserBusinessImpl implements UserBusiness {
 			if (user.getExpiryConnection() != null) {
 
 				if (user.getExpiryConnection().after(new Date())) {
+					
+					logger.info("User " + user.getId() + " try connection before the end of the expiry date");
 					BibliothequeFault bibliothequeFault = new BibliothequeFault();
 					bibliothequeFault.setFaultCode("24");
 					bibliothequeFault.setFaultString("user.ExpiryConnection.after.date");
@@ -142,6 +154,7 @@ public class UserBusinessImpl implements UserBusiness {
 					user.setTryConnection(0);
 					user.setExpiryConnection(null);
 					userRepository.save(user);
+					logger.info("End of the expiry date for user " + user.getId());
 				}
 			}
 
@@ -150,6 +163,7 @@ public class UserBusinessImpl implements UserBusiness {
 				if (user.getTryConnection() > 0) {
 					user.setTryConnection(0);
 					userRepository.save(user);
+					logger.info("Connection success for user " + user.getId());
 				}
 
 			} else {
@@ -168,7 +182,9 @@ public class UserBusinessImpl implements UserBusiness {
 					Date afterAddingMins = new Date(t + (1 * minuteInMillisForConnection));
 					user.setExpiryConnection(afterAddingMins);
 					userRepository.save(user);
-
+					
+					logger.info("create date of expiry for connection for user " + user.getId());
+					
 					BibliothequeFault bibliothequeFault = new BibliothequeFault();
 					bibliothequeFault.setFaultCode("25");
 					bibliothequeFault.setFaultString("user.tryConnection.out");
@@ -177,6 +193,7 @@ public class UserBusinessImpl implements UserBusiness {
 
 				userRepository.save(user);
 
+				logger.info("Password not match for user " + user.getId());
 				BibliothequeFault bibliothequeFault = new BibliothequeFault();
 				bibliothequeFault.setFaultCode("26");
 				bibliothequeFault.setFaultString("user.password.not.correct");
@@ -198,11 +215,16 @@ public class UserBusinessImpl implements UserBusiness {
 		user.setPassWord(new BCryptPasswordEncoder().encode(user.getPassWord()));
 
 		mailBusiness.createMail(mail, user);
-		return userRepository.save(user);
+		
+		User user2 = userRepository.save(user);
+		logger.info("Create user " + user2.getId());
+		
+		return user2;
 	}
 
 	@Override
 	public User getUser(Long id) {
+		logger.info("Get user for id " + id);
 		return userRepository.findById(id).orElse(null);
 	}
 
@@ -216,6 +238,8 @@ public class UserBusinessImpl implements UserBusiness {
 
 		for (ConstraintViolation<User> violation : violations) {
 
+			logger.error("user " + violation.getPropertyPath() + " incorrect : " + violation.getMessage());
+			
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultString(violation.getMessage());
 
@@ -225,6 +249,8 @@ public class UserBusinessImpl implements UserBusiness {
 		User user2 = userRepository.findByPseudo(user.getPseudo());
 
 		if (user2 != null) {
+			
+			logger.error("user pseudo " + user2.getPseudo() + "already exist");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("27");
 			bibliothequeFault.setFaultString("user.pseudo.already.exist");
@@ -241,6 +267,7 @@ public class UserBusinessImpl implements UserBusiness {
 		user.setPassWordConfirm(encrypt.getDecrypt(user.getPassWordConfirm()));
 
 		if (user.getPassWord().isEmpty()) {
+			logger.error("user Password empty");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("28");
 			bibliothequeFault.setFaultString("user.password.blank");
@@ -248,6 +275,7 @@ public class UserBusinessImpl implements UserBusiness {
 			throw new BibliothequeException("user.password.blank", bibliothequeFault);
 
 		} else if (user.getPassWordConfirm().isEmpty()) {
+			logger.error("user PasswordConfirm empty");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("29");
 			bibliothequeFault.setFaultString("user.passwordConfirm.blank");
@@ -255,6 +283,7 @@ public class UserBusinessImpl implements UserBusiness {
 			throw new BibliothequeException("user.passwordConfirm.blank", bibliothequeFault);
 
 		} else if (!user.getPassWord().matches(regex)) {
+			logger.error("user Password not match regex");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("30");
 			bibliothequeFault.setFaultString("user.password.not.true");
@@ -262,7 +291,7 @@ public class UserBusinessImpl implements UserBusiness {
 			throw new BibliothequeException("user.password.not.true", bibliothequeFault);
 
 		} else if (!user.getPassWord().equals(user.getPassWordConfirm())) {
-
+			logger.error("user Password not passwordConfirm");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("31");
 			bibliothequeFault.setFaultString("user.password.not.match.passwordConfirm");
