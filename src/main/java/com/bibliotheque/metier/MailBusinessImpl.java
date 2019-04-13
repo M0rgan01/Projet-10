@@ -49,13 +49,9 @@ public class MailBusinessImpl implements MailBusiness{
 	private String emailPassword;
 	@Value("${mail.object.recovery}")
 	private String objectRecovery;
-	@Value("${mail.object.late}")
-	private String objectLate;
 	@Value("${mail.body.recovery}")
 	private String bodyRecovery;
-	@Value("${mail.body.late}")
-	private String bodyLate;
-	
+
 	@Value("${mail.expirationToken}")
 	private int expirationToken;
 	
@@ -214,31 +210,6 @@ public class MailBusinessImpl implements MailBusiness{
 		int longToken = Math.abs(random.nextInt());
 		String randomString = Integer.toString(longToken, 16);
 		return randomString;
-	}
-
-	@Override
-	public void sendMailForLateLoan() {
-				
-		//on récupère la list des emprunt en retard
-		List<Loan> list = loanRepository.getListLoanLate(new Date());
-		
-		//pour chaque emprunt on envoie un email de rappel 
-		for (Loan loan : list) {
-			
-			Mail mail = mailRepository.findByUserID(loan.getUser().getId());
-			
-			String[] tableau_email = { mail.getEmail() };
-			
-			String object = MessageFormat.format( objectLate, loan.getBook().getTitle());
-			
-			String pattern = "dd/MM/yyyy";
-			DateFormat df = new SimpleDateFormat(pattern);
-			
-			String body = MessageFormat.format( bodyLate, loan.getBook().getTitle(), df.format(loan.getEnd_loan()));
-			
-			//sendMail.sendFromGMail(emailUsers, encrypt.getDecrypt(emailPassword), tableau_email, object, body);
-		}
-				
 	}
 
 

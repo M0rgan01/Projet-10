@@ -186,4 +186,9 @@ public class LoanBusinessImpl implements LoanBusiness {
 		return loanDays;
 	}
 
+	@Override
+	public List<Loan> getListLoanLate() {		
+		return loanRepository.getListLoanLate(new Date());
+	}
+
 }

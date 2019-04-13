@@ -48,8 +48,6 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
-		<!-- configuration de chiffrement -->
-
 		<dependency>
 			<groupId>org.jasypt</groupId>
 			<artifactId> jasypt </artifactId>

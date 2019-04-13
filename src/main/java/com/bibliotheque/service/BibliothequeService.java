@@ -172,6 +172,11 @@ public class BibliothequeService {
 	}
 
 	@WebMethod
+	public List<Loan> getListLoanLate() {
+		return loanBusiness.getListLoanLate();
+	}
+	
+	@WebMethod
 	public List<Loan> getListLoanLateByUserID(
 			@WebParam(name = "user_id") Long user_id) {
 		return loanBusiness.getListLoanLateByUserID(user_id);

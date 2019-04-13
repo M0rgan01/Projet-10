@@ -48,7 +48,7 @@ public interface LoanBusiness {
 	public void createLoan(Long book_id, Long user_id) throws BibliothequeException, ParseException;
 	
 	/**
-	 * Récupération des emprunt actuel sans retard d'un utilisateur 
+	 * Récupération des emprunts actuel sans retard d'un utilisateur 
 	 * 
 	 * @param user_id --> id utilisateur
 	 * @return liste d'emprunt
@@ -56,13 +56,20 @@ public interface LoanBusiness {
 	public List<Loan> getListLoanByUserID(Long user_id);
 	
 	/**
-	 * Récupération des emprunt actuel en retard d'un utilisateur 
+	 * Récupération des emprunts actuel en retard d'un utilisateur 
 	 * 
 	 * @param user_id --> id utilisateur
 	 * @return liste d'emprunt
 	 */
 	public List<Loan> getListLoanLateByUserID(Long user_id);
 	
+	/**
+	 * Récupération des emprunts actuel en retard 
+	 * 
+	 * @return liste d'emprunt
+	 */
+	public List<Loan> getListLoanLate();
+		
 	/**
 	 * @return Nombre de jour pour l'extention d'un emprunt
 	 */

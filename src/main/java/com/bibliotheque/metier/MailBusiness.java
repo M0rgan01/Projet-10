@@ -62,12 +62,7 @@ public interface MailBusiness {
 	 */
 	public void sendToken(String email) throws BibliothequeException;
 	
-	/**
-	 * envoie d'un email à tout les utilisateur qui on un emprunt en retard
-	 * 
-	 */
-	public void sendMailForLateLoan();
-	
+
 	/**
 	 * Validation du token pour la récupération de mot de passe
 	 * 

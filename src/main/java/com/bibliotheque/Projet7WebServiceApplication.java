@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.bibliotheque.dao.BookRepository;
 import com.bibliotheque.dao.KindRepository;
@@ -14,13 +13,10 @@ import com.bibliotheque.dao.LoanRepository;
 import com.bibliotheque.dao.MailRepository;
 import com.bibliotheque.dao.RolesRepository;
 import com.bibliotheque.dao.UserRepository;
-import com.bibliotheque.entities.Kind;
-import com.bibliotheque.entities.Roles;
 import com.bibliotheque.metier.LoanBusiness;
 import com.bibliotheque.metier.MailBusiness;
 
 @SpringBootApplication
-@EnableScheduling
 public class Projet7WebServiceApplication implements CommandLineRunner {
 
 	@Autowired
