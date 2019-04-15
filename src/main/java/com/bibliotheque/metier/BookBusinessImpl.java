@@ -26,6 +26,8 @@ public class BookBusinessImpl implements BookBusiness {
 	private BookRepository bookRepository;
 	@Autowired
 	private KindBusiness kindBusiness;
+	@Autowired
+	private LibraryBusiness libraryBusiness;
 	
 	private static final Logger logger = LoggerFactory.getLogger(BookBusinessImpl.class);
 	
@@ -93,8 +95,9 @@ public class BookBusinessImpl implements BookBusiness {
 
 	@Override
 	public void createBook(Book book) throws BibliothequeException {
-		// validation du genre et du livre
+		// validation du genre, de la bibliotheque et du livre
 		kindBusiness.validateKind(book.getKind());
+		libraryBusiness.validateLibrary(book.getLibrary());
 		validateBook(book);
 
 		book.setAvailable(true);
@@ -131,8 +134,9 @@ public class BookBusinessImpl implements BookBusiness {
 				book.setAvailable(false);
 
 		}
-		//validation du genre et du livre
+		//validation du genre, de la bibliotheque et du livre
 		kindBusiness.validateKind(book.getKind());
+		libraryBusiness.validateLibrary(book.getLibrary());
 		validateBook(book);
 		
 		bookRepository.save(book);
