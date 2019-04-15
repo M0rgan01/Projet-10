@@ -29,6 +29,7 @@ public class ObjectFactory {
     private final static QName _GetDaysLoanResponse_QNAME = new QName("http://service.bibliotheque.com/", "getDaysLoanResponse");
     private final static QName _GetLoan_QNAME = new QName("http://service.bibliotheque.com/", "getLoan");
     private final static QName _SendTokenResponse_QNAME = new QName("http://service.bibliotheque.com/", "sendTokenResponse");
+    private final static QName _SaveLibrary_QNAME = new QName("http://service.bibliotheque.com/", "saveLibrary");
     private final static QName _DoConnection_QNAME = new QName("http://service.bibliotheque.com/", "doConnection");
     private final static QName _ExtendLoan_QNAME = new QName("http://service.bibliotheque.com/", "extendLoan");
     private final static QName _GetListRolesResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListRolesResponse");
@@ -36,6 +37,7 @@ public class ObjectFactory {
     private final static QName _UpdateBookResponse_QNAME = new QName("http://service.bibliotheque.com/", "updateBookResponse");
     private final static QName _CreateUser_QNAME = new QName("http://service.bibliotheque.com/", "createUser");
     private final static QName _ParseException_QNAME = new QName("http://service.bibliotheque.com/", "ParseException");
+    private final static QName _GetListLoanLate_QNAME = new QName("http://service.bibliotheque.com/", "getListLoanLate");
     private final static QName _DeleteUserResponse_QNAME = new QName("http://service.bibliotheque.com/", "deleteUserResponse");
     private final static QName _GetUserResponse_QNAME = new QName("http://service.bibliotheque.com/", "getUserResponse");
     private final static QName _ValidateTokenResponse_QNAME = new QName("http://service.bibliotheque.com/", "validateTokenResponse");
@@ -47,6 +49,7 @@ public class ObjectFactory {
     private final static QName _DeleteBookResponse_QNAME = new QName("http://service.bibliotheque.com/", "deleteBookResponse");
     private final static QName _GetListLoanByUserID_QNAME = new QName("http://service.bibliotheque.com/", "getListLoanByUserID");
     private final static QName _GetDaysExtendResponse_QNAME = new QName("http://service.bibliotheque.com/", "getDaysExtendResponse");
+    private final static QName _GetListLibrary_QNAME = new QName("http://service.bibliotheque.com/", "getListLibrary");
     private final static QName _ValidateToken_QNAME = new QName("http://service.bibliotheque.com/", "validateToken");
     private final static QName _GetBook_QNAME = new QName("http://service.bibliotheque.com/", "getBook");
     private final static QName _GetDaysLoan_QNAME = new QName("http://service.bibliotheque.com/", "getDaysLoan");
@@ -54,6 +57,8 @@ public class ObjectFactory {
     private final static QName _BibliothequeException_QNAME = new QName("http://service.bibliotheque.com/", "BibliothequeException");
     private final static QName _SendToken_QNAME = new QName("http://service.bibliotheque.com/", "sendToken");
     private final static QName _GetMail_QNAME = new QName("http://service.bibliotheque.com/", "getMail");
+    private final static QName _GetLibrary_QNAME = new QName("http://service.bibliotheque.com/", "getLibrary");
+    private final static QName _GetListLoanLateResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListLoanLateResponse");
     private final static QName _GetListRoles_QNAME = new QName("http://service.bibliotheque.com/", "getListRoles");
     private final static QName _DeleteUser_QNAME = new QName("http://service.bibliotheque.com/", "deleteUser");
     private final static QName _GetListKindResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListKindResponse");
@@ -70,10 +75,13 @@ public class ObjectFactory {
     private final static QName _GetListLoanByUserIDResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListLoanByUserIDResponse");
     private final static QName _CreateBook_QNAME = new QName("http://service.bibliotheque.com/", "createBook");
     private final static QName _DeleteBook_QNAME = new QName("http://service.bibliotheque.com/", "deleteBook");
+    private final static QName _SaveLibraryResponse_QNAME = new QName("http://service.bibliotheque.com/", "saveLibraryResponse");
+    private final static QName _GetLibraryResponse_QNAME = new QName("http://service.bibliotheque.com/", "getLibraryResponse");
     private final static QName _CreateLoan_QNAME = new QName("http://service.bibliotheque.com/", "createLoan");
     private final static QName _EditPassWordByRecovery_QNAME = new QName("http://service.bibliotheque.com/", "editPassWordByRecovery");
     private final static QName _GetListLoanLateByUserIDResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListLoanLateByUserIDResponse");
     private final static QName _SaveUserResponse_QNAME = new QName("http://service.bibliotheque.com/", "saveUserResponse");
+    private final static QName _GetListLibraryResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListLibraryResponse");
     private final static QName _GetLoanResponse_QNAME = new QName("http://service.bibliotheque.com/", "getLoanResponse");
     private final static QName _SaveUser_QNAME = new QName("http://service.bibliotheque.com/", "saveUser");
 
@@ -173,6 +181,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SaveLibraryResponse }
+     * 
+     */
+    public SaveLibraryResponse createSaveLibraryResponse() {
+        return new SaveLibraryResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetLibraryResponse }
+     * 
+     */
+    public GetLibraryResponse createGetLibraryResponse() {
+        return new GetLibraryResponse();
+    }
+
+    /**
      * Create an instance of {@link CreateLoan }
      * 
      */
@@ -202,6 +226,14 @@ public class ObjectFactory {
      */
     public SaveUserResponse createSaveUserResponse() {
         return new SaveUserResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetListLibraryResponse }
+     * 
+     */
+    public GetListLibraryResponse createGetListLibraryResponse() {
+        return new GetListLibraryResponse();
     }
 
     /**
@@ -266,6 +298,22 @@ public class ObjectFactory {
      */
     public GetMail createGetMail() {
         return new GetMail();
+    }
+
+    /**
+     * Create an instance of {@link GetLibrary }
+     * 
+     */
+    public GetLibrary createGetLibrary() {
+        return new GetLibrary();
+    }
+
+    /**
+     * Create an instance of {@link GetListLoanLateResponse }
+     * 
+     */
+    public GetListLoanLateResponse createGetListLoanLateResponse() {
+        return new GetListLoanLateResponse();
     }
 
     /**
@@ -389,6 +437,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetListLibrary }
+     * 
+     */
+    public GetListLibrary createGetListLibrary() {
+        return new GetListLibrary();
+    }
+
+    /**
      * Create an instance of {@link ValidateToken }
      * 
      */
@@ -434,6 +490,14 @@ public class ObjectFactory {
      */
     public SendTokenResponse createSendTokenResponse() {
         return new SendTokenResponse();
+    }
+
+    /**
+     * Create an instance of {@link SaveLibrary }
+     * 
+     */
+    public SaveLibrary createSaveLibrary() {
+        return new SaveLibrary();
     }
 
     /**
@@ -493,6 +557,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetListLoanLate }
+     * 
+     */
+    public GetListLoanLate createGetListLoanLate() {
+        return new GetListLoanLate();
+    }
+
+    /**
      * Create an instance of {@link DeleteUserResponse }
      * 
      */
@@ -541,6 +613,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Book }
+     * 
+     */
+    public Book createBook() {
+        return new Book();
+    }
+
+    /**
      * Create an instance of {@link Roles }
      * 
      */
@@ -549,11 +629,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Book }
+     * Create an instance of {@link Library }
      * 
      */
-    public Book createBook() {
-        return new Book();
+    public Library createLibrary() {
+        return new Library();
     }
 
     /**
@@ -607,6 +687,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "sendTokenResponse")
     public JAXBElement<SendTokenResponse> createSendTokenResponse(SendTokenResponse value) {
         return new JAXBElement<SendTokenResponse>(_SendTokenResponse_QNAME, SendTokenResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SaveLibrary }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "saveLibrary")
+    public JAXBElement<SaveLibrary> createSaveLibrary(SaveLibrary value) {
+        return new JAXBElement<SaveLibrary>(_SaveLibrary_QNAME, SaveLibrary.class, null, value);
     }
 
     /**
@@ -670,6 +759,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "ParseException")
     public JAXBElement<ParseException> createParseException(ParseException value) {
         return new JAXBElement<ParseException>(_ParseException_QNAME, ParseException.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetListLoanLate }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getListLoanLate")
+    public JAXBElement<GetListLoanLate> createGetListLoanLate(GetListLoanLate value) {
+        return new JAXBElement<GetListLoanLate>(_GetListLoanLate_QNAME, GetListLoanLate.class, null, value);
     }
 
     /**
@@ -772,6 +870,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetListLibrary }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getListLibrary")
+    public JAXBElement<GetListLibrary> createGetListLibrary(GetListLibrary value) {
+        return new JAXBElement<GetListLibrary>(_GetListLibrary_QNAME, GetListLibrary.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ValidateToken }{@code >}}
      * 
      */
@@ -832,6 +939,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getMail")
     public JAXBElement<GetMail> createGetMail(GetMail value) {
         return new JAXBElement<GetMail>(_GetMail_QNAME, GetMail.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetLibrary }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getLibrary")
+    public JAXBElement<GetLibrary> createGetLibrary(GetLibrary value) {
+        return new JAXBElement<GetLibrary>(_GetLibrary_QNAME, GetLibrary.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetListLoanLateResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getListLoanLateResponse")
+    public JAXBElement<GetListLoanLateResponse> createGetListLoanLateResponse(GetListLoanLateResponse value) {
+        return new JAXBElement<GetListLoanLateResponse>(_GetListLoanLateResponse_QNAME, GetListLoanLateResponse.class, null, value);
     }
 
     /**
@@ -979,6 +1104,24 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SaveLibraryResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "saveLibraryResponse")
+    public JAXBElement<SaveLibraryResponse> createSaveLibraryResponse(SaveLibraryResponse value) {
+        return new JAXBElement<SaveLibraryResponse>(_SaveLibraryResponse_QNAME, SaveLibraryResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetLibraryResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getLibraryResponse")
+    public JAXBElement<GetLibraryResponse> createGetLibraryResponse(GetLibraryResponse value) {
+        return new JAXBElement<GetLibraryResponse>(_GetLibraryResponse_QNAME, GetLibraryResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CreateLoan }{@code >}}
      * 
      */
@@ -1012,6 +1155,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "saveUserResponse")
     public JAXBElement<SaveUserResponse> createSaveUserResponse(SaveUserResponse value) {
         return new JAXBElement<SaveUserResponse>(_SaveUserResponse_QNAME, SaveUserResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetListLibraryResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getListLibraryResponse")
+    public JAXBElement<GetListLibraryResponse> createGetListLibraryResponse(GetListLibraryResponse value) {
+        return new JAXBElement<GetListLibraryResponse>(_GetListLibraryResponse_QNAME, GetListLibraryResponse.class, null, value);
     }
 
     /**

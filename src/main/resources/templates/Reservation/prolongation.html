@@ -17,7 +17,7 @@
 			<div class="offset-1 col-10 text-center">
 				<p>
 					La prolongation du prêt apportera votre date de remise en
-					bibliotheque de l'ouvrage au <span th:text=${fin}></span>
+					bibliotheque de l'ouvrage au <span th:text="${#dates.format(fin.toGregorianCalendar().getTime(), 'dd-MM-yyyy')}"></span>
 				</p>
 
 				<p>

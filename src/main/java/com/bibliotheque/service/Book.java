@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="disable" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="kind" type="{http://service.bibliotheque.com/}kind" minOccurs="0"/>
+ *         &lt;element name="library" type="{http://service.bibliotheque.com/}library" minOccurs="0"/>
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -43,6 +44,7 @@ import javax.xml.bind.annotation.XmlType;
     "disable",
     "id",
     "kind",
+    "library",
     "title"
 })
 public class Book {
@@ -55,6 +57,7 @@ public class Book {
     protected boolean disable;
     protected Long id;
     protected Kind kind;
+    protected Library library;
     protected String title;
 
     /**
@@ -215,6 +218,30 @@ public class Book {
      */
     public void setKind(Kind value) {
         this.kind = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété library.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Library }
+     *     
+     */
+    public Library getLibrary() {
+        return library;
+    }
+
+    /**
+     * Définit la valeur de la propriété library.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Library }
+     *     
+     */
+    public void setLibrary(Library value) {
+        this.library = value;
     }
 
     /**

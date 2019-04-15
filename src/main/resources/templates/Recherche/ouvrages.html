@@ -54,52 +54,64 @@
 				succès !</span>
 		</div>
 
-		<div class="table-responsive">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Désignation</th>
-						<th>Description</th>
-						<th>Auteur</th>
-						<th>Genre</th>
-						<th th:if="${#request.isUserInRole('USER')}">Réservation</th>
-						<th th:if="${#request.isUserInRole('ADMIN')}">Administration</th>
-					</tr>
-				</thead>
+		<div class="mb-5">
+			<div th:each="o:${listOuvrages.getT()}">
 
-				<tbody>
-					<tr th:each="o:${listOuvrages.getT()}">
-						<td style="width: 15%" class="h5" th:text=${o.title}></td>
-						<td style="width: 25%" th:text=${o.description}></td>
-						<td th:text=${o.author}></td>
-						<td th:text=${o.getKind().getName()}></td>
+				<div class="row justify-content-center">
+					<span class="bar"></span>
+				</div>
 
-						<td th:if="${#request.isUserInRole('USER') && o.available}"><div
-								class="row justify-content-center">
-								<span class="btn btn-primary my-1">Disponible</span>
-								<p>
-									Nombre d'exemplaire à disposition : <span
-										th:text="${o.copyAvailable}"></span>
-								</p>
+				<div class="row justify-content-center">
+					<h2 class="mb-5" th:text=${o.title}></h2>
+				</div>
+				<div class="row">
+					<p class="ml-3 mb-4" th:text="'Description : ' + ${o.description}"></p>
+				</div>
+				<div class="row text-center mb-4">
+					<h6 class="col-6" th:text="'Auteur : ' + ${o.author}"></h6>
 
-							</div></td>
+					<h6 class="col-6" th:text="'Genre : ' + ${o.kind.name}"></h6>
 
-						<td th:if="${#request.isUserInRole('USER') && !o.available}">
-							<div class="row justify-content-center">
-								<span class="btn btn-danger my-1">Non disponnible</span>
-							</div>
-						</td>
+				</div>
 
-						<td th:if="${#request.isUserInRole('ADMIN')}"><a
-							class="btn btn-primary"
-							th:href="@{modificationOuvrage(id=${o.id})}">Modifier</a> <a
-							onclick="return confirm('Etes vous sûre ?')"
-							class="btn btn-primary my-1"
-							th:href="@{deleteOuvrage(id=${o.id}, page=${listOuvrages.page + 1} ,MotCle=${MotCle}, genre=${genre}, isReserved=${isReserved})}">Supprimer</a></td>
-					</tr>
-				</tbody>
+				<div class="row">
+					<p class="ml-3" th:text="'Bibliotheque : ' + ${o.library.name}"></p>
+				</div>
+				<div class="row">
+					<p class="ml-3"
+						th:text="${o.library.streetNumber} + ' ' + ${o.library.address} + ' ' + ${o.library.postalCode} "></p>
+				</div>
 
-			</table>
+				<div th:if="${#request.isUserInRole('USER') && o.available}">
+					<div class="row justify-content-center">
+						<span class="btn btn-primary my-1">Disponible</span>
+					</div>
+					<div class="row justify-content-center">
+						<p>
+							Nombre d'exemplaire à disposition : <span
+								th:text="${o.copyAvailable}"></span>
+						</p>
+					</div>
+
+				</div>
+
+				<div th:if="${#request.isUserInRole('USER') && !o.available}">
+					<div class="row justify-content-center">
+						<span class="btn btn-danger my-1">Non disponnible</span>
+					</div>
+				</div>
+
+				<div th:if="${#request.isUserInRole('ADMIN')}" class="text-center">
+					<a class="btn btn-primary"
+						th:href="@{modificationOuvrage(id=${o.id})}">Modifier</a> <a
+						onclick="return confirm('Etes vous sûre ?')"
+						class="btn btn-primary my-1"
+						th:href="@{deleteOuvrage(id=${o.id}, page=${listOuvrages.page + 1} ,MotCle=${MotCle}, genre=${genre}, isReserved=${isReserved})}">Supprimer</a>
+				</div>
+
+
+
+			</div>
 		</div>
 
 		<div th:if="${listOuvrages.getNumberT() == 0}"

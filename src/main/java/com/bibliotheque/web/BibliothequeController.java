@@ -27,6 +27,7 @@ import com.bibliotheque.service.BibliothequeServiceService;
 import com.bibliotheque.service.BibliothequeWS;
 import com.bibliotheque.service.Book;
 import com.bibliotheque.service.Kind;
+import com.bibliotheque.service.Library;
 import com.bibliotheque.service.Loan;
 import com.bibliotheque.service.Mail;
 import com.bibliotheque.service.Pagination;
@@ -42,7 +43,7 @@ public class BibliothequeController {
 	private Encrypt encrypt;
 	@Autowired
 	private Messages messages;
-	
+
 	// page d'accueil
 	@RequestMapping(value = "/")
 	public String home() {
@@ -50,12 +51,12 @@ public class BibliothequeController {
 	}
 
 	@RequestMapping("/index")
-	public String index() {	
+	public String index() {
 		return "index";
 	}
 
 	@RequestMapping(value = "/login")
-	public String login() {	
+	public String login() {
 		return "Authentification/login";
 	}
 
@@ -111,6 +112,14 @@ public class BibliothequeController {
 
 			user = ws.createUser(user, mail);
 			httpSession.setAttribute("user_id", user.getId());
+			List<Roles> listRole = ws.getListRoles(user.getPseudo());
+			List<GrantedAuthority> grantedAuths = new ArrayList<>();
+			for (Roles roles : listRole) {
+				grantedAuths.add(new SimpleGrantedAuthority(roles.getRole()));
+			}
+
+			SecurityContextHolder.getContext().setAuthentication(
+					new UsernamePasswordAuthenticationToken(user.getPseudo(), user.getPassWord(), grantedAuths));
 
 		} catch (BibliothequeException_Exception e) {
 
@@ -119,136 +128,127 @@ public class BibliothequeController {
 			model.addAttribute("exception", messages.get(e.getMessage()));
 			return "Authentification/inscription";
 		}
-		
-		
-		List<GrantedAuthority> grantedAuths = new ArrayList<>();		
-		for (Roles roles : user.getRoles()) {		
-			grantedAuths.add(new SimpleGrantedAuthority(roles.getRole()));
-		}
-				
-		SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(
-				user.getPseudo(), user.getPassWord(), grantedAuths));
 
 		return "redirect:/index";
 
 	}
 
 	//////////////////////// RECUPERATION MDP ////////////////////////
-	
+
 	@RequestMapping(value = "/recuperation")
 	public String recuperation() {
 		return "Authentification/recuperation";
 	}
-	
+
 	@RequestMapping(value = "/sendToken")
 	public String sendToken(HttpSession httpSession, Model model, String email) {
-		
+
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
-		
+
 		try {
-			
+
 			ws.sendToken(email);
 			httpSession.setAttribute("email", email);
-			
+
 		} catch (BibliothequeException_Exception e) {
-			
+
 			model.addAttribute("email", email);
 			model.addAttribute("exception", messages.get(e.getMessage()));
 			return "Authentification/recuperation";
 		}
-		
+
 		return "Authentification/insertToken";
 	}
-	
+
 	@RequestMapping(value = "/validateToken")
 	public String validateToken(HttpSession httpSession, Model model, String token) {
-		
-		if( httpSession.getAttribute("email") != null) {
-						
-		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
-		
-		try {
-			
-			ws.validateToken((String) httpSession.getAttribute("email"), token);
-			httpSession.setAttribute("token", token);
-			
-		} catch (BibliothequeException_Exception e) {
-					
-			model.addAttribute("exception", messages.get(e.getMessage()));
-			return "Authentification/insertToken";
-		}
-		
-		return "Authentification/editPassword";
-		}
-		return "Authentification/recuperation";
-	}
-	
-	@RequestMapping(value = "/editPassword")
-	public String editPassword(HttpSession httpSession, Model model, String password, String passwordConfirm) {
-		
-		if( httpSession.getAttribute("token") != null) {
-						
-		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
-		
-		try {
-			
-			password = encrypt.setEncrypt(password);
-			passwordConfirm = encrypt.setEncrypt(passwordConfirm);
-			
-			ws.editPassWordByRecovery((String) httpSession.getAttribute("email"), password, passwordConfirm);
-			httpSession.removeAttribute("email");
-			httpSession.removeAttribute("token");
-			
-		} catch (BibliothequeException_Exception e) {
-					
-			model.addAttribute("exception", messages.get(e.getMessage()));
+
+		if (httpSession.getAttribute("email") != null) {
+
+			BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+
+			try {
+
+				ws.validateToken((String) httpSession.getAttribute("email"), token);
+				httpSession.setAttribute("token", token);
+
+			} catch (BibliothequeException_Exception e) {
+
+				model.addAttribute("exception", messages.get(e.getMessage()));
+				return "Authentification/insertToken";
+			}
+
 			return "Authentification/editPassword";
 		}
-		
-		return "redirect:/login?editPassWord";
-		
+		return "Authentification/recuperation";
+	}
+
+	@RequestMapping(value = "/editPassword")
+	public String editPassword(HttpSession httpSession, Model model, String password, String passwordConfirm) {
+
+		if (httpSession.getAttribute("token") != null) {
+
+			BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+
+			try {
+
+				password = encrypt.setEncrypt(password);
+				passwordConfirm = encrypt.setEncrypt(passwordConfirm);
+
+				ws.editPassWordByRecovery((String) httpSession.getAttribute("email"), password, passwordConfirm);
+				httpSession.removeAttribute("email");
+				httpSession.removeAttribute("token");
+
+			} catch (BibliothequeException_Exception e) {
+
+				model.addAttribute("exception", messages.get(e.getMessage()));
+				return "Authentification/editPassword";
+			}
+
+			return "redirect:/login?editPassWord";
+
 		}
 		return "Authentification/recuperation";
 	}
-	
-	
-	//////////////////////// AJOUT OUVRAGE ////////////////////////
 
+	//////////////////////// AJOUT OUVRAGE ////////////////////////
 
 	@RequestMapping(value = "/ajout")
 	public String ajout(Model model) {
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 
 		List<Kind> listKind = ws.getListKind();
+		List<Library> listLibrary = ws.getListLibrary();
 
 		model.addAttribute("listKind", listKind);
+		model.addAttribute("listLibrary", listLibrary);
 		return "EditOuvrage/ajout";
 	}
 
 	@RequestMapping(value = "/saveAjout")
-	public String saveAjout(Model model, Book book, @RequestParam(name = "style") String genre) {
+	public String saveAjout(Model model, Book book) {
 
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 
-		try {		
-			Kind kind = new Kind();
-			kind.setName(genre);
-			book.setKind(kind);
+		try {
+			if (book.getLibrary().getId() != null)
+				book.setLibrary(ws.getLibrary(book.getLibrary().getId()));
+
 			ws.createBook(book);
 		} catch (BibliothequeException_Exception e) {
 
 			List<Kind> listKind = ws.getListKind();
+			List<Library> listLibrary = ws.getListLibrary();
 
+			model.addAttribute("listLibrary", listLibrary);
 			model.addAttribute("listKind", listKind);
 			model.addAttribute("book", book);
-			model.addAttribute("style", genre);
 			model.addAttribute("exception", messages.get(e.getMessage()));
 			return "EditOuvrage/ajout";
 		}
 
-		return "redirect:/confirmationAjout?title=" + book.getTitle() + "&author=" + book.getAuthor()
-				+ "&description=" + book.getDescription() + "&genre=" + genre + "&copyTotals="
-				+ book.getCopyTotals();
+		return "redirect:/confirmationAjout?title=" + book.getTitle() + "&author=" + book.getAuthor() + "&description="
+				+ book.getDescription() + "&genre=" + book.getKind().getName() + "&copyTotals=" + book.getCopyTotals();
 	}
 
 	@RequestMapping(value = "/confirmationAjout")
@@ -263,7 +263,7 @@ public class BibliothequeController {
 
 		return "EditOuvrage/confirmationAjout";
 	}
-	
+
 //////////////////////// MODIFICATION OUVRAGE ////////////////////////
 
 	@RequestMapping(value = "/modificationOuvrage")
@@ -273,7 +273,9 @@ public class BibliothequeController {
 
 		Book book = ws.getBook(id);
 		List<Kind> listKind = ws.getListKind();
-
+		List<Library> listLibrary = ws.getListLibrary();
+		
+		model.addAttribute("listLibrary", listLibrary);
 		model.addAttribute("book", book);
 		model.addAttribute("style", book.getKind().getName());
 		model.addAttribute("listKind", listKind);
@@ -282,22 +284,23 @@ public class BibliothequeController {
 	}
 
 	@RequestMapping(value = "/saveModificationOuvrage")
-	public String saveModificationOuvrage(Model model, Book book, @RequestParam(name = "style") String genre) {
+	public String saveModificationOuvrage(Model model, Book book) {
 
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 
 		try {
-			Kind kind = new Kind();
-			kind.setName(genre);
-			book.setKind(kind);
+			if (book.getLibrary().getId() != null)
+				book.setLibrary(ws.getLibrary(book.getLibrary().getId()));
+			
 			ws.updateBook(book);
 		} catch (BibliothequeException_Exception e) {
-
+			
 			List<Kind> listKind = ws.getListKind();
-
+			List<Library> listLibrary = ws.getListLibrary();
+			
+			model.addAttribute("listLibrary", listLibrary);
 			model.addAttribute("listKind", listKind);
 			model.addAttribute("book", book);
-			model.addAttribute("style", genre);
 			model.addAttribute("exception", messages.get(e.getMessage()));
 			return "EditOuvrage/modificationOuvrage";
 		}
@@ -308,7 +311,8 @@ public class BibliothequeController {
 //////////////////////// SUPPRESSION OUVRAGE ////////////////////////
 
 	@RequestMapping(value = "/deleteOuvrage")
-	public String deleteOuvrage(Long id, int page, String MotCle, String genre, boolean isReserved) throws BibliothequeException_Exception {
+	public String deleteOuvrage(Long id, int page, String MotCle, String genre, boolean isReserved)
+			throws BibliothequeException_Exception {
 
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 
@@ -381,10 +385,8 @@ public class BibliothequeController {
 
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 
-		List<Loan> listLoan = ws
-				.getListLoanByUserID((Long) httpSession.getAttribute("user_id"));
-		List<Loan> listLoanLate = ws
-				.getListLoanLateByUserID((Long) httpSession.getAttribute("user_id"));
+		List<Loan> listLoan = ws.getListLoanByUserID((Long) httpSession.getAttribute("user_id"));
+		List<Loan> listLoanLate = ws.getListLoanLateByUserID((Long) httpSession.getAttribute("user_id"));
 
 		model.addAttribute("listLoan", listLoan);
 		model.addAttribute("listLoanLate", listLoanLate);
@@ -428,6 +430,5 @@ public class BibliothequeController {
 
 		return "redirect:/reservationCompte?returnProlongation";
 	}
-
 
 }
