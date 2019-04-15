@@ -59,6 +59,16 @@ public class BibliothequeController {
 	public String login() {
 		return "Authentification/login";
 	}
+	
+	@RequestMapping(value = "/conditionUtilisation")
+	public String conditionUtilisation() {
+		return "conditionUtilisation";
+	}
+
+	@RequestMapping(value = "/politiqueConfidentialite")
+	public String politiqueConfidentialite() {
+		return "politiqueConfidentialite";
+	}
 
 //////////////////////// RECHERCHE ////////////////////////
 
