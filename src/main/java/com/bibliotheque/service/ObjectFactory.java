@@ -39,11 +39,9 @@ public class ObjectFactory {
     private final static QName _ParseException_QNAME = new QName("http://service.bibliotheque.com/", "ParseException");
     private final static QName _GetListLoanLate_QNAME = new QName("http://service.bibliotheque.com/", "getListLoanLate");
     private final static QName _DeleteUserResponse_QNAME = new QName("http://service.bibliotheque.com/", "deleteUserResponse");
-    private final static QName _GetUserResponse_QNAME = new QName("http://service.bibliotheque.com/", "getUserResponse");
     private final static QName _ValidateTokenResponse_QNAME = new QName("http://service.bibliotheque.com/", "validateTokenResponse");
     private final static QName _GetListKind_QNAME = new QName("http://service.bibliotheque.com/", "getListKind");
     private final static QName _GetMailResponse_QNAME = new QName("http://service.bibliotheque.com/", "getMailResponse");
-    private final static QName _GetUser_QNAME = new QName("http://service.bibliotheque.com/", "getUser");
     private final static QName _CreateLoanResponse_QNAME = new QName("http://service.bibliotheque.com/", "createLoanResponse");
     private final static QName _EditPassWordByRecoveryResponse_QNAME = new QName("http://service.bibliotheque.com/", "editPassWordByRecoveryResponse");
     private final static QName _DeleteBookResponse_QNAME = new QName("http://service.bibliotheque.com/", "deleteBookResponse");
@@ -357,14 +355,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetUserResponse }
-     * 
-     */
-    public GetUserResponse createGetUserResponse() {
-        return new GetUserResponse();
-    }
-
-    /**
      * Create an instance of {@link ValidateTokenResponse }
      * 
      */
@@ -386,14 +376,6 @@ public class ObjectFactory {
      */
     public GetMailResponse createGetMailResponse() {
         return new GetMailResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetUser }
-     * 
-     */
-    public GetUser createGetUser() {
-        return new GetUser();
     }
 
     /**
@@ -780,15 +762,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetUserResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getUserResponse")
-    public JAXBElement<GetUserResponse> createGetUserResponse(GetUserResponse value) {
-        return new JAXBElement<GetUserResponse>(_GetUserResponse_QNAME, GetUserResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ValidateTokenResponse }{@code >}}
      * 
      */
@@ -813,15 +786,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getMailResponse")
     public JAXBElement<GetMailResponse> createGetMailResponse(GetMailResponse value) {
         return new JAXBElement<GetMailResponse>(_GetMailResponse_QNAME, GetMailResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetUser }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getUser")
-    public JAXBElement<GetUser> createGetUser(GetUser value) {
-        return new JAXBElement<GetUser>(_GetUser_QNAME, GetUser.class, null, value);
     }
 
     /**

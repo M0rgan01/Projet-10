@@ -1,6 +1,18 @@
 package com.bibliotheque.pager;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * 
+ * Classe personnalisée d'affichage des liens de pagination
+ * 
+ * @author pichat morgan
+ *
+ */
 public class PagerModel {
+	
+	private static final Logger logger = LoggerFactory.getLogger(PagerModel.class);
 	
 		// bouton total (hormis les << >> et fleche)
 		private int buttonsToShow = 6;
@@ -53,6 +65,7 @@ public class PagerModel {
 	        if (buttonsToShow % 2 != 0) {
 	            this.buttonsToShow = buttonsToShow;
 	        } else {
+	        	logger.error("Le nombre de liens n'est pas valide : doit être une valeur impair");
 	            throw new IllegalArgumentException("Must be an odd value!");
 	        }
 	    }

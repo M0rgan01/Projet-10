@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -36,9 +38,18 @@ import com.bibliotheque.service.User;
 import com.bibliotheque.utilities.Encrypt;
 import com.bibliotheque.utilities.Messages;
 
+/**
+ * 
+ * Controller de l'appilcation web
+ * 
+ * @author pichat morgan
+ *
+ */
 @Controller
 public class BibliothequeController {
 
+	private static final Logger logger = LoggerFactory.getLogger(BibliothequeController.class);
+	
 	@Autowired
 	private Encrypt encrypt;
 	@Autowired
@@ -59,7 +70,7 @@ public class BibliothequeController {
 	public String login() {
 		return "Authentification/login";
 	}
-	
+
 	@RequestMapping(value = "/conditionUtilisation")
 	public String conditionUtilisation() {
 		return "conditionUtilisation";
@@ -83,10 +94,14 @@ public class BibliothequeController {
 		// si page est null ou inferieur a 0, on lui assigne 0, sinon on le decremente
 		int evalPage = (page.orElse(0) < 1) ? 0 : page.get() - 1;
 
+		// récupération d'une page d'ouvrage suivant les paramètres demander (mot-clé,
+		// genre, réserver, page actuel, taille)
 		Pagination list = ws.listBook(mc, genre, isReserved, evalPage, s);
 
+		// Création d'un object permettant de calculer les liens pour la pagination
 		PagerModel pager = new PagerModel(list.getTotalsPage(), list.getPage(), 7);
 
+		// liste de genre
 		List<Kind> listKind = ws.getListKind();
 
 		model.addAttribute("listKind", listKind);
@@ -99,7 +114,7 @@ public class BibliothequeController {
 		model.addAttribute("MotCle", mc);
 		// nous ajoutons le mot cle actuel au model
 		model.addAttribute("isReserved", isReserved);
-
+	
 		return "Recherche/ouvrages";
 	}
 
@@ -117,11 +132,15 @@ public class BibliothequeController {
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 
 		try {
+			// les mots de passe ne doivent pas apparaître en brut lors de la requête
 			user.setPassWord(encrypt.setEncrypt(user.getPassWord()));
 			user.setPassWordConfirm(encrypt.setEncrypt(user.getPassWordConfirm()));
 
+			// récupération de l'utilisateur par création
 			user = ws.createUser(user, mail);
 			httpSession.setAttribute("user_id", user.getId());
+
+			// récupération des rôles de l'utilisateur
 			List<Roles> listRole = ws.getListRoles(user.getPseudo());
 			List<GrantedAuthority> grantedAuths = new ArrayList<>();
 			for (Roles roles : listRole) {
@@ -131,6 +150,8 @@ public class BibliothequeController {
 			SecurityContextHolder.getContext().setAuthentication(
 					new UsernamePasswordAuthenticationToken(user.getPseudo(), user.getPassWord(), grantedAuths));
 
+			logger.info("Inscription de l'utilisateur " + user.getId());
+			
 		} catch (BibliothequeException_Exception e) {
 
 			model.addAttribute("user", user);
@@ -159,9 +180,11 @@ public class BibliothequeController {
 
 			ws.sendToken(email);
 			httpSession.setAttribute("email", email);
-
+			
+			logger.info("Récupération par adresse email : " + email);
+			
 		} catch (BibliothequeException_Exception e) {
-
+			
 			model.addAttribute("email", email);
 			model.addAttribute("exception", messages.get(e.getMessage()));
 			return "Authentification/recuperation";
@@ -182,6 +205,8 @@ public class BibliothequeController {
 				ws.validateToken((String) httpSession.getAttribute("email"), token);
 				httpSession.setAttribute("token", token);
 
+				logger.info("Validation de saisie token : " + httpSession.getAttribute("email"));
+				
 			} catch (BibliothequeException_Exception e) {
 
 				model.addAttribute("exception", messages.get(e.getMessage()));
@@ -206,9 +231,10 @@ public class BibliothequeController {
 				passwordConfirm = encrypt.setEncrypt(passwordConfirm);
 
 				ws.editPassWordByRecovery((String) httpSession.getAttribute("email"), password, passwordConfirm);
+				logger.info("Changement de mot de passe du processus de récupération : " + httpSession.getAttribute("email"));
 				httpSession.removeAttribute("email");
 				httpSession.removeAttribute("token");
-
+							
 			} catch (BibliothequeException_Exception e) {
 
 				model.addAttribute("exception", messages.get(e.getMessage()));
@@ -284,7 +310,7 @@ public class BibliothequeController {
 		Book book = ws.getBook(id);
 		List<Kind> listKind = ws.getListKind();
 		List<Library> listLibrary = ws.getListLibrary();
-		
+
 		model.addAttribute("listLibrary", listLibrary);
 		model.addAttribute("book", book);
 		model.addAttribute("style", book.getKind().getName());
@@ -301,13 +327,13 @@ public class BibliothequeController {
 		try {
 			if (book.getLibrary().getId() != null)
 				book.setLibrary(ws.getLibrary(book.getLibrary().getId()));
-			
+
 			ws.updateBook(book);
 		} catch (BibliothequeException_Exception e) {
-			
+
 			List<Kind> listKind = ws.getListKind();
 			List<Library> listLibrary = ws.getListLibrary();
-			
+
 			model.addAttribute("listLibrary", listLibrary);
 			model.addAttribute("listKind", listKind);
 			model.addAttribute("book", book);
@@ -360,7 +386,9 @@ public class BibliothequeController {
 
 			ws.saveUser(user);
 			ws.saveMail(mail, user.getId());
-
+			
+			logger.info("Modification du compte utilisateur " + user.getId());
+			
 		} catch (BibliothequeException_Exception e) {
 
 			model.addAttribute("exception", messages.get(e.getMessage()));
@@ -384,7 +412,8 @@ public class BibliothequeController {
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 
 		ws.deleteUser((Long) httpSession.getAttribute("user_id"));
-
+		logger.info("Désactivation du compte utilisateur " + httpSession.getAttribute("user_id"));
+		
 		return "redirect:/login?logout";
 	}
 
@@ -397,7 +426,9 @@ public class BibliothequeController {
 
 		List<Loan> listLoan = ws.getListLoanByUserID((Long) httpSession.getAttribute("user_id"));
 		List<Loan> listLoanLate = ws.getListLoanLateByUserID((Long) httpSession.getAttribute("user_id"));
-
+		
+		logger.info("Récupération des informations d'emprunts de l'utilisateur " + httpSession.getAttribute("user_id"));
+		
 		model.addAttribute("listLoan", listLoan);
 		model.addAttribute("listLoanLate", listLoanLate);
 
@@ -434,6 +465,7 @@ public class BibliothequeController {
 
 		try {
 			ws.extendLoan(id, (Long) httpSession.getAttribute("user_id"));
+			logger.info("Extention de l'emprunt " + id + " pour l'utilisateur " + httpSession.getAttribute("user_id"));
 		} catch (BibliothequeException_Exception e) {
 			return "error";
 		}

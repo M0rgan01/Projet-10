@@ -8,6 +8,7 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 import nz.net.ultraq.thymeleaf.decorators.strategies.GroupingStrategy;
 
+
 @SpringBootApplication
 public class Projet7WebApplication implements CommandLineRunner{
 
@@ -18,9 +19,9 @@ public class Projet7WebApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
+		//ajout du dialect thymeleaf
 		SpringTemplateEngine engine = new SpringTemplateEngine();
 		engine.addDialect(new LayoutDialect(new GroupingStrategy()));
-
 				
 	}
 

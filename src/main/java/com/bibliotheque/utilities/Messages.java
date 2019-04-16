@@ -9,10 +9,10 @@ import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Component;
 
 /**
- * Helper to simplify accessing i18n messages in code.
  * 
- * This finds messages automatically found from src/main/resources (files named messages.properties)
+ * Aide pour simplifier l'accès aux ressources i18n
  * 
+ * Trouve automatiquement les messages depuis src/main/resources (messages.properties)
  *
  * @author Pichat morgan
  */

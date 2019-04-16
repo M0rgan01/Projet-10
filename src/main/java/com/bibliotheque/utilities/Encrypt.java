@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 
 /**
- * Objet servant a l'encryptage, le decryptage et le chargement de fichier de propriete
+ * Objet servant a l'encryptage et le decryptage 
  * 
  * @author PICHAT morgan
  *
