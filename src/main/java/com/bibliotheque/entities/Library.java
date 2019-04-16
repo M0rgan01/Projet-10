@@ -29,23 +29,23 @@ public class Library implements Serializable{
 	private String address;
 	private String postalCode;
 	private String streetNumber;
+	private String city;
 	
 	@OneToMany(mappedBy="library")
 	private List<Book> books;
 
-	
-	
 	public Library() {
 		super();
 	}
 
 	public Library(String name, String address, String postalCode,
-			String streetNumber) {
+			String streetNumber,String city) {
 		super();
 		this.name = name;
 		this.address = address;
 		this.postalCode = postalCode;
 		this.streetNumber = streetNumber;
+		this.city = city;
 	}
 
 	public Long getId() {
@@ -95,6 +95,14 @@ public class Library implements Serializable{
 
 	public void setBooks(List<Book> books) {
 		this.books = books;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 	
 	
