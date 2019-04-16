@@ -12,36 +12,41 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-		
 	@Autowired
-    private CustomAuthenticationProvider authProvider;
-	
+	private CustomAuthenticationProvider authProvider;
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		
+
 		auth.authenticationProvider(authProvider);
-		
+
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-			
+
 		// formulaire de connection personnalise
 		http.formLogin().loginPage("/login");
-		
-		http.authorizeRequests().antMatchers("/index").permitAll();
 
-		//http.authorizeRequests().antMatchers("/index","/recherche").hasRole("USER");
-		
-		//http.rememberMe().userDetailsService(authProvider).tokenValiditySeconds(86400);
-				
+		http.authorizeRequests()
+				.antMatchers("/index", "/recherche", "/politiqueConfidentialite", "/conditionUtilisation",
+						"/inscription", "/saveInscription", "/recuperation", "/sendToken", "/validateToken",
+						"/editPassword")
+				.permitAll();
+
+		http.authorizeRequests().antMatchers("/reservationCompte", "/prolongerReservation", "/saveProlongerReservation",
+				"/modificationCompte", "/saveModificationCompte", "/suppressionCompte", "/suppressionCompteConfirm")
+				.hasRole("USER");
+
+		http.authorizeRequests().antMatchers("/ajout", "/saveAjout", "/confirmationAjout", "/modificationOuvrage",
+				"/saveModificationOuvrage", "/deleteOuvrage").hasRole("ADMIN");
+
 		// pour la deconnexion
 		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).clearAuthentication(true)
 				.deleteCookies("JSESSIONID");
-		
+
 		// liens vers la page d'exception personnaliser
-		http.exceptionHandling().accessDeniedPage("/403");
+		//http.exceptionHandling().accessDeniedPage("/403");
 	}
 
-	
 }
