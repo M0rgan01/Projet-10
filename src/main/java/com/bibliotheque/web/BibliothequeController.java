@@ -254,10 +254,9 @@ public class BibliothequeController {
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 
 		List<Kind> listKind = ws.getListKind();
-		List<Library> listLibrary = ws.getListLibrary();
 
 		model.addAttribute("listKind", listKind);
-		model.addAttribute("listLibrary", listLibrary);
+
 		return "EditOuvrage/ajout";
 	}
 
@@ -274,9 +273,7 @@ public class BibliothequeController {
 		} catch (BibliothequeException_Exception e) {
 
 			List<Kind> listKind = ws.getListKind();
-			List<Library> listLibrary = ws.getListLibrary();
 
-			model.addAttribute("listLibrary", listLibrary);
 			model.addAttribute("listKind", listKind);
 			model.addAttribute("book", book);
 			model.addAttribute("exception", messages.get(e.getMessage()));
@@ -309,9 +306,7 @@ public class BibliothequeController {
 
 		Book book = ws.getBook(id);
 		List<Kind> listKind = ws.getListKind();
-		List<Library> listLibrary = ws.getListLibrary();
 
-		model.addAttribute("listLibrary", listLibrary);
 		model.addAttribute("book", book);
 		model.addAttribute("style", book.getKind().getName());
 		model.addAttribute("listKind", listKind);

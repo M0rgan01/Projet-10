@@ -74,14 +74,6 @@
 
 				</div>
 
-				<div class="row">
-					<p class="ml-3" th:text="'Bibliotheque : ' + ${o.library.name}"></p>
-				</div>
-				<div class="row">
-					<p class="ml-3"
-						th:text="${o.library.streetNumber} + ' ' + ${o.library.address} + ' ' + ${o.library.postalCode} + ' ' + ${o.library.city}"></p>
-				</div>
-
 				<div th:if="${#request.isUserInRole('USER') && o.available}">
 					<div class="row justify-content-center">
 						<span class="btn btn-primary my-1">Disponible</span>

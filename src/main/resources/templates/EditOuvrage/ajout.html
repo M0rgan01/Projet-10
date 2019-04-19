@@ -51,18 +51,7 @@
 									th:text="${g.name}" th:selected="${g.name.equals(book?.kind?.name)}">Wireframe</option>
 							</select>
 						</div>
-
-						<div class="form-group">
-							<label>Bibliotheque :</label> <select name="library.id" id="book.library"
-								class="form-control">
-
-								<option selected="selected" th:value="${blank}">Séléctionner
-									une bibliotheque</option>
-								<option th:each="l : ${listLibrary}" th:value="${l.id}"
-									th:text="${l.name}" th:selected="${l.id.equals(book?.library?.id)}">Wireframe</option>
-							</select>
-						</div>
-
+						
 						<div>
 							<button type="submit" class="btn btn-primary">Valider</button>
 						</div>
