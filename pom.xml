@@ -13,7 +13,8 @@
 	<artifactId>Projet7-WebService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Projet7-WebService</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Web-service du Projet 7 - Openclassroom</description>
+	<packaging>war</packaging>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -25,7 +26,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -64,6 +65,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>${artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

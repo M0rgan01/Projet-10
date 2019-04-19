@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import com.bibliotheque.entities.Book;
 import com.bibliotheque.entities.Kind;
-import com.bibliotheque.entities.Library;
 import com.bibliotheque.entities.Loan;
 import com.bibliotheque.entities.Mail;
 import com.bibliotheque.entities.Roles;
@@ -20,7 +19,6 @@ import com.bibliotheque.entities.User;
 import com.bibliotheque.exception.BibliothequeException;
 import com.bibliotheque.metier.BookBusiness;
 import com.bibliotheque.metier.KindBusiness;
-import com.bibliotheque.metier.LibraryBusiness;
 import com.bibliotheque.metier.LoanBusiness;
 import com.bibliotheque.metier.MailBusiness;
 import com.bibliotheque.metier.Pagination;
@@ -50,8 +48,6 @@ public class BibliothequeService {
 	private LoanBusiness loanBusiness;
 	@Autowired
 	private RolesBusiness rolesBusiness;
-	@Autowired
-	private LibraryBusiness libraryBusiness;
 
 //////////////////////// AUTHENTIFICATION - GESTION COMPTE UTILISATEUR ////////////////////////
 
@@ -288,39 +284,6 @@ public class BibliothequeService {
 		return kindBusiness.getListKind();
 	}
 
-	/**
-	 * Service de création / mise à jour d'une bibliotheque
-	 * 
-	 * @param library --> bibliotheque à créer, ou à mettre à jour si l'id est
-	 *                renseigné
-	 * 
-	 */
-	@WebMethod
-	public void saveLibrary(@WebParam(name = "library") Library library) {
-		libraryBusiness.saveLibrary(library);
-	}
-
-	/**
-	 * Service de récupération d'une liste de bibliotheques
-	 * 
-	 * @return Liste de bibliotheques
-	 */
-	@WebMethod
-	public List<Library> getListLibrary() {
-		return libraryBusiness.getListLibrary();
-	}
-
-	/**
-	 * Service de récupération d'une bibliotheque
-	 * 
-	 * @param id --> id de la bibliotheque à récupérer
-	 * 
-	 * @return Object Library
-	 */
-	@WebMethod
-	public Library getLibrary(@WebParam(name = "library_id") Long id) {
-		return libraryBusiness.getLibrary(id);
-	}
 
 //////////////////////// GESTION RESERVATION ////////////////////////
 

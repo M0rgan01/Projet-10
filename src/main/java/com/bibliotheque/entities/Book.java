@@ -60,11 +60,6 @@ public class Book implements Serializable{
 	private Collection<Loan> loans;
 	
 	@ManyToOne
-	@JoinColumn(name="LIBRARY_ID")
-	@NotNull(message="book.library.null")
-	private Library library;
-	
-	@ManyToOne
 	@JoinColumn(name="KIND_NAME")
 	@NotNull(message="book.kind.null")
 	private Kind kind;
@@ -74,14 +69,13 @@ public class Book implements Serializable{
 		super();
 	}
 
-	public Book(String title, String author, String description, boolean available, Kind kind, Library library,int copyTotals, int copyAvailable) {
+	public Book(String title, String author, String description, boolean available, Kind kind,int copyTotals, int copyAvailable) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.description = description;
 		this.available = available;
 		this.kind = kind;
-		this.library = library;
 		this.copyTotals = copyTotals;
 		this.copyAvailable = copyAvailable;
 	}
@@ -167,14 +161,5 @@ public class Book implements Serializable{
 		this.disable = disable;
 	}
 
-	public Library getLibrary() {
-		return library;
-	}
-
-	public void setLibrary(Library library) {
-		this.library = library;
-	}
-
-	
 		
 }
