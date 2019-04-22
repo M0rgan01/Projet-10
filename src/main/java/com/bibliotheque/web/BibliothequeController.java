@@ -29,13 +29,12 @@ import com.bibliotheque.service.BibliothequeServiceService;
 import com.bibliotheque.service.BibliothequeWS;
 import com.bibliotheque.service.Book;
 import com.bibliotheque.service.Kind;
-import com.bibliotheque.service.Library;
 import com.bibliotheque.service.Loan;
 import com.bibliotheque.service.Mail;
 import com.bibliotheque.service.Pagination;
 import com.bibliotheque.service.Roles;
 import com.bibliotheque.service.User;
-import com.bibliotheque.utilities.Encrypt;
+import com.bibliotheque.utilities.Jasypt;
 import com.bibliotheque.utilities.Messages;
 
 /**
@@ -51,7 +50,7 @@ public class BibliothequeController {
 	private static final Logger logger = LoggerFactory.getLogger(BibliothequeController.class);
 	
 	@Autowired
-	private Encrypt encrypt;
+	private Jasypt encrypt;
 	@Autowired
 	private Messages messages;
 
@@ -266,9 +265,6 @@ public class BibliothequeController {
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 
 		try {
-			if (book.getLibrary().getId() != null)
-				book.setLibrary(ws.getLibrary(book.getLibrary().getId()));
-
 			ws.createBook(book);
 		} catch (BibliothequeException_Exception e) {
 
@@ -280,8 +276,7 @@ public class BibliothequeController {
 			return "EditOuvrage/ajout";
 		}
 
-		return "redirect:/confirmationAjout?title=" + book.getTitle() + "&author=" + book.getAuthor() + "&description="
-				+ book.getDescription() + "&genre=" + book.getKind().getName() + "&copyTotals=" + book.getCopyTotals();
+		return "redirect:/confirmationAjout?title=" + book.getTitle() + "&author=" + book.getAuthor() + "&genre=" + book.getKind().getName() + "&copyTotals=" + book.getCopyTotals();
 	}
 
 	@RequestMapping(value = "/confirmationAjout")
@@ -290,7 +285,6 @@ public class BibliothequeController {
 
 		model.addAttribute("title", title);
 		model.addAttribute("author", author);
-		model.addAttribute("description", description);
 		model.addAttribute("genre", genre);
 		model.addAttribute("copyTotals", copyTotals);
 
@@ -320,16 +314,11 @@ public class BibliothequeController {
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 
 		try {
-			if (book.getLibrary().getId() != null)
-				book.setLibrary(ws.getLibrary(book.getLibrary().getId()));
-
 			ws.updateBook(book);
 		} catch (BibliothequeException_Exception e) {
 
 			List<Kind> listKind = ws.getListKind();
-			List<Library> listLibrary = ws.getListLibrary();
 
-			model.addAttribute("listLibrary", listLibrary);
 			model.addAttribute("listKind", listKind);
 			model.addAttribute("book", book);
 			model.addAttribute("exception", messages.get(e.getMessage()));

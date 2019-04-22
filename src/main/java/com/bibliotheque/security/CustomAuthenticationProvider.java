@@ -24,7 +24,7 @@ import com.bibliotheque.service.BibliothequeServiceService;
 import com.bibliotheque.service.BibliothequeWS;
 import com.bibliotheque.service.Roles;
 import com.bibliotheque.service.User;
-import com.bibliotheque.utilities.Encrypt;
+import com.bibliotheque.utilities.Jasypt;
 import com.bibliotheque.utilities.Messages;
 
 /**
@@ -42,7 +42,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	private List<GrantedAuthority> grantedAuths;
 	private HttpSession httpSession;
 	@Autowired
-	private Encrypt encrypt;
+	private Jasypt encrypt;
 	@Autowired
 	private Messages messages;
 	

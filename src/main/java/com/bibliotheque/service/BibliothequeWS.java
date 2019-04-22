@@ -28,432 +28,6 @@ public interface BibliothequeWS {
 
     /**
      * 
-     * @return
-     *     returns java.util.List<com.bibliotheque.service.Kind>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getListKind", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetListKind")
-    @ResponseWrapper(localName = "getListKindResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetListKindResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getListKindRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getListKindResponse")
-    public List<Kind> getListKind();
-
-    /**
-     * 
-     * @param size
-     * @param kind
-     * @param motCle
-     * @param available
-     * @param page
-     * @return
-     *     returns com.bibliotheque.service.Pagination
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listBook", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ListBook")
-    @ResponseWrapper(localName = "listBookResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ListBookResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/listBookRequest", output = "http://service.bibliotheque.com/BibliothequeWS/listBookResponse")
-    public Pagination listBook(
-        @WebParam(name = "mot-cle", targetNamespace = "")
-        String motCle,
-        @WebParam(name = "kind", targetNamespace = "")
-        String kind,
-        @WebParam(name = "available", targetNamespace = "")
-        boolean available,
-        @WebParam(name = "page", targetNamespace = "")
-        int page,
-        @WebParam(name = "size", targetNamespace = "")
-        int size);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns com.bibliotheque.service.Book
-     * @throws BibliothequeException_Exception
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getBook", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetBook")
-    @ResponseWrapper(localName = "getBookResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetBookResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getBookRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getBookResponse", fault = {
-        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/getBook/Fault/BibliothequeException")
-    })
-    public Book getBook(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Long arg0)
-        throws BibliothequeException_Exception
-    ;
-
-    /**
-     * 
-     * @param book
-     * @throws BibliothequeException_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "createBook", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.CreateBook")
-    @ResponseWrapper(localName = "createBookResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.CreateBookResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/createBookRequest", output = "http://service.bibliotheque.com/BibliothequeWS/createBookResponse", fault = {
-        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/createBook/Fault/BibliothequeException")
-    })
-    public void createBook(
-        @WebParam(name = "book", targetNamespace = "")
-        Book book)
-        throws BibliothequeException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @throws BibliothequeException_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "deleteBook", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteBook")
-    @ResponseWrapper(localName = "deleteBookResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteBookResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/deleteBookRequest", output = "http://service.bibliotheque.com/BibliothequeWS/deleteBookResponse", fault = {
-        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/deleteBook/Fault/BibliothequeException")
-    })
-    public void deleteBook(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Long arg0)
-        throws BibliothequeException_Exception
-    ;
-
-    /**
-     * 
-     * @param libraryId
-     * @return
-     *     returns com.bibliotheque.service.Library
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getLibrary", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetLibrary")
-    @ResponseWrapper(localName = "getLibraryResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetLibraryResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getLibraryRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getLibraryResponse")
-    public Library getLibrary(
-        @WebParam(name = "library_id", targetNamespace = "")
-        Long libraryId);
-
-    /**
-     * 
-     * @param library
-     */
-    @WebMethod
-    @RequestWrapper(localName = "saveLibrary", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveLibrary")
-    @ResponseWrapper(localName = "saveLibraryResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveLibraryResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/saveLibraryRequest", output = "http://service.bibliotheque.com/BibliothequeWS/saveLibraryResponse")
-    public void saveLibrary(
-        @WebParam(name = "library", targetNamespace = "")
-        Library library);
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<com.bibliotheque.service.Library>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getListLibrary", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetListLibrary")
-    @ResponseWrapper(localName = "getListLibraryResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetListLibraryResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getListLibraryRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getListLibraryResponse")
-    public List<Library> getListLibrary();
-
-    /**
-     * 
-     * @return
-     *     returns int
-     * @throws BibliothequeException_Exception
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getDaysExtend", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetDaysExtend")
-    @ResponseWrapper(localName = "getDaysExtendResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetDaysExtendResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getDaysExtendRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getDaysExtendResponse", fault = {
-        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/getDaysExtend/Fault/BibliothequeException")
-    })
-    public int getDaysExtend()
-        throws BibliothequeException_Exception
-    ;
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<com.bibliotheque.service.Loan>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getListLoanLate", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetListLoanLate")
-    @ResponseWrapper(localName = "getListLoanLateResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetListLoanLateResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getListLoanLateRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getListLoanLateResponse")
-    public List<Loan> getListLoanLate();
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "returnLoan", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ReturnLoan")
-    @ResponseWrapper(localName = "returnLoanResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ReturnLoanResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/returnLoanRequest", output = "http://service.bibliotheque.com/BibliothequeWS/returnLoanResponse")
-    public void returnLoan(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Long arg0);
-
-    /**
-     * 
-     * @return
-     *     returns int
-     * @throws BibliothequeException_Exception
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getDaysLoan", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetDaysLoan")
-    @ResponseWrapper(localName = "getDaysLoanResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetDaysLoanResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getDaysLoanRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getDaysLoanResponse", fault = {
-        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/getDaysLoan/Fault/BibliothequeException")
-    })
-    public int getDaysLoan()
-        throws BibliothequeException_Exception
-    ;
-
-    /**
-     * 
-     * @param mail
-     * @param userId
-     * @throws BibliothequeException_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "saveMail", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveMail")
-    @ResponseWrapper(localName = "saveMailResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveMailResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/saveMailRequest", output = "http://service.bibliotheque.com/BibliothequeWS/saveMailResponse", fault = {
-        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/saveMail/Fault/BibliothequeException")
-    })
-    public void saveMail(
-        @WebParam(name = "mail", targetNamespace = "")
-        Mail mail,
-        @WebParam(name = "user_id", targetNamespace = "")
-        Long userId)
-        throws BibliothequeException_Exception
-    ;
-
-    /**
-     * 
-     * @param userId
-     * @return
-     *     returns com.bibliotheque.service.Mail
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getMail", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetMail")
-    @ResponseWrapper(localName = "getMailResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetMailResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getMailRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getMailResponse")
-    public Mail getMail(
-        @WebParam(name = "user_id", targetNamespace = "")
-        Long userId);
-
-    /**
-     * 
-     * @param userId
-     * @param loanID
-     * @throws BibliothequeException_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "extendLoan", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ExtendLoan")
-    @ResponseWrapper(localName = "extendLoanResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ExtendLoanResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/extendLoanRequest", output = "http://service.bibliotheque.com/BibliothequeWS/extendLoanResponse", fault = {
-        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/extendLoan/Fault/BibliothequeException")
-    })
-    public void extendLoan(
-        @WebParam(name = "Loan_ID", targetNamespace = "")
-        Long loanID,
-        @WebParam(name = "user_id", targetNamespace = "")
-        Long userId)
-        throws BibliothequeException_Exception
-    ;
-
-    /**
-     * 
-     * @param userId
-     * @param bookId
-     * @throws BibliothequeException_Exception
-     * @throws ParseException_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "createLoan", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.CreateLoan")
-    @ResponseWrapper(localName = "createLoanResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.CreateLoanResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/createLoanRequest", output = "http://service.bibliotheque.com/BibliothequeWS/createLoanResponse", fault = {
-        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/createLoan/Fault/BibliothequeException"),
-        @FaultAction(className = ParseException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/createLoan/Fault/ParseException")
-    })
-    public void createLoan(
-        @WebParam(name = "book_id", targetNamespace = "")
-        Long bookId,
-        @WebParam(name = "user_id", targetNamespace = "")
-        Long userId)
-        throws BibliothequeException_Exception, ParseException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns com.bibliotheque.service.Loan
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getLoan", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetLoan")
-    @ResponseWrapper(localName = "getLoanResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetLoanResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getLoanRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getLoanResponse")
-    public Loan getLoan(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Long arg0);
-
-    /**
-     * 
-     * @param email
-     * @throws BibliothequeException_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "sendToken", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SendToken")
-    @ResponseWrapper(localName = "sendTokenResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SendTokenResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/sendTokenRequest", output = "http://service.bibliotheque.com/BibliothequeWS/sendTokenResponse", fault = {
-        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/sendToken/Fault/BibliothequeException")
-    })
-    public void sendToken(
-        @WebParam(name = "email", targetNamespace = "")
-        String email)
-        throws BibliothequeException_Exception
-    ;
-
-    /**
-     * 
-     * @param mail
-     * @param user
-     * @return
-     *     returns com.bibliotheque.service.User
-     * @throws BibliothequeException_Exception
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "createUser", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.CreateUser")
-    @ResponseWrapper(localName = "createUserResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.CreateUserResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/createUserRequest", output = "http://service.bibliotheque.com/BibliothequeWS/createUserResponse", fault = {
-        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/createUser/Fault/BibliothequeException")
-    })
-    public User createUser(
-        @WebParam(name = "user", targetNamespace = "")
-        User user,
-        @WebParam(name = "mail", targetNamespace = "")
-        Mail mail)
-        throws BibliothequeException_Exception
-    ;
-
-    /**
-     * 
-     * @param passWord
-     * @param pseudo
-     * @return
-     *     returns com.bibliotheque.service.User
-     * @throws BibliothequeException_Exception
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "doConnection", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DoConnection")
-    @ResponseWrapper(localName = "doConnectionResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DoConnectionResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/doConnectionRequest", output = "http://service.bibliotheque.com/BibliothequeWS/doConnectionResponse", fault = {
-        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/doConnection/Fault/BibliothequeException")
-    })
-    public User doConnection(
-        @WebParam(name = "pseudo", targetNamespace = "")
-        String pseudo,
-        @WebParam(name = "passWord", targetNamespace = "")
-        String passWord)
-        throws BibliothequeException_Exception
-    ;
-
-    /**
-     * 
-     * @param pseudo
-     * @return
-     *     returns java.util.List<com.bibliotheque.service.Roles>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getListRoles", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetListRoles")
-    @ResponseWrapper(localName = "getListRolesResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetListRolesResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getListRolesRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getListRolesResponse")
-    public List<Roles> getListRoles(
-        @WebParam(name = "pseudo", targetNamespace = "")
-        String pseudo);
-
-    /**
-     * 
-     * @param email
-     * @param token
-     * @throws BibliothequeException_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "validateToken", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ValidateToken")
-    @ResponseWrapper(localName = "validateTokenResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ValidateTokenResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/validateTokenRequest", output = "http://service.bibliotheque.com/BibliothequeWS/validateTokenResponse", fault = {
-        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/validateToken/Fault/BibliothequeException")
-    })
-    public void validateToken(
-        @WebParam(name = "email", targetNamespace = "")
-        String email,
-        @WebParam(name = "token", targetNamespace = "")
-        String token)
-        throws BibliothequeException_Exception
-    ;
-
-    /**
-     * 
-     * @param user
-     * @throws BibliothequeException_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "saveUser", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveUser")
-    @ResponseWrapper(localName = "saveUserResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveUserResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/saveUserRequest", output = "http://service.bibliotheque.com/BibliothequeWS/saveUserResponse", fault = {
-        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/saveUser/Fault/BibliothequeException")
-    })
-    public void saveUser(
-        @WebParam(name = "user", targetNamespace = "")
-        User user)
-        throws BibliothequeException_Exception
-    ;
-
-    /**
-     * 
-     * @param id
-     */
-    @WebMethod
-    @RequestWrapper(localName = "deleteUser", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteUser")
-    @ResponseWrapper(localName = "deleteUserResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteUserResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/deleteUserRequest", output = "http://service.bibliotheque.com/BibliothequeWS/deleteUserResponse")
-    public void deleteUser(
-        @WebParam(name = "id", targetNamespace = "")
-        Long id);
-
-    /**
-     * 
-     * @param book
-     * @throws BibliothequeException_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "updateBook", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.UpdateBook")
-    @ResponseWrapper(localName = "updateBookResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.UpdateBookResponse")
-    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/updateBookRequest", output = "http://service.bibliotheque.com/BibliothequeWS/updateBookResponse", fault = {
-        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/updateBook/Fault/BibliothequeException")
-    })
-    public void updateBook(
-        @WebParam(name = "book", targetNamespace = "")
-        Book book)
-        throws BibliothequeException_Exception
-    ;
-
-    /**
-     * 
      * @param userId
      * @return
      *     returns java.util.List<com.bibliotheque.service.Loan>
@@ -502,6 +76,393 @@ public interface BibliothequeWS {
         String password,
         @WebParam(name = "passwordConfirm", targetNamespace = "")
         String passwordConfirm)
+        throws BibliothequeException_Exception
+    ;
+
+    /**
+     * 
+     * @param book
+     * @throws BibliothequeException_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "createBook", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.CreateBook")
+    @ResponseWrapper(localName = "createBookResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.CreateBookResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/createBookRequest", output = "http://service.bibliotheque.com/BibliothequeWS/createBookResponse", fault = {
+        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/createBook/Fault/BibliothequeException")
+    })
+    public void createBook(
+        @WebParam(name = "book", targetNamespace = "")
+        Book book)
+        throws BibliothequeException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns com.bibliotheque.service.Book
+     * @throws BibliothequeException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getBook", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetBook")
+    @ResponseWrapper(localName = "getBookResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetBookResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getBookRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getBookResponse", fault = {
+        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/getBook/Fault/BibliothequeException")
+    })
+    public Book getBook(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Long arg0)
+        throws BibliothequeException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @throws BibliothequeException_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "deleteBook", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteBook")
+    @ResponseWrapper(localName = "deleteBookResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteBookResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/deleteBookRequest", output = "http://service.bibliotheque.com/BibliothequeWS/deleteBookResponse", fault = {
+        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/deleteBook/Fault/BibliothequeException")
+    })
+    public void deleteBook(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Long arg0)
+        throws BibliothequeException_Exception
+    ;
+
+    /**
+     * 
+     * @param size
+     * @param kind
+     * @param motCle
+     * @param available
+     * @param page
+     * @return
+     *     returns com.bibliotheque.service.Pagination
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listBook", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ListBook")
+    @ResponseWrapper(localName = "listBookResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ListBookResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/listBookRequest", output = "http://service.bibliotheque.com/BibliothequeWS/listBookResponse")
+    public Pagination listBook(
+        @WebParam(name = "mot-cle", targetNamespace = "")
+        String motCle,
+        @WebParam(name = "kind", targetNamespace = "")
+        String kind,
+        @WebParam(name = "available", targetNamespace = "")
+        boolean available,
+        @WebParam(name = "page", targetNamespace = "")
+        int page,
+        @WebParam(name = "size", targetNamespace = "")
+        int size);
+
+    /**
+     * 
+     * @param userId
+     * @param loanID
+     * @throws BibliothequeException_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "extendLoan", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ExtendLoan")
+    @ResponseWrapper(localName = "extendLoanResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ExtendLoanResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/extendLoanRequest", output = "http://service.bibliotheque.com/BibliothequeWS/extendLoanResponse", fault = {
+        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/extendLoan/Fault/BibliothequeException")
+    })
+    public void extendLoan(
+        @WebParam(name = "Loan_ID", targetNamespace = "")
+        Long loanID,
+        @WebParam(name = "user_id", targetNamespace = "")
+        Long userId)
+        throws BibliothequeException_Exception
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.bibliotheque.service.Kind>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getListKind", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetListKind")
+    @ResponseWrapper(localName = "getListKindResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetListKindResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getListKindRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getListKindResponse")
+    public List<Kind> getListKind();
+
+    /**
+     * 
+     * @return
+     *     returns int
+     * @throws BibliothequeException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getDaysExtend", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetDaysExtend")
+    @ResponseWrapper(localName = "getDaysExtendResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetDaysExtendResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getDaysExtendRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getDaysExtendResponse", fault = {
+        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/getDaysExtend/Fault/BibliothequeException")
+    })
+    public int getDaysExtend()
+        throws BibliothequeException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "returnLoan", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ReturnLoan")
+    @ResponseWrapper(localName = "returnLoanResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ReturnLoanResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/returnLoanRequest", output = "http://service.bibliotheque.com/BibliothequeWS/returnLoanResponse")
+    public void returnLoan(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Long arg0);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.bibliotheque.service.Loan>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getListLoanLate", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetListLoanLate")
+    @ResponseWrapper(localName = "getListLoanLateResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetListLoanLateResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getListLoanLateRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getListLoanLateResponse")
+    public List<Loan> getListLoanLate();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns com.bibliotheque.service.Loan
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getLoan", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetLoan")
+    @ResponseWrapper(localName = "getLoanResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetLoanResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getLoanRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getLoanResponse")
+    public Loan getLoan(
+        @WebParam(name = "arg0", targetNamespace = "")
+        Long arg0);
+
+    /**
+     * 
+     * @param userId
+     * @param bookId
+     * @throws BibliothequeException_Exception
+     * @throws ParseException_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "createLoan", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.CreateLoan")
+    @ResponseWrapper(localName = "createLoanResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.CreateLoanResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/createLoanRequest", output = "http://service.bibliotheque.com/BibliothequeWS/createLoanResponse", fault = {
+        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/createLoan/Fault/BibliothequeException"),
+        @FaultAction(className = ParseException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/createLoan/Fault/ParseException")
+    })
+    public void createLoan(
+        @WebParam(name = "book_id", targetNamespace = "")
+        Long bookId,
+        @WebParam(name = "user_id", targetNamespace = "")
+        Long userId)
+        throws BibliothequeException_Exception, ParseException_Exception
+    ;
+
+    /**
+     * 
+     * @return
+     *     returns int
+     * @throws BibliothequeException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getDaysLoan", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetDaysLoan")
+    @ResponseWrapper(localName = "getDaysLoanResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetDaysLoanResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getDaysLoanRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getDaysLoanResponse", fault = {
+        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/getDaysLoan/Fault/BibliothequeException")
+    })
+    public int getDaysLoan()
+        throws BibliothequeException_Exception
+    ;
+
+    /**
+     * 
+     * @param passWord
+     * @param pseudo
+     * @return
+     *     returns com.bibliotheque.service.User
+     * @throws BibliothequeException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "doConnection", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DoConnection")
+    @ResponseWrapper(localName = "doConnectionResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DoConnectionResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/doConnectionRequest", output = "http://service.bibliotheque.com/BibliothequeWS/doConnectionResponse", fault = {
+        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/doConnection/Fault/BibliothequeException")
+    })
+    public User doConnection(
+        @WebParam(name = "pseudo", targetNamespace = "")
+        String pseudo,
+        @WebParam(name = "passWord", targetNamespace = "")
+        String passWord)
+        throws BibliothequeException_Exception
+    ;
+
+    /**
+     * 
+     * @param pseudo
+     * @return
+     *     returns java.util.List<com.bibliotheque.service.Roles>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getListRoles", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetListRoles")
+    @ResponseWrapper(localName = "getListRolesResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetListRolesResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getListRolesRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getListRolesResponse")
+    public List<Roles> getListRoles(
+        @WebParam(name = "pseudo", targetNamespace = "")
+        String pseudo);
+
+    /**
+     * 
+     * @param mail
+     * @param user
+     * @return
+     *     returns com.bibliotheque.service.User
+     * @throws BibliothequeException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "createUser", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.CreateUser")
+    @ResponseWrapper(localName = "createUserResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.CreateUserResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/createUserRequest", output = "http://service.bibliotheque.com/BibliothequeWS/createUserResponse", fault = {
+        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/createUser/Fault/BibliothequeException")
+    })
+    public User createUser(
+        @WebParam(name = "user", targetNamespace = "")
+        User user,
+        @WebParam(name = "mail", targetNamespace = "")
+        Mail mail)
+        throws BibliothequeException_Exception
+    ;
+
+    /**
+     * 
+     * @param userId
+     * @return
+     *     returns com.bibliotheque.service.Mail
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getMail", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetMail")
+    @ResponseWrapper(localName = "getMailResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.GetMailResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/getMailRequest", output = "http://service.bibliotheque.com/BibliothequeWS/getMailResponse")
+    public Mail getMail(
+        @WebParam(name = "user_id", targetNamespace = "")
+        Long userId);
+
+    /**
+     * 
+     * @param mail
+     * @param userId
+     * @throws BibliothequeException_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "saveMail", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveMail")
+    @ResponseWrapper(localName = "saveMailResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveMailResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/saveMailRequest", output = "http://service.bibliotheque.com/BibliothequeWS/saveMailResponse", fault = {
+        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/saveMail/Fault/BibliothequeException")
+    })
+    public void saveMail(
+        @WebParam(name = "mail", targetNamespace = "")
+        Mail mail,
+        @WebParam(name = "user_id", targetNamespace = "")
+        Long userId)
+        throws BibliothequeException_Exception
+    ;
+
+    /**
+     * 
+     * @param user
+     * @throws BibliothequeException_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "saveUser", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveUser")
+    @ResponseWrapper(localName = "saveUserResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SaveUserResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/saveUserRequest", output = "http://service.bibliotheque.com/BibliothequeWS/saveUserResponse", fault = {
+        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/saveUser/Fault/BibliothequeException")
+    })
+    public void saveUser(
+        @WebParam(name = "user", targetNamespace = "")
+        User user)
+        throws BibliothequeException_Exception
+    ;
+
+    /**
+     * 
+     * @param email
+     * @param token
+     * @throws BibliothequeException_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "validateToken", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ValidateToken")
+    @ResponseWrapper(localName = "validateTokenResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.ValidateTokenResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/validateTokenRequest", output = "http://service.bibliotheque.com/BibliothequeWS/validateTokenResponse", fault = {
+        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/validateToken/Fault/BibliothequeException")
+    })
+    public void validateToken(
+        @WebParam(name = "email", targetNamespace = "")
+        String email,
+        @WebParam(name = "token", targetNamespace = "")
+        String token)
+        throws BibliothequeException_Exception
+    ;
+
+    /**
+     * 
+     * @param email
+     * @throws BibliothequeException_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "sendToken", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SendToken")
+    @ResponseWrapper(localName = "sendTokenResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.SendTokenResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/sendTokenRequest", output = "http://service.bibliotheque.com/BibliothequeWS/sendTokenResponse", fault = {
+        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/sendToken/Fault/BibliothequeException")
+    })
+    public void sendToken(
+        @WebParam(name = "email", targetNamespace = "")
+        String email)
+        throws BibliothequeException_Exception
+    ;
+
+    /**
+     * 
+     * @param id
+     */
+    @WebMethod
+    @RequestWrapper(localName = "deleteUser", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteUser")
+    @ResponseWrapper(localName = "deleteUserResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.DeleteUserResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/deleteUserRequest", output = "http://service.bibliotheque.com/BibliothequeWS/deleteUserResponse")
+    public void deleteUser(
+        @WebParam(name = "id", targetNamespace = "")
+        Long id);
+
+    /**
+     * 
+     * @param book
+     * @throws BibliothequeException_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "updateBook", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.UpdateBook")
+    @ResponseWrapper(localName = "updateBookResponse", targetNamespace = "http://service.bibliotheque.com/", className = "com.bibliotheque.service.UpdateBookResponse")
+    @Action(input = "http://service.bibliotheque.com/BibliothequeWS/updateBookRequest", output = "http://service.bibliotheque.com/BibliothequeWS/updateBookResponse", fault = {
+        @FaultAction(className = BibliothequeException_Exception.class, value = "http://service.bibliotheque.com/BibliothequeWS/updateBook/Fault/BibliothequeException")
+    })
+    public void updateBook(
+        @WebParam(name = "book", targetNamespace = "")
+        Book book)
         throws BibliothequeException_Exception
     ;
 
