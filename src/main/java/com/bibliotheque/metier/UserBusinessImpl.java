@@ -23,7 +23,7 @@ import com.bibliotheque.entities.Roles;
 import com.bibliotheque.entities.User;
 import com.bibliotheque.exception.BibliothequeException;
 import com.bibliotheque.exception.BibliothequeFault;
-import com.bibliotheque.utilities.Encrypt;
+import com.bibliotheque.utilities.Jasypt;
 
 @Service
 @PropertySource("classpath:bibliotheque.properties")
@@ -34,7 +34,7 @@ public class UserBusinessImpl implements UserBusiness {
 	@Autowired
 	private MailBusiness mailBusiness;
 	@Autowired
-	private Encrypt encrypt;
+	private Jasypt encrypt;
 	@Value("${connection.expired.inMillis}")
 	private int minuteInMillisForConnection;
 
@@ -210,7 +210,7 @@ public class UserBusinessImpl implements UserBusiness {
 		validatePassWord(user);
 
 		user.getRoles().add(new Roles("ROLE_USER"));
-		user.getRoles().add(new Roles("ROLE_ADMIN"));
+		//user.getRoles().add(new Roles("ROLE_ADMIN"));
 		user.setActive(true);
 		user.setPassWord(new BCryptPasswordEncoder().encode(user.getPassWord()));
 

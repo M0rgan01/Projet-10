@@ -11,9 +11,10 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
-public class Encrypt{
+public class Jasypt{
 
 
+	private String secreteKey = "jasypt";
 	
 	/**
 	 * Encrypte une chaine de caractere
@@ -24,7 +25,7 @@ public class Encrypt{
 	 */
 	public String setEncrypt(String string) {
 		StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
-		encryptor.setPassword("jasypt");
+		encryptor.setPassword(secreteKey);
 		string = encryptor.encrypt(string);
 		return string;	
 	}
@@ -39,7 +40,7 @@ public class Encrypt{
 	 */
 	public String getDecrypt(String string) {
 		StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
-		encryptor.setPassword("jasypt");
+		encryptor.setPassword(secreteKey);
 		string = encryptor.decrypt(string);
 		return string;	
 	}

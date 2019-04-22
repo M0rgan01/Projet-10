@@ -1,7 +1,6 @@
 package com.bibliotheque.metier;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -10,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import com.bibliotheque.dao.BookRepository;
@@ -22,7 +20,6 @@ import com.bibliotheque.exception.BibliothequeException;
 import com.bibliotheque.exception.BibliothequeFault;
 
 @Service
-@PropertySource("classpath:bibliotheque.properties")
 public class LoanBusinessImpl implements LoanBusiness {
 
 	@Autowired
@@ -146,7 +143,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 		// on règle les dates de début et de fin
 		Calendar c = Calendar.getInstance();
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		c.setTime(sdf.parse("2019-01-25"));
+//		c.setTime(sdf.parse("2018-02-01"));
 		Date start_loan = c.getTime();
 
 		c.add(Calendar.DATE, loanDays);

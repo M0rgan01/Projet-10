@@ -3,6 +3,7 @@ package com.bibliotheque.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,13 +31,14 @@ public class Book implements Serializable{
 	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="BOOK_SEQ")
 	private Long id;
 	@NotBlank(message="book.title.blank")
-	@Size(max=20, min=5, message="book.title.size.not.correct")
+	@Size(max=50, min=5, message="book.title.size.not.correct")
 	private String title;
 	@NotBlank(message="book.author.blank")
 	@Size(max=20, message="book.author.size.not.correct")
 	private String author;
 	@NotBlank(message="book.description.blank")
 	@Size(max=500, message="book.descritpion.size.not.correct")
+	@Column(length=2000)
 	private String description;
 	
 	/**

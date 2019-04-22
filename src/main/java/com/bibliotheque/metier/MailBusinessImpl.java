@@ -15,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import com.bibliotheque.dao.MailRepository;
@@ -23,21 +22,19 @@ import com.bibliotheque.entities.Mail;
 import com.bibliotheque.entities.User;
 import com.bibliotheque.exception.BibliothequeException;
 import com.bibliotheque.exception.BibliothequeFault;
-import com.bibliotheque.utilities.Encrypt;
+import com.bibliotheque.utilities.Jasypt;
 import com.bibliotheque.utilities.SendMail;
 
 
 @Service
-@PropertySource("classpath:bibliotheque.properties")
 public class MailBusinessImpl implements MailBusiness{
-	
+		
 	@Autowired
 	private MailRepository mailRepository;
 	@Autowired
-	private Encrypt encrypt;
+	private Jasypt encrypt;
 	@Autowired
-	private SendMail sendMail;
-	
+	private SendMail sendMail;			
 	@Value("${mail.username}")
 	private String emailUsers;
 	@Value("${mail.password}")
@@ -81,6 +78,8 @@ public class MailBusinessImpl implements MailBusiness{
 
 	@Override
 	public void createMail(Mail mail, User user) throws BibliothequeException {
+		System.out.println(emailUsers);
+
 		//validation
 		validateMail(mail);	
 		//attribution de l'utilisateur
