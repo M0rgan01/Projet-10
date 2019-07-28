@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<title>Les ouvrages</title>
+</head>
+<body>
+	<div layout:fragment="content">
+
+		<div class="row justify-content-center my-5">
+			<h3>Rechercher un ouvrage</h3>
+		</div>
+
+		<form th:action="@{recherche}" method="get" class="mb-5">
+
+			<div class="row">
+				<div class="col-md-4 mt-2">
+					<label>Recherche par mot-clé</label> <input class="form-control"
+						type="text" name="MotCle" th:value="${MotCle}" />
+				</div>
+
+				<div class="col-md-4 mt-2">
+					<label>Recherche par genre</label> <select name="genre" id="genre"
+						class="form-control">
+						<option selected="selected" th:value="${blank}">Aucun
+							filtre</option>
+						<option th:each="g : ${listKind}" th:value="${g.name}"
+							th:text="${g.name}" th:selected="${g.name.equals(genre)}">Wireframe</option>
+					</select>
+				</div>
+
+				<div class="col-md-4 mt-2 custom-control custom-checkbox">
+					<div class="row justify-content-center mx-3 mt-3">
+						<input type="checkbox" name="isReserved"
+							th:checked="${isReserved}" class="custom-control-input"
+							id="customCheck1" /> <label class="custom-control-label"
+							for="customCheck1">Uniquement livre disponnible au prêt</label>
+					</div>
+
+				</div>
+
+
+			</div>
+
+			<div class="row justify-content-center mt-4">
+				<button class="btn btn-primary">Chercher</button>
+			</div>
+		</form>
+
+		<div th:if="${param.returnDelete}"
+			class="row justify-content-center mb-2">
+			<span class="alert alert-primary">Suppression effectué avec
+				succès !</span>
+		</div>
+
+		<div class="mb-5">
+			<div th:each="o:${listOuvrages.getT()}">
+
+				<div class="row justify-content-center">
+					<span class="bar"></span>
+				</div>
+
+				<div class="row justify-content-center">
+					<h2 class="mb-5" th:text=${o.title}></h2>
+				</div>
+				<div class="row">
+					<p class="ml-3 mb-4" th:text="'Description : ' + ${o.description}"></p>
+				</div>
+				<div class="row text-center mb-4">
+					<h6 class="col-6" th:text="'Auteur : ' + ${o.author}"></h6>
+
+					<h6 class="col-6" th:text="'Genre : ' + ${o.kind.name}"></h6>
+
+				</div>
+
+				<div th:if="${#request.isUserInRole('USER') && o.available}">
+					<div class="row justify-content-center">
+						<span class="btn btn-primary my-1">Disponible</span>
+					</div>
+					<div class="row justify-content-center">
+						<p>
+							Nombre d'exemplaire à disposition : <span
+								th:text="${o.copyAvailable}"></span>
+						</p>
+					</div>
+
+				</div>
+
+				<div th:if="${#request.isUserInRole('USER') && !o.available}">
+					<div class="row justify-content-center">
+						<span class="btn btn-danger my-1">Non disponnible</span>
+					</div>
+				</div>
+
+				<div th:if="${#request.isUserInRole('ADMIN')}" class="text-center">
+					<a class="btn btn-primary"
+						th:href="@{modificationOuvrage(id=${o.id})}">Modifier</a> <a
+						onclick="return confirm('Etes vous sûre ?')"
+						class="btn btn-primary my-1"
+						th:href="@{deleteOuvrage(id=${o.id}, page=${listOuvrages.page + 1} ,MotCle=${MotCle}, genre=${genre}, isReserved=${isReserved})}">Supprimer</a>
+				</div>
+
+
+
+			</div>
+		</div>
+
+		<div th:if="${listOuvrages.getNumberT() == 0}"
+			class="justify-content-center row mt-5 font-weight-bold">
+			<p>Votre recherche n'à donnée aucun résultat !</p>
+		</div>
+
+		<div th:if="${listOuvrages.totalsPage > 1}">
+			<ul class="pagination justify-content-center">
+
+				<li class="page-item"
+					th:classappend="${listOuvrages.page == 0} ? disabled"><a
+					class="page-link"
+					th:href="@{/recherche(page=1, MotCle=${MotCle}, genre=${genre}, isReserved=${isReserved})}">«</a></li>
+
+				<li class="page-item"
+					th:classappend="${listOuvrages.page == 0} ? disabled"><a
+					class="page-link"
+					th:href="@{/recherche(page=${listOuvrages.page}, MotCle=${MotCle}, genre=${genre}, isReserved=${isReserved})}">←</a></li>
+
+				<li class="page-item"
+					th:classappend="${listOuvrages.page == (page - 1)} ? 'active'"
+					th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+					<a class="page-link"
+					th:href="@{/recherche(page=${page}, MotCle=${MotCle}, genre=${genre}, isReserved=${isReserved})}"
+					th:text="${page}"></a>
+				</li>
+
+				<li class="page-item"
+					th:classappend="${listOuvrages.page + 1 == listOuvrages.totalsPage} ? disabled">
+					<a class="page-link"
+					th:href="@{/recherche(page=${listOuvrages.page + 2}, MotCle=${MotCle}, genre=${genre}, isReserved=${isReserved})}">→</a>
+				</li>
+
+				<li class="page-item"
+					th:classappend="${listOuvrages.page + 1 == listOuvrages.totalsPage} ? disabled">
+					<a class="page-link"
+					th:href="@{/recherche(page=${listOuvrages.totalsPage}, MotCle=${MotCle}, genre=${genre}, isReserved=${isReserved})}">»</a>
+				</li>
+
+			</ul>
+		</div>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<title>Modification d'un livre</title>
+</head>
+<body>
+	<div layout:fragment="content" class="row my-5">
+		<div class="col-6 offset-3">
+			<div class="card card-outline-secondary">
+				<div class="card-header text-center">
+					<h3 class="mb-0">Modification d'un livre</h3>
+				</div>
+				<div class="card-body">
+
+					<form th:action="@{/saveModificationOuvrage}" method="post">
+
+						<div th:if="${exception}" class="row justify-content-center">
+							<span class="alert alert-danger"
+								th:text="${exception}"></span>
+						</div>
+
+						<div th:if="${param.returnEdit}" class="alert alert-primary">
+							<span>Modification effectué avec succès !</span>
+						</div>
+
+						<div class="form-group">
+							<label>Titre</label> <input class="form-control" type="text"
+								th:value="${book?.title}" name="title" />
+						</div>
+
+						<div class="form-group">
+							<label>Auteur</label> <input class="form-control" type="text"
+								name="author" th:value="${book?.author}" />
+						</div>
+
+						<div class="form-group">
+							<label>Description</label>
+							<textarea class="form-control" rows="5" name="description"
+								th:text="${book?.description}"></textarea>
+						</div>
+
+						<div class="form-group">
+							<label>Genre du livre :</label> <select name="kind.name" id="genre"
+								class="form-control">
+
+								<option selected="selected" th:value="${blank}">Séléctionner
+									un genre</option>
+								<option th:each="g : ${listKind}" th:value="${g.name}"
+									th:text="${g.name}" th:selected="${g.name.equals(book?.kind?.name)}">Wireframe</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label>Nombre d'exemplaires totaux :</label> <input class="form-control"
+								type="number" name="copyTotals"
+								th:value="${book?.copyTotals}" />
+						</div>
+
+						<div class="form-group">
+							<label>Nombre d'exemplaires disponible :</label> <input class="form-control"
+								type="number" name="copyAvailable"
+								th:value="${book?.copyAvailable}" />
+						</div>
+
+						<div class="form-group">
+							<label class="mr-1">Disponnible au prêt</label> <input
+								type="checkbox" name="available"
+								th:checked="${book.available}" />
+						</div>
+
+						<div>
+							<input name="id" type="hidden" th:value="${book.id}">
+							<button type="submit" class="btn btn-primary">Valider</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
