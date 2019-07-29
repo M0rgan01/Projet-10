@@ -2,6 +2,7 @@ package com.bibliotheque.entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -51,15 +52,31 @@ public class Book implements Serializable{
 	 */
 	private int copyAvailable;
 	/**
-	 * boolean de disponibilité  
+	 * boolean de disponibilité pour emprunt 
 	 */
 	private boolean available;
 	/**
 	 * boolean de désactivation  
 	 */	
 	private boolean disable;
+	/**
+	 * Date de retour d'emprunt la plus proche 
+	 */	
+	private Date loanBack;
+	/**
+	 * Nombre de reservation en cour du livre
+	 */	
+	private int numberReservation;
+	/**
+	 * boolean de disponibilité pour reservation  
+	 */
+	private boolean availableReservation;
+	
 	@OneToMany(mappedBy="book")
 	private Collection<Loan> loans;
+	
+	@OneToMany(mappedBy="book")
+	private Collection<Reservation> reservations;
 	
 	@ManyToOne
 	@JoinColumn(name="KIND_NAME")
@@ -146,6 +163,15 @@ public class Book implements Serializable{
 	public void setLoans(Collection<Loan> loans) {
 		this.loans = loans;
 	}
+	
+	@XmlTransient
+	public Collection<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(Collection<Reservation> reservations) {
+		this.reservations = reservations;
+	}
 
 	public Kind getKind() {
 		return kind;
@@ -161,6 +187,30 @@ public class Book implements Serializable{
 
 	public void setDisable(boolean disable) {
 		this.disable = disable;
+	}
+
+	public Date getLoanBack() {
+		return loanBack;
+	}
+
+	public void setLoanBack(Date loanBack) {
+		this.loanBack = loanBack;
+	}
+
+	public int getNumberReservation() {
+		return numberReservation;
+	}
+
+	public void setNumberReservation(int numberReservation) {
+		this.numberReservation = numberReservation;
+	}
+
+	public boolean isAvailableReservation() {
+		return availableReservation;
+	}
+
+	public void setAvailableReservation(boolean availableReservation) {
+		this.availableReservation = availableReservation;
 	}
 
 		

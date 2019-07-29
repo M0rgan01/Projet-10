@@ -223,9 +223,21 @@ public class UserBusinessImpl implements UserBusiness {
 	}
 
 	@Override
-	public User getUser(Long id) {
-		logger.info("Get user for id " + id);
-		return userRepository.findById(id).orElse(null);
+	public User getUser(Long id) throws BibliothequeException {
+		
+		User user = userRepository.findById(id).orElse(null);
+		if (user == null) {
+			logger.error("id user "+ id + " not correct");
+			BibliothequeFault bibliothequeFault = new BibliothequeFault();
+			bibliothequeFault.setFaultCode("1");
+			bibliothequeFault.setFaultString("user.id.not.correct");
+			throw new BibliothequeException("user.id.not.correct", bibliothequeFault);
+		}
+		
+		logger.info("Success get user " + user.getId());
+	
+		
+		return user;
 	}
 
 	@Override

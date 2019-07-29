@@ -285,7 +285,7 @@ public class BibliothequeService {
 	}
 
 
-//////////////////////// GESTION RESERVATION ////////////////////////
+//////////////////////// GESTION EMPRUNT ////////////////////////
 
 	/**
 	 * Service de création d'un emprunt

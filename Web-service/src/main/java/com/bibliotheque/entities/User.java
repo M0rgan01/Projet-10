@@ -59,6 +59,8 @@ public class User implements Serializable{
 	@OneToMany(mappedBy="user")
 	private Collection<Loan> loans;
 	
+	@OneToMany(mappedBy="user")
+	private Collection<Reservation> reservations;
 	
 	public User() {
 		super();
@@ -150,6 +152,14 @@ public class User implements Serializable{
 
 	public void setLoans(Collection<Loan> loans) {
 		this.loans = loans;
+	}
+	@XmlTransient
+	public Collection<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(Collection<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 	
 	

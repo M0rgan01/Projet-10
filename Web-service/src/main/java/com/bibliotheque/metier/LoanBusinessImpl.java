@@ -107,15 +107,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 		User user = userBusiness.getUser(User_id);
 		Book book = bookRepository.findById(book_id).orElse(null);
 
-		if (user == null) {
-			logger.error("user id " + User_id + " not correct");
-			BibliothequeFault bibliothequeFault = new BibliothequeFault();
-			bibliothequeFault.setFaultCode("4");
-			bibliothequeFault.setFaultString("user.id.not.correct");
-
-			throw new BibliothequeException("user.id.not.correct", bibliothequeFault);
-
-		} else if (book == null || book.isDisable()) {
+		 if (book == null || book.isDisable()) {
 			logger.error("book id " + book_id + " not correct");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("1");
@@ -137,8 +129,11 @@ public class LoanBusinessImpl implements LoanBusiness {
 		book.setCopyAvailable(book.getCopyAvailable() - 1);
 
 		// s'il est à 0 on rend le livre non disponible
-		if (book.getCopyAvailable() == 0)
+		if (book.getCopyAvailable() == 0) {
 			book.setAvailable(false);
+			book.setAvailableReservation(true);
+		}
+			
 
 		// on règle les dates de début et de fin
 		Calendar c = Calendar.getInstance();

@@ -98,6 +98,7 @@ public class BookBusinessImpl implements BookBusiness {
 		validateBook(book);
 
 		book.setAvailable(true);
+		book.setAvailableReservation(false);
 		book.setCopyAvailable(book.getCopyTotals());
 
 		bookRepository.save(book);
