@@ -25,7 +25,14 @@ public class Reservation implements Serializable{
 	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="RESERVATION_SEQ")
 	private Long id;
 	
-	private Date start_reservation;
+	/**
+	 * Date de creation de la reservation
+	 */	
+	private Date startReservation;
+	/**
+	 * position d'une reservation parmit les autres
+	 */
+	private int position;
 	
 	@ManyToOne
 	@JoinColumn(name = "USER_ID")
@@ -39,7 +46,7 @@ public class Reservation implements Serializable{
 	public Reservation() {}
 	
 	public Reservation(Date start, User user, Book book) {
-		this.start_reservation = start;	
+		this.startReservation = start;	
 		this.book = book;
 		this.user = user;
 	}
@@ -52,12 +59,12 @@ public class Reservation implements Serializable{
 		this.id = id;
 	}
 
-	public Date getStart_reservation() {
-		return start_reservation;
+	public Date getStartReservation() {
+		return startReservation;
 	}
 
-	public void setStart_reservation(Date start_reservation) {
-		this.start_reservation = start_reservation;
+	public void setStartReservation(Date startReservation) {
+		this.startReservation = startReservation;
 	}
 
 	public User getUser() {
@@ -74,6 +81,14 @@ public class Reservation implements Serializable{
 
 	public void setBook(Book book) {
 		this.book = book;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
 	}
 	
 	

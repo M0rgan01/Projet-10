@@ -18,14 +18,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="debut" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
- *         &lt;element name="fin" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="book" type="{http://service.bibliotheque.com/}book" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="ouvrage" type="{http://service.bibliotheque.com/}ouvrage" minOccurs="0"/>
- *         &lt;element name="prolongation" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *         &lt;element name="rendu" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *         &lt;element name="retard" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
- *         &lt;element name="utilisateur" type="{http://service.bibliotheque.com/}utilisateur" minOccurs="0"/>
+ *         &lt;element name="position" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="startReservation" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="user" type="{http://service.bibliotheque.com/}user" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,74 +33,43 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "reservation", propOrder = {
-    "debut",
-    "fin",
+    "book",
     "id",
-    "ouvrage",
-    "prolongation",
-    "rendu",
-    "retard",
-    "utilisateur"
+    "position",
+    "startReservation",
+    "user"
 })
 public class Reservation {
 
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar debut;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar fin;
+    protected Book book;
     protected Long id;
-    protected Ouvrage ouvrage;
-    protected boolean prolongation;
-    protected boolean rendu;
-    protected boolean retard;
-    protected Utilisateur utilisateur;
+    protected int position;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar startReservation;
+    protected User user;
 
     /**
-     * Obtient la valeur de la propriété debut.
+     * Obtient la valeur de la propriété book.
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link Book }
      *     
      */
-    public XMLGregorianCalendar getDebut() {
-        return debut;
+    public Book getBook() {
+        return book;
     }
 
     /**
-     * Définit la valeur de la propriété debut.
+     * Définit la valeur de la propriété book.
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link Book }
      *     
      */
-    public void setDebut(XMLGregorianCalendar value) {
-        this.debut = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété fin.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getFin() {
-        return fin;
-    }
-
-    /**
-     * Définit la valeur de la propriété fin.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setFin(XMLGregorianCalendar value) {
-        this.fin = value;
+    public void setBook(Book value) {
+        this.book = value;
     }
 
     /**
@@ -131,99 +97,67 @@ public class Reservation {
     }
 
     /**
-     * Obtient la valeur de la propriété ouvrage.
+     * Obtient la valeur de la propriété position.
+     * 
+     */
+    public int getPosition() {
+        return position;
+    }
+
+    /**
+     * Définit la valeur de la propriété position.
+     * 
+     */
+    public void setPosition(int value) {
+        this.position = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété startReservation.
      * 
      * @return
      *     possible object is
-     *     {@link Ouvrage }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public Ouvrage getOuvrage() {
-        return ouvrage;
+    public XMLGregorianCalendar getStartReservation() {
+        return startReservation;
     }
 
     /**
-     * Définit la valeur de la propriété ouvrage.
+     * Définit la valeur de la propriété startReservation.
      * 
      * @param value
      *     allowed object is
-     *     {@link Ouvrage }
+     *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setOuvrage(Ouvrage value) {
-        this.ouvrage = value;
+    public void setStartReservation(XMLGregorianCalendar value) {
+        this.startReservation = value;
     }
 
     /**
-     * Obtient la valeur de la propriété prolongation.
-     * 
-     */
-    public boolean isProlongation() {
-        return prolongation;
-    }
-
-    /**
-     * Définit la valeur de la propriété prolongation.
-     * 
-     */
-    public void setProlongation(boolean value) {
-        this.prolongation = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété rendu.
-     * 
-     */
-    public boolean isRendu() {
-        return rendu;
-    }
-
-    /**
-     * Définit la valeur de la propriété rendu.
-     * 
-     */
-    public void setRendu(boolean value) {
-        this.rendu = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété retard.
-     * 
-     */
-    public boolean isRetard() {
-        return retard;
-    }
-
-    /**
-     * Définit la valeur de la propriété retard.
-     * 
-     */
-    public void setRetard(boolean value) {
-        this.retard = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété utilisateur.
+     * Obtient la valeur de la propriété user.
      * 
      * @return
      *     possible object is
-     *     {@link Utilisateur }
+     *     {@link User }
      *     
      */
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
+    public User getUser() {
+        return user;
     }
 
     /**
-     * Définit la valeur de la propriété utilisateur.
+     * Définit la valeur de la propriété user.
      * 
      * @param value
      *     allowed object is
-     *     {@link Utilisateur }
+     *     {@link User }
      *     
      */
-    public void setUtilisateur(Utilisateur value) {
-        this.utilisateur = value;
+    public void setUser(User value) {
+        this.user = value;
     }
 
 }
