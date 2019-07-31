@@ -37,7 +37,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 	private int loanDays;
 
 	private static final Logger logger = LoggerFactory.getLogger(LoanBusinessImpl.class);
-	
+
 	@Override
 	public void extendLoan(Long loan_ID, Long user_ID) throws BibliothequeException {
 		Loan r = loanRepository.findById(loan_ID).orElse(null);
@@ -87,6 +87,10 @@ public class LoanBusinessImpl implements LoanBusiness {
 		r.setEnd_loan(c.getTime());
 		r.setExtension(true);
 
+		if (!r.getBook().isAvailable()) {
+			r.getBook().setLoanBack(c.getTime());
+		}
+
 		loanRepository.save(r);
 		logger.info("Add " + extendDays + " days to loan " + loan_ID);
 	}
@@ -96,9 +100,9 @@ public class LoanBusinessImpl implements LoanBusiness {
 	public void returnLoan(Long id) throws BibliothequeException {
 		Loan loan = loanRepository.findById(id).orElse(null);
 		loan.setMade(true);
-		
+
 		reservationBusiness.checkReservation(loan.getBook().getId());
-		
+
 		loanRepository.save(loan);
 		logger.info("Close the loan " + id);
 	}
@@ -114,7 +118,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 		User user = userBusiness.getUser(User_id);
 		Book book = bookRepository.findById(book_id).orElse(null);
 
-		 if (book == null || book.isDisable()) {
+		if (book == null || book.isDisable()) {
 			logger.error("book id " + book_id + " not correct");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("1");
@@ -135,13 +139,6 @@ public class LoanBusinessImpl implements LoanBusiness {
 		// on décrémente le nombre de copy disponible
 		book.setCopyAvailable(book.getCopyAvailable() - 1);
 
-		// s'il est à 0 on rend le livre non disponible
-		if (book.getCopyAvailable() == 0) {
-			book.setAvailable(false);
-			book.setAvailableReservation(true);
-		}
-			
-
 		// on règle les dates de début et de fin
 		Calendar c = Calendar.getInstance();
 //		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -150,6 +147,13 @@ public class LoanBusinessImpl implements LoanBusiness {
 
 		c.add(Calendar.DATE, loanDays);
 		Date end_loan = c.getTime();
+
+		// s'il est à 0 on rend le livre non disponible
+		if (book.getCopyAvailable() == 0) {
+			book.setAvailable(false);
+			book.setAvailableReservation(true);
+			book.setLoanBack(end_loan);
+		}
 
 		bookRepository.save(book);
 		logger.info("Update book " + book.getId());
@@ -165,7 +169,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 
 	@Override
 	public List<Loan> getListLoanLateByUserID(Long user_id) {
-				
+
 		List<Loan> list = loanRepository.getListLoanLateByUserID(user_id, new Date());
 
 		for (Loan loan : list) {
@@ -176,9 +180,9 @@ public class LoanBusinessImpl implements LoanBusiness {
 					loan.setLate(true);
 			}
 		}
-		
+
 		logger.info("Get list of loan late for user id " + user_id);
-		
+
 		return list;
 	}
 
@@ -206,7 +210,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 
 	@Override
 	public List<Loan> getListLoanLate() {
-		logger.info("Get list of loan late");		
+		logger.info("Get list of loan late");
 		return loanRepository.getListLoanLate(new Date());
 	}
 

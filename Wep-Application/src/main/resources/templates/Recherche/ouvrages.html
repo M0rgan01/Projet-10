@@ -88,9 +88,16 @@
 				</div>
 
 				<div th:if="${#request.isUserInRole('USER') && !o.available}">
-					<div class="row justify-content-center">
-						<span class="btn btn-danger my-1">Non disponnible</span>
+					<div class="row text-center my-1">
+						<div class="col-4 my-auto" ><span class="btn btn-danger">Non disponnible</span></div>
+						<p class="col-4 my-auto">Prochaine disponnibilitée : <span class="btn btn-info" th:href="@{o.availableReservation}"></span></p>
+						<p class="col-4 my-auto">Nombre de réservation : <span class="btn btn-info" th:href="@{o.numberReservation}"></span></p>
 					</div>
+															
+					<div th:if="${o.availableReservation}" class="row text-center my-1">
+						<div class="col-4 my-auto" ><span class="btn btn-success">Réserver</span></div>						
+					</div>
+									
 				</div>
 
 				<div th:if="${#request.isUserInRole('ADMIN')}" class="text-center">

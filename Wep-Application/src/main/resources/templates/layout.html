@@ -29,22 +29,26 @@
 			<div class="collapse navbar-collapse ml-5"
 				id="navbarSupportedContent">
 				<ul class="navbar-nav">
-					<li><a class="navbar-brand" th:href="@{index}">Bibliothèques du grand Lyon</a></li>
+					<li><a class="navbar-brand" th:href="@{index}">Bibliothèques
+							du grand Lyon</a></li>
 
 					<li><a th:if="${#httpServletRequest.remoteUser == null}"
 						class="nav-link" th:href="@{login}">Se connecter</a></li>
+
+					<li><a th:if="${#httpServletRequest.remoteUser == null}"
+						class="nav-link" th:href="@{inscription}">Inscription</a></li>
 
 					<li th:if="${#httpServletRequest.remoteUser}"
 						class="nav-item dropdown"><a class="nav-link dropdown-toggle"
 						href="#" id="navbarDropdownMenuLink" role="button"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mon
 							compte</a>
-						<div class="dropdown-menu"
-							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="reservationCompte">Mes réservations</a>
-							<a class="dropdown-item" href="modificationCompte">Modifier mon compte</a> <a
-								class="dropdown-item" href="suppressionCompte">Supprimer mon compte</a> <a
-								class="dropdown-item" th:href="@{/logout}">Déconnexion</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="empruntCompte">Mes emprunts</a> 
+							<a class="dropdown-item" href="reservationCompte">Mes reservations</a> 
+							<a class="dropdown-item" href="modificationCompte">Modifier mon compte</a> 
+							<a class="dropdown-item" href="suppressionCompte">Supprimer mon compte</a> 
+							<a class="dropdown-item" th:href="@{/logout}">Déconnexion</a>
 
 						</div></li>
 

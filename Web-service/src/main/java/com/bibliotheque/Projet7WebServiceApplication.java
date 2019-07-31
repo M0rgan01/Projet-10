@@ -101,7 +101,7 @@ public class Projet7WebServiceApplication extends SpringBootServletInitializer i
 		Loan loan = new Loan(new Date(),new Date(), user, book);
 		
 		loanRepository.save(loan);
-		loanBusiness.returnLoan(loan.getId());
+	//	loanBusiness.returnLoan(loan.getId());
 		
 	}
 }

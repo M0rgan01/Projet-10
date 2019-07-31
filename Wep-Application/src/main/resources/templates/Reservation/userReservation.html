@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<title>Mes réservations</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+
+		<div class="row justify-content-center my-5">
+			<h3>Mes réservation en cours</h3>
+		</div>
+
+		<div class="row justify-content-center">
+			<span class="bar"></span>
+		</div>
+
+		<div th:if="${param.returnDeleteReservation}"
+			class="row justify-content-center mb-2">
+			<span class="alert alert-primary">Annulation effectué avec
+				succès !</span>
+		</div>
+
+		<div th:each="r:${listReservation}">
+			<div class="row text-center">
+				<span class="h5 col-sm-3 my-auto"
+					th:text="${'Titre du livre : ' + r.getBook().getTitle()}"></span>
+				<span class="col-sm-3 my-auto"
+					th:text="'Effectuée le ' + ${#dates.format(r.startReservation.toGregorianCalendar().getTime(), 'dd-MM-yyyy')}"></span>
+				<p class="col-sm-3 my-auto"
+					>Position dans la file d'attente : <span class="font-weight-bold" th:text="${r.position}"></span></p>					
+				<span class="col-sm-3 my-auto">
+					<a class="btn btn-danger" th:href="@{prolongerEmprunt(id=${r.id})}">Annuler</a>
+				</span>
+			</div>
+
+			<div class="row justify-content-center">
+				<span class="bar"></span>
+			</div>
+
+		</div>
+
+		<div th:if="${listReservation.size() == 0}"
+			class="justify-content-center row mt-5 font-weight-bold">
+			<p>Vous n'avez aucune reservation pour le moment</p>
+		</div>
+
+
+
+	</div>
+
+</body>
+</html>
