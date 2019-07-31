@@ -27,8 +27,9 @@ public interface LoanBusiness {
 	 * Rendu d'un emprunt
 	 * 
 	 * @param id --> id de l'emprunt
+	 * @throws BibliothequeException 
 	 */
-	public void returnLoan(Long id);
+	public void returnLoan(Long id) throws BibliothequeException;
 	
 	/**
 	 * Récupération d'un emprunt

@@ -30,6 +30,10 @@ public class Reservation implements Serializable{
 	 */	
 	private Date startReservation;
 	/**
+	 * Date limite de récupération
+	 */	
+	private Date endReservation;
+	/**
 	 * position d'une reservation parmit les autres
 	 */
 	private int position;
@@ -89,6 +93,14 @@ public class Reservation implements Serializable{
 
 	public void setPosition(int position) {
 		this.position = position;
+	}
+
+	public Date getEndReservation() {
+		return endReservation;
+	}
+
+	public void setEndReservation(Date endReservation) {
+		this.endReservation = endReservation;
 	}
 	
 	

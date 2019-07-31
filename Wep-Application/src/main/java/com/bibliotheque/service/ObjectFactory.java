@@ -37,6 +37,7 @@ public class ObjectFactory {
     private final static QName _GetListRolesResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListRolesResponse");
     private final static QName _ReturnLoan_QNAME = new QName("http://service.bibliotheque.com/", "returnLoan");
     private final static QName _UpdateBookResponse_QNAME = new QName("http://service.bibliotheque.com/", "updateBookResponse");
+    private final static QName _GetListReservationWithEndDate_QNAME = new QName("http://service.bibliotheque.com/", "getListReservationWithEndDate");
     private final static QName _CreateUser_QNAME = new QName("http://service.bibliotheque.com/", "createUser");
     private final static QName _ParseException_QNAME = new QName("http://service.bibliotheque.com/", "ParseException");
     private final static QName _GetListLoanLate_QNAME = new QName("http://service.bibliotheque.com/", "getListLoanLate");
@@ -51,6 +52,7 @@ public class ObjectFactory {
     private final static QName _GetListLoanByUserID_QNAME = new QName("http://service.bibliotheque.com/", "getListLoanByUserID");
     private final static QName _GetDaysExtendResponse_QNAME = new QName("http://service.bibliotheque.com/", "getDaysExtendResponse");
     private final static QName _ValidateToken_QNAME = new QName("http://service.bibliotheque.com/", "validateToken");
+    private final static QName _GetListReservationWithEndDateResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListReservationWithEndDateResponse");
     private final static QName _GetBook_QNAME = new QName("http://service.bibliotheque.com/", "getBook");
     private final static QName _GetDaysLoan_QNAME = new QName("http://service.bibliotheque.com/", "getDaysLoan");
     private final static QName _SaveMail_QNAME = new QName("http://service.bibliotheque.com/", "saveMail");
@@ -60,11 +62,13 @@ public class ObjectFactory {
     private final static QName _GetListLoanLateResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListLoanLateResponse");
     private final static QName _GetListRoles_QNAME = new QName("http://service.bibliotheque.com/", "getListRoles");
     private final static QName _DeleteUser_QNAME = new QName("http://service.bibliotheque.com/", "deleteUser");
+    private final static QName _GetListReservationByUserResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListReservationByUserResponse");
     private final static QName _GetListKindResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListKindResponse");
     private final static QName _ReturnLoanResponse_QNAME = new QName("http://service.bibliotheque.com/", "returnLoanResponse");
     private final static QName _GetListLoanLateByUserID_QNAME = new QName("http://service.bibliotheque.com/", "getListLoanLateByUserID");
     private final static QName _DeleteReservationResponse_QNAME = new QName("http://service.bibliotheque.com/", "deleteReservationResponse");
     private final static QName _DoConnectionResponse_QNAME = new QName("http://service.bibliotheque.com/", "doConnectionResponse");
+    private final static QName _GetListReservationByUser_QNAME = new QName("http://service.bibliotheque.com/", "getListReservationByUser");
     private final static QName _UpdateBook_QNAME = new QName("http://service.bibliotheque.com/", "updateBook");
     private final static QName _SaveMailResponse_QNAME = new QName("http://service.bibliotheque.com/", "saveMailResponse");
     private final static QName _ListBookResponse_QNAME = new QName("http://service.bibliotheque.com/", "listBookResponse");
@@ -104,6 +108,14 @@ public class ObjectFactory {
      */
     public DoConnectionResponse createDoConnectionResponse() {
         return new DoConnectionResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetListReservationByUser }
+     * 
+     */
+    public GetListReservationByUser createGetListReservationByUser() {
+        return new GetListReservationByUser();
     }
 
     /**
@@ -243,6 +255,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetListReservationWithEndDateResponse }
+     * 
+     */
+    public GetListReservationWithEndDateResponse createGetListReservationWithEndDateResponse() {
+        return new GetListReservationWithEndDateResponse();
+    }
+
+    /**
      * Create an instance of {@link GetBook }
      * 
      */
@@ -312,6 +332,14 @@ public class ObjectFactory {
      */
     public DeleteUser createDeleteUser() {
         return new DeleteUser();
+    }
+
+    /**
+     * Create an instance of {@link GetListReservationByUserResponse }
+     * 
+     */
+    public GetListReservationByUserResponse createGetListReservationByUserResponse() {
+        return new GetListReservationByUserResponse();
     }
 
     /**
@@ -520,6 +548,14 @@ public class ObjectFactory {
      */
     public UpdateBookResponse createUpdateBookResponse() {
         return new UpdateBookResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetListReservationWithEndDate }
+     * 
+     */
+    public GetListReservationWithEndDate createGetListReservationWithEndDate() {
+        return new GetListReservationWithEndDate();
     }
 
     /**
@@ -744,6 +780,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetListReservationWithEndDate }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getListReservationWithEndDate")
+    public JAXBElement<GetListReservationWithEndDate> createGetListReservationWithEndDate(GetListReservationWithEndDate value) {
+        return new JAXBElement<GetListReservationWithEndDate>(_GetListReservationWithEndDate_QNAME, GetListReservationWithEndDate.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link CreateUser }{@code >}}
      * 
      */
@@ -870,6 +915,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetListReservationWithEndDateResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getListReservationWithEndDateResponse")
+    public JAXBElement<GetListReservationWithEndDateResponse> createGetListReservationWithEndDateResponse(GetListReservationWithEndDateResponse value) {
+        return new JAXBElement<GetListReservationWithEndDateResponse>(_GetListReservationWithEndDateResponse_QNAME, GetListReservationWithEndDateResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetBook }{@code >}}
      * 
      */
@@ -951,6 +1005,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetListReservationByUserResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getListReservationByUserResponse")
+    public JAXBElement<GetListReservationByUserResponse> createGetListReservationByUserResponse(GetListReservationByUserResponse value) {
+        return new JAXBElement<GetListReservationByUserResponse>(_GetListReservationByUserResponse_QNAME, GetListReservationByUserResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetListKindResponse }{@code >}}
      * 
      */
@@ -993,6 +1056,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "doConnectionResponse")
     public JAXBElement<DoConnectionResponse> createDoConnectionResponse(DoConnectionResponse value) {
         return new JAXBElement<DoConnectionResponse>(_DoConnectionResponse_QNAME, DoConnectionResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetListReservationByUser }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "getListReservationByUser")
+    public JAXBElement<GetListReservationByUser> createGetListReservationByUser(GetListReservationByUser value) {
+        return new JAXBElement<GetListReservationByUser>(_GetListReservationByUser_QNAME, GetListReservationByUser.class, null, value);
     }
 
     /**

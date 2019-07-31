@@ -309,9 +309,10 @@ public class BibliothequeService {
 	 * Service de rendu d'un emprunt
 	 * 
 	 * @param id --> id de l'emprunt
+	 * @throws BibliothequeException 
 	 */
 	@WebMethod
-	public void returnLoan(Long id) {
+	public void returnLoan(Long id) throws BibliothequeException {
 		loanBusiness.returnLoan(id);
 	}
 
@@ -417,14 +418,40 @@ public class BibliothequeService {
 	
 	
 	/**
-	 * Service de supression d'une reservation
+	 * Service de récupération des réservation actuel d'un livre
 	 * 
-	 * @param user_id --> id utilisateur
+	 * @param Book_ID --> id du livre
 	 * @throws BibliothequeException 
+	 * 
+	 * @return liste de réservations
 	 */
 	@WebMethod
 	public List<Reservation> getListReservationByBook(@WebParam(name = "Book_ID") Long Book_ID) throws BibliothequeException {
 	   return reservationBusiness.getListReservationByBook(Book_ID);
 	}
 	
+	/**
+	 * Service de récupération des réservation actuel d'un utilisateur
+	 * 
+	 * @param user_id --> id utilisateur
+	 * @throws BibliothequeException 
+	 * 
+	 * @return liste de réservations
+	 */
+	@WebMethod
+	public List<Reservation> getListReservationByUser(@WebParam(name = "user_id") Long user_id) throws BibliothequeException {
+	   return reservationBusiness.getListReservationByUser(user_id);
+	}
+	
+	/**
+	 * Service de récupération des réservation avec une date de fin fixé
+	 * 
+	 * @throws BibliothequeException 
+	 * 
+	 * @return liste de réservations
+	 */
+	@WebMethod
+	public List<Reservation> getListReservationWithEndDate() throws BibliothequeException {
+	   return reservationBusiness.getListReservationWithEndDate();
+	}
 }

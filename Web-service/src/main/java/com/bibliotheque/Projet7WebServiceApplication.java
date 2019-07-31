@@ -12,15 +12,18 @@ import org.springframework.context.annotation.PropertySources;
 
 import com.bibliotheque.dao.BookRepository;
 import com.bibliotheque.dao.KindRepository;
+import com.bibliotheque.dao.LoanRepository;
 import com.bibliotheque.dao.MailRepository;
 import com.bibliotheque.dao.ReservationRepository;
 import com.bibliotheque.dao.RolesRepository;
 import com.bibliotheque.entities.Book;
 import com.bibliotheque.entities.Kind;
+import com.bibliotheque.entities.Loan;
 import com.bibliotheque.entities.Mail;
 import com.bibliotheque.entities.Reservation;
 import com.bibliotheque.entities.Roles;
 import com.bibliotheque.entities.User;
+import com.bibliotheque.metier.LoanBusiness;
 import com.bibliotheque.metier.UserBusiness;
 import com.bibliotheque.utilities.Jasypt;
 
@@ -44,6 +47,11 @@ public class Projet7WebServiceApplication extends SpringBootServletInitializer i
 	private KindRepository kindRepository;	
 	@Autowired
 	private RolesRepository rolesRepository;
+	@Autowired
+	private LoanRepository loanRepository;	
+	@Autowired
+	private LoanBusiness loanBusiness;
+	
 	@Autowired
 	private Jasypt enJasypt;
 	
@@ -89,5 +97,11 @@ public class Projet7WebServiceApplication extends SpringBootServletInitializer i
 		
 		reservationRepository.save(reservation);
 		reservationRepository.save(reservation2);
+		
+		Loan loan = new Loan(new Date(),new Date(), user, book);
+		
+		loanRepository.save(loan);
+		loanBusiness.returnLoan(loan.getId());
+		
 	}
 }

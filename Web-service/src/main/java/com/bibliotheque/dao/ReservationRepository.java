@@ -57,7 +57,14 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>{
 	@Query("select r from Reservation r where r.book.id = :x order by r.startReservation")
 	public List<Reservation> getListReservationByBookID(@Param("x")Long book_id);
 	
-	
+	/**
+	 * requete de recherche des reservations avec une date de fin fixé
+	 * 
+	 * 
+	 * @return list de reservation
+	 */
+	@Query("select r from Reservation r where r.endReservation is not null")
+	public List<Reservation> getListReservationWithEndDate();
 	
 	
 }

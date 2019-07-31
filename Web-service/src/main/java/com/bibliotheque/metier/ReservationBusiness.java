@@ -24,9 +24,10 @@ public interface ReservationBusiness {
 	 * 
 	 * @param book_id --> livre correspondant
 	 * @param user_id --> utilisateur correspondant
+	 * @throws BibliothequeException 
 	 * 
 	 */
-	public void deleteReservation(Long book_id, Long user_id);
+	public void deleteReservation(Long book_id, Long user_id) throws BibliothequeException;
 	
 	/**
 	 * récupération de la liste de réservation d'un livre 
@@ -57,4 +58,21 @@ public interface ReservationBusiness {
 	 * 
 	 */
 	public void setPositionOfReservation(Long book_id);
+	
+	/**
+	 * Vérifie la présence de réservation pour un livre
+	 * 
+	 * @param book_id
+	 * @throws BibliothequeException
+	 */
+	public void checkReservation(Long book_id) throws BibliothequeException;
+	
+	
+	/**
+	 * requete de recherche des reservations avec une date de fin fixé
+	 * 
+	 * 
+	 * @return list de reservation
+	 */
+	public List<Reservation> getListReservationWithEndDate();
 }

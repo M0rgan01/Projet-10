@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bibliotheque.dao.BookRepository;
 import com.bibliotheque.dao.LoanRepository;
@@ -28,6 +29,8 @@ public class LoanBusinessImpl implements LoanBusiness {
 	private BookRepository bookRepository;
 	@Autowired
 	private UserBusiness userBusiness;
+	@Autowired
+	private ReservationBusiness reservationBusiness;
 	@Value("${prolongation.days}")
 	private int extendDays;
 	@Value("${loan.days}")
@@ -89,9 +92,13 @@ public class LoanBusinessImpl implements LoanBusiness {
 	}
 
 	@Override
-	public void returnLoan(Long id) {
+	@Transactional
+	public void returnLoan(Long id) throws BibliothequeException {
 		Loan loan = loanRepository.findById(id).orElse(null);
 		loan.setMade(true);
+		
+		reservationBusiness.checkReservation(loan.getBook().getId());
+		
 		loanRepository.save(loan);
 		logger.info("Close the loan " + id);
 	}
