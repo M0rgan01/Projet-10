@@ -16,6 +16,7 @@ import com.bibliotheque.dao.LoanRepository;
 import com.bibliotheque.dao.MailRepository;
 import com.bibliotheque.dao.ReservationRepository;
 import com.bibliotheque.dao.RolesRepository;
+import com.bibliotheque.dao.UserRepository;
 import com.bibliotheque.entities.Book;
 import com.bibliotheque.entities.Kind;
 import com.bibliotheque.entities.Loan;
@@ -24,6 +25,7 @@ import com.bibliotheque.entities.Reservation;
 import com.bibliotheque.entities.Roles;
 import com.bibliotheque.entities.User;
 import com.bibliotheque.metier.LoanBusiness;
+import com.bibliotheque.metier.ReservationBusiness;
 import com.bibliotheque.metier.UserBusiness;
 import com.bibliotheque.utilities.Jasypt;
 
@@ -51,7 +53,10 @@ public class Projet7WebServiceApplication extends SpringBootServletInitializer i
 	private LoanRepository loanRepository;	
 	@Autowired
 	private LoanBusiness loanBusiness;
-	
+	@Autowired
+	private ReservationBusiness reservationBusiness;
+	@Autowired
+	private UserRepository userRepository;
 	@Autowired
 	private Jasypt enJasypt;
 	
@@ -63,45 +68,7 @@ public class Projet7WebServiceApplication extends SpringBootServletInitializer i
 	@Override
 	public void run(String... args) throws Exception {
 
-		User user = new User("Morgan", "YesYes123", true);
-		User user2 = new User("Emilie", "YesYes123", true);
 		
-		user.setPassWord(enJasypt.setEncrypt(user.getPassWord()));
-		user.setPassWordConfirm(enJasypt.setEncrypt("YesYes123"));
-		user2.setPassWord(enJasypt.setEncrypt(user2.getPassWord()));
-		user2.setPassWordConfirm(enJasypt.setEncrypt("YesYes123"));
-		
-		Mail mail = new Mail("pichat.morgan@gmail.com", user);
-		Mail mail2 = new Mail("pichat2.morgan@gmail.com", user2);
-		
-		
-		Roles role = new Roles("ROLE_USER");
-		Roles role2 = new Roles("ROLE_ADMIN");
-		
-		rolesRepository.save(role);
-		rolesRepository.save(role2);
-		
-		userBusiness.createUser(user, mail);
-		userBusiness.createUser(user2, mail2);
-		
-		Kind kind = new Kind("Aventure");
-		
-		kindRepository.save(kind);
-		
-		Book book = new Book("test", "test", "test", false, kind, 10, 0);
-		
-		bookRepository.save(book);
-		
-		Reservation reservation = new Reservation(new Date(), user, book);
-		Reservation reservation2 = new Reservation(new Date(), user2, book);
-		
-		reservationRepository.save(reservation);
-		reservationRepository.save(reservation2);
-		
-		Loan loan = new Loan(new Date(),new Date(), user, book);
-		
-		loanRepository.save(loan);
-	//	loanBusiness.returnLoan(loan.getId());
 		
 	}
 }

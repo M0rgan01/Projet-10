@@ -96,6 +96,7 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 	}
 
 	@Override
+	@Transactional
 	public synchronized void deleteReservation(Long book_id, Long user_id) throws BibliothequeException {
 		reservationRepository.deleteByUserIdAndBookId(book_id, user_id);
 		logger.info("Success delete reservation");
@@ -110,7 +111,7 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 	}
 
 	public void setPositionOfReservation(Long book_id) {
-		int index = 0;
+		int index = 1;
 		List<Reservation> list = reservationRepository.getListReservationByBookID(book_id);
 		for (Reservation reservation : list) {
 			reservation.setPosition(index++);

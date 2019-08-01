@@ -89,6 +89,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 
 		if (!r.getBook().isAvailable()) {
 			r.getBook().setLoanBack(c.getTime());
+			bookRepository.save(r.getBook());
 		}
 
 		loanRepository.save(r);

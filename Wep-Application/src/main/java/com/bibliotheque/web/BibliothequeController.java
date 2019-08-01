@@ -461,8 +461,27 @@ public class BibliothequeController {
 //////////////////////// RESERVATION UTILISATEUR ////////////////////////
 	
 	
+	@RequestMapping(value = "/createReservation")
+	public String createReservation(HttpSession httpSession, Long id) {
+
+		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+		
+		try {			
+			
+			ws.createReservation(id, (Long) httpSession.getAttribute("user_id"));
+			
+		} catch (BibliothequeException_Exception e) {
+			return "redirect:/reservationCompte?returnAlready";
+		}
+
+		return "redirect:/reservationCompte?returnCreate";
+	}
+	
+	
+	
+	
 	@RequestMapping(value = "/reservationCompte")
-	public String userReservation(HttpSession httpSession, Model model) throws DatatypeConfigurationException {
+	public String userReservation(HttpSession httpSession, Model model) {
 
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
 
@@ -470,7 +489,6 @@ public class BibliothequeController {
 			
 			model.addAttribute("listReservation", ws.getListReservationByUser((Long) httpSession.getAttribute("user_id")));
 			
-
 		} catch (BibliothequeException_Exception e) {
 			return "error";
 		}
@@ -478,5 +496,19 @@ public class BibliothequeController {
 		return "Reservation/userReservation";
 	}
 	
-	
+	@RequestMapping(value = "/cancelReservation")
+	public String cancelReservation(HttpSession httpSession, Long id) {
+
+		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+		
+		try {			
+			
+			ws.deleteReservation(id, (Long) httpSession.getAttribute("user_id"));
+			
+		} catch (BibliothequeException_Exception e) {
+			return "error";
+		}
+
+		return "redirect:/reservationCompte?returnCancel";
+	}
 }

@@ -3,6 +3,7 @@ package com.bibliotheque.dao;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -23,6 +24,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>{
 	 * @param user_id 
 	 * 
 	 */
+	@Modifying
 	@Query("delete from Reservation r where r.book.id = :x and r.user.id = :y")
 	public void deleteByUserIdAndBookId(@Param("x") Long book_id, @Param("y")Long user_id);
 	
