@@ -67,8 +67,6 @@ public class Projet7WebServiceApplication extends SpringBootServletInitializer i
 
 	@Override
 	public void run(String... args) throws Exception {
-
-		
-		
+	
 	}
 }

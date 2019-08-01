@@ -88,7 +88,7 @@
 				</div>
 
 				<div th:if="${#request.isUserInRole('USER') && !o.available}">
-					<div class="row text-center my-1">		
+					<div class="row text-center my-1">
 						<p class="col-4 my-auto">
 							Prochaine disponnibilitée : <span class="badge badge-info"
 								th:text="${#dates.format(o.loanBack.toGregorianCalendar().getTime(), 'dd-MM-yyyy')}"></span>
@@ -101,27 +101,28 @@
 								th:text="${o.numberReservation}"></span>
 						</p>
 					</div>
+				</div>
 
-					<div class="row text-center my-3">
-						<div class="col-12">
-							<a class="btn btn-success" th:if="${o.availableReservation}" th:href="@{createReservation(id=${o.id})}">Réserver</a> 
+				<div class="row text-center my-3">
+					<div class="col-12">
+						<a th:if="${#request.isUserInRole('USER') && o.availableReservation}" 
+							class="btn btn-success"
+							th:href="@{createReservation(id=${o.id})}">Réserver</a>
+						 <a
+							th:if="${#request.isUserInRole('ADMIN')}" class="btn btn-primary"
+							th:href="@{modificationOuvrage(id=${o.id})}">Modifier</a> 
 							
-							<a
-								th:if="${#request.isUserInRole('ADMIN')}"
-								class="btn btn-primary"
-								th:href="@{modificationOuvrage(id=${o.id})}">Modifier</a> 
-								
-							<a
-								th:if="${#request.isUserInRole('ADMIN')}"
-								onclick="return confirm('Etes vous sûre ?')"
-								class="btn btn-primary"
-								th:href="@{deleteOuvrage(id=${o.id}, page=${listOuvrages.page + 1} ,MotCle=${MotCle}, genre=${genre}, isReserved=${isReserved})}">Supprimer</a>
-
-						</div>
+						<a
+							th:if="${#request.isUserInRole('ADMIN')}"
+							onclick="return confirm('Etes vous sûre ?')"
+							class="btn btn-primary"
+							th:href="@{deleteOuvrage(id=${o.id}, page=${listOuvrages.page + 1} ,MotCle=${MotCle}, genre=${genre}, isReserved=${isReserved})}">Supprimer</a>
 
 					</div>
 
 				</div>
+
+
 
 
 

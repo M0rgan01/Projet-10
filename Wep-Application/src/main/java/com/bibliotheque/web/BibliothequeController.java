@@ -471,7 +471,7 @@ public class BibliothequeController {
 			ws.createReservation(id, (Long) httpSession.getAttribute("user_id"));
 			
 		} catch (BibliothequeException_Exception e) {
-			return "redirect:/reservationCompte?returnAlready";
+			return "redirect:/reservationCompte?returnErrorCreate&msg=" + e.getMessage();
 		}
 
 		return "redirect:/reservationCompte?returnCreate";

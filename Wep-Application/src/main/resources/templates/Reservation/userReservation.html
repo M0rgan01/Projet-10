@@ -19,10 +19,9 @@
 				succès !</span>
 		</div>
 
-		<div th:if="${param.returnAlready}"
+		<div th:if="${param.returnErrorCreate}"
 			class="row justify-content-center mb-2">
-			<span class="alert alert-danger">Vous disposez déjà d'une
-				réservation pour ce livre !</span>
+			<span class="alert alert-danger" th:text = "#{${param.msg}}" ></span>
 		</div>
 
 		<div th:if="${param.returnCreate}"
