@@ -389,13 +389,9 @@ public class BibliothequeService {
 	public int getDaysLoan() throws BibliothequeException {
 		return loanBusiness.getDaysLoan();
 	}
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Ticket#2
+
 	
-	
+
 	
 ////////////////////////GESTION RESERVATION ////////////////////////
 	
@@ -411,11 +407,7 @@ public class BibliothequeService {
 	}
 	
 	/**
-<<<<<<< HEAD
-	 * Service de supression d'une reservation
-=======
 	 * Service de suppression d'une reservation
->>>>>>> Ticket#2
 	 * 
 	 * @param user_id --> id utilisateur
 	 * @throws BibliothequeException 
@@ -425,8 +417,6 @@ public class BibliothequeService {
 	   reservationBusiness.deleteReservation(Book_ID, user_ID);
 	}
 	
-<<<<<<< HEAD
-=======
 	/**
 	 * Service de suppression d'une reservation pour son retard, qui va procéder également à un envoi d'email s'il y a d'autre réservation pour le même livre
 	 * 
@@ -437,7 +427,7 @@ public class BibliothequeService {
 	public void deleteReservationForLate(@WebParam(name = "Book_ID") Long Book_ID, @WebParam(name = "user_id") Long user_ID) throws BibliothequeException {
 	   reservationBusiness.deleteReservationForLate(Book_ID, user_ID);
 	}
->>>>>>> Ticket#2
+
 	
 	/**
 	 * Service de récupération des réservation actuel d'un livre
@@ -476,8 +466,5 @@ public class BibliothequeService {
 	public List<Reservation> getListReservationWithEndDate() throws BibliothequeException {
 	   return reservationBusiness.getListReservationWithEndDate();
 	}
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> Ticket#2
+
 }

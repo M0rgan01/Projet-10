@@ -87,13 +87,13 @@ public class LoanBusinessImpl implements LoanBusiness {
 		r.setEnd_loan(c.getTime());
 		r.setExtension(true);
 
-		if (!r.getBook().isAvailable()) {
-			r.getBook().setLoanBack(c.getTime());
-			bookRepository.save(r.getBook());
-		}
-
 		loanRepository.save(r);
 		logger.info("Add " + extendDays + " days to loan " + loan_ID);
+		
+		if (!r.getBook().isAvailable()) {
+			r.getBook().setLoanBack(setLoanBackForBook(r.getBook().getId()));
+			bookRepository.save(r.getBook());
+		}
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 		Loan loan = loanRepository.findById(id).orElse(null);
 		loan.setMade(true);
 
-		reservationBusiness.checkReservation(loan.getBook().getId());
+		reservationBusiness.checkReservation(loan.getBook());
 
 		loanRepository.save(loan);
 		logger.info("Close the loan " + id);
@@ -142,8 +142,6 @@ public class LoanBusinessImpl implements LoanBusiness {
 
 		// on règle les dates de début et de fin
 		Calendar c = Calendar.getInstance();
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		c.setTime(sdf.parse("2018-02-01"));
 		Date start_loan = c.getTime();
 
 		c.add(Calendar.DATE, loanDays);
@@ -153,7 +151,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 		if (book.getCopyAvailable() == 0) {
 			book.setAvailable(false);
 			book.setAvailableReservation(true);
-			book.setLoanBack(end_loan);
+			book.setLoanBack(setLoanBackForBook(book.getId()));
 		}
 
 		bookRepository.save(book);
@@ -173,26 +171,10 @@ public class LoanBusinessImpl implements LoanBusiness {
 
 		List<Loan> list = loanRepository.getListLoanLateByUserID(user_id, new Date());
 
-		for (Loan loan : list) {
-			// si l'emprunt n'est pas en extention
-			if (!loan.isExtension()) {
-				// on regarde s'il serra en retard après extention
-				if (checkLate(loan))
-					loan.setLate(true);
-			}
-		}
-<<<<<<< HEAD
-
 		logger.info("Get list of loan late for user id " + user_id);
 
 		return list;
-	}
-=======
->>>>>>> Ticket#2
-
-		logger.info("Get list of loan late for user id " + user_id);
-
-		return list;
+	
 	}
 
 	@Override

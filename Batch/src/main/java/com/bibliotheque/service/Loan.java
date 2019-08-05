@@ -23,7 +23,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="end_loan" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="extension" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="late" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="made" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="start_loan" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="user" type="{http://service.bibliotheque.com/}user" minOccurs="0"/>
@@ -41,7 +40,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "endLoan",
     "extension",
     "id",
-    "late",
     "made",
     "startLoan",
     "user"
@@ -54,7 +52,6 @@ public class Loan {
     protected XMLGregorianCalendar endLoan;
     protected boolean extension;
     protected Long id;
-    protected boolean late;
     protected boolean made;
     @XmlElement(name = "start_loan")
     @XmlSchemaType(name = "dateTime")
@@ -147,22 +144,6 @@ public class Loan {
      */
     public void setId(Long value) {
         this.id = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété late.
-     * 
-     */
-    public boolean isLate() {
-        return late;
-    }
-
-    /**
-     * Définit la valeur de la propriété late.
-     * 
-     */
-    public void setLate(boolean value) {
-        this.late = value;
     }
 
     /**

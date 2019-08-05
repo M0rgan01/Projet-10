@@ -87,25 +87,7 @@
 
 				</div>
 
-<<<<<<< Updated upstream
-				<div th:if="${#request.isUserInRole('USER') && !o.available}">
-<<<<<<< HEAD
-					<div class="row text-center my-1">
-						<p class="col-4 my-auto">
-							Prochaine disponnibilitée : <span class="badge badge-info"
-								th:text="${#dates.format(o.loanBack.toGregorianCalendar().getTime(), 'dd-MM-yyyy')}"></span>
-						</p>
-						<div class="col-4 my-auto">
-							<span class="badge badge-danger">Non disponnible</span>
-						</div>
-						<p class="col-4 my-auto">
-							Nombre de réservation : <span class="badge badge-info"
-								th:text="${o.numberReservation}"></span>
-						</p>
-=======
-					<div class="row justify-content-center">
-						<span class="btn btn-danger my-1">Non disponnible</span>
-=======
+
 				<div th:if="${!o.available}">
 					<div class="row text-center my-1">
 						<p class="col-4 my-auto">
@@ -119,8 +101,7 @@
 							Nombre de réservation : <span class="badge badge-info p-2"
 								th:text="${o.numberReservation}"></span>
 						</p>
->>>>>>> Stashed changes
->>>>>>> Ticket#2
+
 					</div>
 				</div>
 

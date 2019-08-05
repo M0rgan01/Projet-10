@@ -2,10 +2,7 @@ package com.bibliotheque.metier;
 
 import java.util.List;
 
-<<<<<<< HEAD
-=======
 import com.bibliotheque.entities.Book;
->>>>>>> Ticket#2
 import com.bibliotheque.entities.Reservation;
 import com.bibliotheque.exception.BibliothequeException;
 
@@ -24,9 +21,9 @@ public interface ReservationBusiness {
 	public Reservation createReservation(Long book_id, Long user_id) throws BibliothequeException;
 	
 	/**
-<<<<<<< HEAD
+
 	 * supression d'une réservation
-=======
+
 	 * suppression d'une réservation
 	 * 
 	 * @param book_id --> livre correspondant
@@ -40,18 +37,15 @@ public interface ReservationBusiness {
 	
 	/**
 	 * suppression d'une réservation pour son retard
->>>>>>> Ticket#2
+
 	 * 
 	 * @param book_id --> livre correspondant
 	 * @param user_id --> utilisateur correspondant
 	 * @throws BibliothequeException 
 	 * 
 	 */
-<<<<<<< HEAD
-	public void deleteReservation(Long book_id, Long user_id) throws BibliothequeException;
-=======
 	public void deleteReservationForLate(Long book_id, Long user_id) throws BibliothequeException;
->>>>>>> Ticket#2
+
 	
 	/**
 	 * récupération de la liste de réservation d'un livre 
@@ -86,18 +80,11 @@ public interface ReservationBusiness {
 	/**
 	 * Vérifie la présence de réservation pour un livre
 	 * 
-<<<<<<< HEAD
-	 * @param book_id
-	 * @throws BibliothequeException
-	 */
-	public void checkReservation(Long book_id) throws BibliothequeException;
-=======
 	 * @param book
 	 * @throws BibliothequeException
 	 */
 	public void checkReservation(Book book) throws BibliothequeException;
->>>>>>> Ticket#2
-	
+
 	
 	/**
 	 * requete de recherche des reservations avec une date de fin fixé

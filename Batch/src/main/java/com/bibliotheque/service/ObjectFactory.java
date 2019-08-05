@@ -31,6 +31,7 @@ public class ObjectFactory {
     private final static QName _GetLoan_QNAME = new QName("http://service.bibliotheque.com/", "getLoan");
     private final static QName _GetListReservationByBookResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListReservationByBookResponse");
     private final static QName _SendTokenResponse_QNAME = new QName("http://service.bibliotheque.com/", "sendTokenResponse");
+    private final static QName _DeleteReservationForLate_QNAME = new QName("http://service.bibliotheque.com/", "deleteReservationForLate");
     private final static QName _GetListReservationByBook_QNAME = new QName("http://service.bibliotheque.com/", "getListReservationByBook");
     private final static QName _DoConnection_QNAME = new QName("http://service.bibliotheque.com/", "doConnection");
     private final static QName _ExtendLoan_QNAME = new QName("http://service.bibliotheque.com/", "extendLoan");
@@ -52,6 +53,7 @@ public class ObjectFactory {
     private final static QName _GetListLoanByUserID_QNAME = new QName("http://service.bibliotheque.com/", "getListLoanByUserID");
     private final static QName _GetDaysExtendResponse_QNAME = new QName("http://service.bibliotheque.com/", "getDaysExtendResponse");
     private final static QName _ValidateToken_QNAME = new QName("http://service.bibliotheque.com/", "validateToken");
+    private final static QName _DeleteReservationForLateResponse_QNAME = new QName("http://service.bibliotheque.com/", "deleteReservationForLateResponse");
     private final static QName _GetListReservationWithEndDateResponse_QNAME = new QName("http://service.bibliotheque.com/", "getListReservationWithEndDateResponse");
     private final static QName _GetBook_QNAME = new QName("http://service.bibliotheque.com/", "getBook");
     private final static QName _GetDaysLoan_QNAME = new QName("http://service.bibliotheque.com/", "getDaysLoan");
@@ -252,6 +254,14 @@ public class ObjectFactory {
      */
     public SaveUser createSaveUser() {
         return new SaveUser();
+    }
+
+    /**
+     * Create an instance of {@link DeleteReservationForLateResponse }
+     * 
+     */
+    public DeleteReservationForLateResponse createDeleteReservationForLateResponse() {
+        return new DeleteReservationForLateResponse();
     }
 
     /**
@@ -503,6 +513,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DeleteReservationForLate }
+     * 
+     */
+    public DeleteReservationForLate createDeleteReservationForLate() {
+        return new DeleteReservationForLate();
+    }
+
+    /**
      * Create an instance of {@link GetListReservationByBook }
      * 
      */
@@ -726,6 +744,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeleteReservationForLate }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "deleteReservationForLate")
+    public JAXBElement<DeleteReservationForLate> createDeleteReservationForLate(DeleteReservationForLate value) {
+        return new JAXBElement<DeleteReservationForLate>(_DeleteReservationForLate_QNAME, DeleteReservationForLate.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetListReservationByBook }{@code >}}
      * 
      */
@@ -912,6 +939,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "validateToken")
     public JAXBElement<ValidateToken> createValidateToken(ValidateToken value) {
         return new JAXBElement<ValidateToken>(_ValidateToken_QNAME, ValidateToken.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeleteReservationForLateResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.bibliotheque.com/", name = "deleteReservationForLateResponse")
+    public JAXBElement<DeleteReservationForLateResponse> createDeleteReservationForLateResponse(DeleteReservationForLateResponse value) {
+        return new JAXBElement<DeleteReservationForLateResponse>(_DeleteReservationForLateResponse_QNAME, DeleteReservationForLateResponse.class, null, value);
     }
 
     /**
