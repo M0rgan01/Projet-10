@@ -41,13 +41,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						"/editPassword")
 				.permitAll();
 
-		http.authorizeRequests().antMatchers("/reservationCompte", "/prolongerReservation", "/saveProlongerReservation",
-				"/modificationCompte", "/saveModificationCompte", "/suppressionCompte", "/suppressionCompteConfirm")
+		http.authorizeRequests().antMatchers("/empruntCompte", "/prolongerEmprunt", "/saveProlongerEmprunt",
+				"/modificationCompte", "/saveModificationCompte", "/suppressionCompte", "/suppressionCompteConfirm", "/reservationCompte")
 				.hasRole("USER");
 
 		http.authorizeRequests().antMatchers("/ajout", "/saveAjout", "/confirmationAjout", "/modificationOuvrage",
 				"/saveModificationOuvrage", "/deleteOuvrage").hasRole("ADMIN");
 
+		
 		// pour la deconnexion
 		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).clearAuthentication(true)
 				.deleteCookies("JSESSIONID");

@@ -1,4 +1,6 @@
+
 package com.bibliotheque;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -9,6 +11,16 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 
 import com.bibliotheque.dao.BookRepository;
+import com.bibliotheque.dao.KindRepository;
+import com.bibliotheque.dao.LoanRepository;
+import com.bibliotheque.dao.MailRepository;
+import com.bibliotheque.dao.ReservationRepository;
+import com.bibliotheque.dao.RolesRepository;
+import com.bibliotheque.dao.UserRepository;
+import com.bibliotheque.metier.LoanBusiness;
+import com.bibliotheque.metier.ReservationBusiness;
+import com.bibliotheque.metier.UserBusiness;
+import com.bibliotheque.utilities.Jasypt;
 
 @SpringBootApplication
 @PropertySources({
@@ -18,10 +30,30 @@ import com.bibliotheque.dao.BookRepository;
 })
 public class Projet7WebServiceApplication extends SpringBootServletInitializer implements CommandLineRunner {
 
-	
 	@Autowired
 	private BookRepository bookRepository;
-
+	@Autowired
+	private UserBusiness userBusiness;
+	@Autowired
+	private MailRepository mailRepository;
+	@Autowired
+	private ReservationRepository reservationRepository;
+	@Autowired
+	private KindRepository kindRepository;	
+	@Autowired
+	private RolesRepository rolesRepository;
+	@Autowired
+	private LoanRepository loanRepository;	
+	@Autowired
+	private LoanBusiness loanBusiness;
+	@Autowired
+	private ReservationBusiness reservationBusiness;
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private Jasypt enJasypt;
+	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(Projet7WebServiceApplication.class, args);
 	}
@@ -29,9 +61,10 @@ public class Projet7WebServiceApplication extends SpringBootServletInitializer i
 	@Override
 	public void run(String... args) throws Exception {
 
-	bookRepository.findAll().forEach(book ->{
-		System.out.println(book.getTitle());
-	});
+	 //loanBusiness.returnLoan(1l);
+		//loanBusiness.createLoan(4l, 1l);
+		//loanBusiness.createLoan(4l, 2l);
 	}
-
 }
+
+

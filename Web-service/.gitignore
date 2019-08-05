@@ -25,7 +25,10 @@ HELP.md
 /.nb-gradle/
 /build/
 
+<<<<<<< HEAD
+=======
 ### logs ###
 
 /logs/
 *.log
+>>>>>>> Ticket#2

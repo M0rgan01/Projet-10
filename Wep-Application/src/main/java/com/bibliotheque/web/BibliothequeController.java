@@ -401,9 +401,9 @@ public class BibliothequeController {
 		return "redirect:/login?logout";
 	}
 
-//////////////////////// RESERVATION UTILISATEUR ////////////////////////
+//////////////////////// EMPRUNT UTILISATEUR ////////////////////////
 
-	@RequestMapping(value = "/reservationCompte")
+	@RequestMapping(value = "/empruntCompte")
 	public String reservationCompte(HttpSession httpSession, Model model) {
 
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
@@ -416,10 +416,10 @@ public class BibliothequeController {
 		model.addAttribute("listLoan", listLoan);
 		model.addAttribute("listLoanLate", listLoanLate);
 
-		return "Reservation/reservation";
+		return "Emprunt/emprunt";
 	}
 
-	@RequestMapping(value = "/prolongerReservation")
+	@RequestMapping(value = "/prolongerEmprunt")
 	public String prolongerReservation(Model model, Long id) throws DatatypeConfigurationException {
 
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
@@ -439,10 +439,10 @@ public class BibliothequeController {
 			return "error";
 		}
 
-		return "Reservation/prolongation";
+		return "Emprunt/prolongation";
 	}
 
-	@RequestMapping(value = "/saveProlongerReservation")
+	@RequestMapping(value = "/saveProlongerEmprunt")
 	public String saveProlongerReservation(HttpSession httpSession, Long id) {
 
 		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
@@ -454,7 +454,61 @@ public class BibliothequeController {
 			return "error";
 		}
 
-		return "redirect:/reservationCompte?returnProlongation";
+		return "redirect:/empruntCompte?returnProlongation";
 	}
 
+	
+//////////////////////// RESERVATION UTILISATEUR ////////////////////////
+	
+	
+	@RequestMapping(value = "/createReservation")
+	public String createReservation(HttpSession httpSession, Long id) {
+
+		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+		
+		try {			
+			
+			ws.createReservation(id, (Long) httpSession.getAttribute("user_id"));
+			
+		} catch (BibliothequeException_Exception e) {
+			return "redirect:/reservationCompte?returnErrorCreate&msg=" + e.getMessage();
+		}
+
+		return "redirect:/reservationCompte?returnCreate";
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "/reservationCompte")
+	public String userReservation(HttpSession httpSession, Model model) {
+
+		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+
+		try {
+			
+			model.addAttribute("listReservation", ws.getListReservationByUser((Long) httpSession.getAttribute("user_id")));
+			
+		} catch (BibliothequeException_Exception e) {
+			return "error";
+		}
+
+		return "Reservation/userReservation";
+	}
+	
+	@RequestMapping(value = "/cancelReservation")
+	public String cancelReservation(HttpSession httpSession, Long id) {
+
+		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+		
+		try {			
+			
+			ws.deleteReservation(id, (Long) httpSession.getAttribute("user_id"));
+			
+		} catch (BibliothequeException_Exception e) {
+			return "error";
+		}
+
+		return "redirect:/reservationCompte?returnCancel";
+	}
 }

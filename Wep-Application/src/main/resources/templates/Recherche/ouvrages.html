@@ -74,9 +74,9 @@
 
 				</div>
 
-				<div th:if="${#request.isUserInRole('USER') && o.available}">
+				<div th:if="${o.available}">
 					<div class="row justify-content-center">
-						<span class="btn btn-primary my-1">Disponible</span>
+						<span class="badge badge-primary my-1 p-2">Disponible</span>
 					</div>
 					<div class="row justify-content-center">
 						<p>
@@ -87,19 +87,45 @@
 
 				</div>
 
-				<div th:if="${#request.isUserInRole('USER') && !o.available}">
-					<div class="row justify-content-center">
-						<span class="btn btn-danger my-1">Non disponnible</span>
+
+				<div th:if="${!o.available}">
+					<div class="row text-center my-1">
+						<p class="col-4 my-auto">
+							Prochaine disponnibilitée : <span class="badge badge-info p-2"
+								th:text="${#dates.format(o.loanBack.toGregorianCalendar().getTime(), 'dd-MM-yyyy')}"></span>
+						</p>
+						<div class="col-4 my-auto">
+							<span class="badge badge-danger p-2">Non disponnible</span>
+						</div>
+						<p class="col-4 my-auto">
+							Nombre de réservation : <span class="badge badge-info p-2"
+								th:text="${o.numberReservation}"></span>
+						</p>
+
 					</div>
 				</div>
 
-				<div th:if="${#request.isUserInRole('ADMIN')}" class="text-center">
-					<a class="btn btn-primary"
-						th:href="@{modificationOuvrage(id=${o.id})}">Modifier</a> <a
-						onclick="return confirm('Etes vous sûre ?')"
-						class="btn btn-primary my-1"
-						th:href="@{deleteOuvrage(id=${o.id}, page=${listOuvrages.page + 1} ,MotCle=${MotCle}, genre=${genre}, isReserved=${isReserved})}">Supprimer</a>
+				<div class="row text-center my-3">
+					<div class="col-12">
+						<a th:if="${#request.isUserInRole('USER') && o.availableReservation}" 
+							class="btn btn-success"
+							th:href="@{createReservation(id=${o.id})}">Réserver</a>
+						 <a
+							th:if="${#request.isUserInRole('ADMIN')}" class="btn btn-primary"
+							th:href="@{modificationOuvrage(id=${o.id})}">Modifier</a> 
+							
+						<a
+							th:if="${#request.isUserInRole('ADMIN')}"
+							onclick="return confirm('Etes vous sûre ?')"
+							class="btn btn-primary"
+							th:href="@{deleteOuvrage(id=${o.id}, page=${listOuvrages.page + 1} ,MotCle=${MotCle}, genre=${genre}, isReserved=${isReserved})}">Supprimer</a>
+
+					</div>
+
 				</div>
+
+
+
 
 
 

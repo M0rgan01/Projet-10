@@ -152,7 +152,7 @@ public class MailBusinessImpl implements MailBusiness{
 		String body = MessageFormat.format( bodyRecovery, mail.getToken());
 		
 		String[] tableau_email = { mail.getEmail() };
-			
+					
 		sendMail.sendFromGMail(emailUsers, encrypt.getDecrypt(emailPassword), tableau_email, objectRecovery, body);
 		logger.info("Send token to the email " + mail.getEmail());
 		mailRepository.save(mail);	

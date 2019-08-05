@@ -3,7 +3,9 @@ package com.bibliotheque.service;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -18,12 +20,15 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="available" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="availableReservation" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="copyAvailable" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="copyTotals" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="disable" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="kind" type="{http://service.bibliotheque.com/}kind" minOccurs="0"/>
+ *         &lt;element name="loanBack" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="numberReservation" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -37,24 +42,31 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "book", propOrder = {
     "author",
     "available",
+    "availableReservation",
     "copyAvailable",
     "copyTotals",
     "description",
     "disable",
     "id",
     "kind",
+    "loanBack",
+    "numberReservation",
     "title"
 })
 public class Book {
 
     protected String author;
     protected boolean available;
+    protected boolean availableReservation;
     protected int copyAvailable;
     protected int copyTotals;
     protected String description;
     protected boolean disable;
     protected Long id;
     protected Kind kind;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar loanBack;
+    protected int numberReservation;
     protected String title;
 
     /**
@@ -95,6 +107,22 @@ public class Book {
      */
     public void setAvailable(boolean value) {
         this.available = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété availableReservation.
+     * 
+     */
+    public boolean isAvailableReservation() {
+        return availableReservation;
+    }
+
+    /**
+     * Définit la valeur de la propriété availableReservation.
+     * 
+     */
+    public void setAvailableReservation(boolean value) {
+        this.availableReservation = value;
     }
 
     /**
@@ -215,6 +243,46 @@ public class Book {
      */
     public void setKind(Kind value) {
         this.kind = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété loanBack.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getLoanBack() {
+        return loanBack;
+    }
+
+    /**
+     * Définit la valeur de la propriété loanBack.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setLoanBack(XMLGregorianCalendar value) {
+        this.loanBack = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété numberReservation.
+     * 
+     */
+    public int getNumberReservation() {
+        return numberReservation;
+    }
+
+    /**
+     * Définit la valeur de la propriété numberReservation.
+     * 
+     */
+    public void setNumberReservation(int value) {
+        this.numberReservation = value;
     }
 
     /**

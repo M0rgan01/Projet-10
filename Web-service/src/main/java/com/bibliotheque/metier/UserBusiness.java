@@ -85,8 +85,9 @@ public interface UserBusiness {
 	 * 
 	 * @param id
 	 * @return object utilisateur
+	 * @throws BibliothequeException 
 	 */
-	public User getUser(Long id);
+	public User getUser(Long id) throws BibliothequeException;
 
 	/**
 	 * modification du mot de passe par récupération

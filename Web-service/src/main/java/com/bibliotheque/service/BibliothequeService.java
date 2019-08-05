@@ -14,6 +14,7 @@ import com.bibliotheque.entities.Book;
 import com.bibliotheque.entities.Kind;
 import com.bibliotheque.entities.Loan;
 import com.bibliotheque.entities.Mail;
+import com.bibliotheque.entities.Reservation;
 import com.bibliotheque.entities.Roles;
 import com.bibliotheque.entities.User;
 import com.bibliotheque.exception.BibliothequeException;
@@ -22,6 +23,7 @@ import com.bibliotheque.metier.KindBusiness;
 import com.bibliotheque.metier.LoanBusiness;
 import com.bibliotheque.metier.MailBusiness;
 import com.bibliotheque.metier.Pagination;
+import com.bibliotheque.metier.ReservationBusiness;
 import com.bibliotheque.metier.RolesBusiness;
 import com.bibliotheque.metier.UserBusiness;
 
@@ -48,7 +50,9 @@ public class BibliothequeService {
 	private LoanBusiness loanBusiness;
 	@Autowired
 	private RolesBusiness rolesBusiness;
-
+	@Autowired
+	private ReservationBusiness reservationBusiness;
+	
 //////////////////////// AUTHENTIFICATION - GESTION COMPTE UTILISATEUR ////////////////////////
 
 	/**
@@ -285,7 +289,7 @@ public class BibliothequeService {
 	}
 
 
-//////////////////////// GESTION RESERVATION ////////////////////////
+//////////////////////// GESTION EMPRUNT ////////////////////////
 
 	/**
 	 * Service de création d'un emprunt
@@ -305,9 +309,10 @@ public class BibliothequeService {
 	 * Service de rendu d'un emprunt
 	 * 
 	 * @param id --> id de l'emprunt
+	 * @throws BibliothequeException 
 	 */
 	@WebMethod
-	public void returnLoan(Long id) {
+	public void returnLoan(Long id) throws BibliothequeException {
 		loanBusiness.returnLoan(id);
 	}
 
@@ -384,4 +389,82 @@ public class BibliothequeService {
 	public int getDaysLoan() throws BibliothequeException {
 		return loanBusiness.getDaysLoan();
 	}
+
+	
+
+	
+////////////////////////GESTION RESERVATION ////////////////////////
+	
+	/**
+	 * Service de création d'une reservation
+	 * 
+	 * @param user_id --> id utilisateur
+	 * @throws BibliothequeException 
+	 */
+	@WebMethod
+	public Reservation createReservation(@WebParam(name = "Book_ID") Long Book_ID, @WebParam(name = "user_id") Long user_ID) throws BibliothequeException {
+		return reservationBusiness.createReservation(Book_ID, user_ID);
+	}
+	
+	/**
+	 * Service de suppression d'une reservation
+	 * 
+	 * @param user_id --> id utilisateur
+	 * @throws BibliothequeException 
+	 */
+	@WebMethod
+	public void deleteReservation(@WebParam(name = "Book_ID") Long Book_ID, @WebParam(name = "user_id") Long user_ID) throws BibliothequeException {
+	   reservationBusiness.deleteReservation(Book_ID, user_ID);
+	}
+	
+	/**
+	 * Service de suppression d'une reservation pour son retard, qui va procéder également à un envoi d'email s'il y a d'autre réservation pour le même livre
+	 * 
+	 * @param user_id --> id utilisateur
+	 * @throws BibliothequeException 
+	 */
+	@WebMethod
+	public void deleteReservationForLate(@WebParam(name = "Book_ID") Long Book_ID, @WebParam(name = "user_id") Long user_ID) throws BibliothequeException {
+	   reservationBusiness.deleteReservationForLate(Book_ID, user_ID);
+	}
+
+	
+	/**
+	 * Service de récupération des réservation actuel d'un livre
+	 * 
+	 * @param Book_ID --> id du livre
+	 * @throws BibliothequeException 
+	 * 
+	 * @return liste de réservations
+	 */
+	@WebMethod
+	public List<Reservation> getListReservationByBook(@WebParam(name = "Book_ID") Long Book_ID) throws BibliothequeException {
+	   return reservationBusiness.getListReservationByBook(Book_ID);
+	}
+	
+	/**
+	 * Service de récupération des réservation actuel d'un utilisateur
+	 * 
+	 * @param user_id --> id utilisateur
+	 * @throws BibliothequeException 
+	 * 
+	 * @return liste de réservations
+	 */
+	@WebMethod
+	public List<Reservation> getListReservationByUser(@WebParam(name = "user_id") Long user_id) throws BibliothequeException {
+	   return reservationBusiness.getListReservationByUser(user_id);
+	}
+	
+	/**
+	 * Service de récupération des réservation avec une date de fin fixé
+	 * 
+	 * @throws BibliothequeException 
+	 * 
+	 * @return liste de réservations
+	 */
+	@WebMethod
+	public List<Reservation> getListReservationWithEndDate() throws BibliothequeException {
+	   return reservationBusiness.getListReservationWithEndDate();
+	}
+
 }

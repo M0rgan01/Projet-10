@@ -17,7 +17,7 @@ import com.bibliotheque.entities.Loan;
 public interface LoanRepository extends JpaRepository<Loan, Long>{
 	
 	/**
-	 * requete de recherche des reservations en cours pour un utilisateur
+	 * requete de recherche des emprunts en cours pour un utilisateur
 	 * 
 	 * @param user_id --> id de l'utilisateur
 	 * @param now --> date actuel
@@ -28,7 +28,7 @@ public interface LoanRepository extends JpaRepository<Loan, Long>{
 	public List<Loan> getListLoanByUserID(@Param("x")Long user_id, @Param("y")Date now);
 	
 	/**
-	 * requete de recherche des reservations en retard pour un utilisateur
+	 * requete de recherche des emprunts en retard pour un utilisateur
 	 * 
 	 * @param user_id --> id de l'utilisateur
 	 * @param now --> date actuel
@@ -39,7 +39,7 @@ public interface LoanRepository extends JpaRepository<Loan, Long>{
 	public List<Loan> getListLoanLateByUserID(@Param("x")Long user_id, @Param("y")Date now);
 	
 	/**
-	 * requete de recherche des reservations en retard 
+	 * requete de recherche des emprunts en retard 
 	 * 
 	 * @param now --> date actuel
 	 * 
@@ -47,4 +47,15 @@ public interface LoanRepository extends JpaRepository<Loan, Long>{
 	 */
 	@Query("select l from Loan l where l.end_loan < :y and made = false")
 	public List<Loan> getListLoanLate(@Param("y")Date now);
+	
+	
+	/**
+	 * requete de recherche des emprunts ordonnés par date de retour
+	 * 
+	 * @param book_id --> id du livre
+	 * 
+	 * @return list d'emprunt
+	 */
+	@Query("select l from Loan l where l.book.id = :y order by l.end_loan")
+	public List<Loan> getListLoanByBookAndOrderByEndLoan(@Param("y")Long book_id);
 }
