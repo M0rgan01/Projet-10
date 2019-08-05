@@ -77,4 +77,29 @@ public class BatchSendMail {
 
 		logger.info("Batch de rappel de retard par email realise avec succes");
 	}
+	
+	/**
+	 * Vérification des retard de réservation, réalisé toute les heures
+	 * @throws BibliothequeException_Exception 
+	 * 
+	 */
+	@Scheduled(cron = "${cron.check.reservation}")
+	public void checkReservationLate() throws BibliothequeException_Exception {
+
+		BibliothequeWS ws = new BibliothequeServiceService().getBibliothequeWSPort();
+		Date date = new Date();
+		//on récupère la list des reservations en retard
+		ws.getListReservationWithEndDate().forEach(reservation ->{
+			if(reservation.getEndReservation().toGregorianCalendar().getTime().after(date)) {
+				try {
+					ws.deleteReservation(reservation.getBook().getId(), reservation.getUser().getId());
+				} catch (BibliothequeException_Exception e) {				
+					logger.error(e.getMessage());
+				}
+			}
+		});
+
+		logger.info("Batch de verification des retard de reservation realise avec succes");
+	}
+	
 }

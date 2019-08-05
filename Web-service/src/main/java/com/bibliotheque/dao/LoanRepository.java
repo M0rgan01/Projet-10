@@ -47,4 +47,15 @@ public interface LoanRepository extends JpaRepository<Loan, Long>{
 	 */
 	@Query("select l from Loan l where l.end_loan < :y and made = false")
 	public List<Loan> getListLoanLate(@Param("y")Date now);
+	
+	
+	/**
+	 * requete de recherche des emprunts ordonnés par date de retour
+	 * 
+	 * @param book_id --> id du livre
+	 * 
+	 * @return list d'emprunt
+	 */
+	@Query("select l from Loan l where l.book.id = :y order by l.end_loan")
+	public List<Loan> getListLoanByBookAndOrderByEndLoan(@Param("y")Long book_id);
 }

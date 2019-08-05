@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Transient;
 
 /**
  * Object representant un emprunt
@@ -41,12 +40,7 @@ public class Loan implements Serializable {
 	 * Boolean représentant le fait qu'un emprunt soit rendu
 	 */
 	private boolean made;
-	/**
-	 * Boolean représentant le fait qu'un emprunt soit en retard
-	 */
-	@Transient
-	private boolean late;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "USER_ID")
 	private User user;
@@ -105,14 +99,6 @@ public class Loan implements Serializable {
 
 	public void setMade(boolean made) {
 		this.made = made;
-	}
-
-	public boolean isLate() {
-		return late;
-	}
-
-	public void setLate(boolean late) {
-		this.late = late;
 	}
 
 	public User getUser() {
