@@ -81,6 +81,7 @@
 						<tr th:each="r:${listLoanLate}">
 							<td style="width: 15%" class="h5"
 								th:text=${r.getBook().getTitle()}></td>
+<<<<<<< HEAD:Wep-Application/src/main/resources/templates/Emprunt/emprunt.html
 							<td
 								th:text="'Le ' + ${#dates.format(r.startLoan.toGregorianCalendar().getTime(), 'dd-MM-yyyy')}"></td>
 							<td
@@ -88,6 +89,20 @@
 							<td><a th:if="${!r.extension && !r.late}"
 								class="btn btn-primary"
 								th:href="@{prolongerEmprunt(id=${r.id})}">Prolonger</a></td>
+=======
+<<<<<<< Updated upstream:Wep-Application/src/main/resources/templates/Reservation/reservation.html
+							<td th:text="'Le ' + ${#dates.format(r.startLoan.toGregorianCalendar().getTime(), 'dd-MM-yyyy')}"></td>
+							<td th:text="'Le ' + ${#dates.format(r.endLoan.toGregorianCalendar().getTime(), 'dd-MM-yyyy')}"></td>
+							<td><a th:if="${!r.extension && !r.late}"
+								class="btn btn-primary"
+								th:href="@{prolongerReservation(id=${r.id})}">Prolonger</a></td>
+=======
+							<td
+								th:text="'Le ' + ${#dates.format(r.startLoan.toGregorianCalendar().getTime(), 'dd-MM-yyyy')}"></td>
+							<td
+								th:text="'Le ' + ${#dates.format(r.endLoan.toGregorianCalendar().getTime(), 'dd-MM-yyyy')}"></td>	
+>>>>>>> Stashed changes:Wep-Application/src/main/resources/templates/Emprunt/emprunt.html
+>>>>>>> Ticket#2:Wep-Application/src/main/resources/templates/Reservation/reservation.html
 						</tr>
 					</tbody>
 

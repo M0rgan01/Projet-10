@@ -68,15 +68,15 @@ public class LoanBusinessImpl implements LoanBusiness {
 
 			throw new BibliothequeException("loan.already.extention", bibliothequeFault);
 
-			// s'il serra en retard après extention
-		} else if (checkLate(r)) {
+		// si l'emprunt est en retard
+		} else if (new Date().after(r.getEnd_loan())) {
 
-			logger.error("loan " + loan_ID + " late after extention");
+			logger.error("loan " + loan_ID + " late for extention");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("6");
-			bibliothequeFault.setFaultString("loan.late.after.extention");
+			bibliothequeFault.setFaultString("loan.late");
 
-			throw new BibliothequeException("loan.late.after.extention", bibliothequeFault);
+			throw new BibliothequeException("loan.late", bibliothequeFault);
 		}
 
 		// on règle la date sur celle désirée
@@ -181,22 +181,18 @@ public class LoanBusinessImpl implements LoanBusiness {
 					loan.setLate(true);
 			}
 		}
+<<<<<<< HEAD
 
 		logger.info("Get list of loan late for user id " + user_id);
 
 		return list;
 	}
+=======
+>>>>>>> Ticket#2
 
-	public boolean checkLate(Loan loan) {
-		Calendar c = Calendar.getInstance();
-		c.setTime(loan.getEnd_loan());
-		c.add(Calendar.DATE, extendDays);
-		Date retard = c.getTime();
+		logger.info("Get list of loan late for user id " + user_id);
 
-		if (retard.before(new Date())) {
-			return true;
-		}
-		return false;
+		return list;
 	}
 
 	@Override
@@ -215,4 +211,13 @@ public class LoanBusinessImpl implements LoanBusiness {
 		return loanRepository.getListLoanLate(new Date());
 	}
 
+	@Override
+	public Date setLoanBackForBook(Long book_id) {
+		Loan loan = loanRepository.getListLoanByBookAndOrderByEndLoan(book_id).get(0);			
+		return loan.getEnd_loan();		
+	}
+
+	
+	
+	
 }

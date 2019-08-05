@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 package com.bibliotheque;
 
 import java.util.Date;
+=======
+
+package com.bibliotheque;
+>>>>>>> Ticket#2
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,6 +22,7 @@ import com.bibliotheque.dao.MailRepository;
 import com.bibliotheque.dao.ReservationRepository;
 import com.bibliotheque.dao.RolesRepository;
 import com.bibliotheque.dao.UserRepository;
+<<<<<<< HEAD
 import com.bibliotheque.entities.Book;
 import com.bibliotheque.entities.Kind;
 import com.bibliotheque.entities.Loan;
@@ -24,6 +30,8 @@ import com.bibliotheque.entities.Mail;
 import com.bibliotheque.entities.Reservation;
 import com.bibliotheque.entities.Roles;
 import com.bibliotheque.entities.User;
+=======
+>>>>>>> Ticket#2
 import com.bibliotheque.metier.LoanBusiness;
 import com.bibliotheque.metier.ReservationBusiness;
 import com.bibliotheque.metier.UserBusiness;
@@ -67,6 +75,15 @@ public class Projet7WebServiceApplication extends SpringBootServletInitializer i
 
 	@Override
 	public void run(String... args) throws Exception {
+<<<<<<< HEAD
 	
 	}
 }
+=======
+	 //loanBusiness.returnLoan(1l);
+		//loanBusiness.createLoan(4l, 1l);
+		//loanBusiness.createLoan(4l, 2l);
+	}
+}
+
+>>>>>>> Ticket#2

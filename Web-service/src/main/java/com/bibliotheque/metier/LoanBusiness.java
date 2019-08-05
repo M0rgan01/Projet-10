@@ -1,6 +1,7 @@
 package com.bibliotheque.metier;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import com.bibliotheque.entities.Loan;
@@ -80,4 +81,7 @@ public interface LoanBusiness {
 	 * @return Nombre de jour d'un emprunt
 	 */
 	public int getDaysLoan();
+	
+	public Date setLoanBackForBook(Long book_id);
+	
 }

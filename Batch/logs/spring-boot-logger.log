@@ -1,0 +1,46 @@
+2019-04-21 18:38:11,161 INFO org.springframework.boot.StartupInfoLogger [main] Starting Projet7BatchApplicationTests on DESKTOP-GFBBSE4 with PID 16324 (started by picha in C:\Users\picha\Desktop\Projet 7\Projet7-Batch)
+2019-04-21 18:38:11,161 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-04-21 18:38:11,161 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-04-21 18:38:12,092 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-21 18:38:12,239 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'taskScheduler'
+2019-04-21 18:38:12,271 INFO org.springframework.boot.StartupInfoLogger [main] Started Projet7BatchApplicationTests in 1.312 seconds (JVM running for 1.808)
+2019-04-21 18:38:12,458 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [Thread-2] Shutting down ExecutorService 'taskScheduler'
+2019-04-21 18:38:12,458 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [Thread-2] Shutting down ExecutorService 'applicationTaskExecutor'
+2019-04-21 18:38:50,772 INFO org.springframework.boot.StartupInfoLogger [main] Starting Projet7BatchApplicationTests on DESKTOP-GFBBSE4 with PID 1692 (started by picha in C:\Users\picha\Desktop\Projet 7\Projet7-Batch)
+2019-04-21 18:38:50,772 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-04-21 18:38:50,772 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-04-21 18:38:51,656 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-21 18:38:51,802 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'taskScheduler'
+2019-04-21 18:38:51,834 INFO org.springframework.boot.StartupInfoLogger [main] Started Projet7BatchApplicationTests in 1.281 seconds (JVM running for 1.795)
+2019-04-21 18:38:52,021 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [Thread-2] Shutting down ExecutorService 'taskScheduler'
+2019-04-21 18:38:52,021 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [Thread-2] Shutting down ExecutorService 'applicationTaskExecutor'
+2019-04-21 18:44:13,183 INFO org.springframework.boot.StartupInfoLogger [main] Starting Projet7BatchApplicationTests on DESKTOP-GFBBSE4 with PID 14060 (started by picha in C:\Users\picha\Desktop\Projet 7\Projet7-Batch)
+2019-04-21 18:44:13,183 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-04-21 18:44:13,183 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-04-21 18:44:14,104 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-21 18:44:14,272 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'taskScheduler'
+2019-04-21 18:44:14,319 INFO org.springframework.boot.StartupInfoLogger [main] Started Projet7BatchApplicationTests in 1.339 seconds (JVM running for 1.84)
+2019-04-21 18:44:14,493 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [Thread-2] Shutting down ExecutorService 'taskScheduler'
+2019-04-21 18:44:14,493 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [Thread-2] Shutting down ExecutorService 'applicationTaskExecutor'
+2019-04-21 18:47:44,918 INFO org.springframework.boot.StartupInfoLogger [main] Starting Projet7BatchApplicationTests on DESKTOP-GFBBSE4 with PID 6160 (started by picha in C:\Users\picha\Desktop\Projet 7\Projet7-Batch)
+2019-04-21 18:47:44,918 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-04-21 18:47:44,918 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-04-21 18:47:45,871 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-21 18:47:46,050 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'taskScheduler'
+2019-04-21 18:47:46,081 INFO org.springframework.boot.StartupInfoLogger [main] Started Projet7BatchApplicationTests in 1.397 seconds (JVM running for 1.888)
+2019-04-21 18:47:46,284 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [Thread-2] Shutting down ExecutorService 'taskScheduler'
+2019-04-21 18:47:46,284 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [Thread-2] Shutting down ExecutorService 'applicationTaskExecutor'
+2019-07-28 17:30:57,925 INFO org.springframework.boot.StartupInfoLogger [main] Starting Projet7BatchApplication on DESKTOP-EAH8HBP with PID 10112 (C:\Users\Morgan\Desktop\Workspace\Projet-10\Batch\target\classes started by Morgan in C:\Users\Morgan\Desktop\Workspace\Projet-10\Batch)
+2019-07-28 17:30:57,927 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.1.4.RELEASE, Spring v5.1.6.RELEASE
+2019-07-28 17:30:57,928 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-07-28 17:30:59,147 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8086 (http)
+2019-07-28 17:30:59,163 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8086"]
+2019-07-28 17:30:59,172 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2019-07-28 17:30:59,172 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.17]
+2019-07-28 17:30:59,264 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2019-07-28 17:30:59,265 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1286 ms
+2019-07-28 17:30:59,478 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-28 17:30:59,619 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [main] Initializing ExecutorService 'taskScheduler'
+2019-07-28 17:30:59,689 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8086"]
+2019-07-28 17:30:59,713 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8086 (http) with context path ''
+2019-07-28 17:30:59,716 INFO org.springframework.boot.StartupInfoLogger [main] Started Projet7BatchApplication in 2.202 seconds (JVM running for 2.568)

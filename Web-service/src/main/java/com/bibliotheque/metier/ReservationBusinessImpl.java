@@ -25,7 +25,11 @@ import com.bibliotheque.utilities.SendMail;
 
 @Component
 public class ReservationBusinessImpl implements ReservationBusiness {
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> Ticket#2
 	@Value("${mail.username}")
 	private String emailUsers;
 	@Value("${mail.password}")
@@ -50,7 +54,11 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 	private SendMail sendMail;
 	@Autowired
 	private Jasypt jasypt;
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> Ticket#2
 	private static final Logger logger = LoggerFactory.getLogger(ReservationBusinessImpl.class);
 
 	@Override
@@ -97,12 +105,36 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 
 	@Override
 	@Transactional
+<<<<<<< HEAD
 	public synchronized void deleteReservation(Long book_id, Long user_id) throws BibliothequeException {
 		reservationRepository.deleteByUserIdAndBookId(book_id, user_id);
 		logger.info("Success delete reservation");
 		setPositionOfReservation(book_id);
 		logger.info("Update position of reservation for book " + book_id);
 		checkReservation(book_id);
+=======
+	public synchronized Book deleteReservation(Long book_id, Long user_id) throws BibliothequeException {
+		//suppression de la résa
+		reservationRepository.deleteByUserIdAndBookId(book_id, user_id);		
+		logger.info("Success delete reservation");
+		
+		// on met à jour le nombre de réservation du livre
+		Book book = bookBusiness.getBook(book_id);		
+		book.setNumberReservation(book.getNumberReservation() - 1);
+		book.setAvailableReservation(true);
+		
+		//réatribution des positions de la file d'attente
+		setPositionOfReservation(book_id);
+		logger.info("Update position of reservation for book " + book_id);
+		
+		return bookRepository.save(book);
+	}
+	
+	@Override
+	public void deleteReservationForLate(Long book_id, Long user_id) throws BibliothequeException {
+		Book book = deleteReservation(book_id, user_id);
+		checkReservation(book);
+>>>>>>> Ticket#2
 	}
 
 	@Override
@@ -110,6 +142,7 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 		return reservationRepository.getListReservationByBookID(book_id);
 	}
 
+<<<<<<< HEAD
 	public void setPositionOfReservation(Long book_id) {
 		int index = 1;
 		List<Reservation> list = reservationRepository.getListReservationByBookID(book_id);
@@ -119,6 +152,24 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 		reservationRepository.saveAll(list);
 	}
 
+=======
+	
+	
+	
+	public void setPositionOfReservation(Long book_id) {
+		List<Reservation> list = reservationRepository.getListReservationByBookID(book_id);
+		
+		if (list.size() > 0) {
+			int index = 1;
+			for (Reservation reservation : list) {
+				reservation.setPosition(index++);
+			}
+			reservationRepository.saveAll(list);
+		}
+	}
+
+		
+>>>>>>> Ticket#2
 	@Override
 	public List<Reservation> getListReservationByUser(Long user_id) {
 		return reservationRepository.getListReservationByUserID(user_id);
@@ -126,6 +177,7 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 
 	@Override
 	@Transactional
+<<<<<<< HEAD
 	public void checkReservation(Long book_id) throws BibliothequeException {
 
 		Book book = bookBusiness.getBook(book_id);
@@ -153,6 +205,35 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 			book.setCopyAvailable(book.getCopyAvailable() + 1);
 			if (!book.isAvailable())
 				book.setAvailable(true);
+=======
+	public void checkReservation(Book book) throws BibliothequeException {
+		
+		// si il y a une liste de réservation pour ce livre
+		if (getListReservationByBook(book.getId()).size() != 0) {
+
+			Reservation reservation = getListReservationByBook(book.getId()).get(0);
+			Mail mail = mailBusiness.getMailByUserID(reservation.getUser().getId());
+
+			// on ajoute une date limite de récupération
+			Calendar calendar = Calendar.getInstance();
+			calendar.add(Calendar.HOUR, resetReservationToHour);
+			reservation.setEndReservation(calendar.getTime());
+			reservationRepository.save(reservation);
+
+			String body = MessageFormat.format(bodyRecovery, book.getTitle());
+			String[] tableau_email = { mail.getEmail() };
+			// on envoie un email pour prévenir de la disponnibilité du livre
+			sendMail.sendFromGMail(emailUsers, jasypt.getDecrypt(emailPassword), tableau_email, objectRecovery, body);
+			logger.info("Send Email for reservation " + reservation.getId());
+
+		} else {
+			// on incrémente le nombre de copie disponnible
+			book.setCopyAvailable(book.getCopyAvailable() + 1);
+			if (!book.isAvailable()) {
+				book.setAvailable(true);
+				book.setAvailableReservation(false);
+			}
+>>>>>>> Ticket#2
 
 			bookRepository.save(book);
 		}
@@ -160,8 +241,17 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public List<Reservation> getListReservationWithEndDate() {		
 		return reservationRepository.getListReservationWithEndDate();
 	}
 
+=======
+	public List<Reservation> getListReservationWithEndDate() {
+		return reservationRepository.getListReservationWithEndDate();
+	}
+
+
+
+>>>>>>> Ticket#2
 }
