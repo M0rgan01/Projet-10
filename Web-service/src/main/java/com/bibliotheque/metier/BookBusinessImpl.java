@@ -92,7 +92,7 @@ public class BookBusinessImpl implements BookBusiness {
 	}
 
 	@Override
-	public void createBook(Book book) throws BibliothequeException {
+	public Book createBook(Book book) throws BibliothequeException {
 		// validation du genre et du livre
 		kindBusiness.validateKind(book.getKind());
 		validateBook(book);
@@ -101,15 +101,16 @@ public class BookBusinessImpl implements BookBusiness {
 		book.setAvailableReservation(false);
 		book.setCopyAvailable(book.getCopyTotals());
 
-		bookRepository.save(book);
 		logger.info("Create book" + book.getId());
+		return bookRepository.save(book);
+		
 	}
 
 	@Override
 	public void saveBook(Book book) throws BibliothequeException {
 
 		Book book2 = bookRepository.findById(book.getId()).orElse(null);
-
+	
 		if (book2 == null) {
 			logger.error("id book "+ book.getId() + " not correct");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
@@ -128,8 +129,10 @@ public class BookBusinessImpl implements BookBusiness {
 				book.setCopyAvailable(0);
 
 			// s'il est à 0 on rend le livre non disponible
-			if (book.getCopyAvailable() == 0)
+			if (book.getCopyAvailable() == 0) {
 				book.setAvailable(false);
+				book.setAvailableReservation(true);						
+			}
 
 		}
 		//validation du genre et du livre

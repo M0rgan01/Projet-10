@@ -15,10 +15,11 @@ public interface BookBusiness {
 	 * persistance d'un livre
 	 * 
 	 * @param book --> livre à créer
+	 * @return Book
 	 * 
 	 * @throws BibliothequeException --> attribut title, author, description, copyTotals, kind non renseigné ou incorrect
 	 */
-	public void createBook(Book book) throws BibliothequeException;
+	public Book createBook(Book book) throws BibliothequeException;
 	
 	/**
 	 * mise à jour d'un livre
