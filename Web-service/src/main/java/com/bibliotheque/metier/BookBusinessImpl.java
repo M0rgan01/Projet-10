@@ -119,26 +119,12 @@ public class BookBusinessImpl implements BookBusiness {
 			throw new BibliothequeException("book.id.not.correct", bibliothequeFault);
 
 			// réajustement du nombre de copies disponible
-		} else if (book.getCopyTotals() != book2.getCopyTotals()) {
-
-			int a = book.getCopyTotals() - book2.getCopyTotals();
-
-			book.setCopyAvailable(book.getCopyAvailable() + a);
-
-			if (book.getCopyAvailable() < 0)
-				book.setCopyAvailable(0);
-
-			// s'il est à 0 on rend le livre non disponible
-			if (book.getCopyAvailable() == 0) {
-				book.setAvailable(false);
-				book.setAvailableReservation(true);						
-			}
-
-		}
+		} 
+		
 		//validation du genre et du livre
 		kindBusiness.validateKind(book.getKind());
 		validateBook(book);
-		
+			
 		bookRepository.save(book);
 		logger.info("update book " + book.getId());
 	}

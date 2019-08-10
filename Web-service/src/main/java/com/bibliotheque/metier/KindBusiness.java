@@ -15,9 +15,10 @@ public interface KindBusiness {
 	 * création / mise à jour d'un livre
 	 * 
 	 * @param kind --> genre à créer, ou à mettre à jour si l'id est renseigné
+	 * @throws BibliothequeException 
 	 * 
 	 */
-	public void saveKind(Kind kind);
+	public void saveKind(Kind kind) throws BibliothequeException;
 	
 	/**
 	 * récupération d'une liste de genre
