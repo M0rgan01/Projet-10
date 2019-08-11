@@ -164,7 +164,7 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 			String body = MessageFormat.format(bodyRecovery, book.getTitle());
 			String[] tableau_email = { mail.getEmail() };
 			// on envoie un email pour prévenir de la disponnibilité du livre
-			sendMail.sendFromGMail(emailUsers, jasypt.getDecrypt(emailPassword), tableau_email, objectRecovery, body);
+			//sendMail.sendFromGMail(emailUsers, jasypt.getDecrypt(emailPassword), tableau_email, objectRecovery, body);
 			logger.info("Send Email for reservation " + reservation.getId());
 
 		} else {

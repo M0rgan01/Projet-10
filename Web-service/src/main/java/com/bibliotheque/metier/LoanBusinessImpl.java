@@ -1,6 +1,5 @@
 package com.bibliotheque.metier;
 
-import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -115,7 +114,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 	}
 
 	@Override
-	public void createLoan(Long book_id, Long User_id) throws BibliothequeException, ParseException {
+	public void createLoan(Long book_id, Long User_id) throws BibliothequeException {
 		User user = userBusiness.getUser(User_id);
 		Book book = bookRepository.findById(book_id).orElse(null);
 
@@ -195,8 +194,12 @@ public class LoanBusinessImpl implements LoanBusiness {
 
 	@Override
 	public Date setLoanBackForBook(Long book_id) {
-		Loan loan = loanRepository.getListLoanByBookAndOrderByEndLoan(book_id).get(0);			
-		return loan.getEnd_loan();		
+		try {
+			Loan loan = loanRepository.getListLoanByBookAndOrderByEndLoan(book_id).get(0);	
+			return loan.getEnd_loan();
+		} catch (IndexOutOfBoundsException e) {	}
+				
+		return null;		
 	}
 
 	

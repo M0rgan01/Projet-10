@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bibliotheque.dao.KindRepository;
 import com.bibliotheque.entities.Kind;
@@ -17,13 +18,13 @@ import com.bibliotheque.metier.KindBusiness;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Transactional
 public class TestKindBusiness{
 
 	@Autowired
 	private KindRepository kindRepository;
 	@Autowired
 	private KindBusiness kindBusiness;
-	
 	
 	@Test
 	public void testCreateKind() throws BibliothequeException {
@@ -32,7 +33,7 @@ public class TestKindBusiness{
 		
 		Kind kindCompare = kindRepository.findAll().get(0);
 		
-		assertEquals(kind.getName(), kindCompare.getName());
+		assertEquals(kind.getName(), kindCompare.getName());					
 	}
 	
 	@Test(expected=BibliothequeException.class)
@@ -44,21 +45,20 @@ public class TestKindBusiness{
 	
 	@Test
 	public void TestGetListKind() throws BibliothequeException {
-		kindBusiness.saveKind(new Kind("Test"));
-		kindBusiness.saveKind(new Kind("Test2"));
-		kindBusiness.saveKind(new Kind("Test3"));
 		
+		kindRepository.save(new Kind("Test1"));
+		kindRepository.save(new Kind("Test2"));
+		kindRepository.save(new Kind("Test3"));
+			
 		List<Kind> list = kindBusiness.getListKind();
 		
 		assertEquals(list.size(), 3);		
 	}
 	
 	@Test
-	public void TestGetKind() throws BibliothequeException {
+	public void TestGetKind() throws BibliothequeException {	
 		kindBusiness.saveKind(new Kind("Test"));
-		
-		Kind kind = kindBusiness.getKind("Test");
-		
+		Kind kind = kindBusiness.getKind("Test");	
 		assertEquals(kind.getName(), "Test");		
 	}
 	
