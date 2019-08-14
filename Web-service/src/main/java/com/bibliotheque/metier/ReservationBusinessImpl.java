@@ -98,22 +98,30 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 	@Override
 	@Transactional
 	public synchronized Book deleteReservation(Long book_id, Long user_id) throws BibliothequeException {
-		//suppression de la résa
-		reservationRepository.deleteByUserIdAndBookId(book_id, user_id);		
+		// suppression de la résa
+		int a = reservationRepository.deleteByUserIdAndBookId(book_id, user_id);
+
+		if (a == 0) {
+			BibliothequeFault bibliothequeFault = new BibliothequeFault();
+			bibliothequeFault.setFaultCode("60");
+			bibliothequeFault.setFaultString("reservation.not.exist");
+			throw new BibliothequeException("reservation.not.exist", bibliothequeFault);
+		}
+
 		logger.info("Success delete reservation");
-		
+
 		// on met à jour le nombre de réservation du livre
-		Book book = bookBusiness.getBook(book_id);		
+		Book book = bookBusiness.getBook(book_id);
 		book.setNumberReservation(book.getNumberReservation() - 1);
 		book.setAvailableReservation(true);
-		
-		//réatribution des positions de la file d'attente
+
+		// réatribution des positions de la file d'attente
 		setPositionOfReservation(book_id);
 		logger.info("Update position of reservation for book " + book_id);
-		
+
 		return bookRepository.save(book);
 	}
-	
+
 	@Override
 	public void deleteReservationForLate(Long book_id, Long user_id) throws BibliothequeException {
 		Book book = deleteReservation(book_id, user_id);
@@ -125,11 +133,9 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 		return reservationRepository.getListReservationByBookID(book_id);
 	}
 
-
-	
 	public void setPositionOfReservation(Long book_id) {
 		List<Reservation> list = reservationRepository.getListReservationByBookID(book_id);
-		
+
 		if (list.size() > 0) {
 			int index = 1;
 			for (Reservation reservation : list) {
@@ -139,7 +145,6 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 		}
 	}
 
-		
 	@Override
 	public List<Reservation> getListReservationByUser(Long user_id) {
 		return reservationRepository.getListReservationByUserID(user_id);
@@ -148,7 +153,7 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 	@Override
 	@Transactional
 	public void checkReservation(Book book) throws BibliothequeException {
-		
+
 		// si il y a une liste de réservation pour ce livre
 		if (getListReservationByBook(book.getId()).size() != 0) {
 
@@ -164,7 +169,8 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 			String body = MessageFormat.format(bodyRecovery, book.getTitle());
 			String[] tableau_email = { mail.getEmail() };
 			// on envoie un email pour prévenir de la disponnibilité du livre
-			//sendMail.sendFromGMail(emailUsers, jasypt.getDecrypt(emailPassword), tableau_email, objectRecovery, body);
+			// sendMail.sendFromGMail(emailUsers, jasypt.getDecrypt(emailPassword),
+			// tableau_email, objectRecovery, body);
 			logger.info("Send Email for reservation " + reservation.getId());
 
 		} else {
@@ -179,10 +185,8 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 
 	}
 
-
 	public List<Reservation> getListReservationWithEndDate() {
 		return reservationRepository.getListReservationWithEndDate();
 	}
-
 
 }

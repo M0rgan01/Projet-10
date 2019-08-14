@@ -26,7 +26,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>{
 	 */
 	@Modifying
 	@Query("delete from Reservation r where r.book.id = :x and r.user.id = :y")
-	public void deleteByUserIdAndBookId(@Param("x") Long book_id, @Param("y")Long user_id);
+	public int deleteByUserIdAndBookId(@Param("x") Long book_id, @Param("y")Long user_id);
 	
 	/**
 	 * requete de recherche de Reservation par rapport à l'id utilisateur
