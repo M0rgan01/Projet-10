@@ -38,7 +38,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 	private static final Logger logger = LoggerFactory.getLogger(LoanBusinessImpl.class);
 
 	@Override
-	public void extendLoan(Long loan_ID, Long user_ID) throws BibliothequeException {
+	public Loan extendLoan(Long loan_ID, Long user_ID) throws BibliothequeException {
 		Loan r = loanRepository.findById(loan_ID).orElse(null);
 
 		if (r == null) {
@@ -85,26 +85,27 @@ public class LoanBusinessImpl implements LoanBusiness {
 
 		r.setEnd_loan(c.getTime());
 		r.setExtension(true);
-
-		loanRepository.save(r);
-		logger.info("Add " + extendDays + " days to loan " + loan_ID);
 		
 		if (!r.getBook().isAvailable()) {
 			r.getBook().setLoanBack(setLoanBackForBook(r.getBook().getId()));
-			bookRepository.save(r.getBook());
+			//bookRepository.save(r.getBook());
 		}
+		logger.info("Add " + extendDays + " days to loan " + loan_ID);
+		return loanRepository.save(r);		
 	}
 
 	@Override
 	@Transactional
-	public void returnLoan(Long id) throws BibliothequeException {
+	public Loan returnLoan(Long id) throws BibliothequeException {
 		Loan loan = loanRepository.findById(id).orElse(null);
 		loan.setMade(true);
 
 		reservationBusiness.checkReservation(loan.getBook());
-
-		loanRepository.save(loan);
+		
 		logger.info("Close the loan " + id);
+		
+		return loanRepository.save(loan);
+		
 	}
 
 	@Override
@@ -114,7 +115,7 @@ public class LoanBusinessImpl implements LoanBusiness {
 	}
 
 	@Override
-	public void createLoan(Long book_id, Long User_id) throws BibliothequeException {
+	public Loan createLoan(Long book_id, Long User_id) throws BibliothequeException {
 		User user = userBusiness.getUser(User_id);
 		Book book = bookRepository.findById(book_id).orElse(null);
 
@@ -152,11 +153,12 @@ public class LoanBusinessImpl implements LoanBusiness {
 			book.setAvailableReservation(true);
 			book.setLoanBack(setLoanBackForBook(book.getId()));
 		}
-
+	
 		bookRepository.save(book);
 		logger.info("Update book " + book.getId());
-		Loan loan = loanRepository.save(new Loan(start_loan, end_loan, user, book));
+		Loan loan = new Loan(start_loan, end_loan, user, book);		
 		logger.info("Create loan " + loan.getId());
+		return loanRepository.save(loan);
 	}
 
 	@Override

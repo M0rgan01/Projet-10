@@ -70,7 +70,7 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 		}
 
 		// si le livre est disponnible pour réservation
-		if (book.isAvailableReservation()) {
+		if (book.isAvailableReservation() && !book.isAvailable()) {
 			reservation = new Reservation(new Date(), user, book);
 			reservationRepository.save(reservation);
 			logger.info("Success create reservation" + reservation.getId());
@@ -112,7 +112,7 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 
 		// on met à jour le nombre de réservation du livre
 		Book book = bookBusiness.getBook(book_id);
-		book.setNumberReservation(book.getNumberReservation() - 1);
+		book.setNumberReservation(book.getNumberReservation() - 1);				
 		book.setAvailableReservation(true);
 
 		// réatribution des positions de la file d'attente
@@ -133,7 +133,7 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 		return reservationRepository.getListReservationByBookID(book_id);
 	}
 
-	public void setPositionOfReservation(Long book_id) {
+	public List<Reservation> setPositionOfReservation(Long book_id) {
 		List<Reservation> list = reservationRepository.getListReservationByBookID(book_id);
 
 		if (list.size() > 0) {
@@ -141,8 +141,9 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 			for (Reservation reservation : list) {
 				reservation.setPosition(index++);
 			}
-			reservationRepository.saveAll(list);
+			list = reservationRepository.saveAll(list);
 		}
+		return list;		
 	}
 
 	@Override

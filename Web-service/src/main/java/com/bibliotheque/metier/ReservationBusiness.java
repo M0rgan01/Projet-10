@@ -72,10 +72,11 @@ public interface ReservationBusiness {
 	 * Met à jour la position des réservations d'un livre 
 	 * 
 	 * @param book_id --> livre correspondant
+	 * @return liste de reservation avec mise à jour des positions
 	 * 
 	 * 
 	 */
-	public void setPositionOfReservation(Long book_id);
+	public List<Reservation> setPositionOfReservation(Long book_id);
 	
 	/**
 	 * Vérifie la présence de réservation pour un livre

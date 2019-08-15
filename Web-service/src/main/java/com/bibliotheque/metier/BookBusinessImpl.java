@@ -117,8 +117,7 @@ public class BookBusinessImpl implements BookBusiness {
 			bibliothequeFault.setFaultCode("1");
 			bibliothequeFault.setFaultString("book.id.not.correct");
 			throw new BibliothequeException("book.id.not.correct", bibliothequeFault);
-
-			// réajustement du nombre de copies disponible
+			
 		} 
 		
 		//validation du genre et du livre

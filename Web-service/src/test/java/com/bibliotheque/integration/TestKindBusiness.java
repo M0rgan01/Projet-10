@@ -1,4 +1,4 @@
-package com.bibliotheque;
+package com.bibliotheque.integration;
 
 import static org.junit.Assert.assertEquals;
 
@@ -41,7 +41,6 @@ public class TestKindBusiness{
 		Kind kind = new Kind("");
 		kindBusiness.saveKind(kind);
 	}
-	
 	
 	@Test
 	public void TestGetListKind() throws BibliothequeException {

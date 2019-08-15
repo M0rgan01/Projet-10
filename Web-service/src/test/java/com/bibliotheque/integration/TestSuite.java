@@ -1,4 +1,4 @@
-package com.bibliotheque;
+package com.bibliotheque.integration;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
