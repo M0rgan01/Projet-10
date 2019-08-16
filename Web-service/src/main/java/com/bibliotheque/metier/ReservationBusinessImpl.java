@@ -177,6 +177,7 @@ public class ReservationBusinessImpl implements ReservationBusiness {
 		} else {
 			// on incrémente le nombre de copie disponnible
 			book.setCopyAvailable(book.getCopyAvailable() + 1);
+						
 			if (!book.isAvailable()) {
 				book.setAvailable(true);
 				book.setAvailableReservation(false);

@@ -107,7 +107,7 @@ public class BookBusinessImpl implements BookBusiness {
 	}
 
 	@Override
-	public void saveBook(Book book) throws BibliothequeException {
+	public Book saveBook(Book book) throws BibliothequeException {
 
 		Book book2 = bookRepository.findById(book.getId()).orElse(null);
 	
@@ -123,9 +123,9 @@ public class BookBusinessImpl implements BookBusiness {
 		//validation du genre et du livre
 		kindBusiness.validateKind(book.getKind());
 		validateBook(book);
-			
-		bookRepository.save(book);
+				
 		logger.info("update book " + book.getId());
+		return bookRepository.save(book);
 	}
 
 	public void validateBook(Book book) throws BibliothequeException {

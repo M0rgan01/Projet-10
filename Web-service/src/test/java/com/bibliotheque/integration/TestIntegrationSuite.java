@@ -10,4 +10,4 @@ import org.junit.runners.Suite;
         TestLoanBusiness.class,
         TestReservationBusiness.class
 })
-public class TestSuite {}
+public class TestIntegrationSuite {}

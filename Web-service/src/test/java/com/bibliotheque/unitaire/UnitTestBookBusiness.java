@@ -80,6 +80,13 @@ public class UnitTestBookBusiness {
 	}
 
 	@Test(expected=BibliothequeException.class)
+	public void testSaveBookWithBadId() throws BibliothequeException {									
+		Mockito.when(bookRepository.findById(book.getId())).thenReturn(Optional.of(book));
+		book.setId(2l);
+		bookBusiness.saveBook(book);	
+	}
+	
+	@Test(expected=BibliothequeException.class)
 	public void testSaveBookWithNegativeCopyAvailable() throws BibliothequeException {								
 		book.setCopyAvailable(-1);	
 		Mockito.when(bookRepository.findById(book.getId())).thenReturn(Optional.of(book));
@@ -99,4 +106,17 @@ public class UnitTestBookBusiness {
 		bookBusiness.validateBook(book);
 	}
 	
+	@Test
+	public void testGetBook() throws BibliothequeException {								
+		Mockito.when(bookRepository.findById(book.getId())).thenReturn(Optional.of(book));
+		bookBusiness.getBook(book.getId());
+	}
+	
+	@Test(expected=BibliothequeException.class)
+	public void testGetBookWithBadId() throws BibliothequeException {	
+		Mockito.when(bookRepository.findById(book.getId())).thenReturn(Optional.of(book));
+		bookBusiness.getBook(2l);
+	}
+	
+
 }

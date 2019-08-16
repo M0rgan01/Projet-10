@@ -26,10 +26,11 @@ public interface BookBusiness {
 	 * 
 	 * @param book --> livre à mettre à jour
 	 * @param kind --> genre lié au livre
+	 * @return book modifier
 	 * 
 	 * @throws BibliothequeException --> attribut ID, title, author, description, copyTotals, kind non renseigné ou incorrect
 	 */
-	public void saveBook(Book Book) throws BibliothequeException;
+	public Book saveBook(Book Book) throws BibliothequeException;
 	
 	
 	/**
