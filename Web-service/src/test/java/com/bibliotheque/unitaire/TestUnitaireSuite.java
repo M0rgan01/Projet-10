@@ -8,6 +8,7 @@ import org.junit.runners.Suite;
         UnitTestBookBusiness.class,
         UnitTestLoanBusiness.class,
         UnitTestReservationBusiness.class,
-        UnitTestUserBusiness.class
+        UnitTestUserBusiness.class,
+        UnitTestMailBusiness.class
 })
 public class TestUnitaireSuite {}

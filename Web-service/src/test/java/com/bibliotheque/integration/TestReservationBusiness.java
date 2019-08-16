@@ -54,6 +54,8 @@ public class TestReservationBusiness {
 
 	@Test
 	public void testCreateReservation() throws BibliothequeException {
+		book.setAvailable(false);
+		bookRepository.save(book);
 		Reservation reservation = reservationBusiness.createReservation(book.getId(), user.getId());
 
 		assertEquals(reservation.getBook().getNumberReservation(), 1);
@@ -82,6 +84,8 @@ public class TestReservationBusiness {
 
 	@Test
 	public void testDeleteReservation() throws BibliothequeException {
+		book.setAvailable(false);
+		bookRepository.save(book);
 		reservationBusiness.createReservation(book.getId(), user.getId());
 		Reservation r1 = reservationBusiness.createReservation(book.getId(), user2.getId());
 
