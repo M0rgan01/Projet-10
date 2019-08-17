@@ -86,12 +86,17 @@ public class LoanBusinessImpl implements LoanBusiness {
 		r.setEnd_loan(c.getTime());
 		r.setExtension(true);
 		
+		r = loanRepository.save(r);
+		
+		logger.info("Add " + extendDays + " days to loan " + loan_ID);
+	
+		//après sauvegarde, on ajuste la prochaine disponnibilité du livre si changement
 		if (!r.getBook().isAvailable()) {
 			r.getBook().setLoanBack(setLoanBackForBook(r.getBook().getId()));
-			//bookRepository.save(r.getBook());
+			bookRepository.save(r.getBook());
 		}
-		logger.info("Add " + extendDays + " days to loan " + loan_ID);
-		return loanRepository.save(r);		
+		
+		return r;	
 	}
 
 	@Override
