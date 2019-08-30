@@ -92,7 +92,7 @@ public class BookBusinessImpl implements BookBusiness {
 	}
 
 	@Override
-	public void createBook(Book book) throws BibliothequeException {
+	public Book createBook(Book book) throws BibliothequeException {
 		// validation du genre et du livre
 		kindBusiness.validateKind(book.getKind());
 		validateBook(book);
@@ -101,43 +101,31 @@ public class BookBusinessImpl implements BookBusiness {
 		book.setAvailableReservation(false);
 		book.setCopyAvailable(book.getCopyTotals());
 
-		bookRepository.save(book);
 		logger.info("Create book" + book.getId());
+		return bookRepository.save(book);
+		
 	}
 
 	@Override
-	public void saveBook(Book book) throws BibliothequeException {
+	public Book saveBook(Book book) throws BibliothequeException {
 
 		Book book2 = bookRepository.findById(book.getId()).orElse(null);
-
+	
 		if (book2 == null) {
 			logger.error("id book "+ book.getId() + " not correct");
 			BibliothequeFault bibliothequeFault = new BibliothequeFault();
 			bibliothequeFault.setFaultCode("1");
 			bibliothequeFault.setFaultString("book.id.not.correct");
 			throw new BibliothequeException("book.id.not.correct", bibliothequeFault);
-
-			// réajustement du nombre de copies disponible
-		} else if (book.getCopyTotals() != book2.getCopyTotals()) {
-
-			int a = book.getCopyTotals() - book2.getCopyTotals();
-
-			book.setCopyAvailable(book.getCopyAvailable() + a);
-
-			if (book.getCopyAvailable() < 0)
-				book.setCopyAvailable(0);
-
-			// s'il est à 0 on rend le livre non disponible
-			if (book.getCopyAvailable() == 0)
-				book.setAvailable(false);
-
-		}
+			
+		} 
+		
 		//validation du genre et du livre
 		kindBusiness.validateKind(book.getKind());
 		validateBook(book);
-		
-		bookRepository.save(book);
+				
 		logger.info("update book " + book.getId());
+		return bookRepository.save(book);
 	}
 
 	public void validateBook(Book book) throws BibliothequeException {
