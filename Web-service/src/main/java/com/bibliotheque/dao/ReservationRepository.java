@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bibliotheque.entities.Reservation;
 
@@ -25,6 +26,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>{
 	 * 
 	 */
 	@Modifying
+	@Transactional
 	@Query("delete from Reservation r where r.book.id = :x and r.user.id = :y")
 	public int deleteByUserIdAndBookId(@Param("x") Long book_id, @Param("y")Long user_id);
 	
