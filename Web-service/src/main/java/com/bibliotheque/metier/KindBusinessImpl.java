@@ -27,7 +27,8 @@ public class KindBusinessImpl implements KindBusiness{
 	private static final Logger logger = LoggerFactory.getLogger(KindBusinessImpl.class);
 	
 	@Override
-	public void saveKind(Kind kind) {
+	public void saveKind(Kind kind) throws BibliothequeException {
+		validateKind(kind);
 		kindRepository.save(kind);
 		logger.info("save kind" + kind.getName());
 	}

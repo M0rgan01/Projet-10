@@ -50,6 +50,7 @@ public class Book implements Serializable{
 	/**
 	 * Nombre de copies disponible  
 	 */
+	@Min(value=0, message="book.copyAvailable.value.not.correct")
 	private int copyAvailable;
 	/**
 	 * boolean de disponibilité pour emprunt 

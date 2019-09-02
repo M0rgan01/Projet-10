@@ -25,18 +25,20 @@ public interface MailBusiness {
 	 * 
 	 * @param mail
 	 * @param user_id --> id de l'utilisateur
+	 * @return mail modifié
 	 * @throws BibliothequeException --> attribut email vide ou non conforme ou déjà utiliser
 	 */
-	public void saveMail(Mail mail, Long user_id) throws BibliothequeException;
+	public Mail saveMail(Mail mail, Long user_id) throws BibliothequeException;
 	
 	/**
 	 * création d'un mail
 	 * 
 	 * @param mail
 	 * @param user
+	 * @return email créer
 	 * @throws BibliothequeException --> attribut email vide ou non conforme ou déjà utiliser
 	 */
-	public void createMail(Mail mail, User user) throws BibliothequeException;	
+	public Mail createMail(Mail mail, User user) throws BibliothequeException;	
 	
 	/**
 	 * récupération d'un mail par rapport à l'utilisateur 

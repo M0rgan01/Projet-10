@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+
 @SpringBootApplication
 @EnableScheduling
 @PropertySource("classpath:batch.properties")

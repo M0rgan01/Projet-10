@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * classe de configuration du web-service
@@ -25,6 +26,11 @@ public class MyConfig {
 		SimpleJaxWsServiceExporter exporter = new SimpleJaxWsServiceExporter();
 		exporter.setBaseAddress(WS_adress);
 		return exporter;
+	}
+	
+	@Bean
+	public BCryptPasswordEncoder getBcrypt() {
+		return new BCryptPasswordEncoder();
 	}
 		    
 }

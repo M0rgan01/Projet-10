@@ -1,6 +1,5 @@
 package com.bibliotheque.metier;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -20,17 +19,19 @@ public interface LoanBusiness {
 	 * 
 	 * @param loanID --> id de l'emprunt
 	 * @param user_id --> id utilisateur
+	 * @return Loan
 	 * @throws BibliothequeException --> loanID incorrect, user_id incorrect, emprunt déjà en prolongation, retard même après prolongation
 	 */
-	public void extendLoan(Long loanID, Long user_id) throws BibliothequeException; 
+	public Loan extendLoan(Long loanID, Long user_id) throws BibliothequeException; 
 	
 	/**
 	 * Rendu d'un emprunt
 	 * 
 	 * @param id --> id de l'emprunt
+	 * @return Loan
 	 * @throws BibliothequeException 
 	 */
-	public void returnLoan(Long id) throws BibliothequeException;
+	public Loan returnLoan(Long id) throws BibliothequeException;
 	
 	/**
 	 * Récupération d'un emprunt
@@ -45,9 +46,10 @@ public interface LoanBusiness {
 	 * 
 	 * @param book_id --> livre lié à l'emprunt
 	 * @param user_id --> utilisateur lié à l'emprunt
+	 * @return Loan
 	 * @throws BibliothequeException--> book_id incorrect, user_id incorrect, ouvrage non disponible
 	 */
-	public void createLoan(Long book_id, Long user_id) throws BibliothequeException, ParseException;
+	public Loan createLoan(Long book_id, Long user_id) throws BibliothequeException;
 	
 	/**
 	 * Récupération des emprunts actuel sans retard d'un utilisateur 

@@ -35,6 +35,8 @@ public class UserBusinessImpl implements UserBusiness {
 	private MailBusiness mailBusiness;
 	@Autowired
 	private Jasypt encrypt;
+	@Autowired
+	private BCryptPasswordEncoder bCrypt;
 	@Value("${connection.expired.inMillis}")
 	private int minuteInMillisForConnection;
 
@@ -69,7 +71,7 @@ public class UserBusinessImpl implements UserBusiness {
 				throw new BibliothequeException("user.oldPassword.blank", bibliothequeFault);
 
 				// on vérifie la correspondance
-			} else if (!new BCryptPasswordEncoder().matches(user.getOldPassWord(), user2.getPassWord())) {
+			} else if (!bCrypt.matches(user.getOldPassWord(), user2.getPassWord())) {
 				logger.error("OldPassword not match for user " + user.getId());
 				BibliothequeFault bibliothequeFault = new BibliothequeFault();
 				bibliothequeFault.setFaultCode("21");
@@ -79,7 +81,7 @@ public class UserBusinessImpl implements UserBusiness {
 			}
 			// validation des mots de passe
 			validatePassWord(user);
-			user2.setPassWord(new BCryptPasswordEncoder().encode(user.getPassWord()));
+			user2.setPassWord(bCrypt.encode(user.getPassWord()));
 			logger.info("Update password for user " + user.getId());
 		}
 
@@ -101,7 +103,7 @@ public class UserBusinessImpl implements UserBusiness {
 
 		// on vérifie
 		validatePassWord(user);
-		user.setPassWord(new BCryptPasswordEncoder().encode(user.getPassWord()));
+		user.setPassWord(bCrypt.encode(user.getPassWord()));
 		
 		userRepository.save(user);		
 		logger.info("Update password by recovery for user " + user.getId());
@@ -158,11 +160,11 @@ public class UserBusinessImpl implements UserBusiness {
 				}
 			}
 
-			if (new BCryptPasswordEncoder().matches(passWord, user.getPassWord())) {
+			if (bCrypt.matches(passWord, user.getPassWord())) {
 
 				if (user.getTryConnection() > 0) {
 					user.setTryConnection(0);
-					userRepository.save(user);
+					user = userRepository.save(user);
 					logger.info("Connection success for user " + user.getId());
 				}
 
@@ -212,14 +214,14 @@ public class UserBusinessImpl implements UserBusiness {
 		user.getRoles().add(new Roles("ROLE_USER"));
 		//user.getRoles().add(new Roles("ROLE_ADMIN"));
 		user.setActive(true);
-		user.setPassWord(new BCryptPasswordEncoder().encode(user.getPassWord()));
+		user.setPassWord(bCrypt.encode(user.getPassWord()));
 
 		mailBusiness.createMail(mail, user);
 		
-		User user2 = userRepository.save(user);
-		logger.info("Create user " + user2.getId());
+		user = userRepository.save(user);
+		logger.info("Create user " + user.getId());
 		
-		return user2;
+		return user;
 	}
 
 	@Override
