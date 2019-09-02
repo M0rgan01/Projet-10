@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.bibliotheque</groupId>
 	<artifactId>Projet7-WebService</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>2.0</version>
 	<name>Projet7-WebService</name>
 	<description>Web-service du Projet 7 - Openclassroom</description>
 	<packaging>war</packaging>
